@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/coming-soon",
+      "destination": "/coming-soon.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ],
+  "cleanUrls": true
+}
