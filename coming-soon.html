@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coming Soon - Her Genius Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8c2bee",
+                        "brand-teal": "#008080",
+                        "brand-gold": "#D4AF37",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .brand-heading {
+            font-family: "Playfair Display", serif
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm px-10 py-3 md:px-20 lg:px-40">
+<div class="flex items-center gap-3">
+<div class="size-8 text-brand-teal">
+<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 3H15V6H9V3Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M10 6L7 12V21H17V12L14 6" stroke="currentColor" stroke-width="2"></path>
+<circle cx="12" cy="14" fill="currentColor" r="1.5"></circle>
+<path d="M12 15.5V18" stroke="currentColor" stroke-width="1.5"></path>
+<circle cx="12" cy="19" r="1" stroke="currentColor"></circle>
+</svg>
+</div>
+<a href="her.html" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">Her Genius Archive</a>
+</div>
+<div class="flex gap-6 items-center">
+<button class="hidden md:flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">
+<span>Subscribe</span>
+</button>
+<button class="md:hidden flex items-center justify-center text-brand-teal hover:text-brand-teal/80 transition-colors" id="mobile-menu-btn">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+<div id="mobile-menu" class="hidden fixed top-[60px] left-0 right-0 bg-white dark:bg-background-dark border-b border-[#f2f0f4] dark:border-white/10 md:hidden flex flex-col p-6 gap-4">
+<a class="text-[#141118] dark:text-white hover:text-brand-teal transition-colors font-medium" href="her.html">Back to Home</a>
+</div>
+<script>
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('hidden');
+});
+</script>
+</header>
+<main class="flex-1 flex items-center justify-center px-10 py-20 md:px-20 lg:px-40">
+<div class="text-center space-y-8 max-w-2xl">
+<div class="space-y-4">
+<h1 class="brand-heading text-5xl md:text-7xl text-brand-teal dark:text-brand-gold font-black">
+Coming Soon
+</h1>
+<p class="text-xl md:text-2xl text-[#756189] dark:text-white/70">
+We're crafting something extraordinary for you.
+</p>
+</div>
+<p class="text-lg text-[#756189] dark:text-white/70 leading-relaxed max-w-xl mx-auto">
+This section of the Her Genius Archive is under development. We're gathering and curating exceptional stories that celebrate the brilliance, resilience, and impact of remarkable women across history.
+</p>
+<div class="space-y-4">
+<p class="text-brand-teal font-bold text-sm uppercase tracking-widest">
+Stay Updated
+</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<input class="flex-1 rounded-lg border border-[#e0dbe6] dark:border-white/10 bg-white dark:bg-white/5 p-3 focus:ring-brand-teal focus:border-brand-teal text-[#141118] dark:text-white placeholder:text-[#756189]" placeholder="Enter your email..." type="email"/>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">
+<span>Notify Me</span>
+</button>
+</div>
+</div>
+<div class="pt-8">
+<a class="inline-flex items-center gap-2 text-brand-teal font-bold hover:text-brand-teal/80 transition-colors" href="her.html">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+Back to Home
+</a>
+</div>
+</div>
+</main>
+<footer class="border-t border-[#e0dbe6] dark:border-white/10 py-12 px-10 md:px-20 lg:px-40 bg-white dark:bg-background-dark">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-brand-teal text-3xl">menu_book</span>
+<h2 class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold">Her Genius Archive</h2>
+</div>
+<div class="flex flex-wrap justify-center gap-8 text-[#756189] text-sm">
+<a class="hover:text-brand-teal transition-colors" href="#">Archive Policy</a>
+<a class="hover:text-brand-teal transition-colors" href="#">Submissions</a>
+<a class="hover:text-brand-teal transition-colors" href="#">Accessibility</a>
+<a class="hover:text-brand-teal transition-colors" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<a class="size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="#">
+<span class="material-symbols-outlined text-xl">rss_feed</span>
+</a>
+<a class="size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="#">
+<span class="material-symbols-outlined text-xl">mail</span>
+</a>
+</div>
+</div>
+<p class="text-center text-[#756189] text-xs mt-12">
+© 2024 Her Genius Archive. Celebrating contributions across Arts, Literature, Activism, and Science.
+</p>
+</footer>
+</div>
+</div>
+</body>
+</html>
