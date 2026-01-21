@@ -5,6 +5,8 @@ async function loadBlogPosts() {
     const response = await fetch('/.netlify/functions/get-blog-posts');
     const posts = await response.json();
     
+    console.log('Blog posts loaded:', posts);
+    
     if (!posts || posts.length === 0) {
       console.log('No blog posts found yet');
       return;
@@ -12,16 +14,18 @@ async function loadBlogPosts() {
 
     // Get the articles container
     const articlesContainer = document.querySelector('[data-blog-posts]');
-    if (!articlesContainer) return;
+    if (!articlesContainer) {
+      console.error('Blog posts container not found');
+      return;
+    }
 
     // Clear existing dummy articles
     const existingArticles = articlesContainer.querySelectorAll('article');
     existingArticles.forEach((article, index) => {
-      if (index >= posts.length) return; // Keep extras if fewer posts than dummy articles
       article.remove();
     });
 
-    // Create article HTML for each post
+    // Create article HTML for each post (limit to 4)
     posts.slice(0, 4).forEach(post => {
       const article = createArticleElement(post);
       articlesContainer.appendChild(article);
