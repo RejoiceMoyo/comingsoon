@@ -46,6 +46,7 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+<script src="js/blog-loader.js"></script>
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
 <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-5 md:px-10 lg:px-16">
@@ -133,6 +134,7 @@ document.getElementById('mobile-menu-btn').addEventListener('click', function() 
 <h2 class="brand-heading text-4xl text-[#141118] dark:text-white">Latest Stories</h2>
 <div class="h-1 w-20 bg-brand-gold rounded-full"></div>
 </div>
+<div data-blog-posts>
 <article class="flex flex-col md:flex-row gap-8 group">
 <div class="w-full md:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
 <div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTHizQMem3BxGc3NTjL24OiOScMK5C353HMwNAqJmaxHi9OLxKw0DGkTpPnKV8nFNUhpNZer6TYqgsVO20GWsrkj2v06iitjV6P-vjpXDp5ecLlV0tYx7A0f122uQBibu6ECCm8jUkv9A4dRHlRMQvpPnDwpyjsBZeqFPbvf5mJhQtv1VZSAq5Gz5Ly8o_alkAIsxeFezdtDJfwevYPIZQoDgoMNTmWF8HlKczkg3_rmW081_YICjrQb1ZkJ3QSo6W1UtCnnlyn_k");'></div>
@@ -196,6 +198,7 @@ document.getElementById('mobile-menu-btn').addEventListener('click', function() 
 <button class="size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">
 <span class="material-symbols-outlined">chevron_right</span>
 </button>
+</div>
 </div>
 </div>
 <aside class="w-full lg:w-80 space-y-12">
