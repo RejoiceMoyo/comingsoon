@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Ada Lovelace: The First Coder - The She Archive</title>
+    <meta name="description" content="An in-depth look at the life and work of Ada Lovelace, the world's first computer programmer and a visionary of the digital age."/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8c2bee",
+                        "brand-teal": "#008080",
+                        "brand-gold": "#D4AF37",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .brand-heading {
+            font-family: "Playfair Display", serif
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+                <div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
+                    <div class="flex items-center gap-3">
+                        <a href="/" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The She Archive</a>
+                    </div>
+                    <nav class="hidden lg:flex items-center gap-9 justify-center">
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
+                    </nav>
+                    <div class="hidden lg:flex items-center">
+                        <a href="coming-soon.html" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
+                    </div>
+                    <div class="flex items-center lg:hidden">
+                        <button id="menu-button" class="p-2" aria-label="Open menu">
+                            <span id="menu-icon" class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mobile Nav Panel -->
+                <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
+                    <nav class="flex flex-col gap-1 p-4">
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Stories</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Galleries</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Timeline</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">About</a>
+                        <a href="coming-soon.html" class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact Us</a>
+                    </nav>
+                </div>
+                <script>
+                    const menuButton = document.getElementById('menu-button');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuIcon = document.getElementById('menu-icon');
+
+                    menuButton.addEventListener('click', () => {
+                        const isHidden = mobileMenu.classList.toggle('hidden');
+                        menuIcon.textContent = isHidden ? 'menu' : 'close';
+                    });
+                </script>
+            </header>
+
+            <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <a href="/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link">
+                            <span class="material-symbols-outlined text-sm group-hover/link:-translate-x-1 transition-transform">arrow_back</span>
+                            Back to Latest Stories
+                        </a>
+                        <h1 class="brand-heading text-4xl sm:text-5xl md:text-6xl text-[#141118] dark:text-white">The Woman Who Wrote the First Computer Program</h1>
+                        <p class="text-lg text-[#756189] dark:text-white/70">Published on January 22, 2026</p>
+                    </div>
+
+                    <div class="w-full aspect-video overflow-hidden rounded-xl">
+                        <img src="https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg" alt="A portrait of Ada Lovelace" class="w-full h-full object-cover"/>
+                    </div>
+
+                    <article class="prose prose-lg lg:prose-xl max-w-none dark:prose-invert text-[#141118] dark:text-white/90 space-y-8">
+                        
+                        <section>
+                            <h2 class="brand-heading text-3xl">Introduction</h2>
+                            <p>Augusta Ada King, Countess of Lovelace (1815-1852), stands as a monumental figure in the history of computing. An English mathematician and writer, she is widely credited with writing the first computer program—a century before the advent of the modern computer. Lovelace's importance lies not only in this pioneering achievement but also in her visionary perspective on the potential of machines. While her contemporaries, including the brilliant inventor Charles Babbage, saw computers as mere calculators, Lovelace foresaw a future where they could manipulate any form of information, from numbers to music and art. Her work laid the conceptual groundwork for the digital age, establishing her as the first prophet of computing. Her unique ability to blend imaginative, poetic insight with rigorous mathematical logic allowed her to grasp the profound, world-changing implications of Babbage's Analytical Engine, an invention that was never fully built in their time but whose principles define computation today.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Early Life</h2>
+                            <p>Ada Lovelace was born on December 10, 1815, in London, England, as the only legitimate child of the famed Romantic poet Lord Byron and his wife, Anne Isabella "Annabella" Milbanke. Fearing that Ada would inherit her father's volatile and "poetic" temperament, her mother, a highly intelligent and mathematically gifted woman, was determined to steer her daughter toward logic and reason. From a young age, Ada was immersed in a demanding curriculum of science and mathematics, a highly unusual education for a girl in the 19th century. Her tutors included prominent mathematicians and logicians of the era, such as William Frend, William King, and Augustus De Morgan. This rigorous intellectual upbringing, combined with a vivid imagination she undoubtedly inherited from her father, created a unique mindset she described as "poetical science."</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Her Work</h2>
+                            <p>Lovelace's most significant contribution to computing stems from her collaboration with Charles Babbage, whom she met in 1833. She was captivated by his plans for the Analytical Engine, a mechanical general-purpose computer. In 1842, Lovelace was commissioned to translate an article on the Analytical Engine written by the Italian engineer Luigi Menabrea. However, she did more than just translate it; she added her own extensive set of "Notes," which were nearly three times the length of the original text. It is within these notes that she outlined the first algorithm intended to be processed by a machine. Specifically, she detailed a method for calculating a sequence of Bernoulli numbers, providing a step-by-step description of the process. This was not merely a mathematical formula but a concrete set of operations for the machine to follow, making it the world's first computer program. Beyond this, her notes articulated the fundamental difference between a simple calculator and a true computer, envisioning a machine that could process symbols and create music or art, a concept now known as general-purpose computing.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Why History Forgot Her</h2>
+                            <p>Despite the brilliance of her work, Ada Lovelace's contributions were largely unrecognized for nearly a century after her death in 1852. Several factors contributed to this historical oversight. Firstly, the scientific and academic fields of the 19th century were overwhelmingly dominated by men. Women's intellectual contributions were often downplayed, attributed to their male collaborators, or dismissed entirely. Charles Babbage, a prominent figure in the scientific establishment, naturally received the lion's share of attention for the invention of the Analytical Engine, while Lovelace's role as its interpreter and visionary was relegated to a footnote. Furthermore, because the Analytical Engine was never constructed, her algorithm was never tested, leaving her work purely theoretical. It was not until the mid-20th century, with the rise of electronic computing, that computer scientists like Alan Turing rediscovered her notes and recognized their profound significance.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Legacy</h2>
+                            <p>Today, Ada Lovelace is celebrated as a foundational figure in computer science. Her legacy is not just in the past but is woven into the fabric of modern technology. The United States Department of Defense named a computer language "Ada" in her honor in the 1970s. Ada Lovelace Day, celebrated on the second Tuesday in October, is an international event that aims to raise the profile of women in science, technology, engineering, and mathematics (STEM). She is remembered as a powerful symbol for women in technology and a testament to the power of interdisciplinary thinking. Her ability to see the creative potential within a logical system—the "poetical science"—is a mindset that continues to drive innovation in fields from software development to artificial intelligence. She reminds us that the greatest technological leaps are often born from a fusion of imagination and calculation.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Sources / References</h2>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Toole, Betty A. <a href="https://www.amazon.com/Ada-Enchantress-Numbers-Prophet-Computer/dp/0912647183" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline"><em>Ada, the Enchantress of Numbers: Prophet of the Computer Age</em></a>. Strawberry Press, 1998.</li>
+                                <li>Woolley, Benjamin. <a href="https://www.amazon.com/Bride-Science-Romance-Reason-Lovelace/dp/0333724364" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline"><em>The Bride of Science: Romance, Reason, and Byron's Daughter</em></a>. Macmillan, 1999.</li>
+                                <li>"Ada Lovelace." <a href="https://www.computerhistory.org/babbage/adalovelace/" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline">Computer History Museum</a>.</li>
+                                <li>"Sketch of The Analytical Engine Invented by Charles Babbage, Esq." with notes by Ada Lovelace. <a href="https://www.fourmilab.ch/babbage/sketch.html" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline"><em>fourmilab.ch</em></a>.</li>
+                            </ul>
+                        </section>
+
+                    </article>
+                </div>
+            </main>
+
+            <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
+                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Archive Policy</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Accessibility</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Contact</a>
+                    </div>
+                    <div class="flex gap-3 sm:gap-4">
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
+                        </a>
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                    © 2026 Her Genius Archive. Celebrating contributions across Arts, Tech, Medical, Activism, and Science.
+                </p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

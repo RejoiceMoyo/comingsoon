@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hedy Lamarr: The Actress Who Invented the Technology Behind Wi-Fi - The She Archive</title>
+    <meta name="description" content="Learn about Hedy Lamarr, the Hollywood star who co-invented a frequency-hopping communication system that became the foundation for Wi-Fi, Bluetooth, and GPS."/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8c2bee",
+                        "brand-teal": "#008080",
+                        "brand-gold": "#D4AF37",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .brand-heading {
+            font-family: "Playfair Display", serif
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+                <div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
+                    <div class="flex items-center gap-3">
+                        <a href="/" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The She Archive</a>
+                    </div>
+                    <nav class="hidden lg:flex items-center gap-9 justify-center">
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
+                    </nav>
+                    <div class="hidden lg:flex items-center">
+                        <a href="coming-soon.html" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
+                    </div>
+                    <div class="flex items-center lg:hidden">
+                        <button id="menu-button" class="p-2" aria-label="Open menu">
+                            <span id="menu-icon" class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mobile Nav Panel -->
+                <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
+                    <nav class="flex flex-col gap-1 p-4">
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Stories</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Galleries</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Timeline</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">About</a>
+                        <a href="coming-soon.html" class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact Us</a>
+                    </nav>
+                </div>
+                <script>
+                    const menuButton = document.getElementById('menu-button');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuIcon = document.getElementById('menu-icon');
+
+                    menuButton.addEventListener('click', () => {
+                        const isHidden = mobileMenu.classList.toggle('hidden');
+                        menuIcon.textContent = isHidden ? 'menu' : 'close';
+                    });
+                </script>
+            </header>
+
+            <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <a href="/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link">
+                            <span class="material-symbols-outlined text-sm group-hover/link:-translate-x-1 transition-transform">arrow_back</span>
+                            Back to Latest Stories
+                        </a>
+                        <h1 class="brand-heading text-4xl sm:text-5xl md:text-6xl text-[#141118] dark:text-white">Hedy Lamarr: The Actress Who Invented the Technology Behind Wi-Fi</h1>
+                        <p class="text-lg text-[#756189] dark:text-white/70">Published on January 22, 2026</p>
+                    </div>
+
+                    <div class="w-full aspect-video overflow-hidden rounded-xl">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvf_LBTGlQgpX3lMGJ0tURIP7Vy2UHivv1seayHfTIuNvN1AJ3pRUEhjbAL0hx0WRjBaDQJo1hUeCAcNco0GK0p54aNKg8a8ZBfzlpDWTuSw&s=10" alt="A portrait of Hedy Lamarr" class="w-full h-full object-cover"/>
+                    </div>
+
+                    <article class="prose prose-lg lg:prose-xl max-w-none dark:prose-invert text-[#141118] dark:text-white/90 space-y-8">
+                        
+                        <section>
+                            <h2 class="brand-heading text-3xl">Introduction</h2>
+                            <p>Hedy Lamarr is widely remembered as a glamorous Hollywood actress of the 1930s and 1940s, but her contributions to science and technology were equally remarkable. Few people know that Lamarr co-invented a revolutionary frequency-hopping communication system during World War II, which laid the groundwork for modern technologies like Wi-Fi, Bluetooth, and GPS. Despite her groundbreaking work, Lamarr’s achievements in science were overshadowed by her fame as an actress, and she only gained widespread recognition decades later. Her story is a fascinating intersection of beauty, brains, and innovation, showing that talent can transcend conventional boundaries.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Early Life</h2>
+                            <p>Hedy Lamarr was born Hedwig Eva Maria Kiesler on November 9, 1914, in Vienna, Austria-Hungary. She grew up in an intellectually stimulating environment; her father was a successful bank director and her mother was a pianist who encouraged artistic and intellectual pursuits. From a young age, Lamarr displayed curiosity and inventiveness. She attended a progressive school that emphasized science and the arts, nurturing her dual passions for creativity and analytical thinking. Lamarr’s early exposure to both the arts and technology would later enable her to bridge seemingly unrelated worlds—film and scientific innovation.</p>
+                            <p>By her late teens, Lamarr had begun acting in European films, quickly gaining attention for her talent and beauty. However, behind the glamorous screen persona was a sharp, inquisitive mind, deeply interested in engineering, physics, and problem-solving. These traits would soon lead to her most important scientific contribution.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Her Work</h2>
+                            <p>During World War II, Lamarr learned that radio-controlled torpedoes were vulnerable to interference and jamming. She partnered with composer George Antheil, who was interested in synchronized technologies, to develop a solution: a frequency-hopping system that would make radio signals harder to intercept or jam. Lamarr and Antheil’s invention used a piano-roll mechanism to change radio frequencies rapidly, a technique that was decades ahead of its time.</p>
+                            <p>In 1942, Lamarr and Antheil received a patent for their invention, titled “Secret Communication System.” Although the U.S. Navy did not immediately adopt the technology, the concept later became foundational for secure wireless communications. Today, her work underpins technologies like Bluetooth, GPS, and Wi-Fi. Lamarr’s ability to think creatively across disciplines—combining her understanding of mechanical systems with practical problem-solving—demonstrates her exceptional intellect and foresight.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Why History Overlooked Her</h2>
+                            <p>Despite the importance of her invention, Hedy Lamarr’s scientific contributions were largely ignored during her lifetime. Her fame as a Hollywood actress meant that most people viewed her as a glamorous star rather than a serious inventor. Gender bias and societal stereotypes of the 1940s contributed to this oversight, as women in science were often dismissed or underestimated. Lamarr herself did not actively seek recognition for her invention and focused primarily on her acting career, allowing her brilliance in technology to remain hidden for decades.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Legacy</h2>
+                            <p>Today, Hedy Lamarr is celebrated not only as a film icon but also as a visionary inventor. She was posthumously inducted into the National Inventors Hall of Fame in 2014, nearly 20 years after her death in 2000. Her story inspires women and men alike, showing that creativity and intelligence can coexist with unconventional careers and interests. Lamarr’s work demonstrates the importance of interdisciplinary thinking and reminds us that innovation can come from unexpected places.</p>
+                            <p>Her legacy continues to impact modern technology. Every time we use Wi-Fi, Bluetooth devices, or GPS navigation, we are benefitting from Lamarr’s ingenuity. She remains a symbol of brilliance, creativity, and perseverance, proving that true innovation is timeless.</p>
+                        </section>
+
+                        <section>
+                            <h2 class="brand-heading text-3xl">Sources / References</h2>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><a href="https://www.invent.org/inductees/hedy-lamarr" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline">National Inventors Hall of Fame: Hedy Lamarr</a></li>
+                                <li><a href="https://www.britannica.com/biography/Hedy-Lamarr" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline">Britannica: Hedy Lamarr</a></li>
+                                <li><a href="https://www.smithsonianmag.com/arts-culture/hedy-lamarrs-secret-life-inventor-180974455/" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline">Smithsonian Magazine: Hedy Lamarr, Inventor</a></li>
+                                <li><a href="https://www.nationalgeographic.com/history/article/hedy-lamarr-innovative-actress-inventor" target="_blank" rel="noopener noreferrer" class="text-brand-teal hover:underline">National Geographic: Hedy Lamarr’s Innovations</a></li>
+                            </ul>
+                        </section>
+
+                    </article>
+                </div>
+            </main>
+
+            <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
+                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Archive Policy</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Accessibility</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Contact</a>
+                    </div>
+                    <div class="flex gap-3 sm:gap-4">
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
+                        </a>
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                    © 2026 Her Genius Archive. Celebrating contributions across Arts, Tech, Medical, Activism, and Science.
+                </p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
