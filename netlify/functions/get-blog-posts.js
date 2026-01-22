@@ -11,14 +11,30 @@ function parseFrontmatter(content) {
   const data = {};
   
   const lines = frontmatter.split('\n');
+  let currentKey = null;
+  let isArray = false;
+  
   lines.forEach(line => {
-    const [key, value] = line.split(':').map(s => s.trim());
-    if (key && value) {
-      // Handle lists like tags: [tag1, tag2]
-      if (value.startsWith('[') && value.endsWith(']')) {
-        data[key] = value.slice(1, -1).split(',').map(s => s.trim().replace(/['"]/g, ''));
+    // Check if this is a new key
+    if (line.match(/^\w+:/)) {
+      const [key, ...valueParts] = line.split(':');
+      currentKey = key.trim();
+      const value = valueParts.join(':').trim();
+      
+      // Check if starting an array
+      if (value === '') {
+        isArray = true;
+        data[currentKey] = [];
+      } else if (value.startsWith('[') && value.endsWith(']')) {
+        data[currentKey] = value.slice(1, -1).split(',').map(s => s.trim().replace(/['"]/g, ''));
       } else {
-        data[key] = value.replace(/['"]/g, '');
+        data[currentKey] = value.replace(/['"]/g, '');
+      }
+    } else if (isArray && line.match(/^\s+-\s/)) {
+      // Array item
+      const item = line.replace(/^\s+-\s/, '').trim().replace(/['"]/g, '');
+      if (Array.isArray(data[currentKey])) {
+        data[currentKey].push(item);
       }
     }
   });
