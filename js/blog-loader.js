@@ -163,7 +163,7 @@ function createArticleElement(post) {
       <p class="text-[#756189] dark:text-white/70 line-clamp-3">
         ${post.description || post.excerpt || 'Read this fascinating story from our archive.'}
       </p>
-      <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="#post-${post.slug}">
+      <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="blog-post.html#post-${post.slug}">
         Read More 
         <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
       </a>
