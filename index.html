@@ -47,72 +47,90 @@
 <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm px-10 py-3 md:px-20 lg:px-40">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-3">
-<div class="size-8 text-brand-teal">
-<svg class="w-full h-full" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 3H15V6H9V3Z" stroke="currentColor" stroke-width="2"></path>
-<path d="M10 6L7 12V21H17V12L14 6" stroke="currentColor" stroke-width="2"></path>
-<circle cx="12" cy="14" fill="currentColor" r="1.5"></circle>
-<path d="M12 15.5V18" stroke="currentColor" stroke-width="1.5"></path>
-<circle cx="12" cy="19" r="1" stroke="currentColor"></circle>
-</svg>
+<header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+<div class="flex items-center justify-between px-4 py-5 md:px-8 lg:px-12">
+    <div class="flex items-center gap-3">
+        <a href="/" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The She Archive</a>
+    </div>
+    <nav class="hidden lg:flex items-center gap-9 justify-center">
+        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
+        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
+        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
+        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
+    </nav>
+    <div class="hidden lg:flex items-center">
+        <a href="#contact" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
+    </div>
+    <div class="flex items-center lg:hidden">
+        <button id="menu-button" class="p-2" aria-label="Open menu">
+            <span id="menu-icon" class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
+        </button>
+    </div>
 </div>
-<h2 class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold">Her Genius Archive</h2>
+<!-- Mobile Nav Panel -->
+<div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
+    <nav class="flex flex-col gap-1 p-4">
+        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Stories</a>
+        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Galleries</a>
+        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Timeline</a>
+        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">About</a>
+        <a href="#contact" class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact Us</a>
+    </nav>
 </div>
-<nav class="hidden md:flex items-center gap-9">
-<a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="#">Stories</a>
-<a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="#">Galleries</a>
-<a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="#">Timeline</a>
-<a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="#">About</a>
-</nav>
-</div>
-<div class="flex flex-1 justify-end gap-6 items-center">
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">
-<span>Subscribe</span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-brand-teal/20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFpzurd51tb7xbLt-Ru2Nz7oLyEg3tPF9sTFVbHG4DfJc8phlMT6UV6KxIe5gk69cpLUBHDPKZ3D_n5No4oTIYar_IeGteIwqlCt59lqyapAt9iYoBCip3aUeQ2FeFoL-qvQJegLt_nA3lYxv73JKYXbNkCNoFiq2G-TzCuq8sJfj1EOjV_N4m22WB9Z2mq9KQHAkQQbTl5o9T4AX0YKcnDiGinWGrPfq4lm64ypsV5Au3TWjtmBwTvxs24-KUzyHsi61O-RKkg5U");'></div>
-</div>
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuIcon.textContent = isHidden ? 'menu' : 'close';
+    });
+</script>
 </header>
-<section class="w-full bg-brand-teal relative overflow-hidden">
-<div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay">
-<div class="absolute top-10 left-10 text-brand-gold text-4xl font-serif">Aesthetica</div>
-<div class="absolute bottom-20 right-20 text-brand-gold text-2xl font-serif">Philosophia</div>
-<div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-32 h-64 border-l-2 border-brand-gold rounded-full rotate-12 opacity-40"></div>
-</div>
-<div class="px-10 py-20 md:px-20 lg:px-40 flex flex-col md:flex-row items-center gap-12 max-w-[1440px] mx-auto">
-<div class="flex-1 space-y-8 z-10">
-<div class="inline-block px-3 py-1 bg-brand-gold/20 text-brand-gold border border-brand-gold/30 rounded-full text-xs font-bold tracking-widest uppercase">
-                        Celebrating Multidisciplinary Brilliance
-                    </div>
-<h1 class="brand-heading text-5xl md:text-7xl text-white leading-[1.1] font-black">
-                        Voices of <span class="text-brand-gold">Impact</span>.<br/>Legacy of Thought.
-                    </h1>
-<p class="text-white/80 text-lg md:text-xl max-w-xl leading-relaxed">
-                        Beyond the lab, into the soul of human progress. A curated archive of women who shaped literature, the arts, social movements, and scientific frontiers.
-                    </p>
-<div class="flex flex-wrap gap-4">
-<button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-brand-gold text-brand-teal text-base font-bold shadow-lg hover:scale-105 transition-transform">
-                            Read the Stories
-                        </button>
-<button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 border-2 border-white/30 text-white text-base font-bold hover:bg-white/10 transition-colors">
-                            The Archive
-                        </button>
-</div>
-</div>
-<div class="flex-1 w-full max-w-md relative">
-<div class="aspect-[3/4] bg-white/5 rounded-2xl border border-white/10 p-4 backdrop-blur-sm relative overflow-hidden group">
-<div class="w-full h-full rounded-xl bg-center bg-cover transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEXazVHZ0KHgpOQ2oNwBs4BScsp0qxmXXtdRmp0wJ3tO3jI43nCnD8G8JxmiEfWT-PDac68Sqf-b5eyCuMfA0xGttps19TZNFns0PEe7hvBh6cTgwFurI84cYPKzwLt4qX0haeotlEYN8NtCajJNqWtVFVg_8RvjvfnVpQz4Jbbw630pxzvn7xT1czAkrh_RbTLcACc8iiXtAdzAJEv5wEKklJMwLSNvo52_UJ-1uPv1jk1nO4VdNpKrzBWGDRvUX2E8dlohG9rlc");'></div>
-<div class="absolute bottom-8 left-8 right-8 bg-white/90 dark:bg-background-dark/90 p-4 rounded-lg shadow-xl">
-<p class="text-brand-teal font-bold text-sm uppercase tracking-tighter">Current Feature</p>
-<p class="text-black dark:text-white font-serif text-lg italic">The Lost Manuscripts of Sappho</p>
-</div>
-</div>
-</div>
-</div>
+<section class="w-full relative overflow-hidden">
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="https://res.cloudinary.com/dhd4ljeo1/video/upload/v1769076517/edit_the_existing_image_to_transform_the_1_yjmwna.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="absolute inset-0 bg-brand-teal/80"></div>
+    <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay">
+        <div class="absolute top-10 left-10 text-brand-gold text-4xl font-serif">Aesthetica</div>
+        <div class="absolute bottom-20 right-20 text-brand-gold text-2xl font-serif">Philosophia</div>
+        <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-32 h-64 border-l-2 border-brand-gold rounded-full rotate-12 opacity-40"></div>
+    </div>
+    <div class="relative px-10 py-20 md:px-20 lg:px-40 flex flex-col md:flex-row items-center gap-12 max-w-[1440px] mx-auto">
+        <div class="flex-1 space-y-8 z-10">
+            <div class="inline-block px-3 py-1 bg-brand-gold/20 text-brand-gold border border-brand-gold/30 rounded-full text-xs font-bold tracking-widest uppercase">
+                Celebrating Multidisciplinary Brilliance
+            </div>
+            <h1 class="brand-heading text-5xl md:text-7xl text-white leading-[1.1] font-black">
+                Voices of <span class="text-brand-gold">Impact</span>.<br/>Legacy of Thought.
+            </h1>
+            <p class="text-white/80 text-lg md:text-xl max-w-xl leading-relaxed">
+                Beyond the lab, into the soul of human progress. A curated archive of women who shaped literature, the arts, social movements, and scientific frontiers.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-brand-gold text-brand-teal text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                    Read the Stories
+                </button>
+                <button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 border-2 border-white/30 text-white text-base font-bold hover:bg-white/10 transition-colors">
+                    The Archive
+                </button>
+            </div>
+        </div>
+        <div class="flex-1 w-full max-w-md relative">
+            <div class="aspect-[3/4] bg-white/5 rounded-2xl border border-white/10 p-4 backdrop-blur-sm relative overflow-hidden group">
+                <div class="w-full h-full rounded-xl bg-center bg-cover transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkrFiqP_4mJDA0kvQZtK5uBhAznUWniEEM1w&s");'></div>
+                <div class="absolute bottom-8 left-8 right-8 bg-white/90 dark:bg-background-dark/90 p-4 rounded-lg shadow-xl">
+                    <p class="text-brand-teal font-bold text-sm uppercase tracking-tighter">Current Feature</p>
+                    <p class="text-black dark:text-white font-serif text-lg italic">Josephine Cochrane: Inventor of the Dishwasher</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<main class="max-w-[1440px] mx-auto px-10 md:px-20 lg:px-40 py-16 w-full flex flex-col lg:flex-row gap-12">
+<main class="w-full px-6 md:px-8 lg:px-12 py-16 flex flex-col lg:flex-row gap-16">
 <div class="flex-1 space-y-12">
 <div class="space-y-2 mb-10">
 <h2 class="brand-heading text-4xl text-[#141118] dark:text-white">Latest Stories</h2>
@@ -120,12 +138,12 @@
 </div>
 <article class="flex flex-col md:flex-row gap-8 group">
 <div class="w-full md:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTHizQMem3BxGc3NTjL24OiOScMK5C353HMwNAqJmaxHi9OLxKw0DGkTpPnKV8nFNUhpNZer6TYqgsVO20GWsrkj2v06iitjV6P-vjpXDp5ecLlV0tYx7A0f122uQBibu6ECCm8jUkv9A4dRHlRMQvpPnDwpyjsBZeqFPbvf5mJhQtv1VZSAq5Gz5Ly8o_alkAIsxeFezdtDJfwevYPIZQoDgoMNTmWF8HlKczkg3_rmW081_YICjrQb1ZkJ3QSo6W1UtCnnlyn_k");'></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg");'></div>
 </div>
 <div class="flex flex-col justify-center space-y-3">
-<span class="text-brand-teal font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-teal/10 w-fit rounded">Literature</span>
-<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">The Unspoken Verses: Reclaiming 19th Century Poets</h3>
-<p class="text-[#756189] dark:text-white/70 line-clamp-3">Discover the forgotten manuscripts of women who used verse to navigate the restrictions of their era, weaving tales of resilience and hidden intellect.</p>
+<span class="text-brand-teal font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-teal/10 w-fit rounded">Tech Pioneers</span>
+<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Ada Lovelace: The First Coder</h3>
+<p class="text-[#756189] dark:text-white/70 line-clamp-3">In 1843, mathematician Ada Lovelace wrote the first computer algorithm—a century before digital computers existed. Her visionary notes on Charles Babbage's Analytical Engine laid the foundation for modern programming, the tech in your pocket, and the algorithms that power AI today.</p>
 <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="#">
                             Read More 
                             <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
@@ -134,12 +152,12 @@
 </article>
 <article class="flex flex-col md:flex-row gap-8 group">
 <div class="w-full md:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAS0Y3d_GEl27Prf2fb3kZtY3vE0GWrUBy_jD5bF3p5laB9tayyBphxxgKE6vbjuuLLL5IvLE47I9E4wMVkqY2qNEjH1qy6voRxFT_OBmVnILWEUwSC6CTPXlhJUOW7DZMR4Q3fVaADBrRz6dHaVLVgIV2NBqT_IIV04pPN2Np6Gmac10ln7AMg-PN97zWLbg1gmtNwCpPgJJM87xVpg0vViVKVJBhNT-YvL-ZhwByZ6mfpFScc3nrc0cAodteVX-SeXkLM_GnbEj8");'></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTISBNeZuBu20cAKP2ygJqCyjrlIifSVUAfrw&s");'></div>
 </div>
 <div class="flex flex-col justify-center space-y-3">
-<span class="text-brand-gold font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-gold/10 w-fit rounded">Arts</span>
-<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Pigments and Protest: The Muralists of the Resistance</h3>
-<p class="text-[#756189] dark:text-white/70 line-clamp-3">How visual artists transformed city walls into canvases of social reform during the mid-century movements across the globe.</p>
+<span class="text-brand-gold font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-gold/10 w-fit rounded">Life Changers</span>
+<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Rosalind Franklin: Photo 51</h3>
+<p class="text-[#756189] dark:text-white/70 line-clamp-3">British crystallographer Rosalind Franklin captured Photo 51—the X-ray diffraction image that revealed DNA's double helix structure. Her experimental evidence transformed molecular biology and saved countless lives through genetic medicine, yet her legacy remained hidden for decades.</p>
 <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="#">
                             Read More 
                             <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
@@ -148,12 +166,12 @@
 </article>
 <article class="flex flex-col md:flex-row gap-8 group">
 <div class="w-full md:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB35kl8e8DQPCTQ4RafgremRZFzz_Eo5F5-0KV1Dq9MGT0DZ9zgY7iwbDZ8QKj6D3XL8V98-nBP0ZwEl3pvXVvh6bxn9Z27nTHuRO2BP20_FoIXq3n_gc60MXrViicniVV4Y5rbYPTvnzt_LmvgWCVz9jx6ERtAxsrC5JSvEu6vDU8KbnMgubdytgm_MWH1x5nbL94elvvfHa6t3sqaaq3KuZvbAowCNV9NJi3lvHBQNsGxoU0kju4qLLAMfGGgKg8HXs0fZORb_E4");'></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvf_LBTGlQgpX3lMGJ0tURIP7Vy2UHivv1seayHfTIuNvN1AJ3pRUEhjbAL0hx0WRjBaDQJo1hUeCAcNco0GK0p54aNKg8a8ZBfzlpDWTuSw&s=10");'></div>
 </div>
 <div class="flex flex-col justify-center space-y-3">
-<span class="text-red-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-red-50 w-fit rounded">Activism</span>
-<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Voices for the Vote: Beyond the Suffrage</h3>
-<p class="text-[#756189] dark:text-white/70 line-clamp-3">An in-depth look at the diverse coalition of women who fought for civil rights and bodily autonomy, often excluded from traditional history books.</p>
+<span class="text-red-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-red-50 w-fit rounded">Tech Pioneers</span>
+<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Hedy Lamarr: The Inventor Actress</h3>
+<p class="text-[#756189] dark:text-white/70 line-clamp-3">Hollywood actress Hedy Lamarr developed frequency-hopping spread spectrum technology during WWII to prevent torpedo jamming. Her military innovation became the invisible foundation for modern Wi-Fi, Bluetooth, and cellular communications—the wireless technology connecting billions today.</p>
 <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="#">
                             Read More 
                             <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
@@ -162,15 +180,15 @@
 </article>
 <article class="flex flex-col md:flex-row gap-8 group">
 <div class="w-full md:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjfk8cbvYIsvu3B0UWLhdx-nmhVW4FlNuoSUDkdFUvte7AtNYpJuobm6UkmnU2jlSyoj9sAcsBU6F5x04ssSYmjr2LCoT3T1DB6THqwne4KKIEEkf1zTUAwswxrxwXoxJPkkWAo9knGveD4nAxMKMf_Pt_rfCFs6Hnt88FTCnFkuRsRF6GkdscpyBXZirOXY79iNlK7Xzxy8eXMb0IeZRhkOa9GsA59oeImc3QvN3fm2x2YSKKPw-c1zci5ypzZcwMANUxnNN6wBA");'></div>
+<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Nellie_Bly3.jpg/250px-Nellie_Bly3.jpg");'></div>
 </div>
 <div class="flex flex-col justify-center space-y-3">
-<span class="text-blue-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-blue-50 w-fit rounded">STEM</span>
-<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">The Human Computers of the Space Race</h3>
-<p class="text-[#756189] dark:text-white/70 line-clamp-3">Profiling the mathematicians whose precision and dedication launched the first satellites into orbit and beyond.</p>
+<span class="text-purple-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-purple-50 w-fit rounded">Social Innovators</span>
+<h3 class="brand-heading text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Nellie Bly: Journalism’s STEM Pioneer</h3>
+<p class="text-[#756189] dark:text-white/70 line-clamp-3">Nellie Bly revolutionized investigative journalism with her undercover reporting and record-breaking trip around the world. She also invented a practical steel drum for the oil industry, proving that innovation in STEM and social reform can come from unexpected places.</p>
 <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link" href="#">
-                            Read More 
-                            <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+    Read More
+    <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 </div>
 </article>
@@ -238,7 +256,7 @@
 </div>
 </aside>
 </main>
-<div class="max-w-[1440px] mx-auto px-10 md:px-20 lg:px-40 pb-16 w-full">
+<div class="w-full px-6 md:px-8 lg:px-12 pb-16">
 <div class="p-12 rounded-2xl bg-gradient-to-br from-[#191022] to-brand-teal text-white flex flex-col md:flex-row items-center gap-10 overflow-hidden relative">
 <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none select-none">
 <span class="brand-heading text-[12rem] leading-none">LEGACY</span>
@@ -256,7 +274,7 @@
 </div>
 </div>
 </div>
-<footer class="border-t border-[#e0dbe6] dark:border-white/10 py-12 px-10 md:px-20 lg:px-40 bg-white dark:bg-background-dark">
+<footer class="border-t border-[#e0dbe6] dark:border-white/10 py-12 px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
 <div class="flex flex-col md:flex-row justify-between items-center gap-8">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-brand-teal text-3xl">menu_book</span>
