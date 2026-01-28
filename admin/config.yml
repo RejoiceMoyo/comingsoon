@@ -3,6 +3,8 @@ backend:
   repo: RejoiceMoyo/comingsoon
   branch: main
   auth_type: pkce
+  site_domain: www.theshearchive.com
+  auth_endpoint: /api/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
