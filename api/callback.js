@@ -38,22 +38,15 @@ module.exports = async (req, res) => {
 <html>
 <head><title>Authorizing...</title></head>
 <body>
+<p>Authorization complete. Redirecting to the dashboard…</p>
 <script>
 (function() {
   var payload = JSON.stringify({ token: "${token}", provider: "github" });
 
   if (window.opener) {
-    function receiveMessage(e) {
-      window.opener.postMessage(
-        "authorization:github:success:" + payload,
-        e.origin
-      );
-      window.removeEventListener("message", receiveMessage, false);
-      setTimeout(function () { window.close(); }, 300);
-    }
-
-    window.addEventListener("message", receiveMessage, false);
     window.opener.postMessage("authorizing:github", "*");
+    window.opener.postMessage("authorization:github:success:" + payload, "*");
+    setTimeout(function () { window.close(); }, 300);
   } else {
     localStorage.setItem("decap-cms-auth", payload);
     window.location.href = "/admin/";
