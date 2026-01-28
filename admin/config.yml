@@ -2,7 +2,6 @@ backend:
   name: github
   repo: RejoiceMoyo/comingsoon # Your repo
   branch: main # The branch to update
-  auth_type: pkce
 
 media_folder: "images/uploads" # Where media files will be stored
 public_folder: "/images/uploads" # The src attribute for the media files
