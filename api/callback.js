@@ -28,18 +28,34 @@ module.exports = async (req, res) => {
     if (data.access_token) {
       const token = data.access_token;
       
-      const html = '<!DOCTYPE html><html><head><title>Auth</title></head><body><script>' +
-        'const token = "' + token + '";' +
-        'const provider = "github";' +
-        'function receiveMessage(e) {' +
-        '  window.opener.postMessage(' +
-        '    "authorization:" + provider + ":success:" + JSON.stringify({token: token, provider: provider}),' +
-        '    e.origin' +
-        '  );' +
-        '}' +
-        'window.addEventListener("message", receiveMessage, false);' +
-        'window.opener.postMessage("authorizing:" + provider, "*");' +
-        '</script></body></html>';
+      const html = `<!DOCTYPE html>
+<html>
+<head><title>Authorization Successful</title></head>
+<body>
+<script>
+(function() {
+  var token = "${token}";
+  var provider = "github";
+  var message = "authorization:" + provider + ":success:" + JSON.stringify({token: token, provider: provider});
+  
+  if (window.opener) {
+    // Opened as popup
+    function receiveMessage(e) {
+      window.opener.postMessage(message, e.origin);
+      window.close();
+    }
+    window.addEventListener("message", receiveMessage, false);
+    window.opener.postMessage("authorizing:" + provider, "*");
+  } else {
+    // Same window - store token and redirect back
+    localStorage.setItem("netlify-cms-auth", JSON.stringify({token: token, provider: provider}));
+    window.location.href = "/admin/";
+  }
+})();
+</script>
+<p>Authorization successful. Redirecting...</p>
+</body>
+</html>`;
       
       res.setHeader('Content-Type', 'text/html');
       return res.send(html);
