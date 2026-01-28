@@ -1,0 +1,9 @@
+{
+  "name": "she-archive-cms-auth",
+  "version": "1.0.0",
+  "description": "Decap CMS authentication handler for Vercel",
+  "main": "api/auth/index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
