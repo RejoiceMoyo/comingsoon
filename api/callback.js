@@ -3,17 +3,8 @@ const fetch = require('node-fetch');
 module.exports = async (req, res) => {
   const { code } = req.query;
   
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
   if (!code) {
-    return res.status(400).json({ error: 'Missing code parameter' });
+    return res.status(400).send('Missing code parameter');
   }
 
   try {
@@ -33,8 +24,32 @@ module.exports = async (req, res) => {
     const data = await response.json();
 
     if (data.access_token) {
-      // Return token as JSON for the CMS
-      return res.status(200).json({ token: data.access_token });
+      // Send HTML that posts message back to parent window
+      const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authorizing...</title>
+</head>
+<body>
+  <p>Authorization successful. Completing login...</p>
+  <script>
+    (function() {
+      window.opener.postMessage(
+        'authorization:github:success:{"token":"${data.access_token}","provider":"github"}',
+        window.location.origin
+      );
+      
+      setTimeout(function() {
+        window.close();
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
+      `;
+      res.setHeader('Content-Type', 'text/html');
+      return res.status(200).send(html);
     } else {
       return res.status(400).json({ error: 'Failed to get access token', details: data });
     }
