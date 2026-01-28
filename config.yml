@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://www.theshearchive.com
   auth_endpoint: api/auth
+  auth_token_endpoint: api/callback
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
