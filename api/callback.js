@@ -2,6 +2,9 @@ const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
   const { code } = req.query;
+  const clientId = process.env.GITHUB_CLIENT_ID;
+  const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+  const origin = 'https://www.theshearchive.com';
   
   if (!code) {
     return res.status(400).send('Missing code parameter');
@@ -15,59 +18,53 @@ module.exports = async (req, res) => {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        client_id: clientId,
+        client_secret: clientSecret,
         code: code,
       }),
     });
 
     const data = await response.json();
+    let message, content;
 
     if (data.access_token) {
-      const token = data.access_token;
-      const html = `
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Authorizing...</title>
-</head>
-<body>
-  <p>Authorization successful! You can close this window if it doesn't close automatically.</p>
-  <script>
-    (function() {
-      const token = "${token}";
-      const message = "authorization:github:success:" + JSON.stringify({token: token, provider: "github"});
-      
-      if (window.opener) {
-        window.opener.postMessage(message, "*");
-        console.log("Message sent to opener:", message);
-      }
-      
-      // Give the message time to be received before closing
-      setTimeout(function() {
-        window.close();
-      }, 2000);
-    })();
-  </script>
-</body>
-</html>
-      `;
-      res.setHeader('Content-Type', 'text/html');
-      return res.status(200).send(html);
+      message = 'success';
+      content = { token: data.access_token, provider: 'github' };
     } else {
-      const html = `
+      message = 'error';
+      content = data;
+    }
+
+    const script = `
 <!DOCTYPE html>
 <html>
-<head><title>Error</title></head>
+<head><title>Authorizing...</title></head>
 <body>
-  <p>Failed to get access token. Error: ${JSON.stringify(data)}</p>
-</body>
-</html>
-      `;
-      res.setHeader('Content-Type', 'text/html');
-      return res.status(400).send(html);
+<script>
+(function() {
+  function recieveMessage(e) {
+    console.log("recieveMessage %o", e);
+    if (e.origin !== "${origin}") {
+      console.log('Invalid origin: %s', e.origin);
+      return;
     }
+    window.opener.postMessage(
+      'authorization:github:${message}:${JSON.stringify(content)}',
+      e.origin
+    );
+  }
+  window.addEventListener("message", recieveMessage, false);
+  console.log("Sending message: github");
+  window.opener.postMessage("authorizing:github", "*");
+})();
+</script>
+</body>
+</html>`;
+
+    res.setHeader('Content-Type', 'text/html');
+    return res.status(200).send(script);
+
   } catch (error) {
-    return res.status(500).send('Authentication failed: ' + error.message);
+    return res.status(500).send('Error: ' + error.message);
   }
 };
