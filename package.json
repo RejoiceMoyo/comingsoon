@@ -1,0 +1,10 @@
+{
+  "name": "the-she-archive",
+  "version": "1.0.0",
+  "description": "The She Archive - Static site with CMS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {}
+}
