@@ -27,29 +27,24 @@ module.exports = async (req, res) => {
 
     if (data.access_token) {
       const token = data.access_token;
-      const provider = 'github';
+      
+      const html = '<!DOCTYPE html><html><head><title>Auth</title></head><body><script>' +
+        'const token = "' + token + '";' +
+        'const provider = "github";' +
+        'function receiveMessage(e) {' +
+        '  window.opener.postMessage(' +
+        '    "authorization:" + provider + ":success:" + JSON.stringify({token: token, provider: provider}),' +
+        '    e.origin' +
+        '  );' +
+        '}' +
+        'window.addEventListener("message", receiveMessage, false);' +
+        'window.opener.postMessage("authorizing:" + provider, "*");' +
+        '</script></body></html>';
       
       res.setHeader('Content-Type', 'text/html');
-      return res.send(`
-        <script>
-          const receiveMessage = (e) => {
-            window.opener.postMessage(
-              'authorization:${provider}:success:{"token":"${token}","provider":"${provider}"}',
-              e.origin
-            );
-          };
-          window.addEventListener('message', receiveMessage, false);
-          window.opener.postMessage('authorizing:${provider}', '*');
-        </script>
-      `);
+      return res.send(html);
     } else {
-      res.setHeader('Content-Type', 'text/html');
-      return res.send(`
-        <script>
-          window.opener.postMessage('authorization:github:error:${JSON.stringify(data)}', '*');
-          window.close();
-        </script>
-      `);
+      return res.status(400).send('Failed to get token: ' + JSON.stringify(data));
     }
   } catch (error) {
     return res.status(500).send('Error: ' + error.message);
