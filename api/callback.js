@@ -4,6 +4,11 @@ module.exports = async (req, res) => {
   const { code } = req.query;
   const clientId = process.env.GITHUB_CLIENT_ID;
   const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    return res.status(500).send('Missing GITHUB_CLIENT_ID or GITHUB_CLIENT_SECRET');
+  }
+
   if (!code) {
     return res.status(400).send('Missing code parameter');
   }
@@ -23,9 +28,13 @@ module.exports = async (req, res) => {
     });
 
     const data = await response.json();
-    if (data.access_token) {
-      const token = data.access_token;
-      const html = `<!DOCTYPE html>
+
+    if (!data.access_token) {
+      return res.status(400).send('Failed to get token: ' + JSON.stringify(data));
+    }
+
+    const token = data.access_token;
+    const html = `<!DOCTYPE html>
 <html>
 <head><title>Authorizing...</title></head>
 <body>
@@ -44,9 +53,8 @@ module.exports = async (req, res) => {
 </body>
 </html>`;
 
-      res.setHeader('Content-Type', 'text/html');
-      return res.status(200).send(html);
-
+    res.setHeader('Content-Type', 'text/html');
+    return res.status(200).send(html);
   } catch (error) {
     return res.status(500).send('Error: ' + error.message);
   }
