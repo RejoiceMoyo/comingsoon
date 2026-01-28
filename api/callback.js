@@ -43,14 +43,28 @@ module.exports = async (req, res) => {
 (function() {
   var payload = JSON.stringify({ token: "${token}", provider: "github" });
 
-  if (window.opener) {
-    window.opener.postMessage("authorizing:github", "*");
-    window.opener.postMessage("authorization:github:success:" + payload, "*");
-    setTimeout(function () { window.close(); }, 300);
-  } else {
+  try {
+    // Persist for Decap (new key) and Netlify CMS (legacy key) to maximize compatibility.
     localStorage.setItem("decap-cms-auth", payload);
-    window.location.href = "/admin/";
+    localStorage.setItem("netlify-cms-auth", payload);
+  } catch (e) {
+    // Ignore storage errors and fall back to postMessage flow.
   }
+
+  var target = window.opener || window.parent;
+  if (target) {
+    try {
+      target.postMessage("authorizing:github", "*");
+      target.postMessage("authorization:github:success:" + payload, "*");
+      setTimeout(function () { window.close(); }, 800); // small delay to let CMS receive
+      return;
+    } catch (e) {
+      // If messaging fails, fall back to redirect below.
+    }
+  }
+
+  // No opener or messaging failed: redirect into admin so CMS reads storage.
+  window.location.href = "/admin/";
 })();
 </script>
 </body>
