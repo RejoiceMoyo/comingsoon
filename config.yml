@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: RejoiceMoyo/comingsoon
+  name: git-gateway
   branch: main
-  base_url: https://www.theshearchive.com
-  auth_endpoint: api/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
