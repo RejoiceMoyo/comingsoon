@@ -40,12 +40,22 @@ module.exports = async (req, res) => {
 <body>
 <script>
 (function() {
-  var message = "authorization:github:success:" + JSON.stringify({ token: "${token}", provider: "github" });
+  var payload = JSON.stringify({ token: "${token}", provider: "github" });
+
   if (window.opener) {
-    window.opener.postMessage(message, "*");
-    window.close();
+    function receiveMessage(e) {
+      window.opener.postMessage(
+        "authorization:github:success:" + payload,
+        e.origin
+      );
+      window.removeEventListener("message", receiveMessage, false);
+      setTimeout(function () { window.close(); }, 300);
+    }
+
+    window.addEventListener("message", receiveMessage, false);
+    window.opener.postMessage("authorizing:github", "*");
   } else {
-    localStorage.setItem("decap-cms-auth", JSON.stringify({ token: "${token}", provider: "github" }));
+    localStorage.setItem("decap-cms-auth", payload);
     window.location.href = "/admin/";
   }
 })();
