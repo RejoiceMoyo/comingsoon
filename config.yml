@@ -2,9 +2,8 @@ backend:
   name: github
   repo: RejoiceMoyo/comingsoon
   branch: main
-  base_url: https://www.theshearchive.com
-  auth_endpoint: api/auth
-  auth_token_endpoint: api/callback
+  base_url: https://www.theshearchive.com/api
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
