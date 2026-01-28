@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     const data = await response.json();
 
     if (data.access_token) {
-      // Send HTML that posts message back to parent window
+      const token = data.access_token;
       const html = `
 <!DOCTYPE html>
 <html>
@@ -32,17 +32,21 @@ module.exports = async (req, res) => {
   <title>Authorizing...</title>
 </head>
 <body>
-  <p>Authorization successful. Completing login...</p>
+  <p>Authorization successful! You can close this window if it doesn't close automatically.</p>
   <script>
     (function() {
-      window.opener.postMessage(
-        'authorization:github:success:{"token":"${data.access_token}","provider":"github"}',
-        window.location.origin
-      );
+      const token = "${token}";
+      const message = "authorization:github:success:" + JSON.stringify({token: token, provider: "github"});
       
+      if (window.opener) {
+        window.opener.postMessage(message, "*");
+        console.log("Message sent to opener:", message);
+      }
+      
+      // Give the message time to be received before closing
       setTimeout(function() {
         window.close();
-      }, 1000);
+      }, 2000);
     })();
   </script>
 </body>
@@ -51,9 +55,19 @@ module.exports = async (req, res) => {
       res.setHeader('Content-Type', 'text/html');
       return res.status(200).send(html);
     } else {
-      return res.status(400).json({ error: 'Failed to get access token', details: data });
+      const html = `
+<!DOCTYPE html>
+<html>
+<head><title>Error</title></head>
+<body>
+  <p>Failed to get access token. Error: ${JSON.stringify(data)}</p>
+</body>
+</html>
+      `;
+      res.setHeader('Content-Type', 'text/html');
+      return res.status(400).send(html);
     }
   } catch (error) {
-    return res.status(500).json({ error: 'Authentication failed', message: error.message });
+    return res.status(500).send('Authentication failed: ' + error.message);
   }
 };
