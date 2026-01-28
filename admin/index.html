@@ -6,6 +6,17 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <script>
+    window.addEventListener('message', function(event) {
+      if (event.data.startsWith('authorization:github:success:')) {
+        const payload = event.data.replace('authorization:github:success:', '');
+        localStorage.setItem('decap-cms-auth', payload);
+        localStorage.setItem('netlify-cms-auth', payload);
+        console.log('Received auth message, stored token');
+        window.location.reload();
+      }
+    });
+  </script>
   <script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
 </body>
 </html>
