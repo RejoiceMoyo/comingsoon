@@ -4,7 +4,6 @@ module.exports = async (req, res) => {
   const { code } = req.query;
   const clientId = process.env.GITHUB_CLIENT_ID;
   const clientSecret = process.env.GITHUB_CLIENT_SECRET;
-  
   if (!code) {
     return res.status(400).send('Missing code parameter');
   }
@@ -24,44 +23,30 @@ module.exports = async (req, res) => {
     });
 
     const data = await response.json();
-
     if (data.access_token) {
       const token = data.access_token;
-      
       const html = `<!DOCTYPE html>
 <html>
-<head><title>Authorization Successful</title></head>
+<head><title>Authorizing...</title></head>
 <body>
 <script>
 (function() {
-  var token = "${token}";
-  var provider = "github";
-  var message = "authorization:" + provider + ":success:" + JSON.stringify({token: token, provider: provider});
-  
+  var message = "authorization:github:success:" + JSON.stringify({ token: "${token}", provider: "github" });
   if (window.opener) {
-    // Opened as popup
-    function receiveMessage(e) {
-      window.opener.postMessage(message, e.origin);
-      window.close();
-    }
-    window.addEventListener("message", receiveMessage, false);
-    window.opener.postMessage("authorizing:" + provider, "*");
+    window.opener.postMessage(message, "*");
+    window.close();
   } else {
-    // Same window - store token and redirect back
-    localStorage.setItem("netlify-cms-auth", JSON.stringify({token: token, provider: provider}));
+    localStorage.setItem("decap-cms-auth", JSON.stringify({ token: "${token}", provider: "github" }));
     window.location.href = "/admin/";
   }
 })();
 </script>
-<p>Authorization successful. Redirecting...</p>
 </body>
 </html>`;
-      
+
       res.setHeader('Content-Type', 'text/html');
-      return res.send(html);
-    } else {
-      return res.status(400).send('Failed to get token: ' + JSON.stringify(data));
-    }
+      return res.status(200).send(html);
+
   } catch (error) {
     return res.status(500).send('Error: ' + error.message);
   }
