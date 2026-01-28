@@ -7,39 +7,5 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    window.CMS_MANUAL_INIT = true;
-    
-    CMS.registerPreviewStyle("https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css");
-    
-    CMS.init({
-      config: {
-        backend: {
-          name: 'github',
-          repo: 'RejoiceMoyo/comingsoon',
-          branch: 'main',
-          base_url: 'https://www.theshearchive.com',
-          auth_endpoint: 'api/auth'
-        },
-        media_folder: 'images/uploads',
-        public_folder: '/images/uploads',
-        collections: [
-          {
-            name: 'posts',
-            label: 'Articles',
-            folder: 'content/posts',
-            create: true,
-            slug: '{{slug}}',
-            fields: [
-              { label: 'Title', name: 'title', widget: 'string' },
-              { label: 'Author', name: 'author', widget: 'string', default: 'The She Archive' },
-              { label: 'Publish Date', name: 'date', widget: 'datetime' },
-              { label: 'Body', name: 'body', widget: 'markdown' }
-            ]
-          }
-        ]
-      }
-    });
-  </script>
 </body>
 </html>
