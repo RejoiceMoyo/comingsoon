@@ -4,7 +4,7 @@ export default function handler(req, res) {
   if (!code) {
     // Initial auth request - redirect to GitHub
     const clientId = process.env.GITHUB_CLIENT_ID;
-    const redirectUri = `${process.env.VERCEL_URL || 'https://www.theshearchive.com'}/api/auth`;
+    const redirectUri = 'https://www.theshearchive.com/admin/';
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=repo,user`;
     
     return res.redirect(githubAuthUrl);
@@ -24,6 +24,7 @@ export default function handler(req, res) {
       client_id: clientId,
       client_secret: clientSecret,
       code: code,
+      redirect_uri: 'https://www.theshearchive.com/admin/',
     }),
   })
     .then(response => response.json())
