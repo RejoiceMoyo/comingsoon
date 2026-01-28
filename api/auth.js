@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   // If no code, redirect to GitHub for authorization
   if (!code) {
     const redirectUri = `${baseUrl}/admin/callback`;
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=public_repo,user`;
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`;
     return res.redirect(githubAuthUrl);
   }
 };

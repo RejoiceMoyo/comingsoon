@@ -38,17 +38,17 @@ module.exports = async (req, res) => {
 <html>
 <head><title>Authorizing...</title></head>
 <body>
-<p>Authorization complete. Redirecting to the dashboard…</p>
+<p>Authorization complete. Token received. Redirecting to the dashboard…</p>
 <script>
 (function() {
   var payload = JSON.stringify({ token: "${token}", provider: "github" });
 
   try {
-    // Persist for Decap (new key) and Netlify CMS (legacy key) to maximize compatibility.
     localStorage.setItem("decap-cms-auth", payload);
     localStorage.setItem("netlify-cms-auth", payload);
+    console.log("Token stored in localStorage");
   } catch (e) {
-    // Ignore storage errors and fall back to postMessage flow.
+    console.error("Failed to store token:", e);
   }
 
   var target = window.opener || window.parent;
@@ -56,14 +56,16 @@ module.exports = async (req, res) => {
     try {
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
-      setTimeout(function () { window.close(); }, 800); // small delay to let CMS receive
+      console.log("PostMessage sent");
+      setTimeout(function () { window.close(); }, 1000); // small delay to let CMS receive
       return;
     } catch (e) {
-      // If messaging fails, fall back to redirect below.
+      console.error("PostMessage failed:", e);
     }
   }
 
   // No opener or messaging failed: redirect into admin so CMS reads storage.
+  console.log("Redirecting to /admin/");
   window.location.href = "/admin/";
 })();
 </script>
