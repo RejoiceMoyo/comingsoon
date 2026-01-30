@@ -54,33 +54,28 @@ module.exports = async (req, res) => {
   var target = window.opener || window.parent;
   if (target) {
     try {
-      
-      
-      // DEBUGGING: Provide visual feedback
-      document.body.innerHTML += "<p style='color:green'>Token received.</p>";
-      
-      // Attempt postMessage
+      // Send auth message to parent
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
-      console.log("PostMessage sent");
+      console.log("PostMessage sent to parent window");
       
-      document.body.innerHTML += "<p>Message sent to parent window.</p>";
+      document.body.innerHTML += "<p style='color:green'>✓ Authentication successful!</p>";
+      document.body.innerHTML += "<p>Notifying main window... This popup will close in 1 second.</p>";
       
-      // ALWAYS redirect this popup to admin as a fail-safe
-      // If parent picked it up, great. If not, this window becomes the admin panel.
-      document.body.innerHTML += "<p>Redirecting to Admin Dashboard in 2 seconds...</p>";
-      setTimeout(function () { window.location.href = "/admin/"; }, 2000); 
+      // Close popup after brief delay
+      setTimeout(function () { 
+        window.close(); 
+      }, 1000);
       return;
     } catch (e) {
       console.error("PostMessage failed:", e);
-      document.body.innerHTML += "<p style='color:orange'>PostMessage failed: " + e.message + "</p>";
-      // Fall through to redirect
+      document.body.innerHTML += "<p style='color:red'>Error: " + e.message + "</p>";
     }
   }
 
-  // No opener or messaging failed: redirect into admin so CMS reads storage.
-  console.log("Redirecting to /admin/");
-  document.body.innerHTML += "<p>Redirecting to Admin Dashboard...</p>";
+  // If no parent window, we're in a direct navigation - redirect to admin
+  console.log("No parent window detected, redirecting to /admin/");
+  document.body.innerHTML += "<p>Redirecting to admin panel...</p>";
   setTimeout(function() { window.location.href = "/admin/"; }, 1000);
 })();
 </script>
