@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <a href="post.html?slug=${latestPost.slug}" class="block">
                     <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${latestPost.title}</p>
                 </a>
-                ${latestPost.description ? `<p class="text-xs text-[#3c3741] dark:text-white/70 mt-2 line-clamp-3">${latestPost.description}</p>` : ''}
                 ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
             `;
         } else if (currentFeature) {
