@@ -11,6 +11,42 @@
   <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
 
-<body></body>
+<body>
+  <div id="auth" style="font-family: system-ui, sans-serif; padding: 16px;">
+    <button id="login" type="button">Log in</button>
+    <button id="logout" type="button" style="display:none;">Log out</button>
+    <p id="status" style="margin-top: 8px; color: #444;">Not logged in</p>
+  </div>
+  <script>
+    const loginButton = document.getElementById('login');
+    const logoutButton = document.getElementById('logout');
+    const statusText = document.getElementById('status');
+
+    function updateAuthUI(user) {
+      if (user) {
+        statusText.textContent = `Logged in as ${user.email}`;
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'inline-block';
+      } else {
+        statusText.textContent = 'Not logged in';
+        loginButton.style.display = 'inline-block';
+        logoutButton.style.display = 'none';
+      }
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', updateAuthUI);
+      window.netlifyIdentity.on('login', updateAuthUI);
+      window.netlifyIdentity.on('logout', () => updateAuthUI(null));
+    }
+
+    loginButton.addEventListener('click', () => {
+      window.netlifyIdentity && window.netlifyIdentity.open('login');
+    });
+    logoutButton.addEventListener('click', () => {
+      window.netlifyIdentity && window.netlifyIdentity.logout();
+    });
+  </script>
+</body>
 
 </html>
