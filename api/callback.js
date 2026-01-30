@@ -55,23 +55,26 @@ module.exports = async (req, res) => {
   if (target) {
     try {
       
-      // DEBUGGING: Provide visual feedback before closing/redirecting
-      document.body.innerHTML += "<p style='color:green'>Token received. Attempting to pass to parent...</p>";
       
-      // Extract token from payload for display safely
-      var tokenVal = JSON.parse(payload).token;
-      document.body.innerHTML += "<p>Token prefix: " + tokenVal.substring(0, 5) + "...</p>";
-
+      // DEBUGGING: Provide visual feedback
+      document.body.innerHTML += "<p style='color:green'>Token received.</p>";
+      
+      // Attempt postMessage
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
       console.log("PostMessage sent");
       
-      document.body.innerHTML += "<p>Message sent to parent window. Closing...</p>";
-      setTimeout(function () { window.close(); }, 2000); 
+      document.body.innerHTML += "<p>Message sent to parent window.</p>";
+      
+      // ALWAYS redirect this popup to admin as a fail-safe
+      // If parent picked it up, great. If not, this window becomes the admin panel.
+      document.body.innerHTML += "<p>Redirecting to Admin Dashboard in 2 seconds...</p>";
+      setTimeout(function () { window.location.href = "/admin/"; }, 2000); 
       return;
     } catch (e) {
       console.error("PostMessage failed:", e);
-      document.body.innerHTML += "<p style='color:orange'>PostMessage failed: " + e.message + ". Falling back to redirect...</p>";
+      document.body.innerHTML += "<p style='color:orange'>PostMessage failed: " + e.message + "</p>";
+      // Fall through to redirect
     }
   }
 

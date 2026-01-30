@@ -11,7 +11,7 @@
   <script>
     window.addEventListener('message', function (event) {
       console.log('Received message:', event);
-      if (event.data.startsWith('authorization:github:success:')) {
+      if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
         console.log('Auth success message received!');
         const payload = event.data.replace('authorization:github:success:', '');
         localStorage.setItem('decap-cms-auth', payload);
@@ -19,7 +19,7 @@
         console.log('Received auth message, stored token. Reloading...');
         window.location.reload();
       } else {
-        console.log('Message ignored:', event.data);
+        console.log('Message ignored or not string:', event.data);
       }
     });
   </script>
