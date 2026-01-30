@@ -67,6 +67,10 @@
         .brand-logo {
             font-family: "Alex Brush", "Playfair Display", serif
         }
+        .post-content,
+        .post-content :where(h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption, em, strong, a) {
+            font-family: "Times New Roman", Times, serif
+        }
     </style>
 </head>
 
@@ -103,7 +107,7 @@
                     Back to Blog
                 </a>
                 <article id="post"
-                    class="mt-6 bg-white dark:bg-white/5 rounded-xl shadow-sm p-6 sm:p-10 prose prose-lg lg:prose-xl max-w-none dark:prose-invert">
+                    class="post-content mt-6 bg-white dark:bg-white/5 rounded-xl shadow-sm p-6 sm:p-10 prose prose-lg lg:prose-xl max-w-none dark:prose-invert">
                     <p>Loading article...</p>
                 </article>
             </main>

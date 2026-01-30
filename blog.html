@@ -61,6 +61,10 @@
       .brand-logo {
         font-family: "Alex Brush", "Playfair Display", serif;
       }
+      .post-list,
+      .post-list :where(h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption, em, strong, a, span) {
+        font-family: "Times New Roman", Times, serif;
+      }
     </style>
   </head>
   <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
@@ -92,7 +96,7 @@
 
         <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <h1 class="brand-heading text-3xl sm:text-4xl text-[#141118] dark:text-white">Latest Stories</h1>
-          <ul id="post-list" class="mt-6 space-y-6">
+          <ul id="post-list" class="post-list mt-6 space-y-6">
             <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">
               Loading posts...
             </li>
