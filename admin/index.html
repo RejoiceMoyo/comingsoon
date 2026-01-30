@@ -16,27 +16,12 @@
         const payload = event.data.replace('authorization:github:success:', '');
         localStorage.setItem('decap-cms-auth', payload);
         localStorage.setItem('netlify-cms-auth', payload);
-        console.log('Received auth message, stored token. Reloading...');
-        window.location.reload();
+        console.log('Token stored. Reloading page...');
+        setTimeout(function () {
+          window.location.reload();
+        }, 500);
       } else {
         console.log('Message ignored or not string:', event.data);
-      }
-    });
-
-    // Fallback: Check if token exists but CMS hasn't loaded
-    window.addEventListener('DOMContentLoaded', function () {
-      const token = localStorage.getItem('decap-cms-auth');
-      if (token) {
-        console.log('Token found in localStorage on page load');
-        // Token exists, CMS should auto-login
-        // If we're still seeing login button after 2 seconds, force reload
-        setTimeout(function () {
-          const loginButton = document.querySelector('button');
-          if (loginButton && loginButton.textContent.includes('Login')) {
-            console.log('Login button still visible, forcing reload...');
-            window.location.reload();
-          }
-        }, 2000);
       }
     });
   </script>
