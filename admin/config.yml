@@ -2,7 +2,7 @@ backend:
   name: github
   repo: RejoiceMoyo/comingsoon
   branch: main
-  base_url: https://www.theshearchive.com/
+  base_url: https://www.theshearchive.com
   auth_endpoint: api/auth
 
 media_folder: "images/uploads" # Where media files will be stored

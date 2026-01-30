@@ -57,16 +57,22 @@ module.exports = async (req, res) => {
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
       console.log("PostMessage sent");
-      setTimeout(function () { window.close(); }, 1000); // small delay to let CMS receive
+      
+      // DEBUGGING: Keep window open to see logs
+      document.body.innerHTML += "<p style='color:green'>Token received & sent to parent. Window will close in 30 seconds...</p>";
+      document.body.innerHTML += "<p>Token prefix: " + token.substring(0, 5) + "...</p>";
+      setTimeout(function () { window.close(); }, 30000); 
       return;
     } catch (e) {
       console.error("PostMessage failed:", e);
+      document.body.innerHTML += "<p style='color:red'>PostMessage failed: " + e.message + "</p>";
     }
   }
 
   // No opener or messaging failed: redirect into admin so CMS reads storage.
   console.log("Redirecting to /admin/");
-  window.location.href = "/admin/";
+  // window.location.href = "/admin/"; // Disable redirect for debug
+  document.body.innerHTML += "<p>No parent window found (opener is null).</p>";
 })();
 </script>
 </body>
