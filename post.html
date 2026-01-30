@@ -13,13 +13,17 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Read the latest story from The She Archive." />
     <meta property="og:title" content="Post - The She Archive" />
     <meta property="og:description" content="Read the latest story from The She Archive." />
-    <meta property="og:image" content="https://sheshearchive.com/images/prvimg.jpeg" />
-    <meta property="og:url" content="https://sheshearchive.com/post.html" />
+    <meta property="og:image" content="https://theshearchive.com/images/prvimg.jpeg" />
+    <meta property="og:url" content="https://theshearchive.com/post.html" />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://sheshearchive.com/images/prvimg.jpeg" />
+    <meta name="twitter:title" content="Post - The She Archive" />
+    <meta name="twitter:description" content="Read the latest story from The She Archive." />
+    <meta name="twitter:image" content="https://theshearchive.com/images/prvimg.jpeg" />
+    <link rel="canonical" href="https://theshearchive.com/post.html" />
     <title>Post - The She Archive</title>
     <link rel="icon" type="image/jpeg" href="images/she-archive-preview.jpeg" />
     <link rel="apple-touch-icon" href="images/she-archive-preview.jpeg" />
@@ -151,16 +155,93 @@
                 const titleMatch = frontMatter.match(/title:\s*(.*)/);
                 const dateMatch = frontMatter.match(/date:\s*(.*)/);
                 const authorMatch = frontMatter.match(/author:\s*(.*)/);
+                const description = extractYamlField(frontMatter, 'description');
+                const image = extractYamlField(frontMatter, 'image');
 
                 return {
                     title: titleMatch ? titleMatch[1].replace(/['"]/g, '') : 'Untitled',
                     date: dateMatch ? dateMatch[1].replace(/['"]/g, '') : '',
                     author: authorMatch ? authorMatch[1].replace(/['"]/g, '') : '',
-                    body: body
+                    body: body,
+                    description: description,
+                    image: image
                 };
             }
 
-            return { title: 'Untitled', body: text };
+            return { title: 'Untitled', body: text, description: '', image: '' };
+        }
+
+        function extractYamlField(frontMatter, field) {
+            const lines = frontMatter.split('\n');
+            let value = '';
+            let collecting = false;
+
+            for (const line of lines) {
+                if (!collecting) {
+                    if (line.startsWith(`${field}:`)) {
+                        value = line.replace(`${field}:`, '').trim();
+                        collecting = true;
+                        if (value) break;
+                    }
+                } else if (/^\s+/.test(line)) {
+                    value += ` ${line.trim()}`;
+                } else {
+                    break;
+                }
+            }
+
+            return value.replace(/^['"]|['"]$/g, '');
+        }
+
+        function setMetaTag(name, content) {
+            if (!content) return;
+            let meta = document.querySelector(`meta[name="${name}"]`);
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.setAttribute('name', name);
+                document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', content);
+        }
+
+        function setMetaProperty(property, content) {
+            if (!content) return;
+            let meta = document.querySelector(`meta[property="${property}"]`);
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.setAttribute('property', property);
+                document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', content);
+        }
+
+        function setCanonical(url) {
+            if (!url) return;
+            let link = document.querySelector('link[rel="canonical"]');
+            if (!link) {
+                link = document.createElement('link');
+                link.setAttribute('rel', 'canonical');
+                document.head.appendChild(link);
+            }
+            link.setAttribute('href', url);
+        }
+
+        function setStructuredData(data) {
+            if (!data) return;
+            let script = document.getElementById('article-schema');
+            if (!script) {
+                script = document.createElement('script');
+                script.type = 'application/ld+json';
+                script.id = 'article-schema';
+                document.head.appendChild(script);
+            }
+            script.textContent = JSON.stringify(data);
+        }
+
+        function toAbsoluteUrl(url) {
+            if (!url) return '';
+            if (url.startsWith('http://') || url.startsWith('https://')) return url;
+            return `${window.location.origin}${url.startsWith('/') ? '' : '/'}${url}`;
         }
 
         async function loadPost() {
@@ -193,9 +274,34 @@
                 }
 
                 const text = await response.text();
-                const { title, date, author, body } = parseFrontMatter(text);
+                const { title, date, author, body, description, image } = parseFrontMatter(text);
+                const fallbackDescription = 'The She Archive preserves the stories of women history forgot to credit, restoring their names and achievements.';
+                const descriptionText = description || fallbackDescription;
+                const imageUrl = toAbsoluteUrl(image || '/images/prvimg.jpeg');
+                const canonicalUrl = `${window.location.origin}/post.html?slug=${encodeURIComponent(slug)}`;
 
-                document.title = `${title} - The She Archive`;
+                document.title = `${title} | The She Archive`;
+                setMetaTag('description', descriptionText);
+                setMetaProperty('og:title', `${title} | The She Archive`);
+                setMetaProperty('og:description', descriptionText);
+                setMetaProperty('og:image', imageUrl);
+                setMetaProperty('og:url', canonicalUrl);
+                setMetaTag('twitter:title', `${title} | The She Archive`);
+                setMetaTag('twitter:description', descriptionText);
+                setMetaTag('twitter:image', imageUrl);
+                setCanonical(canonicalUrl);
+                setStructuredData({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    headline: title,
+                    datePublished: date || undefined,
+                    author: {
+                        "@type": "Organization",
+                        name: author || 'The She Archive'
+                    },
+                    image: [imageUrl],
+                    mainEntityOfPage: canonicalUrl
+                });
 
                                 document.getElementById('post').innerHTML = `
                         <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>

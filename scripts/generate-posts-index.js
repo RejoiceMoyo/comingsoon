@@ -7,6 +7,7 @@ const postsDir = path.join(rootDir, 'content/posts');
 const outputDir = path.join(rootDir, 'public');
 const apiDir = path.join(outputDir, 'api');
 const outputFile = path.join(apiDir, 'posts.json');
+const baseUrl = 'https://theshearchive.com';
 
 // --- Helper Functions ---
 function copyDir(src, dest) {
@@ -105,5 +106,46 @@ if (fs.existsSync(postsDir)) {
 
 fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
 console.log(`Generated index for ${posts.length} posts at ${outputFile}`);
+
+// 4. Generate sitemap.xml and robots.txt
+function collectHtmlFiles(dir, files = []) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        const relPath = path.relative(outputDir, fullPath);
+        const topDir = relPath.split(path.sep)[0];
+
+        if (['admin', 'api', 'content', 'scripts', 'images', 'js'].includes(topDir)) {
+            continue;
+        }
+
+        if (entry.isDirectory()) {
+            collectHtmlFiles(fullPath, files);
+        } else if (entry.name.endsWith('.html')) {
+            files.push(fullPath);
+        }
+    }
+
+    return files;
+}
+
+const staticPages = collectHtmlFiles(outputDir).map(filePath => {
+    const rel = path.relative(outputDir, filePath).replace(/\\/g, '/');
+    if (rel === 'index.html') return `${baseUrl}/`;
+    return `${baseUrl}/${rel}`;
+});
+
+const postUrls = posts.map(post => `${baseUrl}/post.html?slug=${encodeURIComponent(post.slug)}`);
+const sitemapUrls = [...new Set([...staticPages, ...postUrls])];
+
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    sitemapUrls.map(url => `  <url><loc>${url}</loc></url>`).join('\n') +
+`\n</urlset>\n`;
+
+fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemapXml);
+
+const robotsTxt = `User-agent: *\nAllow: /\nSitemap: ${baseUrl}/sitemap.xml\n`;
+fs.writeFileSync(path.join(outputDir, 'robots.txt'), robotsTxt);
 
 console.log('Build complete.');
