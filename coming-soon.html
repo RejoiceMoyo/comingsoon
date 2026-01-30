@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Coming Soon - The She Archive</title>
     <meta name="description" content="This page is under construction. Check back soon for more stories from The She Archive."/>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
@@ -35,24 +35,25 @@
         .brand-heading {
             font-family: "Playfair Display", serif
         }
+        .brand-logo {
+            font-family: "Alex Brush", "Playfair Display", serif
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-                <div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
-                    <div class="flex items-center gap-3">
-                        <a href="/" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The She Archive</a>
-                    </div>
-                    <nav class="hidden lg:flex items-center gap-9 justify-center">
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
-                    </nav>
-                    <div class="hidden lg:flex items-center">
-                        <a href="#contact" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
+                <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
+                    <div class="flex flex-col items-center gap-3">
+                        <nav class="hidden lg:flex items-center gap-6 md:gap-8 justify-center text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em]">
+                            <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
+                            <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
+                            <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
+                            <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
+                        </nav>
+                        <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
+                        <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
                     </div>
                 </div>
             </header>
