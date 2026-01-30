@@ -5,28 +5,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 </head>
 
-<body>
-  <script>
-    window.addEventListener('message', function (event) {
-      console.log('Received message:', event);
-      if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
-        console.log('Auth success message received!');
-        const payload = event.data.replace('authorization:github:success:', '');
-        localStorage.setItem('decap-cms-auth', payload);
-        localStorage.setItem('netlify-cms-auth', payload);
-        console.log('Token stored. Reloading page...');
-        setTimeout(function () {
-          window.location.reload();
-        }, 500);
-      } else {
-        console.log('Message ignored or not string:', event.data);
-      }
-    });
-  </script>
-  <script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
-</body>
+<body></body>
 
 </html>

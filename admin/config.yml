@@ -2,18 +2,21 @@ backend:
   name: git-gateway
   branch: main
 
-
-media_folder: "images/uploads" # Where media files will be stored
-public_folder: "/images/uploads" # The src attribute for the media files
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: "posts" # Used in routes, e.g., /admin/collections/posts
-    label: "Articles" # Used in the UI
-    folder: "content/posts" # The path to the folder where documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "posts"
+    label: "Stories"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
+      - { label: "Category", name: "category", widget: "select", options: ["Science", "Arts", "Technology", "Medical", "Social Movements", "Finance", "Other"] }
+      - { label: "Era", name: "era", widget: "select", options: ["19th Century", "Early 20th Century", "Mid-20th Century", "Late 20th Century", "21st Century"] }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
