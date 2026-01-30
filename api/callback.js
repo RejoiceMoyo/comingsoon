@@ -36,47 +36,65 @@ module.exports = async (req, res) => {
     const token = data.access_token;
     const html = `<!DOCTYPE html>
 <html>
-<head><title>Authorizing...</title></head>
+<head>
+  <title>Auth Debug</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; }
+    .success { color: green; font-weight: bold; }
+    .error { color: red; }
+    .log { margin-top: 20px; font-family: monospace; text-align: left; background: #f0f0f0; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
 <body>
-<p>Authorization complete. Token received. Redirecting to the dashboard…</p>
+<h1>Authentication Status</h1>
+<div id="status">Initializing...</div>
+<div id="logs" class="log"></div>
+<button onclick="window.close()" style="margin-top:20px; padding: 10px 20px; cursor: pointer;">Close Window</button>
+
 <script>
 (function() {
-  var payload = JSON.stringify({ token: "${token}", provider: "github" });
+  function log(msg) {
+    var el = document.getElementById("logs");
+    var p = document.createElement("div");
+    p.textContent = "> " + msg;
+    el.appendChild(p);
+    console.log(msg);
+  }
 
+  var token = "${token}";
+  
+  if (token) {
+    document.getElementById("status").innerHTML = "<p class='success'>✓ TOKEN RECEIVED!</p><p>Token starts with: " + token.substring(0, 5) + "...</p>";
+    log("Token acquired.");
+  } else {
+    document.getElementById("status").innerHTML = "<p class='error'>✗ NO TOKEN</p>";
+    log("Error: Token variable is empty.");
+  }
+
+  var payload = JSON.stringify({ token: token, provider: "github" });
+  
   try {
     localStorage.setItem("decap-cms-auth", payload);
     localStorage.setItem("netlify-cms-auth", payload);
-    console.log("Token stored in localStorage");
+    log("Token stored in localStorage.");
   } catch (e) {
-    console.error("Failed to store token:", e);
+    log("Failed to store in localStorage: " + e.message);
   }
 
   var target = window.opener || window.parent;
   if (target) {
+    log("Parent/Opener window found.");
     try {
-      // Send auth message to parent
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
-      console.log("PostMessage sent to parent window");
-      
-      document.body.innerHTML += "<p style='color:green'>✓ Authentication successful!</p>";
-      document.body.innerHTML += "<p>Notifying main window... This popup will close in 1 second.</p>";
-      
-      // Close popup after brief delay
-      setTimeout(function () { 
-        window.close(); 
-      }, 1000);
-      return;
+      log("SENT POSTMESSAGE to parent.");
+      document.getElementById("status").innerHTML += "<p>Message sent to main window.</p>";
     } catch (e) {
-      console.error("PostMessage failed:", e);
-      document.body.innerHTML += "<p style='color:red'>Error: " + e.message + "</p>";
+      log("PostMessage Failed: " + e.message);
     }
+  } else {
+    log("WARNING: No parent/opener window found. Cannot pass token back.");
   }
-
-  // If no parent window, we're in a direct navigation - redirect to admin
-  console.log("No parent window detected, redirecting to /admin/");
-  document.body.innerHTML += "<p>Redirecting to admin panel...</p>";
-  setTimeout(function() { window.location.href = "/admin/"; }, 1000);
 })();
 </script>
 </body>
