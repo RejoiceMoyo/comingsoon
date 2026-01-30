@@ -22,6 +22,23 @@
         console.log('Message ignored or not string:', event.data);
       }
     });
+
+    // Fallback: Check if token exists but CMS hasn't loaded
+    window.addEventListener('DOMContentLoaded', function () {
+      const token = localStorage.getItem('decap-cms-auth');
+      if (token) {
+        console.log('Token found in localStorage on page load');
+        // Token exists, CMS should auto-login
+        // If we're still seeing login button after 2 seconds, force reload
+        setTimeout(function () {
+          const loginButton = document.querySelector('button');
+          if (loginButton && loginButton.textContent.includes('Login')) {
+            console.log('Login button still visible, forcing reload...');
+            window.location.reload();
+          }
+        }, 2000);
+      }
+    });
   </script>
   <script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
 </body>
