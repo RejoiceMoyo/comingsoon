@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!container) return;
 
     try {
-        const response = await fetch('api/posts.json');
+        const response = await fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) throw new Error('Failed to load posts');
         const posts = await response.json();
 

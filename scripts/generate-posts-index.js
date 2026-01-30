@@ -70,6 +70,16 @@ for (let entry of rootEntries) {
 }
 console.log('Static files copied to public/');
 
+// 2b. Copy client-side scripts needed in the browser
+const browserScriptsDir = path.join(rootDir, 'scripts');
+const publicScriptsDir = path.join(outputDir, 'scripts');
+const loadPostsScript = path.join(browserScriptsDir, 'load-posts.js');
+
+if (fs.existsSync(loadPostsScript)) {
+    if (!fs.existsSync(publicScriptsDir)) fs.mkdirSync(publicScriptsDir, { recursive: true });
+    copyFile(loadPostsScript, path.join(publicScriptsDir, 'load-posts.js'));
+}
+
 // 3. Generate Posts API
 if (!fs.existsSync(apiDir)) {
     fs.mkdirSync(apiDir, { recursive: true });
