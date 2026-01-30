@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post - The She Archive</title>
+    <!-- Marked for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .post-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-title {
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+
+        .post-meta {
+            color: #777;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>The She Archive</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/blog.html">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="/blog.html" class="back-link">&larr; Back to Blog</a>
+        <article id="post" class="post-content">
+            <p>Loading article...</p>
+        </article>
+    </div>
+
+    <script>
+        // Function to parse front matter manually since we are on client side
+        // and can't use node modules directly easily without build step bundling.
+        // However, for this simple implementation, we will fetch the raw file
+        // and separate the yaml header from body if present.
+        function parseFrontMatter(text) {
+            const pattern = /^---[\s\S]*?---/;
+            const match = text.match(pattern);
+
+            if (match) {
+                const frontMatter = match[0];
+                const body = text.replace(pattern, '').trim();
+
+                // Simple extraction of title and date for display if needed
+                // Real parsing would require dependencies or regex for each field
+                const titleMatch = frontMatter.match(/title:\s*(.*)/);
+                const dateMatch = frontMatter.match(/date:\s*(.*)/);
+                const authorMatch = frontMatter.match(/author:\s*(.*)/);
+
+                return {
+                    title: titleMatch ? titleMatch[1].replace(/['"]/g, '') : 'Untitled',
+                    date: dateMatch ? dateMatch[1].replace(/['"]/g, '') : '',
+                    author: authorMatch ? authorMatch[1].replace(/['"]/g, '') : '',
+                    body: body
+                };
+            }
+
+            return { title: 'Untitled', body: text };
+        }
+
+        async function loadPost() {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+
+            if (!slug) {
+                document.getElementById('post').innerHTML = '<p>Post not found.</p>';
+                return;
+            }
+
+            try {
+                // We fetch the Markdown file directly from content/posts/
+                // Note: In a real production build, these might be processed to HTML.
+                // But for this client-side setup, we fetch raw MD.
+                // We need to assume the file structure is accessible. 
+                // If Vercel doesn't serve `content/` folder, we might need to copy it to `public/` or `api/`
+                // during build.
+                // Let's assume for now we can fetch from a known path, or we adjust the build script.
+                // WAIT: The build script generates the index. But it doesn't move MD files.
+                // Vercel serves static files. `content` might not be served by default if it's not in public?
+                // Actually, root files are usually served. But let's check.
+                // If not, we might need to update the build script to copy posts to a public folder.
+
+                // Let's try fetching from /content/posts/
+                const response = await fetch(`/content/posts/${slug}.md`);
+
+                if (!response.ok) {
+                    throw new Error('Post not found');
+                }
+
+                const text = await response.text();
+                const { title, date, author, body } = parseFrontMatter(text);
+
+                document.title = `${title} - The She Archive`;
+
+                document.getElementById('post').innerHTML = `
+            <h1 class="post-title">${title}</h1>
+            <div class="post-meta">
+              <span>By ${author || 'The She Archive'}</span> 
+              ${date ? `| <span>${new Date(date).toLocaleDateString()}</span>` : ''}
+            </div>
+            <div class="markdown-body">
+              ${marked.parse(body)}
+            </div>
+          `;
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('post').innerHTML = '<p>Error loading post.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPost);
+    </script>
+</body>
+
+</html>

@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="The She Archive is a curated collection of stories celebrating the brilliance and impact of women across science, arts, technology, and social movements. Discover the legacies of female pioneers."/>
-<meta name="keywords" content="women in history, female pioneers, women's stories, STEM, arts, social innovation, historical archive, influential women"/>
-<meta property="og:title" content="The She Archive - Her Stories"/>
-<meta property="og:description" content="A curated collection of stories celebrating the brilliance and impact of women across science, arts, technology, and social movements."/>
-<meta property="og:image" content="https://raw.githubusercontent.com/RejoiceMoyo/comingsoon/main/images/she-archive-preview.jpeg"/>
-<meta property="og:url" content="https://rejoicemoyo.github.io/comingsoon/"/>
-<meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<title>The She Archive - "Her Stories"</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="The She Archive is a curated collection of stories celebrating the brilliance and impact of women across science, arts, technology, and social movements. Discover the legacies of female pioneers." />
+    <meta name="keywords"
+        content="women in history, female pioneers, women's stories, STEM, arts, social innovation, historical archive, influential women" />
+    <meta property="og:title" content="The She Archive - Her Stories" />
+    <meta property="og:description"
+        content="A curated collection of stories celebrating the brilliance and impact of women across science, arts, technology, and social movements." />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/RejoiceMoyo/comingsoon/main/images/she-archive-preview.jpeg" />
+    <meta property="og:url" content="https://rejoicemoyo.github.io/comingsoon/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>The She Archive - "Her Stories"</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700;900&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -40,7 +50,7 @@
             },
         }
     </script>
-<style type="text/tailwindcss">
+    <style type="text/tailwindcss">
         .material-symbols-outlined {
             font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
         }
@@ -52,268 +62,298 @@
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
-<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-<div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
-    <div class="flex items-center gap-3">
-        <a href="/" class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The She Archive</a>
-    </div>
-    <nav class="hidden lg:flex items-center gap-9 justify-center">
-        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Stories</a>
-        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Galleries</a>
-        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">Timeline</a>
-        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="coming-soon.html">About</a>
-    </nav>
-    <div class="hidden lg:flex items-center">
-        <a href="coming-soon.html" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
-    </div>
-    <div class="flex items-center lg:hidden">
-        <button id="menu-button" class="p-2" aria-label="Open menu">
-            <span id="menu-icon" class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
-        </button>
-    </div>
-</div>
-<!-- Mobile Nav Panel -->
-<div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
-    <nav class="flex flex-col gap-1 p-4">
-        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Stories</a>
-        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Galleries</a>
-        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">Timeline</a>
-        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="coming-soon.html">About</a>
-        <a href="coming-soon.html" class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact Us</a>
-    </nav>
-</div>
-<script>
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
 
-    menuButton.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        menuIcon.textContent = isHidden ? 'menu' : 'close';
-    });
-</script>
-</header>
-<section class="w-full relative overflow-hidden">
-    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
-        <source src="https://res.cloudinary.com/dhd4ljeo1/video/upload/v1769076517/edit_the_existing_image_to_transform_the_1_yjmwna.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="absolute inset-0 bg-brand-teal/80"></div>
-    <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay">
-        <!-- <div class="absolute top-10 left-10 text-brand-gold text-4xl font-serif">Aesthetica</div> -->
-        <!-- <div class="absolute bottom-20 right-20 text-brand-gold text-2xl font-serif">Philosophia</div> -->
-        <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-32 h-64 border-l-2 border-brand-gold rounded-full rotate-12 opacity-40"></div>
-    </div>
-    <div class="relative px-4 sm:px-10 py-12 sm:py-20 flex flex-col sm:flex-row items-center gap-8 sm:gap-12 max-w-[1440px] mx-auto">
-        <div class="flex-1 space-y-6 sm:space-y-8 z-10">
-            <div class="inline-block px-3 py-1 bg-brand-gold/20 text-brand-gold border border-brand-gold/30 rounded-full text-xs font-bold tracking-widest uppercase">
-                Celebrating FEMALE Multidisciplinary Brilliance!
-            </div>
-            <h1 class="brand-heading text-4xl sm:text-5xl md:text-7xl text-white leading-[1.1] font-black">
-                Voices of <span class="text-brand-gold">Impact</span>.<br/>Legacy of Thought.
-            </h1>
-            <p class="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
-                Beyond the lab, into the soul of human progress. A curated archive of women who shaped the medical, the arts, financial, social movements, and scientific frontiers.
-            </p>
-            <div class="flex flex-wrap gap-3 sm:gap-4">
-                <a href="coming-soon.html" class="flex min-w-[160px] sm:min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-12 sm:h-14 px-6 sm:px-8 bg-brand-gold text-brand-teal text-sm sm:text-base font-bold shadow-lg hover:scale-105 transition-transform">
-                    Read the Stories
-                </a>
-                <a href="coming-soon.html" class="flex min-w-[160px] sm:min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-12 sm:h-14 px-6 sm:px-8 border-2 border-white/30 text-white text-sm sm:text-base font-bold hover:bg-white/10 transition-colors">
-                    The Archive
-                </a>
-            </div>
-        </div>
-        <div class="flex-1 w-full max-w-sm sm:max-w-md relative">
-            <div class="aspect-[3/4] bg-white/5 rounded-2xl border border-white/10 p-3 sm:p-4 backdrop-blur-sm relative overflow-hidden group">
-                <div class="w-full h-full rounded-xl bg-center bg-cover transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkrFiqP_4mJDA0kvQZtK5uBhAznUWniEEM1w&s");'></div>
-                <div class="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/90 dark:bg-background-dark/90 p-3 sm:p-4 rounded-lg shadow-xl">
-                    <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
-                    <a href="josephine-cochrane.html" class="block">
-                        <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">Josephine Cochrane: Inventor of the Dishwasher</p>
-                    </a>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+                <div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
+                    <div class="flex items-center gap-3">
+                        <a href="/"
+                            class="brand-heading text-xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity">The
+                            She Archive</a>
+                    </div>
+                    <nav class="hidden lg:flex items-center gap-9 justify-center">
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal"
+                            href="coming-soon.html">Stories</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal"
+                            href="coming-soon.html">Galleries</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal"
+                            href="coming-soon.html">Timeline</a>
+                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal"
+                            href="coming-soon.html">About</a>
+                    </nav>
+                    <div class="hidden lg:flex items-center">
+                        <a href="coming-soon.html"
+                            class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact
+                            Us</a>
+                    </div>
+                    <div class="flex items-center lg:hidden">
+                        <button id="menu-button" class="p-2" aria-label="Open menu">
+                            <span id="menu-icon"
+                                class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mobile Nav Panel -->
+                <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
+                    <nav class="flex flex-col gap-1 p-4">
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors"
+                            href="coming-soon.html">Stories</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors"
+                            href="coming-soon.html">Galleries</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors"
+                            href="coming-soon.html">Timeline</a>
+                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors"
+                            href="coming-soon.html">About</a>
+                        <a href="coming-soon.html"
+                            class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact
+                            Us</a>
+                    </nav>
+                </div>
+                <script>
+                    const menuButton = document.getElementById('menu-button');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuIcon = document.getElementById('menu-icon');
+
+                    menuButton.addEventListener('click', () => {
+                        const isHidden = mobileMenu.classList.toggle('hidden');
+                        menuIcon.textContent = isHidden ? 'menu' : 'close';
+                    });
+                </script>
+            </header>
+            <section class="w-full relative overflow-hidden">
+                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+                    <source
+                        src="https://res.cloudinary.com/dhd4ljeo1/video/upload/v1769076517/edit_the_existing_image_to_transform_the_1_yjmwna.mp4"
+                        type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="absolute inset-0 bg-brand-teal/80"></div>
+                <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay">
+                    <!-- <div class="absolute top-10 left-10 text-brand-gold text-4xl font-serif">Aesthetica</div> -->
+                    <!-- <div class="absolute bottom-20 right-20 text-brand-gold text-2xl font-serif">Philosophia</div> -->
+                    <div
+                        class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-32 h-64 border-l-2 border-brand-gold rounded-full rotate-12 opacity-40">
+                    </div>
+                </div>
+                <div
+                    class="relative px-4 sm:px-10 py-12 sm:py-20 flex flex-col sm:flex-row items-center gap-8 sm:gap-12 max-w-[1440px] mx-auto">
+                    <div class="flex-1 space-y-6 sm:space-y-8 z-10">
+                        <div
+                            class="inline-block px-3 py-1 bg-brand-gold/20 text-brand-gold border border-brand-gold/30 rounded-full text-xs font-bold tracking-widest uppercase">
+                            Celebrating FEMALE Multidisciplinary Brilliance!
+                        </div>
+                        <h1 class="brand-heading text-4xl sm:text-5xl md:text-7xl text-white leading-[1.1] font-black">
+                            Voices of <span class="text-brand-gold">Impact</span>.<br />Legacy of Thought.
+                        </h1>
+                        <p class="text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
+                            Beyond the lab, into the soul of human progress. A curated archive of women who shaped the
+                            medical, the arts, financial, social movements, and scientific frontiers.
+                        </p>
+                        <div class="flex flex-wrap gap-3 sm:gap-4">
+                            <a href="coming-soon.html"
+                                class="flex min-w-[160px] sm:min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-12 sm:h-14 px-6 sm:px-8 bg-brand-gold text-brand-teal text-sm sm:text-base font-bold shadow-lg hover:scale-105 transition-transform">
+                                Read the Stories
+                            </a>
+                            <a href="coming-soon.html"
+                                class="flex min-w-[160px] sm:min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-12 sm:h-14 px-6 sm:px-8 border-2 border-white/30 text-white text-sm sm:text-base font-bold hover:bg-white/10 transition-colors">
+                                The Archive
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full max-w-sm sm:max-w-md relative">
+                        <div
+                            class="aspect-[3/4] bg-white/5 rounded-2xl border border-white/10 p-3 sm:p-4 backdrop-blur-sm relative overflow-hidden group">
+                            <div class="w-full h-full rounded-xl bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkrFiqP_4mJDA0kvQZtK5uBhAznUWniEEM1w&s");'>
+                            </div>
+                            <div
+                                class="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/90 dark:bg-background-dark/90 p-3 sm:p-4 rounded-lg shadow-xl">
+                                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">
+                                    Current Feature</p>
+                                <a href="josephine-cochrane.html" class="block">
+                                    <p
+                                        class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">
+                                        Josephine Cochrane: Inventor of the Dishwasher</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <main
+                class="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 flex flex-col lg:flex-row gap-12 sm:gap-16">
+                <div class="flex-1 space-y-8 sm:space-y-12">
+                    <div class="space-y-2 mb-8 sm:mb-10">
+                        <h2 class="brand-heading text-3xl sm:text-4xl text-[#141118] dark:text-white">Latest Stories
+                        </h2>
+                        <div class="h-1 w-16 sm:w-20 bg-brand-gold rounded-full"></div>
+                    </div>
+                    <div id="latest-stories-container" class="space-y-8">
+                        <p>Loading stories...</p>
+                    </div>
+                    <div class="pt-6 sm:pt-8 border-t border-[#f2f0f4] flex justify-center gap-2">
+                        <a href="coming-soon.html"
+                            class="size-9 sm:size-10 rounded border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition-colors flex items-center justify-center font-bold">1</a>
+                        <a href="coming-soon.html"
+                            class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">2</a>
+                        <a href="coming-soon.html"
+                            class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">3</a>
+                        <a href="coming-soon.html"
+                            class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+                <aside class="w-full lg:w-80 space-y-8 sm:space-y-12">
+                    <div class="space-y-4">
+                        <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search
+                            the Archive</h4>
+                        <div class="relative">
+                            <input
+                                class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-10 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base"
+                                placeholder="Keywords, names, or topics..." type="text" />
+                            <span class="material-symbols-outlined absolute right-3 top-3 text-[#756189]">search</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Popular
+                            Archives</h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a class="flex justify-between items-center group" href="coming-soon.html">
+                                    <span
+                                        class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Tech
+                                        Pioneers</span>
+                                    <span
+                                        class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">42
+                                        Stories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex justify-between items-center group" href="coming-soon.html">
+                                    <span
+                                        class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Scientific
+                                        Discoveries</span>
+                                    <span
+                                        class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">35
+                                        Stories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex justify-between items-center group" href="coming-soon.html">
+                                    <span
+                                        class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Medical
+                                        Breakthroughs</span>
+                                    <span
+                                        class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">25
+                                        Stories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex justify-between items-center group" href="coming-soon.html">
+                                    <span
+                                        class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Financial
+                                        Innovators</span>
+                                    <span
+                                        class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">22
+                                        Stories</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link mt-4"
+                            href="coming-soon.html">
+                            View More
+                            <span
+                                class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search by
+                            Era</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors"
+                                href="coming-soon.html">19th Century</a>
+                            <a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors"
+                                href="coming-soon.html">Early 20th Century</a>
+                            <a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors"
+                                href="coming-soon.html">Mid-20th Century</a>
+                            <a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors"
+                                href="coming-soon.html">Late 20th Century</a>
+                            <a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors"
+                                href="coming-soon.html">21st Century</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-brand-teal rounded-xl text-white space-y-4">
+                        <h4 class="brand-heading text-base sm:text-lg font-bold">Digest of Genius</h4>
+                        <p class="text-sm text-white/80 leading-relaxed">Get monthly curated stories from the archive
+                            delivered to your inbox.</p>
+                        <input
+                            class="w-full rounded border-none bg-white/10 text-white placeholder:text-white/50 text-sm"
+                            placeholder="Your email..." type="email" />
+                        <a href="coming-soon.html"
+                            class="w-full bg-brand-gold text-brand-teal font-bold py-2 rounded text-sm hover:scale-[1.02] transition-transform block text-center">Join
+                            the Newsletter</a>
+                    </div>
+                </aside>
+            </main>
+            <div class="w-full px-4 sm:px-6 md:px-8 lg:px-12 pb-12 sm:pb-16">
+                <div
+                    class="p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#191022] to-brand-teal text-white flex flex-col md:flex-row items-center gap-8 sm:gap-10 overflow-hidden relative">
+                    <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none select-none">
+                        <span class="brand-heading text-[10rem] sm:text-[12rem] leading-none">LEGACY</span>
+                    </div>
+                    <div class="flex-1 space-y-4 z-10">
+                        <h2 class="brand-heading text-2xl sm:text-3xl font-bold">Is there a story missing?</h2>
+                        <p class="text-white/70 max-w-lg text-sm sm:text-base">
+                            The archive thrives on collective memory. If you know of a figure whose contribution
+                            deserves to be documented—in any field—we invite you to share her story.
+                        </p>
+                    </div>
+                    <div class="flex gap-4 z-10">
+                        <a href="coming-soon.html"
+                            class="bg-brand-gold hover:bg-brand-gold/90 text-brand-teal font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg shadow-xl transition-all text-sm sm:text-base">
+                            Submit a Discovery
+                        </a>
+                    </div>
                 </div>
             </div>
+            <footer
+                class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
+                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The
+                            She Archive</h2>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Archive Policy</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Accessibility</a>
+                        <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Contact</a>
+                    </div>
+                    <div class="flex gap-3 sm:gap-4">
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                            href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
+                        </a>
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                            href="coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                    © 2026 Her Genius Archive. Celebrating contributions across Arts, Tech, Medical, Activism, and
+                    Science.
+                </p>
+            </footer>
         </div>
     </div>
-</section>
-<main class="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 flex flex-col lg:flex-row gap-12 sm:gap-16">
-<div class="flex-1 space-y-8 sm:space-y-12">
-<div class="space-y-2 mb-8 sm:mb-10">
-<h2 class="brand-heading text-3xl sm:text-4xl text-[#141118] dark:text-white">Latest Stories</h2>
-<div class="h-1 w-16 sm:w-20 bg-brand-gold rounded-full"></div>
-</div>
-<article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-<div class="w-full md:w-60 lg:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg");'></div>
-</div>
-<div class="flex flex-col justify-center space-y-2 sm:space-y-3">
-<span class="text-brand-teal font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-teal/10 w-fit rounded">Tech Pioneers</span>
-<h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Ada Lovelace: The First Coder</h3>
-<p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">In 1843, mathematician Ada Lovelace wrote the first computer algorithm—a century before digital computers existed. Her visionary notes on Charles Babbage's Analytical Engine laid the foundation for modern programming, the tech in your pocket, and the algorithms that power AI today.</p>
-<a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="ada-lovelace.html">
-                            Read More 
-                            <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</article>
-<article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-<div class="w-full md:w-60 lg:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTISBNeZuBu20cAKP2ygJqCyjrlIifSVUAfrw&s");'></div>
-</div>
-<div class="flex flex-col justify-center space-y-2 sm:space-y-3">
-<span class="text-brand-gold font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-brand-gold/10 w-fit rounded">Life Changers</span>
-<h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Rosalind Franklin: Photo 51</h3>
-<p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">British crystallographer Rosalind Franklin captured Photo 51—the X-ray diffraction image that revealed DNA's double helix structure. Her experimental evidence transformed molecular biology and saved countless lives through genetic medicine, yet her legacy remained hidden for decades.</p>
-<a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="rosalind-franklin.html">
-                            Read More 
-                            <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</article>
-<article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-<div class="w-full md:w-60 lg:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvf_LBTGlQgpX3lMGJ0tURIP7Vy2UHivv1seayHfTIuNvN1AJ3pRUEhjbAL0hx0WRjBaDQJo1hUeCAcNco0GK0p54aNKg8a8ZBfzlpDWTuSw&s=10");'></div>
-</div>
-<div class="flex flex-col justify-center space-y-2 sm:space-y-3">
-<span class="text-red-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-red-50 w-fit rounded">Tech Pioneers</span>
-<h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Hedy Lamarr: The Inventor Actress</h3>
-<p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">Hollywood actress Hedy Lamarr developed frequency-hopping spread spectrum technology during WWII to prevent torpedo jamming. Her military innovation became the invisible foundation for modern Wi-Fi, Bluetooth, and cellular communications—the wireless technology connecting billions today.</p>
-<a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="hedy-lamarr.html">
-                            Read More 
-                            <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</article>
-<article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-<div class="w-full md:w-60 lg:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
-<div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://d3i6fh83elv35t.cloudfront.net/static/2018/05/GettyImages-515332098-1-e1525536435671-1024x660.jpg");'></div>
-</div>
-<div class="flex flex-col justify-center space-y-2 sm:space-y-3">
-<span class="text-purple-600 font-bold text-xs uppercase tracking-widest px-2 py-0.5 bg-purple-50 w-fit rounded">Social Innovators</span>
-<h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">Nellie Bly: Journalism’s STEM Pioneer</h3>
-<p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">Nellie Bly revolutionized investigative journalism with her undercover reporting and record-breaking trip around the world. She also invented a practical steel drum for the oil industry, proving that innovation in STEM and social reform can come from unexpected places.</p>
-<a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="nellie-bly.html">
-    Read More
-    <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</article>
-<div class="pt-6 sm:pt-8 border-t border-[#f2f0f4] flex justify-center gap-2">
-<a href="coming-soon.html" class="size-9 sm:size-10 rounded border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition-colors flex items-center justify-center font-bold">1</a>
-<a href="coming-soon.html" class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">2</a>
-<a href="coming-soon.html" class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">3</a>
-<a href="coming-soon.html" class="size-9 sm:size-10 rounded border border-[#f2f0f4] hover:border-brand-teal hover:text-brand-teal transition-colors flex items-center justify-center">
-<span class="material-symbols-outlined">chevron_right</span>
-</a>
-</div>
-</div>
-<aside class="w-full lg:w-80 space-y-8 sm:space-y-12">
-<div class="space-y-4">
-<h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search the Archive</h4>
-<div class="relative">
-<input class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-10 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base" placeholder="Keywords, names, or topics..." type="text"/>
-<span class="material-symbols-outlined absolute right-3 top-3 text-[#756189]">search</span>
-</div>
-</div>
-<div class="space-y-4">
-<h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Popular Archives</h4>
-<ul class="space-y-3">
-<li>
-<a class="flex justify-between items-center group" href="coming-soon.html">
-<span class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Tech Pioneers</span>
-<span class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">42 Stories</span>
-</a>
-</li>
-<li>
-<a class="flex justify-between items-center group" href="coming-soon.html">
-<span class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Scientific Discoveries</span>
-<span class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">35 Stories</span>
-</a>
-</li>
-<li>
-<a class="flex justify-between items-center group" href="coming-soon.html">
-<span class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Medical Breakthroughs</span>
-<span class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">25 Stories</span>
-</a>
-</li>
-<li>
-<a class="flex justify-between items-center group" href="coming-soon.html">
-<span class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Financial Innovators</span>
-<span class="text-xs bg-[#f2f0f4] dark:bg-white/10 px-2 py-1 rounded text-[#756189]">22 Stories</span>
-</a>
-</li>
-</ul>
-<a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link mt-4" href="coming-soon.html">
-    View More
-    <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-<div class="space-y-4">
-<h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search by Era</h4>
-<div class="flex flex-wrap gap-2">
-<a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors" href="coming-soon.html">19th Century</a>
-<a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors" href="coming-soon.html">Early 20th Century</a>
-<a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors" href="coming-soon.html">Mid-20th Century</a>
-<a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors" href="coming-soon.html">Late 20th Century</a>
-<a class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors" href="coming-soon.html">21st Century</a>
-</div>
-</div>
-<div class="p-6 bg-brand-teal rounded-xl text-white space-y-4">
-<h4 class="brand-heading text-base sm:text-lg font-bold">Digest of Genius</h4>
-<p class="text-sm text-white/80 leading-relaxed">Get monthly curated stories from the archive delivered to your inbox.</p>
-<input class="w-full rounded border-none bg-white/10 text-white placeholder:text-white/50 text-sm" placeholder="Your email..." type="email"/>
-<a href="coming-soon.html" class="w-full bg-brand-gold text-brand-teal font-bold py-2 rounded text-sm hover:scale-[1.02] transition-transform block text-center">Join the Newsletter</a>
-</div>
-</aside>
-</main>
-<div class="w-full px-4 sm:px-6 md:px-8 lg:px-12 pb-12 sm:pb-16">
-<div class="p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#191022] to-brand-teal text-white flex flex-col md:flex-row items-center gap-8 sm:gap-10 overflow-hidden relative">
-<div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none select-none">
-<span class="brand-heading text-[10rem] sm:text-[12rem] leading-none">LEGACY</span>
-</div>
-<div class="flex-1 space-y-4 z-10">
-<h2 class="brand-heading text-2xl sm:text-3xl font-bold">Is there a story missing?</h2>
-<p class="text-white/70 max-w-lg text-sm sm:text-base">
-                        The archive thrives on collective memory. If you know of a figure whose contribution deserves to be documented—in any field—we invite you to share her story.
-                    </p>
-</div>
-<div class="flex gap-4 z-10">
-<a href="coming-soon.html" class="bg-brand-gold hover:bg-brand-gold/90 text-brand-teal font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg shadow-xl transition-all text-sm sm:text-base">
-                        Submit a Discovery
-                    </a>
-</div>
-</div>
-</div>
-<footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-<div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
-<h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
-</div>
-<div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
-<a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Archive Policy</a>
-<a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
-<a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Accessibility</a>
-<a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Contact</a>
-</div>
-<div class="flex gap-3 sm:gap-4">
-<a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
-<span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-</a>
-<a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all" href="coming-soon.html">
-<span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-</a>
-</div>
-</div>
-<p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
-                © 2026 Her Genius Archive. Celebrating contributions across Arts, Tech, Medical, Activism, and Science.
-            </p>
-</footer>
-</div>
-</div>
 
-</body></html>
+    <script src="scripts/load-posts.js"></script>
+</body>
+
+</html>

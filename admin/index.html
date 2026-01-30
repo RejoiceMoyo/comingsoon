@@ -1,22 +1,29 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
 </head>
+
 <body>
   <script>
-    window.addEventListener('message', function(event) {
+    window.addEventListener('message', function (event) {
+      console.log('Received message:', event);
       if (event.data.startsWith('authorization:github:success:')) {
+        console.log('Auth success message received!');
         const payload = event.data.replace('authorization:github:success:', '');
         localStorage.setItem('decap-cms-auth', payload);
         localStorage.setItem('netlify-cms-auth', payload);
-        console.log('Received auth message, stored token');
+        console.log('Received auth message, stored token. Reloading...');
         window.location.reload();
+      } else {
+        console.log('Message ignored:', event.data);
       }
     });
   </script>
   <script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
 </body>
+
 </html>

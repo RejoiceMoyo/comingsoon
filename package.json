@@ -4,9 +4,14 @@
   "description": "The She Archive - Static site with CMS",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/generate-posts-index.js",
+    "start": "npx serve"
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "front-matter": "^4.0.2"
   }
 }
