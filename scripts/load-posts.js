@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!response.ok) throw new Error('Failed to load posts');
         const posts = await response.json();
 
+                const currentFeature = document.getElementById('current-feature');
+                if (currentFeature && posts.length > 0) {
+                        const latestPost = posts[0];
+                        currentFeature.innerHTML = `
+                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
+                <a href="post.html?slug=${latestPost.slug}" class="block">
+                    <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${latestPost.title}</p>
+                </a>
+            `;
+                }
+
         if (posts.length === 0) {
             container.innerHTML = '<p class="text-gray-500">No stories found yet. Check back soon!</p>';
             return;
