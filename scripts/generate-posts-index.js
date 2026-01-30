@@ -2,34 +2,98 @@ const fs = require('fs');
 const path = require('path');
 const frontMatter = require('front-matter');
 
-const postsDir = path.join(__dirname, '../content/posts');
-const outputDir = path.join(__dirname, '../api');
-const outputFile = path.join(outputDir, 'posts.json');
+const rootDir = path.join(__dirname, '../');
+const postsDir = path.join(rootDir, 'content/posts');
+const outputDir = path.join(rootDir, 'public');
+const apiDir = path.join(outputDir, 'api');
+const outputFile = path.join(apiDir, 'posts.json');
 
-// Ensure API directory exists
-if (!fs.existsSync(outputDir)) {
+// --- Helper Functions ---
+function copyDir(src, dest) {
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+
+    // Check if src exists (e.g., content/posts might be empty or missing in some clones)
+    if (!fs.existsSync(src)) return;
+
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+
+    for (let entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+
+        // Skip ignored directories/files
+        if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === 'public' || entry.name === 'scripts' || entry.name === '.qodo') {
+            continue;
+        }
+
+        if (entry.isDirectory()) {
+            copyDir(srcPath, destPath);
+        } else {
+            copyFile(srcPath, destPath);
+        }
+    }
+}
+
+function copyFile(src, dest) {
+    const parent = path.dirname(dest);
+    if (!fs.existsSync(parent)) fs.mkdirSync(parent, { recursive: true });
+    fs.copyFileSync(src, dest);
+}
+
+// --- Main Build Process ---
+console.log('Starting build...');
+
+// 1. Clean/Create public directory
+if (fs.existsSync(outputDir)) {
+    // fs.rmSync(outputDir, { recursive: true, force: true }); 
+    // Cleaning might cause issues if locking, just overwrite
+} else {
     fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Ensure posts directory exists
-if (!fs.existsSync(postsDir)) {
-    console.log('No posts directory found, creating empty index.');
-    fs.writeFileSync(outputFile, JSON.stringify([], null, 2));
-    process.exit(0);
+// 2. Copy static assets and standard files from Root
+const rootEntries = fs.readdirSync(rootDir, { withFileTypes: true });
+for (let entry of rootEntries) {
+    const srcPath = path.join(rootDir, entry.name);
+    const destPath = path.join(outputDir, entry.name);
+
+    // Skip special folders/files
+    if (['node_modules', '.git', '.qodo', 'public', 'scripts', '.gitignore', 'package.json', 'package-lock.json', 'README.md'].includes(entry.name)) {
+        continue;
+    }
+
+    if (entry.isDirectory()) {
+        copyDir(srcPath, destPath);
+    } else {
+        copyFile(srcPath, destPath);
+    }
+}
+console.log('Static files copied to public/');
+
+// 3. Generate Posts API
+if (!fs.existsSync(apiDir)) {
+    fs.mkdirSync(apiDir, { recursive: true });
 }
 
-const posts = fs.readdirSync(postsDir)
-    .filter(file => file.endsWith('.md'))
-    .map(file => {
-        const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
-        const parsed = frontMatter(content);
-        return {
-            slug: file.replace('.md', ''),
-            ...parsed.attributes,
-            // body: parsed.body // Optional: include body if needed for preview, otherwise load on demand
-        };
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+// Also copy existing API files (like callback.js/auth.js) if they exist in source 'api' folder
+// (Handled by step 2 if 'api' folder exists in root, which it does)
+
+let posts = [];
+if (fs.existsSync(postsDir)) {
+    posts = fs.readdirSync(postsDir)
+        .filter(file => file.endsWith('.md'))
+        .map(file => {
+            const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+            const parsed = frontMatter(content);
+            return {
+                slug: file.replace('.md', ''),
+                ...parsed.attributes,
+            };
+        })
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
 fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
 console.log(`Generated index for ${posts.length} posts at ${outputFile}`);
+
+console.log('Build complete.');
