@@ -249,6 +249,17 @@
             return `${window.location.origin}${url.startsWith('/') ? '' : '/'}${url}`;
         }
 
+        function formatDate(value) {
+            if (!value) return '';
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) return '';
+            return date.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
         async function loadPost() {
             const params = new URLSearchParams(window.location.search);
             const slug = params.get('slug');
@@ -308,11 +319,12 @@
                     mainEntityOfPage: canonicalUrl
                 });
 
+                                const formattedDate = formatDate(date);
                                 document.getElementById('post').innerHTML = `
-                        <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>
-                        <p class="text-sm text-[#756189] dark:text-white/70">By ${author || 'The She Archive'}${date ? ` | ${new Date(date).toLocaleDateString()}` : ''}</p>
-                        ${marked.parse(body)}
-                    `;
+                                        <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>
+                                        <p class="text-sm text-[#756189] dark:text-white/70">By ${author || 'The She Archive'}${formattedDate ? ` | ${formattedDate}` : ''}</p>
+                                        ${marked.parse(body)}
+                                    `;
 
             } catch (error) {
                 console.error(error);

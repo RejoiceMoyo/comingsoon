@@ -134,6 +134,17 @@
     </div>
 
     <script>
+      const formatDate = (value) => {
+        if (!value) return '';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+      };
+
       async function loadPosts() {
         try {
           const response = await fetch('/api/posts.json');
@@ -152,7 +163,7 @@
             <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm">
               <h2 class="brand-heading text-xl sm:text-2xl text-[#141118] dark:text-white">${post.title}</h2>
               <p class="mt-2 text-sm text-[#756189] dark:text-white/70">
-                By ${post.author || 'The She Archive'} | ${new Date(post.date).toLocaleDateString()}
+                By ${post.author || 'The She Archive'}${post.date ? ` | ${formatDate(post.date)}` : ''}
               </p>
               <p class="mt-4 text-[#3c3741] dark:text-white/80">${post.description || ''}</p>
               <a href="/post.html?slug=${post.slug}" class="mt-4 inline-flex items-center text-brand-teal font-bold text-sm hover:opacity-80">Read Article →</a>

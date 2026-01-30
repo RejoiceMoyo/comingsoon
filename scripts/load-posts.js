@@ -2,21 +2,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('latest-stories-container');
     if (!container) return;
 
+    const formatDate = (value) => {
+        if (!value) return '';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    };
+
     try {
         const response = await fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) throw new Error('Failed to load posts');
         const posts = await response.json();
 
-                const currentFeature = document.getElementById('current-feature');
-                if (currentFeature && posts.length > 0) {
-                        const latestPost = posts[0];
-                        currentFeature.innerHTML = `
+        const currentFeature = document.getElementById('current-feature');
+        const currentFeatureImage = document.getElementById('current-feature-image');
+        if (currentFeature && posts.length > 0) {
+            const latestPost = posts[0];
+            const formattedDate = formatDate(latestPost.date);
+            const featureImage = latestPost.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
+
+            if (currentFeatureImage) {
+                currentFeatureImage.style.backgroundImage = `url("${featureImage}")`;
+            }
+
+            currentFeature.innerHTML = `
                 <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
                 <a href="post.html?slug=${latestPost.slug}" class="block">
                     <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${latestPost.title}</p>
                 </a>
+                ${latestPost.description ? `<p class="text-xs text-[#3c3741] dark:text-white/70 mt-2 line-clamp-3">${latestPost.description}</p>` : ''}
+                ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
             `;
-                }
+        } else if (currentFeature) {
+            currentFeature.innerHTML = `
+                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
+                <p class="text-[#756189] dark:text-white/70 text-sm">No stories yet.</p>
+            `;
+        }
 
         if (posts.length === 0) {
             container.innerHTML = '<p class="text-gray-500">No stories found yet. Check back soon!</p>';
