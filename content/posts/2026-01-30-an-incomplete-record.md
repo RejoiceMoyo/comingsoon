@@ -23,11 +23,13 @@ We treat women’s contributions as historical fact, not footnotes. Each entry i
 
 This is a digital museum.
 
+![Ada Lovelace, the first Coder](/images/uploads/image-5-.png "She was the first person to code!")
+
 A living archive.
 
 A corrective record.
 
-From science to software, art to resistance, domestic labor to global innovation, **her work was never absent. It was undocumented. Or it was documented but not well known!**
+> From science to software, art to resistance, domestic labor to global innovation, **her work was never absent. It was undocumented. Or it was documented but not well known!**
 
 The She Archive begins here.
 
