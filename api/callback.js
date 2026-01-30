@@ -54,25 +54,31 @@ module.exports = async (req, res) => {
   var target = window.opener || window.parent;
   if (target) {
     try {
+      
+      // DEBUGGING: Provide visual feedback before closing/redirecting
+      document.body.innerHTML += "<p style='color:green'>Token received. Attempting to pass to parent...</p>";
+      
+      // Extract token from payload for display safely
+      var tokenVal = JSON.parse(payload).token;
+      document.body.innerHTML += "<p>Token prefix: " + tokenVal.substring(0, 5) + "...</p>";
+
       target.postMessage("authorizing:github", "*");
       target.postMessage("authorization:github:success:" + payload, "*");
       console.log("PostMessage sent");
       
-      // DEBUGGING: Keep window open to see logs
-      document.body.innerHTML += "<p style='color:green'>Token received & sent to parent. Window will close in 30 seconds...</p>";
-      document.body.innerHTML += "<p>Token prefix: " + token.substring(0, 5) + "...</p>";
-      setTimeout(function () { window.close(); }, 30000); 
+      document.body.innerHTML += "<p>Message sent to parent window. Closing...</p>";
+      setTimeout(function () { window.close(); }, 2000); 
       return;
     } catch (e) {
       console.error("PostMessage failed:", e);
-      document.body.innerHTML += "<p style='color:red'>PostMessage failed: " + e.message + "</p>";
+      document.body.innerHTML += "<p style='color:orange'>PostMessage failed: " + e.message + ". Falling back to redirect...</p>";
     }
   }
 
   // No opener or messaging failed: redirect into admin so CMS reads storage.
   console.log("Redirecting to /admin/");
-  // window.location.href = "/admin/"; // Disable redirect for debug
-  document.body.innerHTML += "<p>No parent window found (opener is null).</p>";
+  document.body.innerHTML += "<p>Redirecting to Admin Dashboard...</p>";
+  setTimeout(function() { window.location.href = "/admin/"; }, 1000);
 })();
 </script>
 </body>
