@@ -2,7 +2,7 @@
 title: An Incomplete Record
 date: 2026-01-30T13:56:00.000+02:00
 author: The She Archive
-category: Other
+category: Announcement
 era: 21st Century
 image: /images/uploads/d28aazh9muylvgcqhfwpot8ya.jpg
 description: The She Archive is a digital museum dedicated to preserving the
