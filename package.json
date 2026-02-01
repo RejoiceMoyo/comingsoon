@@ -9,6 +9,7 @@
     "start": "npx serve"
   },
   "dependencies": {
+    "marked": "^4.3.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

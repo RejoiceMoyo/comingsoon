@@ -164,7 +164,7 @@
                 By ${post.author || 'The She Archive'}${post.date ? ` | ${formatDate(post.date)}` : ''}
               </p>
               <p class="mt-4 text-[#3c3741] dark:text-white/80">${post.description || ''}</p>
-              <a href="/post.html?slug=${post.slug}" class="mt-4 inline-flex items-center text-brand-teal font-bold text-sm hover:opacity-80">Read Article →</a>
+              <a href="/stories/${post.slug}/" class="mt-4 inline-flex items-center text-brand-teal font-bold text-sm hover:opacity-80">Read Article →</a>
             </li>
           `).join('');
         } catch (error) {

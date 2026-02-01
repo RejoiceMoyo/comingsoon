@@ -267,6 +267,9 @@
                 return;
             }
 
+            window.location.replace(`/stories/${slug}/`);
+            return;
+
             try {
                 // We fetch the Markdown file directly from content/posts/
                 // Note: In a real production build, these might be processed to HTML.

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             currentFeature.innerHTML = `
                 <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
-                <a href="post.html?slug=${latestPost.slug}" class="block">
+                <a href="/stories/${latestPost.slug}/" class="block">
                     <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${latestPost.title}</p>
                 </a>
                 ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               <span class="${categoryColorClass} font-bold text-xs uppercase tracking-widest px-2 py-0.5 w-fit rounded">${category}</span>
               <h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">${post.title}</h3>
               <p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">${post.description || ''}</p>
-              <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="post.html?slug=${post.slug}">
+              <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="/stories/${post.slug}/">
                   Read More 
                   <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
               </a>
