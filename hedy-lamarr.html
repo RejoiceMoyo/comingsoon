@@ -53,51 +53,22 @@
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
             <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-                <div class="flex items-center justify-between px-4 py-3 md:py-5 md:px-8 lg:px-12">
-                    <div class="flex items-center gap-3">
-                        <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
-                    </div>
-                    <nav class="hidden lg:flex items-center gap-6 md:gap-8 justify-center text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em]">
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="/stories/">Stories</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="/inventions/">Inventions</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="/editors-desk/">The Editor’s Desk</a>
-                        <a class="hover:text-brand-teal transition-colors text-sm font-medium leading-normal" href="/about/">About</a>
-                        <a class="hover:text-brand-teal transition-colors flex items-center" href="https://www.buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                            <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
-                        </a>
-                    </nav>
-                    <div class="hidden lg:flex items-center">
-                        <a href="coming-soon.html" class="flex items-center rounded-lg h-10 px-5 bg-brand-teal text-white text-sm font-bold transition-all hover:bg-brand-teal/90">Contact Us</a>
-                    </div>
-                    <div class="flex items-center lg:hidden">
-                        <button id="menu-button" class="p-2" aria-label="Open menu">
-                            <span id="menu-icon" class="material-symbols-outlined text-3xl text-brand-teal dark:text-brand-gold">menu</span>
-                        </button>
+                <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
+                    <div class="flex flex-col items-center gap-3">
+                        <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
+                        <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
+                        <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-10 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center"
+                                href="https://www.buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                                <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
+                            </a>
+                        </nav>
                     </div>
                 </div>
-                <!-- Mobile Nav Panel -->
-                <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-background-dark">
-                    <nav class="flex flex-col gap-1 p-4">
-                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="/stories/">Stories</a>
-                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="/inventions/">Inventions</a>
-                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="/editors-desk/">The Editor’s Desk</a>
-                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors" href="/about/">About</a>
-                        <a class="px-4 py-3 rounded-md hover:bg-brand-teal/10 hover:text-brand-teal transition-colors flex items-center justify-center" href="https://www.buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                            <span class="material-symbols-outlined text-[16px] leading-none">coffee</span>
-                        </a>
-                        <a href="coming-soon.html" class="mt-2 flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-base font-bold text-white transition-all hover:bg-brand-teal/90">Contact Us</a>
-                    </nav>
-                </div>
-                <script>
-                    const menuButton = document.getElementById('menu-button');
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    const menuIcon = document.getElementById('menu-icon');
-
-                    menuButton.addEventListener('click', () => {
-                        const isHidden = mobileMenu.classList.toggle('hidden');
-                        menuIcon.textContent = isHidden ? 'menu' : 'close';
-                    });
-                </script>
             </header>
 
             <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
