@@ -165,13 +165,13 @@
                 <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-lg overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
                   <img src="${image}" alt="${post.title}" class="h-full w-full object-cover" />
                 </div>
-                <h2 class="brand-heading text-sm text-black">${post.title}</h2>
+                <h2 class="brand-heading text-sm text-black font-bold">${post.title}</h2>
               </div>
               <p class="mt-2 text-xs text-black">
-                By ${post.author || 'The She Archive'}${post.date ? ` | ${formatDate(post.date)}` : ''}
+                <span class="text-brand-gold">By ${post.author || 'The She Archive'}</span>${post.date ? ` | <span class=\"text-brand-teal\">${formatDate(post.date)}</span>` : ''}
               </p>
-              <p class="mt-3 text-black">${post.description || ''}</p>
-              <a href="/stories/${post.slug}/" class="mt-3 inline-flex items-center text-black font-normal hover:opacity-80">Read Article →</a>
+              <p class="mt-3 text-black text-xs">${post.description || ''}</p>
+              <a href="/stories/${post.slug}/" class="mt-3 inline-flex items-center text-brand-teal font-bold text-xs hover:opacity-80">Read Article →</a>
             </li>
           `;
           }).join('');
