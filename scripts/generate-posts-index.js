@@ -98,8 +98,11 @@ if (fs.existsSync(postsDir)) {
         .map(file => {
             const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
             const parsed = frontMatter(content);
+            const fileSlug = file.replace('.md', '');
+            const cleanSlug = fileSlug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
             return {
-                slug: file.replace('.md', ''),
+                slug: cleanSlug,
+                originalSlug: fileSlug,
                 ...parsed.attributes,
                 body: parsed.body,
             };
@@ -131,7 +134,7 @@ const googleTag = `<!-- Google tag (gtag.js) -->\n` +
 `</script>`;
 
 posts.forEach(post => {
-        const storyDir = path.join(storiesDir, post.slug);
+    const storyDir = path.join(storiesDir, post.slug);
         if (!fs.existsSync(storyDir)) {
                 fs.mkdirSync(storyDir, { recursive: true });
         }
@@ -251,6 +254,25 @@ posts.forEach(post => {
 </html>`;
 
         fs.writeFileSync(path.join(storyDir, 'index.html'), html);
+
+        if (post.originalSlug && post.originalSlug !== post.slug) {
+                const legacyDir = path.join(storiesDir, post.originalSlug);
+                if (!fs.existsSync(legacyDir)) {
+                        fs.mkdirSync(legacyDir, { recursive: true });
+                }
+                const legacyHtml = `<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0; url=/stories/${post.slug}/" />
+        <title>Redirecting...</title>
+    </head>
+    <body>
+        <p>Redirecting to <a href="/stories/${post.slug}/">/stories/${post.slug}/</a>...</p>
+    </body>
+</html>`;
+                fs.writeFileSync(path.join(legacyDir, 'index.html'), legacyHtml);
+        }
 });
 
 // 4. Generate sitemap.xml and robots.txt
