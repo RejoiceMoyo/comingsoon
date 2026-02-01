@@ -10,6 +10,7 @@ const apiDir = path.join(outputDir, 'api');
 const outputFile = path.join(apiDir, 'posts.json');
 const baseUrl = 'https://theshearchive.com';
 const storiesDir = path.join(outputDir, 'stories');
+const coffeeUrl = 'https://www.buymeacoffee.com/theshearchive';
 
 // --- Helper Functions ---
 function copyDir(src, dest) {
@@ -215,6 +216,10 @@ posts.forEach(post => {
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center gap-1" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                                <span class="material-symbols-outlined text-[12px] leading-none">coffee</span>
+                                Buy Me a Coffee
+                            </a>
                         </nav>
                     </div>
                 </div>
@@ -235,6 +240,12 @@ posts.forEach(post => {
                     </div>
                     ` : ''}
                     ${marked.parse(post.body || '')}
+                    <div class="mt-8">
+                        <a class="inline-flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-[0.16em] hover:text-brand-gold transition-colors" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                            <span class="material-symbols-outlined text-sm leading-none">coffee</span>
+                            Support The She Archive
+                        </a>
+                    </div>
                 </article>
             </main>
             <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
