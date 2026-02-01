@@ -224,9 +224,11 @@ posts.forEach(post => {
                     <span class="material-symbols-outlined text-sm group-hover/link:-translate-x-1 transition-transform">arrow_back</span>
                     Back to Stories
                 </a>
-                <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none dark:prose-invert">
+                <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black text-xs">
                     <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>
-                    <p class="text-sm text-[#756189] dark:text-white/70">By ${author}${publishedDate ? ` | ${publishedDate}` : ''}</p>
+                    <p class="text-xs text-black">
+                        <span class="text-brand-gold">By ${author}</span>${publishedDate ? ` | <span class=\"text-brand-teal\">${publishedDate}</span>` : ''}
+                    </p>
                     ${image ? `
                     <div class="mt-6 w-full max-w-md aspect-square overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
