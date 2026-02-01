@@ -225,7 +225,7 @@ posts.forEach(post => {
                     Back to Stories
                 </a>
                 <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black text-xs">
-                    <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>
+                      <h1 class="brand-heading text-base sm:text-lg md:text-xl">${title}</h1>
                     <p class="text-xs text-black">
                         <span class="text-brand-gold">By ${author}</span>${publishedDate ? ` | <span class=\"text-brand-teal\">${publishedDate}</span>` : ''}
                     </p>
