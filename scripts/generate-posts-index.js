@@ -10,7 +10,7 @@ const apiDir = path.join(outputDir, 'api');
 const outputFile = path.join(apiDir, 'posts.json');
 const baseUrl = 'https://theshearchive.com';
 const storiesDir = path.join(outputDir, 'stories');
-const coffeeUrl = 'https://www.buymeacoffee.com/theshearchive';
+const coffeeUrl = 'https://buymeacoffee.com/theshearchive';
 
 // --- Helper Functions ---
 function copyDir(src, dest) {
