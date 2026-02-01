@@ -318,9 +318,16 @@
                 });
 
                                 const formattedDate = formatDate(date);
+                                const postImageHtml = image ? `
+                                        <div class="mt-6 w-full max-w-md aspect-square overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
+                                            <img src="${imageUrl}" alt="${title}" class="h-full w-full object-cover" />
+                                        </div>
+                                    ` : '';
+
                                 document.getElementById('post').innerHTML = `
                                         <h1 class="brand-heading text-3xl sm:text-4xl md:text-5xl">${title}</h1>
                                         <p class="text-sm text-[#756189] dark:text-white/70">By ${author || 'The She Archive'}${formattedDate ? ` | ${formattedDate}` : ''}</p>
+                                        ${postImageHtml}
                                         ${marked.parse(body)}
                                     `;
 
