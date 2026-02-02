@@ -40,7 +40,9 @@
         if (!category) return true;
         const needle = normalize(category);
         const fields = [item.category, item.field, item.section];
-        const tags = toArray(item.tags).concat(toArray(item.themes));
+        const tags = toArray(item.tags)
+            .concat(toArray(item.themes))
+            .concat(toArray(item.categories));
         const values = fields.concat(tags).filter(Boolean).map(normalize);
         return values.some((val) => val.includes(needle));
     };
@@ -48,7 +50,7 @@
     const matchesKeyword = (item, keyword) => {
         if (!keyword) return true;
         const needle = normalize(keyword);
-        const haystack = [item.title, item.description, item.dek, item.author, item.body, item.tags]
+        const haystack = [item.title, item.description, item.summary, item.dek, item.author, item.body, item.problem, item.tags]
             .filter(Boolean)
             .map(normalize)
             .join(' ');
