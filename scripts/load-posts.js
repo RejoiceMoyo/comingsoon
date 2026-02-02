@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   <span class="${categoryColorClass} font-bold text-xs uppercase tracking-widest px-2 py-0.5 w-fit rounded">${category}</span>
                   <h3 class="brand-heading text-lg sm:text-xl md:text-2xl font-black text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors mb-2">${post.title}</h3>
                   <p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base mb-3">${post.description || ''}</p>
-                  <a class="inline-flex items-center gap-2 text-black hover:text-brand-teal transition-colors font-bold text-xs sm:text-sm group/link no-underline" href="/stories/${post.slug}/">
+                  <a class="inline-flex items-center gap-2 text-brand-teal hover:text-brand-teal transition-colors font-bold text-xs sm:text-sm group/link no-underline" href="/stories/${post.slug}/">
                       Read More
                       <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
                   </a>

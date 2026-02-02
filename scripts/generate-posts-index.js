@@ -117,6 +117,9 @@ function wrapLayout(content, title, description, image, url) {
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
         }
+        a, a:visited, a:hover, a:focus {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
