@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const currentFeature = document.getElementById('current-feature');
         const currentFeatureImage = document.getElementById('current-feature-image');
-        let featureDots = document.getElementById('feature-dots');
+        let featureDots = currentFeature ? currentFeature.querySelector('#feature-dots') : null;
 
         if (!featureDots && currentFeature) {
             featureDots = document.createElement('div');
             featureDots.id = 'feature-dots';
             featureDots.className = 'flex gap-2 mt-3 items-center';
-            currentFeature.parentElement?.appendChild(featureDots);
+            currentFeature.appendChild(featureDots);
         }
 
         const fallbackImg = 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
