@@ -14,28 +14,93 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
-        const response = await fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' });
-        if (!response.ok) throw new Error('Failed to load posts');
-        const posts = await response.json();
+        const [postsRes, editorialsRes, inventionsRes] = await Promise.all([
+            fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' }),
+            fetch(`api/editorials.json?ts=${Date.now()}`, { cache: 'no-store' }),
+            fetch(`api/inventions.json?ts=${Date.now()}`, { cache: 'no-store' })
+        ]);
+
+        if (!postsRes.ok || !editorialsRes.ok || !inventionsRes.ok) throw new Error('Failed to load content');
+
+        const posts = await postsRes.json();
+        const editorials = await editorialsRes.json();
+        const inventions = await inventionsRes.json();
 
         const currentFeature = document.getElementById('current-feature');
         const currentFeatureImage = document.getElementById('current-feature-image');
-        if (currentFeature && posts.length > 0) {
-            const latestPost = posts[0];
-            const formattedDate = formatDate(latestPost.date);
-            const featureImage = latestPost.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
+        let featureDots = document.getElementById('feature-dots');
+
+        if (!featureDots && currentFeature) {
+            featureDots = document.createElement('div');
+            featureDots.id = 'feature-dots';
+            featureDots.className = 'flex gap-2 mt-3 items-center';
+            currentFeature.parentElement?.appendChild(featureDots);
+        }
+
+        const fallbackImg = 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
+        const features = [];
+        if (posts[0]) {
+            features.push({
+                title: posts[0].title,
+                date: posts[0].date,
+                image: posts[0].image || fallbackImg,
+                href: `/stories/${posts[0].slug}/`,
+                label: 'Stories'
+            });
+        }
+        if (editorials[0]) {
+            features.push({
+                title: editorials[0].title,
+                date: editorials[0].date,
+                image: editorials[0].image || fallbackImg,
+                href: `/editors-desk/${editorials[0].slug}/`,
+                label: "Editor's Desk"
+            });
+        }
+        if (inventions[0]) {
+            features.push({
+                title: inventions[0].title,
+                date: inventions[0].date,
+                image: inventions[0].image || fallbackImg,
+                href: `/inventions/${inventions[0].slug}/`,
+                label: 'Inventions'
+            });
+        }
+
+        let currentFeatureIndex = 0;
+
+        const renderFeature = (index) => {
+            if (!currentFeature || features.length === 0) return;
+            const feature = features[index];
+            const formattedDate = formatDate(feature.date);
 
             if (currentFeatureImage) {
-                currentFeatureImage.style.backgroundImage = `url("${featureImage}")`;
+                currentFeatureImage.style.backgroundImage = `url("${feature.image}")`;
             }
 
             currentFeature.innerHTML = `
-                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
-                <a href="/stories/${latestPost.slug}/" class="block">
-                    <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${latestPost.title}</p>
+                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature · ${feature.label}</p>
+                <a href="${feature.href}" class="block">
+                    <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${feature.title}</p>
                 </a>
                 ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
             `;
+
+            if (featureDots) {
+                featureDots.innerHTML = features.map((_, i) => `
+                    <button data-index="${i}" aria-label="Go to feature ${i + 1}" class="h-2.5 w-2.5 rounded-full transition-all ${i === index ? 'bg-brand-gold w-3' : 'bg-white/60 hover:bg-white'}"></button>
+                `).join('');
+                featureDots.querySelectorAll('button').forEach(btn => {
+                    btn.onclick = () => {
+                        currentFeatureIndex = Number(btn.dataset.index) || 0;
+                        renderFeature(currentFeatureIndex);
+                    };
+                });
+            }
+        };
+
+        if (features.length > 0) {
+            renderFeature(currentFeatureIndex);
         } else if (currentFeature) {
             currentFeature.innerHTML = `
                 <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
