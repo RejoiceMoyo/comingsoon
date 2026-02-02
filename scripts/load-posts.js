@@ -48,15 +48,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Pagination Logic
-        const postsPerPage = 3;
-        let currentPage = 1;
-        const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
-
-        const renderPosts = (page) => {
-            const start = (page - 1) * postsPerPage;
-            const end = start + postsPerPage;
-            const paginatedPosts = posts.slice(start, end);
+        // Show only the latest 3 posts (no pagination)
+        const renderPosts = () => {
+            const paginatedPosts = posts.slice(0, 3);
 
             const postsHtml = paginatedPosts.map(post => {
                 // Default image if none provided
@@ -82,42 +76,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           `;
             }).join('');
 
-            // Pagination Controls
-            const controlsHtml = `
-            <div class="flex justify-center items-center gap-4 mt-8 pt-6 border-t border-gray-100">
-                <button id="home-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
-                <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
-                <button id="home-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>
-            </div>
-            `;
-
-            container.innerHTML = postsHtml + controlsHtml;
-
-            // Re-attach listeners
-            const prevBtn = document.getElementById('home-prev');
-            const nextBtn = document.getElementById('home-next');
-
-            if (prevBtn) {
-                prevBtn.onclick = () => {
-                    if (currentPage > 1) {
-                        currentPage--;
-                        renderPosts(currentPage);
-                        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                };
-            }
-            if (nextBtn) {
-                nextBtn.onclick = () => {
-                    if (currentPage < totalPages) {
-                        currentPage++;
-                        renderPosts(currentPage);
-                        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                };
-            }
+            container.innerHTML = postsHtml;
         };
 
-        renderPosts(currentPage);
+        renderPosts();
 
 
     } catch (error) {
