@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             return `
       <article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-          <div class="w-full md:w-60 lg:w-72 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
+          <div class="w-full md:w-48 lg:w-56 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
               <div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("${image}");'></div>
           </div>
           <div class="flex flex-col justify-center space-y-2 sm:space-y-3">
