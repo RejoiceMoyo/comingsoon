@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MDE8PXF500');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Essays, opinion pieces, and thought leadership from The Editor's Desk. Deep dives into history, culture, and the future of archiving genius." />
+    <meta property="og:title" content="The Editor's Desk | The She Archive" />
+    <meta property="og:description" content="Essays, opinion pieces, and thought leadership from The Editor's Desk. Deep dives into history, culture, and the future of archiving genius." />
+    <meta property="og:image" content="https://theshearchive.com/images/prvimg.jpeg" />
+    <meta property="og:url" content="https://theshearchive.com/editors-desk/" />
+    <title>The Editor's Desk | The She Archive</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/jpeg" href="/images/prvimg.jpeg" />
+    <link rel="apple-touch-icon" href="/images/prvimg.jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#8c2bee",
+              "brand-teal": "#008080",
+              "brand-gold": "#D4AF37",
+              "background-light": "#f7f6f8",
+              "background-dark": "#191022",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "serif": ["Playfair Display", "serif"],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      .brand-heading { font-family: "Playfair Display", serif; }
+      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif; }
+      .essay-list, .essay-list :where(h1, h2, h3, h4, h5, h6, p, span, a) {
+        font-family: "Times New Roman", Times, serif;
+      }
+    </style>
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+          <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
+            <div class="flex flex-col items-center gap-3">
+              <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
+              <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
+              <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-10 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
+                <a class="pb-1 border-b border-brand-teal text-brand-teal dark:border-brand-gold dark:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                    <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        <main class="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div class="mb-16 border-b border-black pb-8">
+            <h1 class="brand-heading text-4xl sm:text-5xl md:text-6xl text-center mb-4">The Editor's Desk</h1>
+            <p class="text-xs uppercase tracking-widest text-center text-gray-500 font-bold">Essays, Thesis, and Opinion</p>
+          </div>
+
+          <div id="essay-list" class="essay-list space-y-16">
+            <p class="text-center italic text-gray-400">Opening the archives...</p>
+          </div>
+        </main>
+
+        <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
+                    <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
+                    <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
+                    <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
+                    <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const formatDate = (value) => {
+        if (!value) return '';
+        const date = new Date(value);
+        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      };
+
+      async function loadEditorials() {
+        try {
+          const response = await fetch('/api/editorials.json');
+          const editorials = await response.json();
+          const list = document.getElementById('essay-list');
+          
+          if (!editorials || editorials.length === 0) {
+            list.innerHTML = '<p class="text-center italic">No essays published yet.</p>';
+            return;
+          }
+
+          list.innerHTML = editorials.map(item => {
+            return `
+            <article class="group">
+              <div class="flex flex-col md:flex-row gap-6 items-baseline">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal shrink-0 w-24">${formatDate(item.date)}</span>
+                <div class="grow">
+                    <h2 class="brand-heading text-2xl group-hover:text-brand-gold transition-colors mb-2"><a href="/editors-desk/${item.slug}/">${item.title}</a></h2>
+                    <p class="text-sm font-semibold text-gray-700 italic mb-4">${item.dek || ''}</p>
+                    <p class="text-xs text-black line-clamp-3 mb-4">${item.description || item.body.substring(0, 200)}...</p>
+                    <a href="/editors-desk/${item.slug}/" class="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:border-brand-gold hover:text-brand-gold transition-all">Read Full Essay</a>
+                </div>
+              </div>
+            </article>
+            `;
+          }).join('');
+        } catch (error) {
+          console.error(error);
+          document.getElementById('essay-list').innerHTML = '<p class="text-center text-red-500">Error loading the desk.</p>';
+        }
+      }
+      document.addEventListener('DOMContentLoaded', loadEditorials);
+    </script>
+  </body>
+</html>

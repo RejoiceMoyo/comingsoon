@@ -20,3 +20,36 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "inventions"
+    label: "Inventions"
+    folder: "content/inventions"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Invention Name", name: "title", widget: "string" }
+      - { label: "Inventor Name", name: "inventor", widget: "string" }
+      - { label: "Year / Era", name: "year", widget: "string" }
+      - { label: "Field", name: "field", widget: "select", options: ["Engineering", "Medicine", "Computing", "Physics", "Chemistry", "Social Innovation", "Other"] }
+      - { label: "Era", name: "era", widget: "select", options: ["19th Century", "Early 20th Century", "Mid-20th Century", "Late 20th Century", "21st Century"] }
+      - { label: "Diagram / Image", name: "image", widget: "image" }
+      - { label: "Technical Problem Solved", name: "problem", widget: "text" }
+      - { label: "How it Worked", name: "how_it_works", widget: "markdown" }
+      - { label: "Historical Significance", name: "significance", widget: "markdown" }
+      - { label: "APA References", name: "references", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "editorial"
+    label: "The Editor's Desk"
+    folder: "content/editors-desk"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short Dek (Subtitle)", name: "dek", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Body (Essay)", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Sources", name: "sources", widget: "markdown", required: false }
