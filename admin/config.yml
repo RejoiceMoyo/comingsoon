@@ -29,7 +29,7 @@ collections:
     fields:
       - { label: "Invention Title", name: "title", widget: "string" }
       - { label: "Inventor(s)", name: "inventor", widget: "string", hint: "Full name(s). Link to Stories if available." }
-      - { label: "Patent Number (Optional)", name: "patent_number", widget: "string", required: false }
+      - { label: "Patent Number", name: "patent_number", widget: "string", required: false }
       - { label: "Short Description", name: "description", widget: "text", hint: "1–2 sentences for previews and search." }
       - { label: "Field / Discipline", name: "field", widget: "select", options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Other"] }
       - { label: "Year(s) of Development", name: "year", widget: "string", hint: "Single year or range." }
@@ -37,9 +37,9 @@ collections:
       - { label: "Problem It Addressed", name: "problem", widget: "text", hint: "Clear statement of the technical challenge." }
       - { label: "How It Worked (Overview)", name: "how_it_works", widget: "markdown", hint: "High-level explanation, no jargon overload." }
       - { label: "Historical Impact / Use", name: "impact", widget: "markdown", hint: "Where it was applied, what changed." }
-      - { label: "Limitations / Barriers (Optional)", name: "barriers", widget: "markdown", required: false, hint: "Funding limits, gender bias, erasure." }
-      - { label: "Associated Story (Optional)", name: "associated_story", widget: "string", required: false, hint: "Link to long-form narrative archive entry." }
-      - { label: "Images / Diagrams (Optional)", name: "image", widget: "image", required: false }
+      - { label: "Limitations / Barriers", name: "barriers", widget: "markdown", required: false, hint: "Funding limits, gender bias, erasure." }
+      - { label: "Associated Story", name: "associated_story", widget: "string", required: false, hint: "Link to long-form narrative archive entry." }
+      - { label: "Images / Diagrams", name: "image", widget: "image", required: false }
       - { label: "References (APA)", name: "references", widget: "markdown", hint: "Primary & secondary sources." }
       - { label: "Tags / Keywords", name: "tags", widget: "list" }
 
@@ -53,10 +53,10 @@ collections:
       - { label: "Dek / Subtitle", name: "dek", widget: "string", hint: "1–2 sentence framing of the argument." }
       - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Featured Image (Optional)", name: "image", widget: "image", required: false, hint: "Abstract or symbolic image." }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Abstract or symbolic image." }
       - { label: "Main Body (Essay)", name: "body", widget: "markdown" }
       - { label: "Key Themes / Topics", name: "themes", widget: "list" }
-      - { label: "Referenced Stories / Inventions (Optional)", name: "references_internal", widget: "list", required: false, hint: "Manual links to other archive entries." }
-      - { label: "Sources / Further Reading (Optional)", name: "sources", widget: "markdown", required: false }
-      - { label: "Editor’s Note (Optional)", name: "editors_note", widget: "markdown", required: false, hint: "Meta reflection, context, or update." }
-      - { label: "Discussion Prompt (Optional)", name: "prompt", widget: "string", required: false, hint: "A closing question or provocation." }
+      - { label: "Referenced Stories / Inventions", name: "references_internal", widget: "list", required: false, hint: "Manual links to other archive entries." }
+      - { label: "Sources / Further Reading", name: "sources", widget: "markdown", required: false }
+      - { label: "Editor’s Note", name: "editors_note", widget: "markdown", required: false, hint: "Meta reflection, context, or update." }
+      - { label: "Discussion Prompt", name: "prompt", widget: "string", required: false, hint: "A closing question or provocation." }
