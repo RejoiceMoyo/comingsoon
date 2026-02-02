@@ -14,17 +14,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
-        const [postsRes, editorialsRes, inventionsRes] = await Promise.all([
+        const [postsRes, editorialsRes, inventionsRes] = await Promise.allSettled([
             fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' }),
             fetch(`api/editorials.json?ts=${Date.now()}`, { cache: 'no-store' }),
             fetch(`api/inventions.json?ts=${Date.now()}`, { cache: 'no-store' })
         ]);
 
-        if (!postsRes.ok || !editorialsRes.ok || !inventionsRes.ok) throw new Error('Failed to load content');
+        const safeJson = async (res) => (res && res.ok ? res.json() : []);
 
-        const posts = await postsRes.json();
-        const editorials = await editorialsRes.json();
-        const inventions = await inventionsRes.json();
+        const posts = await safeJson(postsRes.value);
+        const editorials = await safeJson(editorialsRes.value);
+        const inventions = await safeJson(inventionsRes.value);
 
         const currentFeature = document.getElementById('current-feature');
         const currentFeatureImage = document.getElementById('current-feature-image');
@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         let currentFeatureIndex = 0;
+        let autoplayHandle;
 
         const renderFeature = (index) => {
             if (!currentFeature || features.length === 0) return;
@@ -94,6 +95,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     btn.onclick = () => {
                         currentFeatureIndex = Number(btn.dataset.index) || 0;
                         renderFeature(currentFeatureIndex);
+                        if (autoplayHandle) {
+                            clearInterval(autoplayHandle);
+                            startAutoplay();
+                        }
                     };
                 });
             }
@@ -101,6 +106,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (features.length > 0) {
             renderFeature(currentFeatureIndex);
+            const startAutoplay = () => {
+                if (features.length < 2) return;
+                autoplayHandle = setInterval(() => {
+                    currentFeatureIndex = (currentFeatureIndex + 1) % features.length;
+                    renderFeature(currentFeatureIndex);
+                }, 5000);
+            };
+            startAutoplay();
         } else if (currentFeature) {
             currentFeature.innerHTML = `
                 <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature</p>
