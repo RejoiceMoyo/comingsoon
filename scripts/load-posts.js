@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Pagination Logic
         const postsPerPage = 3;
         let currentPage = 1;
-        const totalPages = Math.ceil(posts.length / postsPerPage);
+        const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
 
         const renderPosts = (page) => {
             const start = (page - 1) * postsPerPage;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
             `;
 
-            container.innerHTML = postsHtml + (totalPages > 1 ? controlsHtml : '');
+            container.innerHTML = postsHtml + controlsHtml;
 
             // Re-attach listeners
             const prevBtn = document.getElementById('home-prev');

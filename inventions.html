@@ -80,6 +80,7 @@
           <div id="inventions-grid" class="post-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="col-span-full py-12 text-center text-gray-500 italic">Cataloging archive...</div>
           </div>
+          <div id="inventions-pagination" class="mt-10 flex justify-center"></div>
 
           <!-- Support Section -->
           <div class="mt-16 border-t border-gray-100 pt-8 text-center">
@@ -128,40 +129,69 @@
           const response = await fetch('/api/inventions.json');
           const inventions = await response.json();
           const grid = document.getElementById('inventions-grid');
+          const pagination = document.getElementById('inventions-pagination');
           
           if (!inventions || inventions.length === 0) {
             grid.innerHTML = '<div class="col-span-full py-12 text-center text-gray-500 italic">No inventions found in the current archive.</div>';
+            pagination.innerHTML = '';
             return;
           }
 
-          grid.innerHTML = inventions.map(item => {
-            const image = item.image || '/images/prvimg.jpeg';
-            return `
-            <div class="invention-card group flex flex-col bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div class="aspect-[4/3] overflow-hidden bg-gray-100">
-                <img src="${image}" alt="${item.title}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div class="p-6 flex flex-col grow">
-                <div class="flex justify-between items-start mb-2">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal">${item.field || 'General'}</span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${item.year || 'N/A'}</span>
+          const itemsPerPage = 10;
+          let currentPage = 1;
+          const totalPages = Math.max(1, Math.ceil(inventions.length / itemsPerPage));
+
+          const renderPage = (page) => {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const slice = inventions.slice(start, end);
+
+            grid.innerHTML = slice.map(item => {
+              const image = item.image || '/images/prvimg.jpeg';
+              return `
+              <div class="invention-card group flex flex-col bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img src="${image}" alt="${item.title}" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <h3 class="brand-heading text-lg font-bold text-black mb-2">${item.title}</h3>
-                <p class="text-xs text-gray-600 mb-4 line-clamp-3">${item.problem || ''}</p>
-                <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-                    <span class="text-[10px] italic text-gray-500">Inventor: ${item.inventor || 'Unknown'}</span>
-                    <a href="/inventions/${item.slug}/" class="text-brand-teal transition-all flex items-center gap-2 font-bold text-[10px]">
-                        Read More
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
+                <div class="p-6 flex flex-col grow">
+                  <div class="flex justify-between items-start mb-2">
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal">${item.field || 'General'}</span>
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${item.year || 'N/A'}</span>
+                  </div>
+                  <h3 class="brand-heading text-lg font-bold text-black mb-2">${item.title}</h3>
+                  <p class="text-xs text-gray-600 mb-4 line-clamp-3">${item.problem || ''}</p>
+                  <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+                      <span class="text-[10px] italic text-gray-500">Inventor: ${item.inventor || 'Unknown'}</span>
+                      <a href="/inventions/${item.slug}/" class="text-brand-teal transition-all flex items-center gap-2 font-bold text-[10px]">
+                          Read More
+                          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                      </a>
+                  </div>
                 </div>
               </div>
-            </div>
+              `;
+            }).join('');
+
+            const controls = `
+              <div class="flex items-center gap-4">
+                <button id="inv-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
+                <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
+                <button id="inv-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>
+              </div>
             `;
-          }).join('');
+            pagination.innerHTML = controls;
+
+            const prevBtn = document.getElementById('inv-prev');
+            const nextBtn = document.getElementById('inv-next');
+            if (prevBtn) prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderPage(currentPage); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+            if (nextBtn) nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+          };
+
+          renderPage(currentPage);
         } catch (error) {
           console.error(error);
           document.getElementById('inventions-grid').innerHTML = '<div class="col-span-full py-12 text-center text-red-500">Error accessing the archive records.</div>';
+          document.getElementById('inventions-pagination').innerHTML = '';
         }
       }
       document.addEventListener('DOMContentLoaded', loadInventions);

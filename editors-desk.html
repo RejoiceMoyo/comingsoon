@@ -80,6 +80,7 @@
           <div id="essay-list" class="post-content space-y-16">
             <p class="text-center italic text-gray-400">Opening the archives...</p>
           </div>
+          <div id="editorials-pagination" class="mt-12 flex justify-center"></div>
 
           <!-- Support Section -->
           <div class="mt-16 border-t border-gray-100 pt-8 text-center">
@@ -134,33 +135,62 @@
           const response = await fetch('/api/editorials.json');
           const editorials = await response.json();
           const list = document.getElementById('essay-list');
+          const pagination = document.getElementById('editorials-pagination');
           
           if (!editorials || editorials.length === 0) {
             list.innerHTML = '<p class="text-center italic">No essays published yet.</p>';
+            pagination.innerHTML = '';
             return;
           }
 
-          list.innerHTML = editorials.map(item => {
-            return `
-            <article class="group">
-              <div class="flex flex-col md:flex-row gap-6 items-baseline">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal shrink-0 w-24">${formatDate(item.date)}</span>
-                <div class="grow">
-                    <h2 class="brand-heading text-2xl group-hover:text-brand-gold transition-colors mb-2"><a href="/editors-desk/${item.slug}/">${item.title}</a></h2>
-                    <p class="text-sm font-semibold text-gray-700 italic mb-4">${item.dek || ''}</p>
-                    <p class="text-xs text-black line-clamp-3 mb-4">${item.description || item.body.substring(0, 200)}...</p>
-                    <a href="/editors-desk/${item.slug}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-[10px] hover:opacity-80 transition-all">
-                      Read More
-                      <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
+          const itemsPerPage = 10;
+          let currentPage = 1;
+          const totalPages = Math.max(1, Math.ceil(editorials.length / itemsPerPage));
+
+          const renderPage = (page) => {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const slice = editorials.slice(start, end);
+
+            list.innerHTML = slice.map(item => {
+              return `
+              <article class="group">
+                <div class="flex flex-col md:flex-row gap-6 items-baseline">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal shrink-0 w-24">${formatDate(item.date)}</span>
+                  <div class="grow">
+                      <h2 class="brand-heading text-2xl group-hover:text-brand-gold transition-colors mb-2"><a href="/editors-desk/${item.slug}/">${item.title}</a></h2>
+                      <p class="text-sm font-semibold text-gray-700 italic mb-4">${item.dek || ''}</p>
+                      <p class="text-xs text-black line-clamp-3 mb-4">${item.description || item.body.substring(0, 200)}...</p>
+                      <a href="/editors-desk/${item.slug}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-[10px] hover:opacity-80 transition-all">
+                        Read More
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                      </a>
+                  </div>
                 </div>
+              </article>
+              `;
+            }).join('');
+
+            const controls = `
+              <div class="flex items-center gap-4">
+                <button id="ed-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
+                <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
+                <button id="ed-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>
               </div>
-            </article>
             `;
-          }).join('');
+            pagination.innerHTML = controls;
+
+            const prevBtn = document.getElementById('ed-prev');
+            const nextBtn = document.getElementById('ed-next');
+            if (prevBtn) prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderPage(currentPage); list.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+            if (nextBtn) nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); list.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+          };
+
+          renderPage(currentPage);
         } catch (error) {
           console.error(error);
           document.getElementById('essay-list').innerHTML = '<p class="text-center text-red-500">Error loading the desk.</p>';
+          document.getElementById('editorials-pagination').innerHTML = '';
         }
       }
       document.addEventListener('DOMContentLoaded', loadEditorials);

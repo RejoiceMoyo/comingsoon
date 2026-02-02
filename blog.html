@@ -153,7 +153,7 @@
           // Pagination Logic
           const postsPerPage = 10;
           let currentPage = 1;
-          const totalPages = Math.ceil(posts.length / postsPerPage);
+          const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
 
           const renderPosts = (page) => {
             const start = (page - 1) * postsPerPage;
@@ -191,7 +191,7 @@
             </div>
             `;
 
-            list.innerHTML = postsHtml + (totalPages > 1 ? controlsHtml : '');
+            list.innerHTML = postsHtml + controlsHtml;
 
             // Re-attach listeners
             const prevBtn = document.getElementById('stories-prev');
