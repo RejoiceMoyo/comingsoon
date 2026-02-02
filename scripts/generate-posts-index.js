@@ -90,6 +90,27 @@ function wrapLayout(content, title, description, image, url) {
         }
     </script>
     <style type="text/tailwindcss">
+        @font-face {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            font-weight: 100 700;
+            src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpX2g.woff2) format('woff2');
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
         .brand-heading { font-family: "Playfair Display", serif }
         .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
         .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
@@ -106,11 +127,11 @@ function wrapLayout(content, title, description, image, url) {
                         <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
                         <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
                         <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/stories/">Stories</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/inventions/">Inventions</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/editors-desk/">The Editor’s Desk</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/about/">About</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center no-underline" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
                                 <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
                             </a>
                         </nav>
@@ -126,23 +147,23 @@ function wrapLayout(content, title, description, image, url) {
                         <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
                         <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#141118] dark:text-white/70 text-xs sm:text-sm">
-                        <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
-                        <a class="hover:text-brand-teal transition-colors" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
                     </div>
                     <div class="flex gap-3 sm:gap-4">
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
                             href="/coming-soon.html">
                             <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
                         </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
                             href="/coming-soon.html">
                             <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
                         </a>
                     </div>
                 </div>
-                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                <p class="text-center text-black text-xs mt-8 sm:mt-12">
                     © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism,
                     Science and more.
                 </p>
@@ -401,7 +422,7 @@ function generateContentPage(item, type, outputBaseDir) {
                     </div>
 
                     <div class="mt-8 border-t border-gray-100 pt-8">
-                        <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest no-underline" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
                             <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
                                 <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                             </span>

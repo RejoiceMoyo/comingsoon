@@ -54,6 +54,27 @@
         }
     </script>
     <style type="text/tailwindcss">
+        @font-face {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            font-weight: 100 700;
+            src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpX2g.woff2) format('woff2');
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
         .brand-heading { font-family: "Playfair Display", serif }
         .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
         .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
@@ -258,7 +279,7 @@
             <!-- Support Section -->
             <div class="w-full px-4 sm:px-6 md:px-8 lg:px-12 pb-12">
                 <div class="border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest no-underline" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer">
                         <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
@@ -274,23 +295,23 @@
                         <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
                         <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#141118] dark:text-white/70 text-xs sm:text-sm">
-                        <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
-                        <a class="hover:text-brand-teal transition-colors" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
                     </div>
                     <div class="flex gap-3 sm:gap-4">
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
                             href="/coming-soon.html">
                             <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
                         </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
                             href="/coming-soon.html">
                             <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
                         </a>
                     </div>
                 </div>
-                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                <p class="text-center text-black text-xs mt-8 sm:mt-12">
                     © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism,
                     Science and more.
                 </p>
