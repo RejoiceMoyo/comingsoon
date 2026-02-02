@@ -81,10 +81,31 @@
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-widest">A Living Record of Technological and Scientific Contributions</p>
           </div>
 
+          <div class="flex flex-col gap-3 mb-8">
+            <div class="flex items-center gap-3">
+              <input data-filter-search type="text" placeholder="Keywords, names, or topics..."
+                class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-3 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base" />
+              <button type="button" data-filter-clear class="text-xs text-brand-teal hover:text-brand-gold">Clear</button>
+            </div>
+            <div class="flex flex-wrap gap-2" aria-label="Popular Archives">
+              <button type="button" data-filter-category data-value="Tech Pioneers" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Tech Pioneers</button>
+              <button type="button" data-filter-category data-value="Scientific Discoveries" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Scientific Discoveries</button>
+              <button type="button" data-filter-category data-value="Medical Breakthroughs" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Medical Breakthroughs</button>
+              <button type="button" data-filter-category data-value="Financial Innovators" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Financial Innovators</button>
+            </div>
+            <div class="flex flex-wrap gap-2" aria-label="Search by Era">
+              <button type="button" data-filter-era data-value="19th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">19th Century</button>
+              <button type="button" data-filter-era data-value="Early 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Early 20th Century</button>
+              <button type="button" data-filter-era data-value="Mid-20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Mid-20th Century</button>
+              <button type="button" data-filter-era data-value="Late 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Late 20th Century</button>
+              <button type="button" data-filter-era data-value="21st Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">21st Century</button>
+            </div>
+            <div class="text-xs text-[#756189] dark:text-white/60" id="inventions-count"></div>
+          </div>
+
           <div id="inventions-grid" class="post-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="col-span-full py-12 text-center text-gray-500 italic">Cataloging archive...</div>
           </div>
-          <div id="inventions-pagination" class="mt-10 flex justify-center"></div>
 
           <!-- Support Section -->
           <div class="mt-16 border-t border-gray-100 pt-8 text-center">
@@ -127,30 +148,27 @@
       </div>
     </div>
 
+    <script src="/scripts/filters.js?v=1"></script>
     <script>
       async function loadInventions() {
         try {
-          const response = await fetch('/api/inventions.json');
+          const response = await fetch('/api/inventions.json?ts=' + Date.now());
           const inventions = await response.json();
           const grid = document.getElementById('inventions-grid');
-          const pagination = document.getElementById('inventions-pagination');
+          const resultsCount = document.getElementById('inventions-count');
+          const searchInput = document.querySelector('[data-filter-search]');
+          const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
+          const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
+          const clearButton = document.querySelector('[data-filter-clear]');
           
-          if (!inventions || inventions.length === 0) {
-            grid.innerHTML = '<div class="col-span-full py-12 text-center text-gray-500 italic">No inventions found in the current archive.</div>';
-            pagination.innerHTML = '';
-            return;
-          }
+          const renderCards = (items) => {
+            if (!items || items.length === 0) {
+              grid.innerHTML = '<div class="col-span-full py-12 text-center text-gray-500 italic">No inventions match your filters.</div>';
+              if (resultsCount) resultsCount.textContent = '0 results';
+              return;
+            }
 
-          const itemsPerPage = 10;
-          let currentPage = 1;
-          const totalPages = Math.max(1, Math.ceil(inventions.length / itemsPerPage));
-
-          const renderPage = (page) => {
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const slice = inventions.slice(start, end);
-
-            grid.innerHTML = slice.map(item => {
+            grid.innerHTML = items.map(item => {
               const image = item.image || '/images/prvimg.jpeg';
               return `
               <div class="invention-card group flex flex-col bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -159,11 +177,11 @@
                 </div>
                 <div class="p-6 flex flex-col grow">
                   <div class="flex justify-between items-start mb-2">
-                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal">${item.field || 'General'}</span>
-                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${item.year || 'N/A'}</span>
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal">${item.field || item.category || 'General'}</span>
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-gold">${item.year || ''}</span>
                   </div>
                   <h3 class="brand-heading text-lg font-bold text-black mb-2">${item.title}</h3>
-                  <p class="text-xs text-gray-600 mb-4 line-clamp-3">${item.problem || ''}</p>
+                  <p class="text-xs text-gray-600 mb-4 line-clamp-3">${item.problem || item.description || ''}</p>
                   <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
                       <span class="text-[10px] italic text-gray-500">Inventor: ${item.inventor || 'Unknown'}</span>
                       <a href="/inventions/${item.slug}/" class="text-brand-teal transition-all flex items-center gap-2 font-bold text-[10px]">
@@ -176,26 +194,28 @@
               `;
             }).join('');
 
-            const controls = `
-              <div class="flex items-center gap-4">
-                <button id="inv-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
-                <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
-                <button id="inv-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>
-              </div>
-            `;
-            pagination.innerHTML = controls;
-
-            const prevBtn = document.getElementById('inv-prev');
-            const nextBtn = document.getElementById('inv-next');
-            if (prevBtn) prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderPage(currentPage); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
-            if (nextBtn) nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } };
+            if (resultsCount) {
+              resultsCount.textContent = `${items.length} result${items.length === 1 ? '' : 's'}`;
+            }
           };
 
-          renderPage(currentPage);
+          if (window.ContentFilter && window.ContentFilter.initContentFilter) {
+            window.ContentFilter.initContentFilter({
+              items: inventions,
+              container: grid,
+              renderItems: renderCards,
+              searchInput,
+              categoryButtons,
+              eraButtons,
+              clearButton,
+              resultsCount,
+            });
+          } else {
+            renderCards(inventions);
+          }
         } catch (error) {
           console.error(error);
           document.getElementById('inventions-grid').innerHTML = '<div class="col-span-full py-12 text-center text-red-500">Error accessing the archive records.</div>';
-          document.getElementById('inventions-pagination').innerHTML = '';
         }
       }
       document.addEventListener('DOMContentLoaded', loadInventions);

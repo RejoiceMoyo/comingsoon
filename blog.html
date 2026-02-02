@@ -80,93 +80,68 @@
         </header>
 
         <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white mb-3">Latest Stories</h1>
+          <div class="flex flex-col gap-4 mb-6">
+            <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white">Latest Stories</h1>
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-3">
+                <input data-filter-search type="text" placeholder="Keywords, names, or topics..."
+                  class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-3 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base" />
+                <button type="button" data-filter-clear class="text-xs text-brand-teal hover:text-brand-gold">Clear</button>
+              </div>
+              <div class="flex flex-wrap gap-2" aria-label="Popular Archives">
+                <button type="button" data-filter-category data-value="Tech Pioneers" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Tech Pioneers</button>
+                <button type="button" data-filter-category data-value="Scientific Discoveries" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Scientific Discoveries</button>
+                <button type="button" data-filter-category data-value="Medical Breakthroughs" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Medical Breakthroughs</button>
+                <button type="button" data-filter-category data-value="Financial Innovators" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-teal hover:text-brand-teal">Financial Innovators</button>
+              </div>
+              <div class="flex flex-wrap gap-2" aria-label="Search by Era">
+                <button type="button" data-filter-era data-value="19th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">19th Century</button>
+                <button type="button" data-filter-era data-value="Early 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Early 20th Century</button>
+                <button type="button" data-filter-era data-value="Mid-20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Mid-20th Century</button>
+                <button type="button" data-filter-era data-value="Late 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">Late 20th Century</button>
+                <button type="button" data-filter-era data-value="21st Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-[11px] font-semibold hover:border-brand-gold hover:text-brand-gold">21st Century</button>
+              </div>
+              <div class="text-xs text-[#756189] dark:text-white/60" id="stories-count"></div>
+            </div>
+          </div>
+
           <ul id="post-list" class="post-list mt-2 space-y-6">
             <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">
               Loading posts...
             </li>
           </ul>
-
-          <!-- Support Section -->
-          <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-              <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer">
-                  <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
-                      <span class="material-symbols-outlined text-lg leading-none">coffee</span>
-                  </span>
-                  Support The She Archive
-              </a>
-          </div>
-        </main>
-
-        <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
-              <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#141118] dark:text-white/70 text-xs sm:text-sm">
-              <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
-              <a class="hover:text-brand-teal transition-colors" href="/submissions/">Submissions</a>
-              <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
-            </div>
-            <div class="flex gap-3 sm:gap-4">
-              <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
-                  href="/coming-soon.html">
-                  <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-              </a>
-              <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
-                  href="/coming-soon.html">
-                  <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-              </a>
-            </div>
-          </div>
-          <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
-            © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism,
-            Science and more.
-          </p>
-        </footer>
-      </div>
-    </div>
-
+    <script src="/scripts/filters.js?v=1"></script>
     <script>
       const formatDate = (value) => {
         if (!value) return '';
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('en-GB', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        });
+        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
       };
 
       async function loadPosts() {
         try {
-          const response = await fetch('/api/posts.json');
-          if (!response.ok) {
-            throw new Error('Failed to load posts');
-          }
+          const response = await fetch('/api/posts.json?ts=' + Date.now());
+          if (!response.ok) throw new Error('Failed to load posts');
           const posts = await response.json();
+
           const list = document.getElementById('post-list');
-          
-          if (posts.length === 0) {
-            list.innerHTML = '<p>No posts found.</p>';
-            return;
-          }
+          const resultsCount = document.getElementById('stories-count');
+          const searchInput = document.querySelector('[data-filter-search]');
+          const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
+          const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
+          const clearButton = document.querySelector('[data-filter-clear]');
 
-          // Pagination Logic
-          const postsPerPage = 10;
-          let currentPage = 1;
-          const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
+          const renderPosts = (items) => {
+            if (!items || items.length === 0) {
+              list.innerHTML = '<li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">No posts match your filters.</li>';
+              if (resultsCount) resultsCount.textContent = '0 results';
+              return;
+            }
 
-          const renderPosts = (page) => {
-            const start = (page - 1) * postsPerPage;
-            const end = start + postsPerPage;
-            const paginatedPosts = posts.slice(start, end);
-
-            const postsHtml = paginatedPosts.map(post => {
-                const image = post.image || '/images/prvimg.jpeg';
-                return `
+            list.innerHTML = items.map(post => {
+              const image = post.image || '/images/prvimg.jpeg';
+              return `
                 <li class="py-4 sm:py-6 border-b border-[#e0dbe6] dark:border-white/10 text-black text-xs">
                   <div class="flex items-center gap-4">
                     <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-lg overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
@@ -175,7 +150,7 @@
                     <h2 class="brand-heading text-sm text-black font-bold">${post.title}</h2>
                   </div>
                   <p class="mt-2 text-xs text-black">
-                    <span class="text-brand-gold">By ${post.author || 'The She Archive'}</span>${post.date ? ` | <span class=\"text-brand-teal\">${formatDate(post.date)}</span>` : ''}
+                    <span class="text-brand-gold">By ${post.author || 'The She Archive'}</span>${post.date ? ` | <span class="text-brand-teal">${formatDate(post.date)}</span>` : ''}
                   </p>
                   <p class="mt-3 text-black text-xs">${post.description || ''}</p>
                   <a href="/stories/${post.slug}/" class="mt-3 inline-flex items-center gap-2 text-brand-teal font-bold text-xs hover:opacity-80 no-underline">
@@ -185,10 +160,30 @@
                 </li>
               `;
             }).join('');
+          };
 
-            // Pagination Controls
-            const controlsHtml = `
-            <div class="flex justify-center items-center gap-4 mt-8 pt-6">
+          if (window.ContentFilter && window.ContentFilter.initContentFilter) {
+            window.ContentFilter.initContentFilter({
+              items: posts,
+              container: list,
+              renderItems: renderPosts,
+              searchInput,
+              categoryButtons,
+              eraButtons,
+              clearButton,
+              resultsCount,
+            });
+          } else {
+            renderPosts(posts);
+          }
+        } catch (error) {
+          console.error(error);
+          document.getElementById('post-list').innerHTML = '<li class="p-6">Error loading posts. Please try again later.</li>';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
                 <button id="stories-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
                 <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
                 <button id="stories-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>

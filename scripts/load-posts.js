@@ -30,6 +30,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const currentFeatureImage = document.getElementById('current-feature-image');
         let featureDots = currentFeature ? currentFeature.querySelector('#feature-dots') : null;
 
+        const searchInput = document.querySelector('[data-filter-search]');
+        const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
+        const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
+        const clearButton = document.querySelector('[data-filter-clear]');
+        const resultsCount = document.getElementById('latest-stories-count');
+
         const fallbackImg = 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
         const features = [];
         if (posts[0]) {
@@ -116,20 +122,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
         }
 
-        if (posts.length === 0) {
-            container.innerHTML = '<p class="text-gray-500">No stories found yet. Check back soon!</p>';
-            return;
-        }
+        const renderPosts = (list) => {
+            if (!list || list.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No stories found yet. Adjust filters or check back soon.</p>';
+                return;
+            }
 
-        // Show only the latest 3 posts (no pagination)
-        const renderPosts = () => {
-            const paginatedPosts = posts.slice(0, 3);
-
-            const postsHtml = paginatedPosts.map(post => {
-                // Default image if none provided
-                const image = post.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg'; // Fallback to Ada Lovelace image or generic
+            const postsHtml = list.map(post => {
+                const image = post.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
                 const category = post.category || 'Story';
-                const categoryColorClass = 'text-brand-teal bg-brand-teal/10'; // Default, can logic this out based on category if needed
+                const categoryColorClass = 'text-brand-teal bg-brand-teal/10';
 
                 return `
           <article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
@@ -152,7 +154,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             container.innerHTML = postsHtml;
         };
 
-        renderPosts();
+        if (posts.length === 0) {
+            renderPosts([]);
+        } else if (window.ContentFilter && typeof window.ContentFilter.initContentFilter === 'function') {
+            window.ContentFilter.initContentFilter({
+                items: posts,
+                container,
+                renderItems: renderPosts,
+                searchInput,
+                categoryButtons,
+                eraButtons,
+                clearButton,
+                resultsCount,
+            });
+        } else {
+            renderPosts(posts);
+        }
 
 
     } catch (error) {
