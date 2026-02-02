@@ -20,20 +20,21 @@
     html, body {
       margin: 0;
       height: 100%;
+      overflow: hidden;
     }
+    /* Ensure the CMS container occupies full height without extra padding */
     #nc-root {
-      padding-top: 56px;
+      height: 100%;
     }
-    @media (min-width: 768px) {
-      #nc-root {
-        padding-top: 64px;
-      }
+    /* Fix for the internal header overlap */
+    #nc-root header {
+      top: 0 !important;
     }
   </style>
 </head>
 
 <body>
-  <div id="auth" style="font-family: system-ui, sans-serif; padding: 16px;">
+  <div id="auth" style="display: none; font-family: system-ui, sans-serif; padding: 16px; position: absolute; z-index: 9999; background: white; width: 100%;">
     <button id="login" type="button">Log in</button>
     <button id="logout" type="button" style="display:none;">Log out</button>
     <p id="status" style="margin-top: 8px; color: #444;">Not logged in</p>
@@ -42,13 +43,13 @@
     const loginButton = document.getElementById('login');
     const logoutButton = document.getElementById('logout');
     const statusText = document.getElementById('status');
+    const authDiv = document.getElementById('auth');
 
     function updateAuthUI(user) {
       if (user) {
-        statusText.textContent = `Logged in as ${user.email}`;
-        loginButton.style.display = 'none';
-        logoutButton.style.display = 'inline-block';
+        authDiv.style.display = 'none'; // Hide auth UI when logged in
       } else {
+        authDiv.style.display = 'block';
         statusText.textContent = 'Not logged in';
         loginButton.style.display = 'inline-block';
         logoutButton.style.display = 'none';
