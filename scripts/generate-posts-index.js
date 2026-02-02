@@ -56,11 +56,13 @@ function wrapLayout(content, title, description, image, url) {
     <meta property="og:description" content="${description}" />
     <meta property="og:image" content="${image}" />
     <meta property="og:url" content="${url}" />
+    <meta property="og:site_name" content="The She Archive" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${title} | The She Archive" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${image}" />
+    <meta name="theme-color" content="#008080" />
     <link rel="canonical" href="${url}" />
     <title>${title} | The She Archive</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
