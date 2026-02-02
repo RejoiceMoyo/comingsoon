@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               <h3 class="brand-heading text-xl sm:text-2xl md:text-3xl text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors">${post.title}</h3>
               <p class="text-[#141118] dark:text-white/70 line-clamp-3 text-sm sm:text-base">${post.description || ''}</p>
               <a class="inline-flex items-center gap-2 text-brand-teal font-bold text-xs sm:text-sm group/link" href="/stories/${post.slug}/">
-                  Read More 
+                  Read More
                   <span class="material-symbols-outlined text-xs sm:text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
               </a>
           </div>

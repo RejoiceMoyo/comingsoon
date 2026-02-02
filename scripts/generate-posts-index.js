@@ -126,12 +126,26 @@ function wrapLayout(content, title, description, image, url) {
                         <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
                         <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#141118] dark:text-white/70 text-xs sm:text-sm">
                         <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
                         <a class="hover:text-brand-teal transition-colors" href="/submissions/">Submissions</a>
                         <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
                     </div>
+                    <div class="flex gap-3 sm:gap-4">
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                            href="/coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
+                        </a>
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all"
+                            href="/coming-soon.html">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
+                        </a>
+                    </div>
                 </div>
+                <p class="text-center text-[#756189] text-xs mt-8 sm:mt-12">
+                    © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism,
+                    Science and more.
+                </p>
             </footer>
         </div>
     </div>
@@ -183,6 +197,14 @@ function generateStaticPage(item, fileName) {
                     </section>
                 </div>
                 <p class="mt-16 text-center italic text-gray-400 text-xs">${item.closing || ''}</p>
+                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                        </span>
+                        Support The She Archive
+                    </a>
+                </div>
             </article>
         `;
     } else if (pageSlug === 'privacy') {
@@ -238,6 +260,14 @@ function generateStaticPage(item, fileName) {
                     </section>
                 </div>
                 <div class="mt-12 text-center italic text-gray-500 text-[11px]">${marked.parse(item.closing_note || '')}</div>
+                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                        </span>
+                        Support The She Archive
+                    </a>
+                </div>
             </article>
         `;
     } else if (pageSlug === 'contact') {
@@ -263,6 +293,14 @@ function generateStaticPage(item, fileName) {
                 </div>
                 ${item.press ? `<div class="mt-16 pt-12 border-t border-gray-100 dark:border-white/10"><h3 class="brand-heading text-xl mb-6 italic">Institutional & Press</h3><div class="text-xs leading-relaxed">${marked.parse(item.press)}</div></div>` : ''}
                 <p class="mt-16 text-2xl brand-heading italic text-brand-teal">${item.closing || ''}</p>
+                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                        </span>
+                        Support The She Archive
+                    </a>
+                </div>
             </article>
         `;
     } else {
@@ -270,7 +308,14 @@ function generateStaticPage(item, fileName) {
         pageContent = `
             <article class="post-content">
                 <h1 class="brand-heading text-3xl mb-8 italic text-center">${title}</h1>
-                <div class="text-xs leading-relaxed">${marked.parse(item.body || '')}</div>
+                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                        </span>
+                        Support The She Archive
+                    </a>
+                </div>
             </article>
         `;
     }
@@ -355,9 +400,11 @@ function generateContentPage(item, type, outputBaseDir) {
                         ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">Sources</h4>${marked.parse(item.sources)}</div>` : ''}
                     </div>
 
-                    <div class="mt-8">
-                        <a class="inline-flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-[0.16em] hover:text-brand-gold transition-colors" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                            <span class="material-symbols-outlined text-sm leading-none">coffee</span>
+                    <div class="mt-8 border-t border-gray-100 pt-8">
+                        <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                            <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                                <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                            </span>
                             Support The She Archive
                         </a>
                     </div>
