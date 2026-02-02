@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             featureDots = currentFeature.querySelector('#feature-dots');
             if (featureDots) {
                 featureDots.innerHTML = features.map((_, i) => `
-                    <button data-index="${i}" aria-label="Go to feature ${i + 1}" class="h-2.5 w-2.5 rounded-full transition-all ${i === index ? 'bg-brand-gold w-3' : 'bg-white/60 hover:bg-white'}"></button>
+                    <button data-index="${i}" aria-label="Go to feature ${i + 1}" class="h-2.5 w-2.5 rounded-full transition-all ${i === index ? 'bg-brand-gold w-3' : 'bg-brand-teal/60 hover:bg-brand-teal'}"></button>
                 `).join('');
                 featureDots.querySelectorAll('button').forEach(btn => {
                     btn.onclick = () => {
