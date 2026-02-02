@@ -62,11 +62,19 @@ function generateContentPage(item, type, outputBaseDir) {
     let extraFields = '';
     if (type === 'inventions') {
         extraFields = `
-            <div class="bg-gray-50 border-l-4 border-brand-teal p-4 mb-6 italic">
-                <p><strong>Inventor:</strong> ${item.inventor || 'Unknown'}</p>
-                <p><strong>Year/Era:</strong> ${item.year || 'N/A'}</p>
-                <p><strong>Field:</strong> ${item.field || 'General'}</p>
-                ${item.problem ? `<p class="mt-2"><strong>Problem Solved:</strong> ${item.problem}</p>` : ''}
+            <div class="bg-gray-50 border-l-4 border-brand-teal p-6 mb-8 text-xs">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="mb-1"><strong>Inventor(s):</strong> ${item.inventor || 'Unknown'}</p>
+                        ${item.patent_number ? `<p class="mb-1"><strong>Patent Number:</strong> ${item.patent_number}</p>` : ''}
+                        <p class="mb-1"><strong>Field:</strong> ${item.field || 'General'}</p>
+                    </div>
+                    <div>
+                        <p class="mb-1"><strong>Year(s):</strong> ${item.year || 'N/A'}</p>
+                        <p class="mb-1"><strong>Institution:</strong> ${item.institution || 'Independent'}</p>
+                    </div>
+                </div>
+                ${item.problem ? `<div class="mt-4 pt-4 border-t border-gray-200"><p><strong>Problem Addressed:</strong> ${item.problem}</p></div>` : ''}
             </div>
         `;
     }
@@ -98,7 +106,7 @@ function generateContentPage(item, type, outputBaseDir) {
     <style type="text/tailwindcss">
         .brand-heading { font-family: "Playfair Display", serif }
         .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a) {
+        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
             font-family: "Times New Roman", Times, serif;
         }
     </style>
@@ -130,10 +138,11 @@ function generateContentPage(item, type, outputBaseDir) {
                 </a>
                 <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black text-xs">
                     <h1 class="brand-heading text-xl sm:text-2xl md:text-3xl">${title}</h1>
-                    ${item.dek ? `<p class="text-sm font-semibold text-gray-700 -mt-4">${item.dek}</p>` : ''}
-                    <p class="text-xs text-black">
+                    ${item.dek ? `<p class="text-sm font-semibold text-gray-700 italic mt-2">${item.dek}</p>` : ''}
+                    <p class="text-xs text-black mt-4">
                         <span class="text-brand-gold">By ${author}</span>${publishedDate ? ` | <span class=\"text-brand-teal\">${publishedDate}</span>` : ''}
                     </p>
+                    
                     ${image ? `
                     <div class="mt-6 w-full max-w-md aspect-square overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
@@ -143,9 +152,22 @@ function generateContentPage(item, type, outputBaseDir) {
                     <div class="mt-6 content-body">
                         ${extraFields}
                         ${marked.parse(item.body || '')}
+                        
                         ${item.how_it_works ? `<h3 class="brand-heading text-lg mt-8">How it Worked</h3>${marked.parse(item.how_it_works)}` : ''}
-                        ${item.significance ? `<h3 class="brand-heading text-lg mt-8">Historical Significance</h3>${marked.parse(item.significance)}` : ''}
-                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">References</h4>${marked.parse(item.references)}</div>` : ''}
+                        ${item.impact ? `<h3 class="brand-heading text-lg mt-8">Historical Impact</h3>${marked.parse(item.impact)}` : ''}
+                        ${item.barriers ? `<h3 class="brand-heading text-lg mt-8 italic text-gray-600">Limitations & Barriers</h3><div class="italic text-gray-600">${marked.parse(item.barriers)}</div>` : ''}
+                        
+                        ${item.associated_story ? `
+                        <div class="mt-12 p-4 bg-brand-teal/5 border-l-4 border-brand-teal">
+                            <p class="text-xs uppercase tracking-widest font-bold text-brand-teal mb-1">Deep Dive</p>
+                            <p class="text-sm">Read the full narrative: <a href="${item.associated_story}" class="underline font-bold">${title} — The Untold Story</a></p>
+                        </div>
+                        ` : ''}
+
+                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor’s Note:</strong> ${item.editors_note}</p></div>` : ''}
+                        ${item.prompt ? `<div class="mt-8 pt-6 border-t border-gray-100"><p class="font-bold text-brand-teal italic">Discussion: ${item.prompt}</p></div>` : ''}
+
+                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">References (APA)</h4>${marked.parse(item.references)}</div>` : ''}
                         ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">Sources</h4>${marked.parse(item.sources)}</div>` : ''}
                     </div>
 
