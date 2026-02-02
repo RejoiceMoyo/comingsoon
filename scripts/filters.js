@@ -43,7 +43,10 @@
         const tags = toArray(item.tags)
             .concat(toArray(item.themes))
             .concat(toArray(item.categories));
-        const values = fields.concat(tags).filter(Boolean).map(normalize);
+        const values = fields
+            .concat(tags)
+            .filter(Boolean)
+            .map((v) => normalize(typeof v === 'string' ? v.trim() : v));
         return values.some((val) => val.includes(needle));
     };
 
