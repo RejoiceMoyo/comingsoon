@@ -30,13 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const currentFeatureImage = document.getElementById('current-feature-image');
         let featureDots = currentFeature ? currentFeature.querySelector('#feature-dots') : null;
 
-        if (!featureDots && currentFeature) {
-            featureDots = document.createElement('div');
-            featureDots.id = 'feature-dots';
-            featureDots.className = 'flex gap-2 mt-3 items-center';
-            currentFeature.appendChild(featureDots);
-        }
-
         const fallbackImg = 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
         const features = [];
         if (posts[0]) {
@@ -85,8 +78,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${feature.title}</p>
                 </a>
                 ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
+                <div id="feature-dots" class="flex gap-2 mt-1 items-center"></div>
             `;
 
+            featureDots = currentFeature.querySelector('#feature-dots');
             if (featureDots) {
                 featureDots.innerHTML = features.map((_, i) => `
                     <button data-index="${i}" aria-label="Go to feature ${i + 1}" class="h-2.5 w-2.5 rounded-full transition-all ${i === index ? 'bg-brand-gold w-3' : 'bg-white/60 hover:bg-white'}"></button>
