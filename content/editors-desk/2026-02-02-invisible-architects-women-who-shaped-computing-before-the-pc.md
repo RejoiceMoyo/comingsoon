@@ -30,10 +30,19 @@ sources: >-
 
   >
 editors_note: >-
-  **Editor’s Note**
-
-
-  This article draws on extensive archival evidence and contemporary scholarship to illuminate the often-overlooked contributions of women in early computing. Our research relies on primary and secondary sources to ensure historical accuracy and academic credibility. ***Key references include Abbate (2012), whose work Recoding Gender: Women’s Changing Participation in Computing explores the social and institutional factors affecting women’s roles in computing; Jennings & Snyder (1946), whose ENIAC programming notes provide first-hand documentation of the tasks, methodologies, and technical challenges faced by the original programmers; Hicks (2018), who analyzes how historical narratives have marginalized these contributions in IEEE Annals of the History of Computing; and collections from the National Museum of American History, which preserve artifacts, photographs, and technical records of the ENIAC programmers.***
+  This article draws on extensive archival evidence and contemporary scholarship
+  to illuminate the often-overlooked contributions of women in early computing.
+  Our research relies on primary and secondary sources to ensure historical
+  accuracy and academic credibility. *Key references include Abbate (2012),
+  whose work Recoding Gender: Women’s Changing Participation in Computing
+  explores the social and institutional factors affecting women’s roles in
+  computing; Jennings & Snyder (1946), whose ENIAC programming notes provide
+  first-hand documentation of the tasks, methodologies, and technical challenges
+  faced by the original programmers; Hicks (2018), who analyzes how historical
+  narratives have marginalized these contributions in IEEE Annals of the History
+  of Computing; and collections from the National Museum of American History,
+  which preserve artifacts, photographs, and technical records of the ENIAC
+  programmers.*
 
 
   By integrating these sources, we aim not only to recount factual events but also to contextualize the broader systemic patterns of erasure and marginalization that affected women in STEM. This note underscores the importance of archival research, critical scholarship, and careful documentation in preserving the legacies of historically underrepresented contributors. The Editor’s Desk at *The She Archive* is committed to ensuring that future narratives of technological innovation accurately reflect the diversity of minds and labor that made progress possible.
@@ -43,10 +52,10 @@ editors_note: >-
 ---
 The history of computing is often presented as a narrative dominated by male engineers and entrepreneurs, yet women played pivotal roles in the field’s earliest developments. During World War II, six women, Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Fran Bilas, and Ruth Lichterman, programmed the ENIAC, one of the first electronic general-purpose computers. Their work involved complex problem-solving, debugging, and system optimization, yet their contributions were underreported for decades.
 
-Archival records reveal that these programmers were essential in translating theoretical mathematics into functional code, establishing processes that remain fundamental in software development today. The historical oversight of women’s labor in computing is a clear example of **systemic erasure**: the technical achievements were attributed to men in public accounts, while women’s work was relegated to footnotes or ignored entirely.
+Archival records reveal that these programmers were essential in translating theoretical mathematics into functional code, establishing processes that remain fundamental in software development today. The historical oversight of women’s labor in computing is a clear example of systemic erasure: the technical achievements were attributed to men in public accounts, while women’s work was relegated to footnotes or ignored entirely.
 
 Contemporary archival research enables us to reconstruct these stories, using patents, technical manuals, photographs, and oral histories. By integrating these sources, historians can create a more complete and accurate record of technological innovation, ensuring that future generations recognize the diversity of contributors.
 
-Moreover, understanding this erasure is critical for **current STEM equity efforts**. The narrative we inherit affects who chooses to enter computing today. By highlighting overlooked women, we challenge stereotypes and inspire more inclusive participation in technology.
+Moreover, understanding this erasure is critical for current STEM equity efforts. The narrative we inherit affects who chooses to enter computing today. By highlighting overlooked women, we challenge stereotypes and inspire more inclusive participation in technology.
 
-Finally, this reflection invites readers to consider the **methodology of history itself**. Whose labor gets preserved, and whose contributions are omitted? The work of archivists, historians, and researchers is not just academic , it actively shapes societal memory and cultural valuation of innovation.
+Finally, this reflection invites readers to consider the methodology of history itself. Whose labor gets preserved, and whose contributions are omitted? The work of archivists, historians, and researchers is not just academic , it actively shapes societal memory and cultural valuation of innovation.
