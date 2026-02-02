@@ -90,14 +90,21 @@ function wrapLayout(content, title, description, image, url) {
         }
     </script>
     <style type="text/tailwindcss">
-        @font-face {
+        .brand-heading { font-family: "Playfair Display", serif }
+        .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
+        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+    <style>
+         @font-face {
             font-family: 'Material Symbols Outlined';
             font-style: normal;
             font-weight: 100 700;
             src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpX2g.woff2) format('woff2');
         }
         .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
+            font-family: 'Material Symbols Outlined' !important;
             font-weight: normal;
             font-style: normal;
             font-size: 24px;
@@ -110,11 +117,6 @@ function wrapLayout(content, title, description, image, url) {
             direction: ltr;
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
-        }
-        .brand-heading { font-family: "Playfair Display", serif }
-        .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
-            font-family: "Times New Roman", Times, serif;
         }
     </style>
 </head>
