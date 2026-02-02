@@ -73,11 +73,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             currentFeature.innerHTML = `
-                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature · ${feature.label}</p>
+                <p class="text-brand-gold font-bold text-xs sm:text-sm uppercase tracking-tighter">Current Feature · ${feature.label}</p>
                 <a href="${feature.href}" class="block">
-                    <p class="text-black dark:text-white font-serif text-base sm:text-lg italic hover:text-brand-teal transition-colors">${feature.title}</p>
+                    <p class="text-white font-serif text-base sm:text-lg italic hover:text-brand-gold transition-colors">${feature.title}</p>
                 </a>
-                ${formattedDate ? `<p class="text-xs text-[#756189] dark:text-white/70 mt-1">${formattedDate}</p>` : ''}
+                ${formattedDate ? `<p class="text-xs text-white/80 mt-1">${formattedDate}</p>` : ''}
                 <div id="feature-dots" class="flex gap-2 mt-1 items-center"></div>
             `;
 
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 return `
           <article class="flex flex-col md:flex-row gap-6 sm:gap-8 group">
-              <div class="w-full md:w-48 lg:w-56 aspect-video md:aspect-square overflow-hidden rounded-xl shrink-0">
+              <div class="w-full md:w-48 lg:w-56 aspect-video md:aspect-square overflow-hidden shrink-0">
                   <div class="w-full h-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("${image}");'></div>
               </div>
               <div class="flex flex-col justify-center space-y-2 sm:space-y-3">
