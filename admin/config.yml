@@ -60,3 +60,65 @@ collections:
       - { label: "Sources / Further Reading", name: "sources", widget: "markdown", required: false }
       - { label: "Editor’s Note", name: "editors_note", widget: "markdown", required: false, hint: "Meta reflection, context, or update." }
       - { label: "Discussion Prompt", name: "prompt", widget: "string", required: false, hint: "A closing question or provocation." }
+
+  - name: "pages"
+    label: "Legal & Static Pages"
+    files:
+      - file: "content/pages/about.md"
+        label: "About The She Archive"
+        name: "about"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "About The She Archive" }
+          - { label: "Mission Statement (Short)", name: "mission_short", widget: "string", hint: "1–2 sentences for SEO and previews." }
+          - { label: "Foundational Statement", name: "foundation", widget: "markdown", hint: "Why this archive exists." }
+          - { label: "What We Do", name: "what_we_do", widget: "markdown", hint: "Bulleted or short paragraphs on core activities." }
+          - { label: "Editorial Philosophy", name: "philosophy", widget: "markdown", hint: "How you approach truth, sourcing, and narrative." }
+          - { label: "Scope & Focus", name: "scope", widget: "markdown", hint: "What you cover." }
+          - { label: "Methodology & Sources", name: "methodology", widget: "markdown", hint: "Primary sources, academic texts, etc." }
+          - { label: "Independence & Funding", name: "funding", widget: "markdown", hint: "Transparency on project sustainability." }
+          - { label: "Credits / Stewardship", name: "credits", widget: "markdown", hint: "Who maintains the archive." }
+          - { label: "Closing Statement", name: "closing", widget: "markdown", hint: "Archival, future-facing line." }
+
+      - file: "content/pages/privacy.md"
+        label: "Privacy Policy"
+        name: "privacy"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Privacy Policy" }
+          - { label: "Effective Date", name: "date", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown", hint: "Plain-language explanation of intent." }
+          - { label: "Information We Collect", name: "collect", widget: "markdown" }
+          - { label: "How We Use Information", name: "usage", widget: "markdown" }
+          - { label: "Third-Party Services", name: "third_party", widget: "markdown" }
+          - { label: "Data Storage & Security", name: "security", widget: "markdown" }
+          - { label: "Your Rights", name: "rights", widget: "markdown" }
+          - { label: "External Links Disclaimer", name: "disclaimer", widget: "markdown" }
+          - { label: "Policy Updates", name: "updates", widget: "markdown" }
+          - { label: "Contact for Privacy Concerns", name: "privacy_contact", widget: "markdown" }
+
+      - file: "content/pages/submissions.md"
+        label: "Submissions"
+        name: "submissions"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Submissions" }
+          - { label: "Opening Statement", name: "opening", widget: "markdown", hint: "Who this page is for." }
+          - { label: "What We Accept", name: "accept", widget: "markdown" }
+          - { label: "What We Don’t Accept", name: "decline", widget: "markdown" }
+          - { label: "Submission Guidelines", name: "guidelines", widget: "markdown" }
+          - { label: "Review Process", name: "process", widget: "markdown" }
+          - { label: "Rights & Attribution", name: "rights", widget: "markdown" }
+          - { label: "Response Time", name: "timeline", widget: "string" }
+          - { label: "How to Submit", name: "instruction", widget: "markdown" }
+          - { label: "Closing Note", name: "closing_note", widget: "markdown" }
+
+      - file: "content/pages/contact.md"
+        label: "Contact"
+        name: "contact"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Contact" }
+          - { label: "Short Intro", name: "intro", widget: "markdown" }
+          - { label: "Contact Method(s)", name: "methods", widget: "markdown" }
+          - { label: "Topic Selector", name: "topics", widget: "list", required: false, hint: "e.g. Editorial inquiry, Corrections." }
+          - { label: "Response Expectations", name: "expectations", widget: "string" }
+          - { label: "Press / Institutional Contact", name: "press", widget: "markdown", required: false }
+          - { label: "Physical Location", name: "location", widget: "string", required: false, hint: "Country/City only if desired." }
+          - { label: "Closing Line", name: "closing", widget: "string" }

@@ -16,7 +16,7 @@
     <meta property="og:description" content="An archival record of inventions by women. Technical specifications, historical significance, and field-changing innovations." />
     <meta property="og:image" content="https://theshearchive.com/images/prvimg.jpeg" />
     <meta property="og:url" content="https://theshearchive.com/inventions/" />
-    <meta title="The Inventions Archive | The She Archive" />
+    <title>The Inventions Archive | The She Archive</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/jpeg" href="/images/prvimg.jpeg" />
     <link rel="apple-touch-icon" href="/images/prvimg.jpeg" />
@@ -43,11 +43,11 @@
         },
       }
     </script>
-    <style>
-      .brand-heading { font-family: "Playfair Display", serif; }
-      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif; }
-      .invention-card, .invention-card :where(h1, h2, h3, h4, h5, h6, p, span, a) {
-        font-family: "Times New Roman", Times, serif;
+    <style type="text/tailwindcss">
+      .brand-heading { font-family: "Playfair Display", serif }
+      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
+      .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
+          font-family: "Times New Roman", Times, serif;
       }
     </style>
   </head>
@@ -56,12 +56,12 @@
       <div class="layout-container flex h-full grow flex-col">
         <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
           <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
-            <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col items-center gap-2">
               <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
               <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
-              <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-10 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
+              <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
                 <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
-                <a class="pb-1 border-b border-brand-teal text-brand-teal dark:border-brand-gold dark:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
+                <a class="pb-1 border-b border-[#008080] text-[#008080] dark:border-brand-gold dark:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
                 <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
                 <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
                 <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
@@ -78,7 +78,7 @@
             <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-widest">A Living Record of Technological and Scientific Contributions</p>
           </div>
 
-          <div id="inventions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div id="inventions-grid" class="post-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="col-span-full py-12 text-center text-gray-500 italic">Cataloging archive...</div>
           </div>
         </main>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-[#756189] text-xs sm:text-sm">
                     <a class="hover:text-brand-teal transition-colors" href="/contact/">Contact</a>
-                    <a class="hover:text-brand-teal transition-colors" href="coming-soon.html">Submissions</a>
+                    <a class="hover:text-brand-teal transition-colors" href="/submissions/">Submissions</a>
                     <a class="hover:text-brand-teal transition-colors" href="/privacy/">Privacy Policy</a>
                 </div>
             </div>
