@@ -110,6 +110,11 @@
               Loading posts...
             </li>
           </ul>
+
+        </main>
+      </div>
+    </div>
+
     <script src="/scripts/filters.js?v=1"></script>
     <script>
       const formatDate = (value) => {
@@ -179,48 +184,6 @@
         } catch (error) {
           console.error(error);
           document.getElementById('post-list').innerHTML = '<li class="p-6">Error loading posts. Please try again later.</li>';
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
-                <button id="stories-prev" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Previous</button>
-                <span class="text-xs font-bold text-gray-400">Page ${page} of ${totalPages}</span>
-                <button id="stories-next" ${page === totalPages ? 'disabled' : ''} class="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded transition-colors ${page === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-brand-teal hover:bg-brand-teal/10'}">Next</button>
-            </div>
-            `;
-
-            list.innerHTML = postsHtml + controlsHtml;
-
-            // Re-attach listeners
-            const prevBtn = document.getElementById('stories-prev');
-            const nextBtn = document.getElementById('stories-next');
-
-            if (prevBtn) {
-                prevBtn.onclick = () => {
-                    if (currentPage > 1) {
-                        currentPage--;
-                        renderPosts(currentPage);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                };
-            }
-            if (nextBtn) {
-                nextBtn.onclick = () => {
-                    if (currentPage < totalPages) {
-                        currentPage++;
-                        renderPosts(currentPage);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                };
-            }
-          };
-
-          renderPosts(currentPage);
-
-        } catch (error) {
-          console.error(error);
-          document.getElementById('post-list').innerHTML = '<p>Error loading posts. Please try again later.</p>';
         }
       }
 
