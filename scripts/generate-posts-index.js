@@ -365,6 +365,8 @@ function generateContentPage(item, type, outputBaseDir) {
         year: 'numeric'
     }) : '';
     const url = `${baseUrl}/${type}/${item.slug}/`;
+    const heroImageWidth = type === 'editors-desk' ? 'max-w-sm md:max-w-md' : 'max-w-md';
+    const heroImageAspect = type === 'editors-desk' ? 'aspect-[4/3]' : 'aspect-square';
 
     // Special logic for Inventions
     let extraFields = '';
@@ -400,7 +402,7 @@ function generateContentPage(item, type, outputBaseDir) {
                     </p>
                     
                     ${image ? `
-                    <div class="mt-6 w-full max-w-md aspect-square overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
+                    <div class="mt-6 w-full ${heroImageWidth} ${heroImageAspect} overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
                     </div>
                     ` : ''}

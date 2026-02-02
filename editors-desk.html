@@ -159,16 +159,21 @@
             list.innerHTML = slice.map(item => {
               return `
               <article class="group">
-                <div class="flex flex-col md:flex-row gap-6 items-baseline">
-                  <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal shrink-0 w-24">${formatDate(item.date)}</span>
-                  <div class="grow">
-                      <h2 class="brand-heading text-2xl group-hover:text-brand-gold transition-colors mb-2"><a href="/editors-desk/${item.slug}/">${item.title}</a></h2>
-                      <p class="text-sm font-semibold text-gray-700 italic mb-4">${item.dek || ''}</p>
-                      <p class="text-xs text-black line-clamp-3 mb-4">${item.description || item.body.substring(0, 200)}...</p>
-                      <a href="/editors-desk/${item.slug}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-[10px] hover:opacity-80 transition-all">
-                        Read More
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                      </a>
+                <div class="flex flex-col md:flex-row gap-5">
+                  <div class="w-full md:w-36 lg:w-40 aspect-[4/3] rounded-xl overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
+                    <img src="${item.image || '/images/prvimg.jpeg'}" alt="${item.title}" class="h-full w-full object-cover" loading="lazy" />
+                  </div>
+                  <div class="grow space-y-3">
+                    <div class="flex items-center gap-3">
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-brand-teal">${formatDate(item.date)}</span>
+                    </div>
+                    <h2 class="brand-heading text-2xl group-hover:text-brand-gold transition-colors"><a href="/editors-desk/${item.slug}/">${item.title}</a></h2>
+                    <p class="text-sm font-semibold text-gray-700 italic">${item.dek || ''}</p>
+                    <p class="text-xs text-black line-clamp-3">${item.description || item.body.substring(0, 200)}...</p>
+                    <a href="/editors-desk/${item.slug}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-[10px] hover:opacity-80 transition-all">
+                      Read More
+                      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
                   </div>
                 </div>
               </article>
