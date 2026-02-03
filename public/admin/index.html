@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MDE8PXF500');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764"
+      crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5010155177671764">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    /* Ensure the CMS container occupies full height without extra padding */
+    #nc-root {
+      height: 100%;
+    }
+    /* Fix for the internal header overlap */
+    #nc-root header {
+      top: 0 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="auth" style="display: none; font-family: system-ui, sans-serif; padding: 16px; position: absolute; z-index: 9999; background: white; width: 100%;">
+    <button id="login" type="button">Log in</button>
+    <button id="logout" type="button" style="display:none;">Log out</button>
+    <p id="status" style="margin-top: 8px; color: #444;">Not logged in</p>
+  </div>
+  <script>
+    const loginButton = document.getElementById('login');
+    const logoutButton = document.getElementById('logout');
+    const statusText = document.getElementById('status');
+    const authDiv = document.getElementById('auth');
+
+    function updateAuthUI(user) {
+      if (user) {
+        authDiv.style.display = 'none'; // Hide auth UI when logged in
+      } else {
+        authDiv.style.display = 'block';
+        statusText.textContent = 'Not logged in';
+        loginButton.style.display = 'inline-block';
+        logoutButton.style.display = 'none';
+      }
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', updateAuthUI);
+      window.netlifyIdentity.on('login', updateAuthUI);
+      window.netlifyIdentity.on('logout', () => updateAuthUI(null));
+    }
+
+    loginButton.addEventListener('click', () => {
+      window.netlifyIdentity && window.netlifyIdentity.open('login');
+    });
+    logoutButton.addEventListener('click', () => {
+      window.netlifyIdentity && window.netlifyIdentity.logout();
+    });
+  </script>
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+</body>
+
+</html>
