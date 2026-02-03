@@ -159,6 +159,10 @@ function wrapLayout(content, title, description, image, url) {
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
                     </div>
                     <div class="flex gap-3 sm:gap-4">
+                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-gold/20 hover:text-brand-gold transition-all text-black no-underline"
+                            href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Support The She Archive">
+                            <span class="material-symbols-outlined text-lg sm:text-xl">coffee</span>
+                        </a>
                         <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
                             href="/coming-soon.html">
                             <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
