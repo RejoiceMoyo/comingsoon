@@ -42,7 +42,11 @@ const googleTag = `<!-- Google tag (gtag.js) -->\n` +
 `  function gtag(){dataLayer.push(arguments);}\n` +
 `  gtag('js', new Date());\n` +
 `  gtag('config', 'G-MDE8PXF500');\n` +
-`</script>`;
+`</script>\n` +
+`<!-- Google AdSense -->\n` +
+`<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764"\n` +
+`    crossorigin="anonymous"></script>\n` +
+`<meta name="google-adsense-account" content="ca-pub-5010155177671764">`;
 
 function wrapLayout(content, title, description, image, url) {
     return `<!DOCTYPE html>
