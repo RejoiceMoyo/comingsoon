@@ -33,39 +33,40 @@ collections:
       # ═══════════════════════════════════════════════════════════════
       - { label: "Invention Title", name: "title", widget: "string" }
       - { label: "Inventor(s)", name: "inventor", widget: "string", hint: "Full name(s). Link to Stories where available." }
-      - { label: "Year(s) of Development", name: "year", widget: "string", hint: "Single year or range (e.g., 1942 or 1940–1945)." }
-      - { label: "Field / Discipline", name: "field", widget: "select", options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"] }
+      - { label: "Year(s) of Development", name: "year", widget: "string", hint: "Use development years, not patent approval (e.g., 1942 or 1940–1945). This feeds Era filtering." }
+      - { label: "Field / Discipline (Primary)", name: "field", widget: "select", options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"] }
+      - { label: "Field / Discipline (Secondary)", name: "field_secondary", widget: "select", required: false, options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"], hint: "Many inventions sit at intersections (e.g., Math + Aerospace)." }
       - { label: "Institution / Program / Patent Holder", name: "institution", widget: "string", hint: "NASA, Bell Labs, MIT, Independent, etc." }
 
       # ═══════════════════════════════════════════════════════════════
       # CONTEXT & DISCOVERY
       # Hooks both casual readers and researchers
       # ═══════════════════════════════════════════════════════════════
-      - { label: "Short Description", name: "description", widget: "text", hint: "1–2 sentence abstract — crucial for SEO & previews." }
+      - { label: "Short Description", name: "description", widget: "text", hint: "SEO GOLD: Must include WHAT it is + WHY it matters. Avoid names only. Example: 'A frequency-hopping communication system that laid the groundwork for modern wireless technologies.'" }
       - { label: "Problem It Addressed", name: "problem", widget: "text", hint: "Clear technical or social challenge this invention solved." }
 
       # ═══════════════════════════════════════════════════════════════
       # TECHNICAL UNDERSTANDING
       # Readable but precise explanation
       # ═══════════════════════════════════════════════════════════════
-      - { label: "How It Worked (Overview)", name: "how_it_works", widget: "markdown", hint: "High-level explanation, no jargon overload. Keep it readable but precise." }
+      - { label: "How It Worked (Overview)", name: "how_it_works", widget: "markdown", hint: "2–4 short paragraphs max. One metaphor allowed for non-technical readers. Keep it readable but precise." }
 
       # ═══════════════════════════════════════════════════════════════
       # IMPACT & LEGACY
       # A huge strength of The She Archive
       # ═══════════════════════════════════════════════════════════════
       - { label: "Historical Impact / Use", name: "impact", widget: "markdown", hint: "Where it was applied, what changed as a result." }
-      - { label: "Limitations / Barriers", name: "barriers", widget: "markdown", required: false, hint: "Funding limits, gender bias, erasure, adoption issues." }
+      - { label: "Limitations / Barriers", name: "barriers", widget: "markdown", required: false, hint: "Keep structural, not emotional: Institutional bias, funding denial, military secrecy, attribution loss." }
       - label: "Why This Invention Matters Today"
         name: "why_it_matters"
         widget: "text"
         required: false
-        hint: "2–3 sentences connecting past to present. Great for students, journalists, and SEO."
+        hint: "Answer one of: Is it still used? Did it enable something modern? Did it change how we think? Boosts classroom use, journalist citations, SEO."
       - label: "Recognition & Credit"
         name: "recognition"
         widget: "markdown"
         required: false
-        hint: "Was the inventor acknowledged? Awards received (or denied)? Later rediscovery or correction of history?"
+        hint: "Cover the timeline: Initial recognition → Delayed recognition → Posthumous correction. Core to The She Archive's mission."
 
       # ═══════════════════════════════════════════════════════════════
       # NARRATIVE & MEDIA
@@ -80,8 +81,8 @@ collections:
       # Reinforces authority and trust
       # ═══════════════════════════════════════════════════════════════
       - { label: "Patent Number", name: "patent_number", widget: "string", required: false, hint: "If applicable (e.g., US Patent 2,292,387)." }
-      - { label: "References (APA)", name: "references", widget: "markdown", hint: "Primary & secondary sources in APA format." }
-      - { label: "Tags / Keywords", name: "tags", widget: "list", hint: "For filtering and search (e.g., wireless, frequency hopping, WWII)." }
+      - { label: "References (APA)", name: "references", widget: "markdown", hint: "At least 1 primary OR museum/archive source when possible. Priority: Academic > Archives > Blogs." }
+      - { label: "Tags / Keywords", name: "tags", widget: "list", hint: "Use 3 layers: Technical (frequency hopping), Contextual (WWII, Cold War), Social (women in STEM, erasure). Powers unified search." }
       - label: "Related Inventions"
         name: "related_inventions"
         widget: "list"
