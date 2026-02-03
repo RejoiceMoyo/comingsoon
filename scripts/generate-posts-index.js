@@ -372,61 +372,72 @@ function generateContentPage(item, type, outputBaseDir) {
     let extraFields = '';
     if (type === 'inventions') {
         extraFields = `
-            <div class="bg-gray-50 border-l-4 border-brand-teal p-6 mb-8 text-xs">
+            <div class="bg-gray-50 border-l-4 border-brand-teal p-6 mb-8 text-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <p class="mb-1"><strong>Inventor(s):</strong> ${item.inventor || 'Unknown'}</p>
-                        ${item.patent_number ? `<p class="mb-1"><strong>Patent Number:</strong> ${item.patent_number}</p>` : ''}
-                        <p class="mb-1"><strong>Field:</strong> ${item.field || 'General'}</p>
+                    <div class="space-y-2">
+                        <p><span class="font-bold text-brand-teal">Inventor(s):</span> ${item.inventor || 'Unknown'}</p>
+                        ${item.patent_number ? `<p><span class="font-bold text-brand-teal">Patent Number:</span> ${item.patent_number}</p>` : ''}
+                        <p><span class="font-bold text-brand-teal">Field:</span> ${item.field || 'General'}${item.field_secondary ? ` / ${item.field_secondary}` : ''}</p>
                     </div>
-                    <div>
-                        <p class="mb-1"><strong>Year(s):</strong> ${item.year || 'N/A'}</p>
-                        <p class="mb-1"><strong>Institution:</strong> ${item.institution || 'Independent'}</p>
+                    <div class="space-y-2">
+                        <p><span class="font-bold text-brand-teal">Year(s):</span> ${item.year || 'N/A'}</p>
+                        <p><span class="font-bold text-brand-teal">Institution:</span> ${item.institution || 'Independent'}</p>
                     </div>
                 </div>
-                ${item.problem ? `<div class="mt-4 pt-4 border-t border-gray-200"><p><strong>Problem Addressed:</strong> ${item.problem}</p></div>` : ''}
+                ${item.problem ? `<div class="mt-4 pt-4 border-t border-gray-200"><p><span class="font-bold text-brand-teal">Problem Addressed:</span> ${item.problem}</p></div>` : ''}
             </div>
         `;
     }
 
     const innerContent = `
-                <a href="/${type}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link underline">
+                <a href="/${type}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link no-underline hover:underline">
                     <span class="material-symbols-outlined text-sm group-hover/link:-translate-x-1 transition-transform">arrow_back</span>
                     Back to ${type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
                 </a>
-                <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black text-xs">
-                    <h1 class="brand-heading text-xl sm:text-2xl md:text-3xl">${title}</h1>
-                    ${item.dek ? `<p class="text-sm font-semibold text-gray-700 italic mt-2">${item.dek}</p>` : ''}
-                    <p class="text-xs text-black mt-4">
-                        <span class="text-brand-gold">By ${author}</span>${publishedDate ? ` | <span class=\"text-brand-teal\">${publishedDate}</span>` : ''}
+                <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black">
+                    <h1 class="brand-heading text-2xl sm:text-3xl md:text-4xl text-[#141118]">${title}</h1>
+                    ${item.dek ? `<p class="text-base font-semibold text-gray-600 italic mt-3">${item.dek}</p>` : ''}
+                    <p class="text-sm text-black mt-4">
+                        <span class="text-brand-gold font-bold">By ${author}</span>${publishedDate ? ` | <span class="text-brand-teal font-medium">${publishedDate}</span>` : ''}
                     </p>
                     
                     ${image ? `
-                    <div class="mt-6 w-full ${heroImageWidth} ${heroImageAspect} overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
+                    <div class="mt-8 w-full ${heroImageWidth} ${heroImageAspect} overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
                     </div>
                     ` : ''}
                     
-                    <div class="mt-6 content-body">
+                    <div class="mt-8 content-body text-base leading-relaxed">
                         ${extraFields}
-                        ${marked.parse(item.body || '')}
+                        <div class="prose-content text-base leading-relaxed">${marked.parse(item.body || '')}</div>
                         
-                        ${item.how_it_works ? `<h3 class="brand-heading text-lg mt-8">How it Worked</h3>${marked.parse(item.how_it_works)}` : ''}
-                        ${item.impact ? `<h3 class="brand-heading text-lg mt-8">Historical Impact</h3>${marked.parse(item.impact)}` : ''}
-                        ${item.barriers ? `<h3 class="brand-heading text-lg mt-8 italic text-gray-600">Limitations & Barriers</h3><div class="italic text-gray-600">${marked.parse(item.barriers)}</div>` : ''}
+                        ${item.how_it_works ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">How It Worked</h3><div class="text-base leading-relaxed">${marked.parse(item.how_it_works)}</div>` : ''}
+                        ${item.impact ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">Historical Impact</h3><div class="text-base leading-relaxed">${marked.parse(item.impact)}</div>` : ''}
+                        ${item.barriers ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-gray-500 italic">Limitations & Barriers</h3><div class="text-base leading-relaxed italic text-gray-600">${marked.parse(item.barriers)}</div>` : ''}
+                        ${item.why_it_matters ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-gold">Why It Matters Today</h3><div class="text-base leading-relaxed">${marked.parse(item.why_it_matters)}</div>` : ''}
+                        ${item.recognition ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">Recognition & Credit</h3><div class="text-base leading-relaxed">${marked.parse(item.recognition)}</div>` : ''}
+                        
+                        ${item.gallery && item.gallery.length > 0 ? `
+                        <div class="mt-10">
+                            <h3 class="brand-heading text-xl mb-4 text-brand-teal">Gallery</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                ${item.gallery.map(img => `<div class="aspect-square overflow-hidden rounded-lg bg-gray-100"><img src="${img}" alt="Gallery image" class="h-full w-full object-cover hover:scale-105 transition-transform duration-300" /></div>`).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
                         
                         ${item.associated_story ? `
-                        <div class="mt-12 p-4 bg-brand-teal/5 border-l-4 border-brand-teal">
-                            <p class="text-xs uppercase tracking-widest font-bold text-brand-teal mb-1">Deep Dive</p>
-                            <p class="text-sm">Read the full narrative: <a href="${item.associated_story}" class="underline font-bold">${title} — The Untold Story</a></p>
+                        <div class="mt-12 p-6 bg-brand-teal/5 border-l-4 border-brand-teal rounded-r-lg">
+                            <p class="text-xs uppercase tracking-widest font-bold text-brand-teal mb-2">Deep Dive</p>
+                            <p class="text-base">Read the full narrative: <a href="${item.associated_story}" class="text-brand-teal font-bold hover:underline">${title} — The Untold Story</a></p>
                         </div>
                         ` : ''}
 
                         ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor’s Note:</strong> ${item.editors_note}</p></div>` : ''}
                         ${item.prompt ? `<div class="mt-8 pt-6 border-t border-gray-100"><p class="font-bold text-brand-teal italic">Discussion: ${item.prompt}</p></div>` : ''}
 
-                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">References (APA)</h4>${marked.parse(item.references)}</div>` : ''}
-                        ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200 text-[10px] text-gray-500"><h4 class="uppercase tracking-widest mb-2 font-bold">Sources</h4>${marked.parse(item.sources)}</div>` : ''}
+                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">References (APA)</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
+                        ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">Sources</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.sources)}</div></div>` : ''}
                     </div>
 
                     <div class="mt-8 border-t border-gray-100 pt-8">
