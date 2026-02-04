@@ -532,8 +532,18 @@ console.log(`Generated APIs: ${posts.length} posts, ${inventions.length} inventi
 
 // Create section directories
 const searchDir = path.join(outputDir, 'search');
-[storiesDir, inventionsOutputDir, editorialOutputDir, searchDir].forEach(dir => {
+[storiesDir, inventionsOutputDir, editorialOutputDir, searchDir, publicScriptsDir].forEach(dir => {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+});
+
+// Copy shared scripts (like footer.js) to public/scripts
+const scriptsToCopy = ['footer.js'];
+scriptsToCopy.forEach(script => {
+    const srcPath = path.join(rootDir, 'scripts', script);
+    const destPath = path.join(publicScriptsDir, script);
+    if (fs.existsSync(srcPath)) {
+        fs.copyFileSync(srcPath, destPath);
+    }
 });
 
 // Map root index files to section indices
