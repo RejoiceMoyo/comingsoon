@@ -20,6 +20,34 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
+      # ═══════════════════════════════════════════════════════════════
+      # RELATED CONTENT — OPTIONAL
+      # Strengthens internal linking and keeps readers engaged
+      # ═══════════════════════════════════════════════════════════════
+      - label: "Related Stories"
+        name: "related_stories"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to other Stories in the archive. Use the story slug (e.g., 2026-01-30-veiled-genius-the-dual-legacy-of-hedy-lamarr)."
+        fields:
+          - { label: "Story Slug", name: "slug", widget: "string", hint: "The URL slug of the related story" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display, or leave blank to use the story's title" }
+      - label: "Related Inventions"
+        name: "related_inventions"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to Inventions in the archive. Use the invention slug (e.g., frequency-hopping-spread-spectrum-communication)."
+        fields:
+          - { label: "Invention Slug", name: "slug", widget: "string", hint: "The URL slug of the related invention" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display, or leave blank to use the invention's title" }
+      - label: "Related Editor's Desk Articles"
+        name: "related_editorials"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to Editor's Desk essays. Use the article slug."
+        fields:
+          - { label: "Article Slug", name: "slug", widget: "string", hint: "The URL slug of the editorial" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display" }
 
   - name: "inventions"
     label: "Inventions"
@@ -109,7 +137,34 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Abstract or symbolic image." }
       - { label: "Main Body (Essay)", name: "body", widget: "markdown" }
       - { label: "Key Themes / Topics", name: "themes", widget: "list" }
-      - { label: "Referenced Stories / Inventions", name: "references_internal", widget: "list", required: false, hint: "Manual links to other archive entries." }
+      # ═══════════════════════════════════════════════════════════════
+      # RELATED CONTENT — OPTIONAL
+      # Strengthens internal linking and keeps readers engaged
+      # ═══════════════════════════════════════════════════════════════
+      - label: "Related Stories"
+        name: "related_stories"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to Stories in the archive. Use the story slug."
+        fields:
+          - { label: "Story Slug", name: "slug", widget: "string", hint: "The URL slug of the related story (e.g., 2026-01-30-veiled-genius-the-dual-legacy-of-hedy-lamarr)" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display" }
+      - label: "Related Inventions"
+        name: "related_inventions"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to Inventions in the archive. Use the invention slug."
+        fields:
+          - { label: "Invention Slug", name: "slug", widget: "string", hint: "The URL slug of the related invention (e.g., frequency-hopping-spread-spectrum-communication)" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display" }
+      - label: "Related Editor's Desk Articles"
+        name: "related_editorials"
+        widget: "list"
+        required: false
+        hint: "OPTIONAL. Link to other Editor's Desk essays."
+        fields:
+          - { label: "Article Slug", name: "slug", widget: "string", hint: "The URL slug of the editorial" }
+          - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display" }
       - { label: "Sources / Further Reading", name: "sources", widget: "markdown", required: false }
       - { label: "Editor’s Note", name: "editors_note", widget: "markdown", required: false, hint: "Meta reflection, context, or update." }
       - { label: "Discussion Prompt", name: "prompt", widget: "string", required: false, hint: "A closing question or provocation." }
