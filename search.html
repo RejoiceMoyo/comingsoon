@@ -54,6 +54,18 @@
         .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
             font-family: "Times New Roman", Times, serif;
         }
+        .filter-btn {
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .filter-btn:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        .filter-btn:focus-visible {
+            outline: 2px solid #008080;
+            outline-offset: 2px;
+        }
         .filter-btn.active {
             background-color: #008080;
             color: white;
