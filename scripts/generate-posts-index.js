@@ -532,7 +532,8 @@ fs.writeFileSync(path.join(apiDir, 'editorials.json'), JSON.stringify(editorials
 console.log(`Generated APIs: ${posts.length} posts, ${inventions.length} inventions, ${editorials.length} editorials.`);
 
 // Create section directories
-[storiesDir, inventionsOutputDir, editorialOutputDir].forEach(dir => {
+const searchDir = path.join(outputDir, 'search');
+[storiesDir, inventionsOutputDir, editorialOutputDir, searchDir].forEach(dir => {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
@@ -540,7 +541,8 @@ console.log(`Generated APIs: ${posts.length} posts, ${inventions.length} inventi
 const indexMappings = [
     { src: 'blog.html', dest: path.join(storiesDir, 'index.html') },
     { src: 'inventions.html', dest: path.join(inventionsOutputDir, 'index.html') },
-    { src: 'editors-desk.html', dest: path.join(editorialOutputDir, 'index.html') }
+    { src: 'editors-desk.html', dest: path.join(editorialOutputDir, 'index.html') },
+    { src: 'search.html', dest: path.join(searchDir, 'index.html') }
 ];
 
 indexMappings.forEach(mapping => {

@@ -195,45 +195,51 @@
                     <div class="space-y-4">
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search
                             the Archive</h4>
-                        <div class="relative">
+                        <form action="/search/" method="GET" class="relative">
                             <input
-                                data-filter-search
+                                name="q"
                                 class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-10 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base"
                                 placeholder="Keywords, names, or topics..." type="text" />
-                            <span class="material-symbols-outlined absolute right-3 top-3 text-[#756189]">search</span>
-                        </div>
+                            <button type="submit" class="absolute right-3 top-3 text-[#756189] hover:text-brand-teal transition-colors">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </form>
                     </div>
                     <div class="space-y-4">
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Popular
                             Archives</h4>
                         <ul class="space-y-3">
                             <li>
-                                <button type="button" data-filter-category data-value="Tech Pioneers" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Technology" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Tech
                                         Pioneers</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Scientific Discoveries" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Science" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Scientific
                                         Discoveries</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Medical Breakthroughs" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Medical" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Medical
                                         Breakthroughs</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Financial Innovators" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Finance" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Financial
                                         Innovators</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -241,11 +247,11 @@
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search by
                             Era</h4>
                         <div class="flex flex-wrap gap-2">
-                            <button type="button" data-filter-era data-value="19th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">19th Century</button>
-                            <button type="button" data-filter-era data-value="Early 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Early 20th Century</button>
-                            <button type="button" data-filter-era data-value="Mid-20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Mid-20th Century</button>
-                            <button type="button" data-filter-era data-value="Late 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Late 20th Century</button>
-                            <button type="button" data-filter-era data-value="21st Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">21st Century</button>
+                            <a href="/search/?era=19th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">19th Century</a>
+                            <a href="/search/?era=Early%2020th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Early 20th Century</a>
+                            <a href="/search/?era=Mid-20th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Mid-20th Century</a>
+                            <a href="/search/?era=Late%2020th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Late 20th Century</a>
+                            <a href="/search/?era=21st%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">21st Century</a>
                         </div>
                     </div>
                     <div class="p-6 bg-brand-teal rounded-xl text-white space-y-4">
