@@ -345,6 +345,15 @@ collections:
           - { label: "Page Title", name: "title", widget: "string", default: "Tech News" }
           - { label: "Intro", name: "intro", widget: "markdown", hint: "Intro or description for the Tech News page." }
           - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Related Links"
+            name: "related_links"
+            widget: "list"
+            required: false
+            hint: "OPTIONAL. Add related news links (external or internal)."
+            fields:
+              - { label: "Link Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Optional. Image for the Tech News page." }
 
       - file: "content/pages/careers.md"
         label: "Careers"

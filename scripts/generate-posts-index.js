@@ -339,6 +339,32 @@ function generateStaticPage(item, fileName) {
                 </div>
             </article>
         `;
+    } else if (pageSlug === 'tech-news' || pageSlug === 'careers') {
+        // Custom rendering for Tech News and Careers
+        pageContent = `
+            <article class="post-content max-w-2xl mx-auto">
+                <h1 class="brand-heading text-3xl mb-6 italic text-center">${title}</h1>
+                ${item.image ? `<div class='flex justify-center mb-8'><img src="${item.image}" alt="${title}" class="rounded-xl max-h-64 object-cover" /></div>` : ''}
+                ${item.intro ? `<div class="mb-8 text-center text-brand-teal font-semibold">${marked.parse(item.intro)}</div>` : ''}
+                ${item.body ? `<div class="mb-8">${marked.parse(item.body)}</div>` : ''}
+                ${Array.isArray(item.related_links) && item.related_links.length ? `
+                  <div class="mt-8">
+                    <h2 class="brand-heading text-xl mb-3 text-brand-teal">Related Links</h2>
+                    <ul class="list-disc pl-6 space-y-2">
+                      ${item.related_links.map(link => `<li><a href="${link.url}" class="text-brand-teal underline hover:text-brand-gold" target="_blank" rel="noopener">${link.label || link.url}</a></li>`).join('')}
+                    </ul>
+                  </div>
+                ` : ''}
+                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
+                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                        </span>
+                        Support The She Archive
+                    </a>
+                </div>
+            </article>
+        `;
     } else {
         // Fallback for generic pages
         pageContent = `
