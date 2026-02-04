@@ -11,13 +11,8 @@ description: Katherine Johnson was the mathematical mind behind America’s
   calculations determined whether they would return home alive. This is the
   story of the woman who made spaceflight possible.
 references: >-
-  
-
-
-  ## **References**
-
-
-  National Aeronautics and Space Administration. (n.d.). *Katherine Johnson biography*.
+  National Aeronautics and Space Administration. (n.d.). *Katherine Johnson
+  biography*.
 
   [https://www.nasa.gov/feature/katherine-johnson-biography](<>)
 
