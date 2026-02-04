@@ -15,7 +15,61 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
-      - { label: "Category", name: "category", widget: "select", options: ["Science", "Arts", "Technology", "Medical", "Social Movements", "Finance", "Announcement", "Newsletter"] }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        hint: "Select all that apply. Multi-select enabled."
+        options:
+          - { label: "── SCIENCE & TECHNOLOGY ──", value: "science-tech-header", disabled: true }
+          - "Physics"
+          - "Chemistry"
+          - "Biology"
+          - "Mathematics"
+          - "Engineering"
+          - "Computer Science / Computing"
+          - "Robotics & AI"
+          - "Space / Aerospace"
+          - "Materials Science"
+          - { label: "── MEDICINE & HEALTHCARE ──", value: "medicine-header", disabled: true }
+          - "Public Health"
+          - "Clinical Medicine"
+          - "Nursing"
+          - "Pharmaceuticals"
+          - "Medical Devices & Instruments"
+          - "Mental Health & Psychology"
+          - "Sanitation & Hygiene"
+          - { label: "── ARTS & CULTURE ──", value: "arts-header", disabled: true }
+          - "Visual Arts / Painting / Sculpture"
+          - "Music & Performance"
+          - "Literature & Writing"
+          - "Fashion & Design"
+          - "Film & Theater"
+          - "Architecture"
+          - { label: "── EVERYDAY-LIFE & HOUSEHOLD ──", value: "everyday-header", disabled: true }
+          - "Domestic Tools & Appliances"
+          - "Personal Care Products"
+          - "Food & Cooking Innovations"
+          - "Home Safety / Security"
+          - { label: "── SOCIAL IMPACT & POLICY ──", value: "social-header", disabled: true }
+          - "Activism & Advocacy"
+          - "Education & Learning"
+          - "Law & Governance"
+          - "Gender & Social Equity"
+          - "Environmental Sustainability"
+          - "Public Infrastructure"
+          - { label: "── BUSINESS & FINANCE ──", value: "business-header", disabled: true }
+          - "Entrepreneurship"
+          - "Financial Innovation"
+          - "Economic Policy"
+          - "Investment & Banking"
+          - { label: "── OTHER ──", value: "other-header", disabled: true }
+          - "Travel & Transportation"
+          - "Communication / Media / Journalism"
+          - "Sports & Physical Culture"
+          - "Hybrid / Interdisciplinary"
+          - "Announcement"
+          - "Newsletter"
       - { label: "Era", name: "era", widget: "select", options: ["19th Century", "Early 20th Century", "Mid-20th Century", "Late 20th Century", "21st Century"] }
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
@@ -69,8 +123,59 @@ collections:
       - { label: "Invention Title", name: "title", widget: "string" }
       - { label: "Inventor(s)", name: "inventor", widget: "string", hint: "REQUIRED. Full name(s). Link to Stories where available." }
       - { label: "Year(s) of Development", name: "year", widget: "string", hint: "REQUIRED. Use development years, not patent approval (e.g., 1942 or 1940–1945). Era is inferred from this — let history lead." }
-      - { label: "Field / Discipline (Primary)", name: "field", widget: "select", options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"] }
-      - { label: "Field / Discipline (Secondary)", name: "field_secondary", widget: "select", required: false, options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"], hint: "OPTIONAL. Many inventions sit at intersections (e.g., Math + Aerospace)." }
+      - label: "Field / Discipline"
+        name: "field"
+        widget: "select"
+        multiple: true
+        hint: "Select all that apply. Many inventions sit at intersections (e.g., Math + Aerospace + Physics)."
+        options:
+          - { label: "── SCIENCE & TECHNOLOGY ──", value: "science-tech-header", disabled: true }
+          - "Physics"
+          - "Chemistry"
+          - "Biology"
+          - "Mathematics"
+          - "Engineering"
+          - "Computer Science / Computing"
+          - "Robotics & AI"
+          - "Space / Aerospace"
+          - "Materials Science"
+          - { label: "── MEDICINE & HEALTHCARE ──", value: "medicine-header", disabled: true }
+          - "Public Health"
+          - "Clinical Medicine"
+          - "Nursing"
+          - "Pharmaceuticals"
+          - "Medical Devices & Instruments"
+          - "Mental Health & Psychology"
+          - "Sanitation & Hygiene"
+          - { label: "── ARTS & CULTURE ──", value: "arts-header", disabled: true }
+          - "Visual Arts / Painting / Sculpture"
+          - "Music & Performance"
+          - "Literature & Writing"
+          - "Fashion & Design"
+          - "Film & Theater"
+          - "Architecture"
+          - { label: "── EVERYDAY-LIFE & HOUSEHOLD ──", value: "everyday-header", disabled: true }
+          - "Domestic Tools & Appliances"
+          - "Personal Care Products"
+          - "Food & Cooking Innovations"
+          - "Home Safety / Security"
+          - { label: "── SOCIAL IMPACT & POLICY ──", value: "social-header", disabled: true }
+          - "Activism & Advocacy"
+          - "Education & Learning"
+          - "Law & Governance"
+          - "Gender & Social Equity"
+          - "Environmental Sustainability"
+          - "Public Infrastructure"
+          - { label: "── BUSINESS & FINANCE ──", value: "business-header", disabled: true }
+          - "Entrepreneurship"
+          - "Financial Innovation"
+          - "Economic Policy"
+          - "Investment & Banking"
+          - { label: "── OTHER ──", value: "other-header", disabled: true }
+          - "Travel & Transportation"
+          - "Communication / Media / Journalism"
+          - "Sports & Physical Culture"
+          - "Hybrid / Interdisciplinary"
       - { label: "Institution / Program / Patent Holder", name: "institution", widget: "string", required: false, hint: "OPTIONAL. NASA, Bell Labs, MIT, Independent, etc." }
 
       # ═══════════════════════════════════════════════════════════════
