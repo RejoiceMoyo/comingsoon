@@ -441,11 +441,11 @@ function generateContentPage(item, type, outputBaseDir) {
                         </div>
                         ` : ''}
 
-                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor’s Note:</strong> ${item.editors_note}</p></div>` : ''}
+                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor's Note:</strong> ${item.editors_note}</p></div>` : ''}
                         ${item.prompt ? `<div class="mt-8 pt-6 border-t border-gray-100"><p class="font-bold text-brand-teal italic">Discussion: ${item.prompt}</p></div>` : ''}
 
-                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">References (APA)</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
-                        ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">Sources</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.sources)}</div></div>` : ''}
+                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500 text-center">References (APA)</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
+                        ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500 text-center">Sources</h4><div class="text-sm text-gray-600 leading-relaxed">${marked.parse(item.sources)}</div></div>` : ''}
                     </div>
 
                     <div class="mt-8 border-t border-gray-100 pt-8">

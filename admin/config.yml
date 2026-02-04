@@ -18,17 +18,8 @@ collections:
       - { label: "Category", name: "category", widget: "select", options: ["Science", "Arts", "Technology", "Medical", "Social Movements", "Finance", "Announcement", "Newsletter"] }
       - { label: "Era", name: "era", widget: "select", options: ["19th Century", "Early 20th Century", "Mid-20th Century", "Late 20th Century", "21st Century"] }
       - { label: "Featured Image", name: "image", widget: "image" }
-      - label: "Short Description"
-        name: "description"
-        widget: "markdown"
-        hint: "Used for previews and SEO. You can use bold, italic, and links."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
-        modes: ["raw"]
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-        hint: "Full rich text editor - use headings, bold, italic, links, lists, blockquotes, images, and more."
+      - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
+      - { label: "Body", name: "body", widget: "markdown" }
       # ═══════════════════════════════════════════════════════════════
       # RELATED CONTENT — OPTIONAL
       # Strengthens internal linking and keeps readers engaged
@@ -75,69 +66,36 @@ collections:
       # Answers: What is this? Who made it? When & where?
       # ═══════════════════════════════════════════════════════════════
       - { label: "Invention Title", name: "title", widget: "string" }
-      - label: "Inventor(s)"
-        name: "inventor"
-        widget: "markdown"
-        hint: "REQUIRED. Full name(s). You can add links to their Stories pages."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
+      - { label: "Inventor(s)", name: "inventor", widget: "string", hint: "REQUIRED. Full name(s). Link to Stories where available." }
       - { label: "Year(s) of Development", name: "year", widget: "string", hint: "REQUIRED. Use development years, not patent approval (e.g., 1942 or 1940–1945). Era is inferred from this — let history lead." }
       - { label: "Field / Discipline (Primary)", name: "field", widget: "select", options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"] }
       - { label: "Field / Discipline (Secondary)", name: "field_secondary", widget: "select", required: false, options: ["Engineering", "Computing", "Medicine", "Aerospace", "Chemistry", "Social Innovation", "Physics", "Biology", "Mathematics", "Other"], hint: "OPTIONAL. Many inventions sit at intersections (e.g., Math + Aerospace)." }
-      - label: "Institution / Program / Patent Holder"
-        name: "institution"
-        widget: "markdown"
-        required: false
-        hint: "OPTIONAL. NASA, Bell Labs, MIT, Independent, etc. Can include links."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
+      - { label: "Institution / Program / Patent Holder", name: "institution", widget: "string", required: false, hint: "OPTIONAL. NASA, Bell Labs, MIT, Independent, etc." }
 
       # ═══════════════════════════════════════════════════════════════
       # CONTEXT & DISCOVERY — REQUIRED
       # Hooks both casual readers and researchers
       # ═══════════════════════════════════════════════════════════════
-      - label: "Short Description"
-        name: "description"
-        widget: "markdown"
-        hint: "REQUIRED. SEO GOLD: Must include WHAT it is + WHY it matters. You can use bold, italic, and links."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
-      - label: "Problem It Addressed"
-        name: "problem"
-        widget: "markdown"
-        hint: "REQUIRED. Clear technical or social challenge this invention solved. Supports formatting."
-        buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"]
-        editor_components: []
+      - { label: "Short Description", name: "description", widget: "text", hint: "REQUIRED. SEO GOLD: Must include WHAT it is + WHY it matters. Avoid names only. Example: 'A frequency-hopping communication system that laid the groundwork for modern wireless technologies.'" }
+      - { label: "Problem It Addressed", name: "problem", widget: "text", hint: "REQUIRED. Clear technical or social challenge this invention solved." }
 
       # ═══════════════════════════════════════════════════════════════
       # TECHNICAL UNDERSTANDING — REQUIRED
       # Readable but precise explanation
       # ═══════════════════════════════════════════════════════════════
-      - label: "How It Worked (Overview)"
-        name: "how_it_works"
-        widget: "markdown"
-        hint: "REQUIRED. 2–4 short paragraphs max. Full formatting: headings, lists, bold, italic, links, images."
+      - { label: "How It Worked (Overview)", name: "how_it_works", widget: "markdown", hint: "REQUIRED. 2–4 short paragraphs max. One metaphor allowed for non-technical readers. Keep it readable but precise." }
 
       # ═══════════════════════════════════════════════════════════════
       # IMPACT & LEGACY — MIXED (see field hints)
       # A huge strength of The She Archive
       # ═══════════════════════════════════════════════════════════════
-      - label: "Historical Impact / Use"
-        name: "impact"
-        widget: "markdown"
-        hint: "REQUIRED. Where it was applied, what changed as a result. Full formatting available."
-      - label: "Limitations / Barriers"
-        name: "barriers"
-        widget: "markdown"
-        required: false
-        hint: "OPTIONAL but high-value. Keep structural, not emotional: Institutional bias, funding denial, military secrecy, attribution loss."
+      - { label: "Historical Impact / Use", name: "impact", widget: "markdown", hint: "REQUIRED. Where it was applied, what changed as a result." }
+      - { label: "Limitations / Barriers", name: "barriers", widget: "markdown", required: false, hint: "OPTIONAL but high-value. Keep structural, not emotional: Institutional bias, funding denial, military secrecy, attribution loss." }
       - label: "Why This Invention Matters Today"
         name: "why_it_matters"
-        widget: "markdown"
+        widget: "text"
         required: false
-        hint: "OPTIONAL but high-value. Answer one of: Is it still used? Did it enable something modern? Did it change how we think?"
-        buttons: ["bold", "italic", "link", "bulleted-list"]
-        editor_components: []
+        hint: "OPTIONAL but high-value. Answer one of: Is it still used? Did it enable something modern? Did it change how we think? Boosts classroom use, journalist citations, SEO."
       - label: "Recognition & Credit"
         name: "recognition"
         widget: "markdown"
@@ -148,13 +106,7 @@ collections:
       # NARRATIVE & MEDIA — OPTIONAL
       # Bridges facts → storytelling beautifully
       # ═══════════════════════════════════════════════════════════════
-      - label: "Associated Story"
-        name: "associated_story"
-        widget: "markdown"
-        required: false
-        hint: "OPTIONAL but high-value. Link to long-form narrative archive entry. You can format the link text."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
+      - { label: "Associated Story", name: "associated_story", widget: "string", required: false, hint: "OPTIONAL but high-value. Link to long-form narrative archive entry (e.g., /stories/inventor-name/)." }
       - { label: "Images / Diagrams", name: "image", widget: "image", required: false, hint: "OPTIONAL. Primary image of the invention, diagram, or inventor." }
       - { label: "Additional Images", name: "gallery", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" }, hint: "OPTIONAL. Additional images, diagrams, or historical photos." }
 
@@ -163,10 +115,7 @@ collections:
       # Reinforces authority and trust
       # ═══════════════════════════════════════════════════════════════
       - { label: "Patent Number", name: "patent_number", widget: "string", required: false, hint: "OPTIONAL. If applicable (e.g., US Patent 2,292,387)." }
-      - label: "References (APA)"
-        name: "references"
-        widget: "markdown"
-        hint: "REQUIRED. At least 1 primary OR museum/archive source when possible. Full formatting with links."
+      - { label: "References (APA)", name: "references", widget: "markdown", hint: "REQUIRED. At least 1 primary OR museum/archive source when possible. Priority: Academic > Archives > Blogs." }
       - { label: "Tags / Keywords", name: "tags", widget: "list", hint: "REQUIRED. Use 3 layers: Technical (frequency hopping), Contextual (WWII, Cold War), Social (women in STEM, erasure). Powers unified search." }
       - label: "Related Inventions"
         name: "related_inventions"
@@ -182,19 +131,11 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Article Title", name: "title", widget: "string" }
-      - label: "Dek / Subtitle"
-        name: "dek"
-        widget: "markdown"
-        hint: "1–2 sentence framing of the argument. Supports bold, italic, links."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
+      - { label: "Dek / Subtitle", name: "dek", widget: "string", hint: "1–2 sentence framing of the argument." }
       - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Abstract or symbolic image." }
-      - label: "Main Body (Essay)"
-        name: "body"
-        widget: "markdown"
-        hint: "Full rich text editor - headings, bold, italic, links, lists, blockquotes, images, code blocks, and more."
+      - { label: "Main Body (Essay)", name: "body", widget: "markdown" }
       - { label: "Key Themes / Topics", name: "themes", widget: "list" }
       # ═══════════════════════════════════════════════════════════════
       # RELATED CONTENT — OPTIONAL
@@ -224,23 +165,9 @@ collections:
         fields:
           - { label: "Article Slug", name: "slug", widget: "string", hint: "The URL slug of the editorial" }
           - { label: "Display Title (Optional)", name: "title", widget: "string", required: false, hint: "Custom title to display" }
-      - label: "Sources / Further Reading"
-        name: "sources"
-        widget: "markdown"
-        required: false
-        hint: "Full formatting with links for citations and further reading."
-      - label: "Editor's Note"
-        name: "editors_note"
-        widget: "markdown"
-        required: false
-        hint: "Meta reflection, context, or update. Full formatting available."
-      - label: "Discussion Prompt"
-        name: "prompt"
-        widget: "markdown"
-        required: false
-        hint: "A closing question or provocation. Can use bold, italic for emphasis."
-        buttons: ["bold", "italic", "link"]
-        editor_components: []
+      - { label: "Sources / Further Reading", name: "sources", widget: "markdown", required: false }
+      - { label: "Editor’s Note", name: "editors_note", widget: "markdown", required: false, hint: "Meta reflection, context, or update." }
+      - { label: "Discussion Prompt", name: "prompt", widget: "string", required: false, hint: "A closing question or provocation." }
 
   - name: "pages"
     label: "Legal & Static Pages"
@@ -250,44 +177,15 @@ collections:
         name: "about"
         fields:
           - { label: "Page Title", name: "title", widget: "string", default: "About The She Archive" }
-          - label: "Mission Statement (Short)"
-            name: "mission_short"
-            widget: "markdown"
-            hint: "1–2 sentences for SEO and previews. Supports basic formatting."
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-          - label: "Foundational Statement"
-            name: "foundation"
-            widget: "markdown"
-            hint: "Why this archive exists. Full formatting available."
-          - label: "What We Do"
-            name: "what_we_do"
-            widget: "markdown"
-            hint: "Bulleted or short paragraphs on core activities. Full formatting."
-          - label: "Editorial Philosophy"
-            name: "philosophy"
-            widget: "markdown"
-            hint: "How you approach truth, sourcing, and narrative."
-          - label: "Scope & Focus"
-            name: "scope"
-            widget: "markdown"
-            hint: "What you cover."
-          - label: "Methodology & Sources"
-            name: "methodology"
-            widget: "markdown"
-            hint: "Primary sources, academic texts, etc."
-          - label: "Independence & Funding"
-            name: "funding"
-            widget: "markdown"
-            hint: "Transparency on project sustainability."
-          - label: "Credits / Stewardship"
-            name: "credits"
-            widget: "markdown"
-            hint: "Who maintains the archive."
-          - label: "Closing Statement"
-            name: "closing"
-            widget: "markdown"
-            hint: "Archival, future-facing line."
+          - { label: "Mission Statement (Short)", name: "mission_short", widget: "string", hint: "1–2 sentences for SEO and previews." }
+          - { label: "Foundational Statement", name: "foundation", widget: "markdown", hint: "Why this archive exists." }
+          - { label: "What We Do", name: "what_we_do", widget: "markdown", hint: "Bulleted or short paragraphs on core activities." }
+          - { label: "Editorial Philosophy", name: "philosophy", widget: "markdown", hint: "How you approach truth, sourcing, and narrative." }
+          - { label: "Scope & Focus", name: "scope", widget: "markdown", hint: "What you cover." }
+          - { label: "Methodology & Sources", name: "methodology", widget: "markdown", hint: "Primary sources, academic texts, etc." }
+          - { label: "Independence & Funding", name: "funding", widget: "markdown", hint: "Transparency on project sustainability." }
+          - { label: "Credits / Stewardship", name: "credits", widget: "markdown", hint: "Who maintains the archive." }
+          - { label: "Closing Statement", name: "closing", widget: "markdown", hint: "Archival, future-facing line." }
 
       - file: "content/pages/privacy.md"
         label: "Privacy Policy"
@@ -295,88 +193,40 @@ collections:
         fields:
           - { label: "Page Title", name: "title", widget: "string", default: "Privacy Policy" }
           - { label: "Effective Date", name: "date", widget: "string" }
-          - label: "Introduction"
-            name: "intro"
-            widget: "markdown"
-            hint: "Plain-language explanation of intent."
-          - label: "Information We Collect"
-            name: "collect"
-            widget: "markdown"
-          - label: "How We Use Information"
-            name: "usage"
-            widget: "markdown"
-          - label: "Third-Party Services"
-            name: "third_party"
-            widget: "markdown"
-          - label: "Data Storage & Security"
-            name: "security"
-            widget: "markdown"
-          - label: "Your Rights"
-            name: "rights"
-            widget: "markdown"
-          - label: "External Links Disclaimer"
-            name: "disclaimer"
-            widget: "markdown"
-          - label: "Policy Updates"
-            name: "updates"
-            widget: "markdown"
-          - label: "Contact for Privacy Concerns"
-            name: "privacy_contact"
-            widget: "markdown"
+          - { label: "Introduction", name: "intro", widget: "markdown", hint: "Plain-language explanation of intent." }
+          - { label: "Information We Collect", name: "collect", widget: "markdown" }
+          - { label: "How We Use Information", name: "usage", widget: "markdown" }
+          - { label: "Third-Party Services", name: "third_party", widget: "markdown" }
+          - { label: "Data Storage & Security", name: "security", widget: "markdown" }
+          - { label: "Your Rights", name: "rights", widget: "markdown" }
+          - { label: "External Links Disclaimer", name: "disclaimer", widget: "markdown" }
+          - { label: "Policy Updates", name: "updates", widget: "markdown" }
+          - { label: "Contact for Privacy Concerns", name: "privacy_contact", widget: "markdown" }
 
       - file: "content/pages/submissions.md"
         label: "Submissions"
         name: "submissions"
         fields:
           - { label: "Page Title", name: "title", widget: "string", default: "Submissions" }
-          - label: "Opening Statement"
-            name: "opening"
-            widget: "markdown"
-            hint: "Who this page is for."
-          - label: "What We Accept"
-            name: "accept"
-            widget: "markdown"
-          - label: "What We Don't Accept"
-            name: "decline"
-            widget: "markdown"
-          - label: "Submission Guidelines"
-            name: "guidelines"
-            widget: "markdown"
-          - label: "Review Process"
-            name: "process"
-            widget: "markdown"
-          - label: "Rights & Attribution"
-            name: "rights"
-            widget: "markdown"
+          - { label: "Opening Statement", name: "opening", widget: "markdown", hint: "Who this page is for." }
+          - { label: "What We Accept", name: "accept", widget: "markdown" }
+          - { label: "What We Don’t Accept", name: "decline", widget: "markdown" }
+          - { label: "Submission Guidelines", name: "guidelines", widget: "markdown" }
+          - { label: "Review Process", name: "process", widget: "markdown" }
+          - { label: "Rights & Attribution", name: "rights", widget: "markdown" }
           - { label: "Response Time", name: "timeline", widget: "string" }
-          - label: "How to Submit"
-            name: "instruction"
-            widget: "markdown"
-          - label: "Closing Note"
-            name: "closing_note"
-            widget: "markdown"
+          - { label: "How to Submit", name: "instruction", widget: "markdown" }
+          - { label: "Closing Note", name: "closing_note", widget: "markdown" }
 
       - file: "content/pages/contact.md"
         label: "Contact"
         name: "contact"
         fields:
           - { label: "Page Title", name: "title", widget: "string", default: "Contact" }
-          - label: "Short Intro"
-            name: "intro"
-            widget: "markdown"
-          - label: "Contact Method(s)"
-            name: "methods"
-            widget: "markdown"
+          - { label: "Short Intro", name: "intro", widget: "markdown" }
+          - { label: "Contact Method(s)", name: "methods", widget: "markdown" }
           - { label: "Topic Selector", name: "topics", widget: "list", required: false, hint: "e.g. Editorial inquiry, Corrections." }
           - { label: "Response Expectations", name: "expectations", widget: "string" }
-          - label: "Press / Institutional Contact"
-            name: "press"
-            widget: "markdown"
-            required: false
+          - { label: "Press / Institutional Contact", name: "press", widget: "markdown", required: false }
           - { label: "Physical Location", name: "location", widget: "string", required: false, hint: "Country/City only if desired." }
-          - label: "Closing Line"
-            name: "closing"
-            widget: "markdown"
-            hint: "Can be formatted with emphasis."
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
+          - { label: "Closing Line", name: "closing", widget: "string" }
