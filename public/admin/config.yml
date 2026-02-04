@@ -20,6 +20,7 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "References (APA)", name: "references", widget: "markdown", required: false, hint: "OPTIONAL. Cite your sources. At least 1 primary source when possible." }
       # ═══════════════════════════════════════════════════════════════
       # RELATED CONTENT — OPTIONAL
       # Strengthens internal linking and keeps readers engaged
