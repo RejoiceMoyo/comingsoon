@@ -20,7 +20,7 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Short Description", name: "description", widget: "text", hint: "Used for previews and SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "References (APA)", name: "references", widget: "markdown", required: false, hint: "OPTIONAL. Cite your sources. At least 1 primary source when possible." }
+      - { label: "References", name: "references", widget: "markdown", required: false, hint: "OPTIONAL. Cite your sources. At least 1 primary source when possible." }
       # ═══════════════════════════════════════════════════════════════
       # RELATED CONTENT — OPTIONAL
       # Strengthens internal linking and keeps readers engaged
@@ -116,7 +116,7 @@ collections:
       # Reinforces authority and trust
       # ═══════════════════════════════════════════════════════════════
       - { label: "Patent Number", name: "patent_number", widget: "string", required: false, hint: "OPTIONAL. If applicable (e.g., US Patent 2,292,387)." }
-      - { label: "References (APA)", name: "references", widget: "markdown", hint: "REQUIRED. At least 1 primary OR museum/archive source when possible. Priority: Academic > Archives > Blogs." }
+      - { label: "References", name: "references", widget: "markdown", hint: "REQUIRED. At least 1 primary OR museum/archive source when possible. Priority: Academic > Archives > Blogs." }
       - { label: "Tags / Keywords", name: "tags", widget: "list", hint: "REQUIRED. Use 3 layers: Technical (frequency hopping), Contextual (WWII, Cold War), Social (women in STEM, erasure). Powers unified search." }
       - label: "Related Inventions"
         name: "related_inventions"
