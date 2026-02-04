@@ -440,7 +440,7 @@ function generateContentPage(item, type, outputBaseDir) {
                         </div>
                         ` : ''}
 
-                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor's Note:</strong> ${item.editors_note}</p></div>` : ''}
+                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor's Note:</strong></p><div>${marked.parse(item.editors_note)}</div></div>` : ''}
                         ${item.prompt ? `<div class="mt-8 pt-6 border-t border-gray-100"><p class="font-bold text-brand-teal italic">Discussion: ${item.prompt}</p></div>` : ''}
 
                         ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-700 text-center">References</h4><div class="text-sm text-gray-800 leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
