@@ -143,28 +143,28 @@
                             Beyond the lab, into the soul of human progress. A curated archive of women who shaped the
                             medical, the arts, financial, social movements, and scientific frontiers.
                         </p>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="coming-soon.html"
-                                class="flex min-w-[140px] sm:min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-10 sm:h-12 px-5 sm:px-6 bg-brand-gold text-brand-teal text-sm font-bold shadow-lg hover:scale-105 transition-transform">
+                        <div class="flex flex-row sm:flex-wrap gap-3">
+                            <a href="/stories/"
+                                class="flex flex-1 sm:flex-none min-w-0 sm:min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-10 sm:h-12 px-3 sm:px-6 bg-brand-gold text-brand-teal text-xs sm:text-sm font-bold shadow-lg hover:scale-105 transition-transform">
                                 Read the Stories
                             </a>
-                            <a href="coming-soon.html"
-                                class="flex min-w-[140px] sm:min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-10 sm:h-12 px-5 sm:px-6 border-2 border-white/30 text-white text-sm font-bold hover:bg-white/10 transition-colors">
-                                The Archive
+                            <a href="/search/"
+                                class="flex flex-1 sm:flex-none min-w-0 sm:min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-10 sm:h-12 px-3 sm:px-6 border-2 border-white/30 text-white text-xs sm:text-sm font-bold hover:bg-white/10 transition-colors">
+                                Search the Archive
                             </a>
                         </div>
                     </div>
-                    <div class="flex-1 w-full max-w-[280px] sm:max-w-[320px] relative">
+                    <div class="flex-1 w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] relative">
                         <div
-                            class="aspect-[3/4] relative overflow-hidden group">
-                            <div id="current-feature-image" class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110">
+                            class="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[1/1] relative overflow-visible group">
+                            <div id="current-feature-image" class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105"
+                                style="mask-image: radial-gradient(ellipse 100% 90% at center, black 35%, transparent 90%); -webkit-mask-image: radial-gradient(ellipse 100% 90% at center, black 35%, transparent 90%);">
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/35 to-transparent pointer-events-none"></div>
                             <div id="current-feature"
-                                class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white space-y-2 drop-shadow">
-                                <p class="text-brand-teal font-bold text-xs sm:text-sm uppercase tracking-tighter">
+                                class="absolute bottom-4 sm:bottom-6 left-0 right-0 text-white text-center space-y-2 drop-shadow-lg">
+                                <p class="text-brand-gold font-bold text-xs sm:text-sm uppercase tracking-tighter">
                                     Current Feature</p>
-                                <p class="text-[#756189] dark:text-white/70 text-sm">Loading latest story...</p>
+                                <p class="text-white/90 text-sm px-4">Loading latest story...</p>
                                 <div class="w-full flex justify-center">
                                     <div id="feature-dots" class="flex gap-2 mt-1 items-center"></div>
                                 </div>
@@ -195,45 +195,51 @@
                     <div class="space-y-4">
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search
                             the Archive</h4>
-                        <div class="relative">
+                        <form action="/search/" method="GET" class="relative">
                             <input
-                                data-filter-search
+                                name="q"
                                 class="w-full rounded-lg border-[#e0dbe6] bg-white dark:bg-white/10 p-3 pr-10 focus:ring-brand-teal focus:border-brand-teal text-sm sm:text-base"
                                 placeholder="Keywords, names, or topics..." type="text" />
-                            <span class="material-symbols-outlined absolute right-3 top-3 text-[#756189]">search</span>
-                        </div>
+                            <button type="submit" class="absolute right-3 top-3 text-[#756189] hover:text-brand-teal transition-colors">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </form>
                     </div>
                     <div class="space-y-4">
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Popular
                             Archives</h4>
                         <ul class="space-y-3">
                             <li>
-                                <button type="button" data-filter-category data-value="Tech Pioneers" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Technology" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Tech
                                         Pioneers</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Scientific Discoveries" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Science" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Scientific
                                         Discoveries</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Medical Breakthroughs" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Medical" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Medical
                                         Breakthroughs</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                             <li>
-                                <button type="button" data-filter-category data-value="Financial Innovators" class="flex justify-between items-center group w-full text-left">
+                                <a href="/search/?category=Finance" class="flex justify-between items-center group w-full text-left">
                                     <span
                                         class="text-[#141118] dark:text-white/90 group-hover:text-brand-teal transition-colors text-sm sm:text-base">Financial
                                         Innovators</span>
-                                </button>
+                                    <span class="material-symbols-outlined text-sm text-gray-400 group-hover:text-brand-teal">arrow_forward</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -241,11 +247,11 @@
                         <h4 class="brand-heading text-lg sm:text-xl font-bold border-b border-brand-gold pb-2">Search by
                             Era</h4>
                         <div class="flex flex-wrap gap-2">
-                            <button type="button" data-filter-era data-value="19th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">19th Century</button>
-                            <button type="button" data-filter-era data-value="Early 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Early 20th Century</button>
-                            <button type="button" data-filter-era data-value="Mid-20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Mid-20th Century</button>
-                            <button type="button" data-filter-era data-value="Late 20th Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Late 20th Century</button>
-                            <button type="button" data-filter-era data-value="21st Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">21st Century</button>
+                            <a href="/search/?era=19th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">19th Century</a>
+                            <a href="/search/?era=Early%2020th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Early 20th Century</a>
+                            <a href="/search/?era=Mid-20th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Mid-20th Century</a>
+                            <a href="/search/?era=Late%2020th%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Late 20th Century</a>
+                            <a href="/search/?era=21st%20Century" class="px-3 py-1.5 rounded-full border border-[#e0dbe6] dark:border-white/10 text-xs font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">21st Century</a>
                         </div>
                     </div>
                     <div class="p-6 bg-brand-teal rounded-xl text-white space-y-4">
@@ -283,43 +289,13 @@
                 </div>
             </div>
 
-            <footer
-                class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-brand-teal text-2xl sm:text-3xl">menu_book</span>
-                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
-                    </div>
-                    <div class="flex gap-3 sm:gap-4">
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Support The She Archive">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">coffee</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="/coming-soon.html">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="/coming-soon.html">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-                        </a>
-                    </div>
-                </div>
-                <p class="text-center text-black text-xs mt-8 sm:mt-12">
-                    © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism,
-                    Science and more.
-                </p>
-            </footer>
+            <div id="shared-footer"></div>
         </div>
     </div>
 
-    <script src="scripts/filters.js?v=1"></script>
-    <script src="scripts/load-posts.js?v=2"></script>
+    <script src="/scripts/footer.js"></script>
+    <script src="/scripts/filters.js?v=1"></script>
+    <script src="/scripts/load-posts.js?v=2"></script>
 </body>
 
 </html>

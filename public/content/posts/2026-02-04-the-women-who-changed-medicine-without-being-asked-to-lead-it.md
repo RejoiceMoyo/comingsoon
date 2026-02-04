@@ -8,9 +8,63 @@ image: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExIWFh
 description: From leprosy treatment to modern syringes and menstrual health,
   this story traces how women quietly reshaped medicine through inventions and
   practices the world now takes for granted.
+references: >-
+  
+  **Alice Ball / Leprosy Treatment**
+
+
+  Ball, A. A. (1915). *The chemical constitution of chaulmoogra oil and its ethyl esters* (Master’s thesis). University of Hawaii.
+
+
+  **Florence Nightingale / Statistics & Hospital Reform**[](<>)
+
+
+  McDonald, L. (2014). *Florence Nightingale at first hand*. Wilfrid Laurier University Press.
+
+
+  **Marie Curie / Mobile X-Ray Units**
+
+
+  Quinn, S. (1995). *Marie Curie and the science of radioactivity*. Cambridge University Press.
+
+
+  National Museum of American History. (n.d.). *Marie Curie and the mobile X-ray units of World War I*. Smithsonian Institution.
+
+
+  **Letitia Mumford Geer / One-Handed Syringe**
+
+
+  Geer, L. M. (1899). *Syringe* (U.S. Patent No. 625,801). United States Patent Office.
+
+
+  U.S. National Library of Medicine. (n.d.). *Medical inventions and innovations by women*.
+
+
+  **Menstrual Health / Sanitary Products**
+
+
+  Freidenfelds, L. (2009). *The modern period: Menstruation in twentieth-century America*. Johns Hopkins University Press.
+
+
+  Vostral, S. L. (2008). *Under wraps: A history of menstrual hygiene technology*. Lexington Books.
+
+
+  World Health Organization. (2019). *Menstrual health: Global public health perspective*.
+
+
+  **General (“Handful among many”) framing**
+
+
+  Wailoo, K., Livingston, J., & Epstein, S. (2010). *Three shots at prevention: The HPV vaccine and the politics of medicine’s future*. University of Chicago Press.
+
+
+  Lederer, S. E. (1995). *Subjected to science: Human experimentation in America before the Second World War*. Johns Hopkins University Press.
 related_stories: []
 ---
-There’s a moment that keeps returning to me whenever I read medical history: how often the breakthroughs didn’t come from people trying to “change medicine,” but from women trying to **fix something that was unbearable.**
+
+
+
+There’s a moment that keeps returning to me whenever I read medical history: how often the breakthroughs didn’t come from people trying to “change medicine,” but from women trying to **fix something that was unbearable**.
 
 Not theoretically broken.
 
@@ -20,50 +74,33 @@ Unbearable in the body.
 
 And once you start noticing that pattern, you can’t unsee it, because the story stops being about medicine alone.
 
-Take Alice Ball. Yes, she’s remembered now (finally) for leprosy treatment, but what stays with me isn’t the chemistry. It’s the fact that she was solving a problem the world had emotionally given up on. Leprosy patients were hidden away, not because treatment was impossible, but because *care was inconvenient*. Her work forced medicine to confront its own indifference. That’s not just a medical act, it’s a moral one.
+Take **Alice Ball**. She is now remembered for developing the first effective treatment for Hansen’s disease (leprosy), but what lingers is not only the chemistry, it is the context in which she worked. At a time when leprosy patients were segregated and largely abandoned by medical institutions, Ball developed a chemically injectable form of chaulmoogra oil that transformed treatment outcomes (Ball, 1915). Her work forced medicine to confront not scientific impossibility, but institutional neglect.
 
-Then your mind drifts elsewhere.
+Then the story shifts.
 
-To **Florence Nightingale**, who is almost insultingly reduced to “the lady with the lamp.” What she was actually doing was **data science** before the term existed. She used statistics to prove that poor sanitation killed more soldiers than battle wounds. She redesigned hospital layouts. She argued with governments using numbers. She wasn’t nurturing, she was restructuring systems. Medicine didn’t just heal because of her; it **measured itself differently** afterward.
+To **Florence Nightingale**, who is still too often reduced to “the lady with the lamp.” In reality, Nightingale was among the earliest practitioners of applied medical statistics. By collecting and visualizing mortality data during the Crimean War, she demonstrated that unsanitary hospital conditions killed more soldiers than battlefield injuries (Hogben, 1936). Her statistical models reshaped hospital design, sanitation practices, and government health policy, marking a foundational moment in evidence-based medicine (McDonald, 2014).
 
-And from there, the trail keeps widening.
+And from there, the boundary of medicine stretches again.
 
-You think about **Marie Curie**, who never set out to become a medical pioneer, yet her work on radioactivity reshaped diagnostics and cancer treatment forever. She built mobile X-ray units during World War I because wounded soldiers needed imaging *now*, not once institutions caught up. She crossed physics into medicine not as an academic exercise, but as emergency response. Entire fields followed her footsteps without crediting the path she cut.
+**Marie Curie** did not set out to revolutionize healthcare, yet her research on radioactivity fundamentally altered medical diagnostics and cancer treatment. During World War I, Curie organized and deployed mobile X-ray units to battlefield hospitals, enabling surgeons to locate bullets and fractures in real time (National Museum of American History, n.d.). Her work bridged physics and medicine under wartime urgency, long before interdisciplinary science was formally recognized (Quinn, 1995).
 
-Then there’s **Letitia Mumford Geer**, whose syringe design looks mundane until you sit with it. A one-handed syringe means autonomy. Precision. Speed. Fewer errors. It means one nurse can act instead of waiting for help. It means medicine becomes scalable. That’s not a gadget, that’s infrastructure. And infrastructure quietly decides who lives.
+The story continues quietly, through objects that look ordinary.
 
-And while all of this is happening, other women are solving problems medicine didn’t even like naming.
+Consider **Letitia Mumford Geer**, whose one-handed syringe design allowed medical professionals to administer injections without assistance. Patented in 1899, the device increased precision, speed, and independence in clinical settings, particularly for nurses (Geer, 1899). Though modest in appearance, the syringe reshaped everyday medical practice by making care more efficient and scalable (U.S. National Library of Medicine, n.d.).
 
-Menstrual health. Hygiene. Reproductive care.
+And while institutional medicine advanced, other women addressed health problems that medicine hesitated to name.
 
-Not because they wanted to disrupt healthcare markets, but because bleeding every month without safe materials leads to infection, absence from school, social isolation. When women adapted medical dressings into sanitary products during wartime, they weren’t inventing “feminine hygiene.” They were applying **clinical logic to a neglected biological reality**. That’s public health, even if it was never called that.
+Menstrual health, long treated as a social inconvenience rather than a medical concern, became a site of innovation when women adapted absorbent medical materials into sanitary products during the early twentieth century. These developments were not cosmetic but preventative, reducing infection and improving mobility and school attendance (Freidenfelds, 2009). What emerged was a form of public health intervention, even if it was rarely acknowledged as such (Vostral, 2008).
 
-The story keeps slipping sideways.
+What connects these women is not a single discipline, but a shared position **outside institutional authority**.
 
-Because once you notice this, you see women influencing medicine through **architecture**, **statistics**, **engineering**, **education**, **materials science**, **chemistry**, and even **policy**, often without being allowed inside medical schools or research institutions.
+Many were barred from formal medical training, research posts, or leadership roles. As a result, they approached health problems through chemistry, statistics, engineering, materials science, or fieldwork, solving medical crises from wherever access was possible. Their contributions reveal how medicine itself has been shaped by who was allowed to participate, and who was forced to innovate from the margins.
 
-They weren’t “outside” medicine.
+Seen this way, these are not isolated stories of brilliance. They form a pattern of **unrecognized authority**, where women repeatedly advanced medical knowledge without being credited as medical pioneers.
 
-Medicine was standing inside walls they weren’t permitted to enter.
-
-So they worked from wherever they could stand.
-
-What makes these stories heavy, not inspirational in the shallow way, is that none of this was accidental brilliance. It was pressure. Constraint. Repetition. Watching people suffer and refusing to accept that suffering as normal.
-
-That’s why the line between “medical pioneer” and “not medical” keeps dissolving.
-
-Because when women solved problems, they didn’t ask which discipline owned the problem. They asked what would stop the pain, the loss, the delay, the death.
-
-And history later tried to file that instinct under smaller labels.
-
-> What we’re really looking at isn’t a list of contributors.
 >
-> It’s a pattern of **authority**.
+> What matters to say plainly is that these women represent only **a handful among many**. For every name that surfaces in the historical record, countless others remain embedded in case notes, lab logs, field reports, and unnamed practices passed from woman to woman. The archive of women’s medical influence is vast, fragmented, and still incomplete, not because the contributions were minor, but because recognition was selective.
 
-And once you tell the story this way, not as achievements, but as *decisions made under pressure,* medicine stops looking like a neutral field of progress and starts looking like a terrain shaped by who was listened to, and who had to prove the obvious twice.
+Once we tell the story like this, grounded in evidence, yet attentive to lived reality,  medicine stops appearing as a neutral march of progress. It becomes a terrain shaped by access, recognition, and power.
 
-That’s the part we’re restoring here.
-
-Not the myth.
-
-The continuity.
+And that is precisely the record *The She Archive* exists to restore.
