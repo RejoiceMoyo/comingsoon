@@ -10,6 +10,37 @@ description: Katherine Johnson was the mathematical mind behind America’s
   earliest space missions. Long before astronauts became heroes, her
   calculations determined whether they would return home alive. This is the
   story of the woman who made spaceflight possible.
+references: >-
+  
+
+
+  ## **References**
+
+
+  National Aeronautics and Space Administration. (n.d.). *Katherine Johnson biography*.
+
+  [https://www.nasa.gov/feature/katherine-johnson-biography](<>)
+
+
+  Johnson, K. G. (2021). *My remarkable journey: A memoir*. HarperCollins.
+
+
+  Shetterly, M. L. (2016). *Hidden figures*. William Morrow.
+
+
+  Smithsonian National Air and Space Museum. (n.d.). *Katherine Johnson and the space race*.
+
+  [https://airandspace.si.edu/stories/editorial/katherine-johnson](<>)
+
+
+  Encyclopaedia Britannica. (n.d.). *Katherine Johnson*.
+
+  [https://www.britannica.com/biography/Katherine-Johnson-mathematician](<>)
+
+
+  Roberts, S. (2020, February 24). Katherine Johnson, mathematician who helped send astronauts into space, dies at 101. *The New York Times*.
+
+  [https://www.nytimes.com/2020/02/24/science/katherine-johnson-dead.html](<>)
 ---
 ## **Introduction: Before the Rocket Leaves the Ground**
 
@@ -65,20 +96,4 @@ Katherine Johnson’s legacy lies not in symbolism, but structure. Her mathemati
 
 At *The She Archive*, Johnson’s story exemplifies the necessity of historical correction, not by mythologizing overlooked figures, but by documenting their work with rigor and clarity. Her life reminds us that progress is often built by those whose names history forgets, and that restoring these narratives is essential to understanding how knowledge truly advances.
 
-## **References**
-
-National Aeronautics and Space Administration. (n.d.). *Katherine Johnson biography*.
-<https://www.nasa.gov/feature/katherine-johnson-biography>
-
-Johnson, K. G. (2021). *My remarkable journey: A memoir*. HarperCollins.
-
-Shetterly, M. L. (2016). *Hidden figures*. William Morrow.
-
-Smithsonian National Air and Space Museum. (n.d.). *Katherine Johnson and the space race*.
-<https://airandspace.si.edu/stories/editorial/katherine-johnson>
-
-Encyclopaedia Britannica. (n.d.). *Katherine Johnson*.
-<https://www.britannica.com/biography/Katherine-Johnson-mathematician>
-
-Roberts, S. (2020, February 24). Katherine Johnson, mathematician who helped send astronauts into space, dies at 101. *The New York Times*.
-<https://www.nytimes.com/2020/02/24/science/katherine-johnson-dead.html>
+[](https://www.nytimes.com/2020/02/24/science/katherine-johnson-dead.html)
