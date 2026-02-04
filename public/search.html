@@ -119,6 +119,16 @@
 
                 <!-- Filters -->
                 <div class="mb-8 space-y-6">
+                    <!-- Content Type Filter -->
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3">Content Type</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button data-type="story" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-brand-teal hover:text-brand-teal transition-colors">Stories</button>
+                            <button data-type="invention" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Inventions</button>
+                            <button data-type="editorial" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-purple-600 hover:text-purple-600 transition-colors">Editor's Desk</button>
+                        </div>
+                    </div>
+
                     <!-- Popular Categories -->
                     <div>
                         <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3">Popular Categories</h3>
@@ -175,6 +185,7 @@
         let allData = { stories: [], inventions: [], editorials: [] };
         let activeCategory = null;
         let activeEra = null;
+        let activeType = null;
         let searchQuery = '';
 
         // DOM Elements
@@ -185,6 +196,7 @@
         const clearFiltersBtn = document.getElementById('clear-filters');
         const categoryBtns = document.querySelectorAll('.category-btn');
         const eraBtns = document.querySelectorAll('.era-btn');
+        const typeBtns = document.querySelectorAll('.type-btn');
 
         // Load all data
         async function loadAllData() {
@@ -221,8 +233,16 @@
                         if (btn.dataset.era === era) btn.classList.add('active');
                     });
                 }
+                
+                const type = params.get('type');
+                if (type) {
+                    activeType = type;
+                    typeBtns.forEach(btn => {
+                        if (btn.dataset.type === type) btn.classList.add('active');
+                    });
+                }
 
-                if (q || cat || era) {
+                if (q || cat || era || type) {
                     performSearch();
                 }
             } catch (error) {
@@ -238,6 +258,9 @@
 
             // Helper to check if item matches filters
             const matchesFilters = (item, type) => {
+                // Content type filter
+                if (activeType && type !== activeType) return false;
+
                 // Text search
                 if (query) {
                     const searchableText = [
@@ -397,12 +420,13 @@
             if (searchQuery) params.set('q', searchQuery);
             if (activeCategory) params.set('category', activeCategory);
             if (activeEra) params.set('era', activeEra);
+            if (activeType) params.set('type', activeType);
 
             const newURL = params.toString() ? `?${params.toString()}` : window.location.pathname;
             window.history.replaceState({}, '', newURL);
 
             // Show/hide clear button
-            clearFiltersBtn.classList.toggle('hidden', !searchQuery && !activeCategory && !activeEra);
+            clearFiltersBtn.classList.toggle('hidden', !searchQuery && !activeCategory && !activeEra && !activeType);
         }
 
         // Event Listeners
@@ -455,13 +479,34 @@
             });
         });
 
+        typeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.type;
+                
+                // Toggle off if already active
+                if (activeType === type) {
+                    activeType = null;
+                    btn.classList.remove('active');
+                } else {
+                    // Remove active from all type buttons
+                    typeBtns.forEach(b => b.classList.remove('active'));
+                    activeType = type;
+                    btn.classList.add('active');
+                }
+                
+                performSearch();
+            });
+        });
+
         clearFiltersBtn.addEventListener('click', () => {
             searchQuery = '';
             activeCategory = null;
             activeEra = null;
+            activeType = null;
             searchInput.value = '';
             categoryBtns.forEach(b => b.classList.remove('active'));
             eraBtns.forEach(b => b.classList.remove('active'));
+            typeBtns.forEach(b => b.classList.remove('active'));
             resultsContainer.innerHTML = '<p class="text-center text-gray-500 italic py-12">Enter a search term or select a filter to explore the archive...</p>';
             resultsCount.textContent = '';
             updateURL();
