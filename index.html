@@ -156,16 +156,15 @@
                     </div>
                     <div class="flex-1 w-full max-w-[280px] sm:max-w-[320px] relative">
                         <div
-                            class="aspect-[3/4] relative overflow-hidden group rounded-2xl shadow-2xl shadow-black/30">
-                            <div id="current-feature-image" class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110">
+                            class="aspect-[3/4] relative overflow-visible group">
+                            <div id="current-feature-image" class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105"
+                                style="mask-image: radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, black 40%, transparent 100%);">
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-white/10 pointer-events-none"></div>
-                            <div class="absolute inset-0 border border-white/20 rounded-2xl pointer-events-none"></div>
                             <div id="current-feature"
-                                class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white space-y-2 drop-shadow-lg">
+                                class="absolute bottom-4 sm:bottom-6 left-0 right-0 text-white text-center space-y-2 drop-shadow-lg">
                                 <p class="text-brand-gold font-bold text-xs sm:text-sm uppercase tracking-tighter">
                                     Current Feature</p>
-                                <p class="text-white/80 text-sm">Loading latest story...</p>
+                                <p class="text-white/90 text-sm px-4">Loading latest story...</p>
                                 <div class="w-full flex justify-center">
                                     <div id="feature-dots" class="flex gap-2 mt-1 items-center"></div>
                                 </div>
