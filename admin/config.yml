@@ -337,3 +337,19 @@ collections:
           - { label: "Press / Institutional Contact", name: "press", widget: "markdown", required: false }
           - { label: "Physical Location", name: "location", widget: "string", required: false, hint: "Country/City only if desired." }
           - { label: "Closing Line", name: "closing", widget: "string" }
+
+      - file: "content/pages/tech-news.md"
+        label: "Tech News"
+        name: "tech_news"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Tech News" }
+          - { label: "Intro", name: "intro", widget: "markdown", hint: "Intro or description for the Tech News page." }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - file: "content/pages/careers.md"
+        label: "Careers"
+        name: "careers"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Careers" }
+          - { label: "Intro", name: "intro", widget: "markdown", hint: "Intro or description for the Careers page." }
+          - { label: "Body", name: "body", widget: "markdown" }

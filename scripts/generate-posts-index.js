@@ -160,8 +160,8 @@ function wrapLayout(content, title, description, image, url) {
                     <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/coming-soon.html">Tech News</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/coming-soon.html">Careers</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/tech-news/">Tech News</a>
+                        <a class="hover:text-brand-teal transition-colors no-underline" href="/careers/">Careers</a>
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
                     </div>
                     <div class="flex gap-3 sm:gap-4">
