@@ -128,7 +128,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const postsHtml = list.map(post => {
+            // Only show top 3 stories on homepage
+            const displayList = list.slice(0, 3);
+            const hasMore = list.length > 3;
+
+            const postsHtml = displayList.map(post => {
                 const image = post.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
                 const category = post.category || 'Story';
                 const categoryColorClass = 'text-brand-teal bg-brand-teal/10';
@@ -151,7 +155,17 @@ document.addEventListener('DOMContentLoaded', async () => {
           `;
             }).join('');
 
-            container.innerHTML = postsHtml;
+            // Add "View All Stories" link if there are more than 3
+            const viewAllLink = hasMore ? `
+                <div class="mt-8 text-center">
+                    <a href="/stories/" class="inline-flex items-center gap-2 bg-brand-teal text-white font-bold text-sm px-6 py-3 rounded-lg hover:bg-brand-teal/90 transition-colors no-underline">
+                        View All Stories
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            ` : '';
+
+            container.innerHTML = postsHtml + viewAllLink;
         };
 
         if (posts.length === 0) {
