@@ -36,19 +36,10 @@ sources: >-
 
   >
 editors_note: >-
-  This article draws on extensive archival evidence and contemporary scholarship
-  to illuminate the often-overlooked contributions of women in early computing.
-  Our research relies on primary and secondary sources to ensure historical
-  accuracy and academic credibility. *Key references include Abbate (2012),
-  whose work Recoding Gender: Women’s Changing Participation in Computing
-  explores the social and institutional factors affecting women’s roles in
-  computing; Jennings & Snyder (1946), whose ENIAC programming notes provide
-  first-hand documentation of the tasks, methodologies, and technical challenges
-  faced by the original programmers; Hicks (2018), who analyzes how historical
-  narratives have marginalized these contributions in IEEE Annals of the History
-  of Computing; and collections from the National Museum of American History,
-  which preserve artifacts, photographs, and technical records of the ENIAC
-  programmers.*
+  
+
+
+  This article draws on extensive archival evidence and contemporary scholarship to illuminate the often-overlooked contributions of women in early computing. Our research relies on primary and secondary sources to ensure historical accuracy and academic credibility. *Key references include Abbate (2012), whose work Recoding Gender: Women’s Changing Participation in Computing explores the social and institutional factors affecting women’s roles in computing; Jennings & Snyder (1946), whose ENIAC programming notes provide first-hand documentation of the tasks, methodologies, and technical challenges faced by the original programmers; Hicks (2018), who analyzes how historical narratives have marginalized these contributions in IEEE Annals of the History of Computing; and collections from the National Museum of American History, which preserve artifacts, photographs, and technical records of the ENIAC programmers.*
 
 
   By integrating these sources, we aim not only to recount factual events, but also to contextualize the broader systemic patterns of erasure and marginalization that affected women in STEM. This note underscores the importance of archival research, critical scholarship, and careful documentation in preserving the legacies of historically underrepresented contributors. The Editor’s Desk at *The She Archive* is committed to ensuring that future narratives of technological innovation accurately reflect the diversity of minds and labor that made progress possible.
