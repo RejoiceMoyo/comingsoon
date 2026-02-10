@@ -1,4 +1,5 @@
 ---
+date: 2026-02-01T12:00:00.000Z
 institution: Independent (U.S. Navy Patent Submission)
 impact: >-
   Although the U.S. Navy, allegedly, did not deploy the system during WWII, the

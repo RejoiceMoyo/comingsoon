@@ -548,7 +548,7 @@ if (fs.existsSync(loadPostsScript)) {
 if (!fs.existsSync(apiDir)) fs.mkdirSync(apiDir, { recursive: true });
 
 const posts = getCollection(postsDir).sort((a, b) => new Date(b.date) - new Date(a.date));
-const inventions = getCollection(inventionsDir);
+const inventions = getCollection(inventionsDir).sort((a, b) => new Date(b.date) - new Date(a.date));
 const editorials = getCollection(editorialDir).sort((a, b) => new Date(b.date) - new Date(a.date));
 const staticPageData = getCollection(pagesDir);
 
