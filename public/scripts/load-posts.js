@@ -39,12 +39,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const fallbackImg = 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
         const features = [];
         if (posts[0]) {
+            const label = posts[0].category || (Array.isArray(posts[0].categories) ? posts[0].categories[0] : 'Stories');
             features.push({
                 title: posts[0].title,
                 date: posts[0].date,
                 image: posts[0].image || fallbackImg,
                 href: `/stories/${posts[0].slug}/`,
-                label: posts[0].category || 'Stories'
+                label: label
             });
         }
         if (editorials[0]) {
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const postsHtml = displayList.map(post => {
                 const image = post.image || 'https://media.newyorker.com/photos/64123041652f9d9fe976fff0/4:3/w_1779,h_1334,c_limit/ra1146.jpg';
-                const category = post.category || 'Story';
+                const category = post.category || (Array.isArray(post.categories) ? post.categories[0] : 'Story');
                 const categoryColorClass = 'text-brand-teal bg-brand-teal/10';
 
                 return `
