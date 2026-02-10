@@ -1,167 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MDE8PXF500');
-</script>
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764"
-    crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-5010155177671764">
-    <meta charset="utf-8" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MDE8PXF500');
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764"
+        crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5010155177671764">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Stay up to date with the latest technology news, breakthroughs, and stories from women in STEM and beyond." />
-    <meta property="og:title" content="Tech News | The She Archive" />
-    <meta property="og:description" content="Stay up to date with the latest technology news, breakthroughs, and stories from women in STEM and beyond." />
-    <meta property="og:image" content="/images/prvimg.jpeg" />
-    <meta property="og:url" content="https://theshearchive.com/tech-news/" />
     <meta property="og:site_name" content="The She Archive" />
+    <meta property="og:title" content="The She Archive — Tech News" />
+    <meta property="og:description" content="Stay up to date with the latest technology news, breakthroughs, and stories from women in STEM and beyond." />
+    <meta property="og:image" content="https://theshearchive.com/images/prvimg.jpeg" />
+    <meta property="og:url" content="https://theshearchive.com/tech-news" />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tech News | The She Archive" />
+    <meta name="twitter:title" content="The She Archive — Tech News" />
     <meta name="twitter:description" content="Stay up to date with the latest technology news, breakthroughs, and stories from women in STEM and beyond." />
-    <meta name="twitter:image" content="/images/prvimg.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://theshearchive.com/images/prvimg.jpeg" />
     <meta name="theme-color" content="#008080" />
-    <link rel="canonical" href="https://theshearchive.com/tech-news/" />
-    <title>Tech News | The She Archive</title>
+    <title>The She Archive — Tech News</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
     <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#8c2bee",
-                        "brand-teal": "#008080",
-                        "brand-gold": "#D4AF37",
-                        "background-light": "#f7f6f8",
-                        "background-dark": "#191022",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"],
-                        "serif": ["Playfair Display", "serif"]
-                    },
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#8c2bee",
+              "brand-teal": "#008080",
+              "brand-gold": "#D4AF37",
+              "background-light": "#f7f6f8",
+              "background-dark": "#191022",
             },
-        }
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "serif": ["Playfair Display", "serif"],
+            },
+          },
+        },
+      }
     </script>
     <style type="text/tailwindcss">
-        .brand-heading { font-family: "Playfair Display", serif }
-        .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
-            font-family: "Times New Roman", Times, serif;
-        }
+      .brand-heading { font-family: "Playfair Display", serif }
+      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
+      .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
+          font-family: "Times New Roman", Times, serif;
+      }
     </style>
-    <style>
-         @font-face {
-            font-family: 'Material Symbols Outlined';
-            font-style: normal;
-            font-weight: 100 700;
-            src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpX2g.woff2) format('woff2');
-        }
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined' !important;
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-        }
-        a, a:visited, a:hover, a:focus {
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-        <div class="layout-container flex h-full grow flex-col">
-            <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-                <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
-                    <div class="flex flex-col items-center gap-2">
-                        <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
-                        <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
-                        <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/stories/">Stories</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/inventions/">Inventions</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/editors-desk/">The Editor’s Desk</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/about/">About</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center no-underline" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                                <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-            <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                
-            <article class="post-content max-w-2xl mx-auto">
-                <h1 class="brand-heading text-3xl mb-6 italic text-center">Tech News</h1>
-                
-                <div class="mb-8 text-center text-brand-teal font-semibold"><p>Stay up to date with the latest technology news, breakthroughs, and stories from women in STEM and beyond.</p>
-</div>
-                <div class="mb-8"><p>Coming soon: This page will feature curated news, updates, and highlights from the world of technology.</p>
-</div>
-                
-                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
-                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
-                        </span>
-                        Support The She Archive
-                    </a>
-                </div>
-            </article>
-        
-            </main>
-            <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <img src="/images/tsa.png" alt="TSA Logo" class="h-7 w-7 sm:h-8 sm:w-8 object-contain">
-                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/tech-news/">Tech News</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/careers/">Careers</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
-                    </div>
-                    <div class="flex gap-3 sm:gap-4">
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Support The She Archive">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">coffee</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="/coming-soon.html" aria-label="RSS Feed">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="mailto:theshearchivehq@gmail.com" aria-label="Email us">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-                        </a>
-                    </div>
-                </div>
-                <p class="text-center text-black dark:text-white/60 text-xs mt-8 sm:mt-12">
-                    © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism, Science and more.
-                </p>
-            </footer>
-        </div>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+          <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
+            <div class="flex flex-col items-center gap-2">
+              <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
+              <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
+              <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
+                <a class="pb-1 border-b border-[#008080] text-[#008080] dark:border-brand-gold dark:text-brand-gold transition-colors" href="/tech-news/">Tech News</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/careers/">Careers</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
+                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                    <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div class="mb-6">
+            <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white">Tech News</h1>
+          </div>
+
+          <ul id="post-list" class="post-list mt-2 space-y-6">
+            <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">
+              Loading Tech News...
+            </li>
+          </ul>
+
+        </main>
+        <div id="shared-footer"></div>
+      </div>
     </div>
-</body>
+
+    <script src="/scripts/filters.js?v=1"></script>
+    <script>
+      const formatDate = (value) => {
+        if (!value) return '';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      };
+
+      async function loadPosts() {
+        try {
+          const response = await fetch('/api/tech-news.json?ts=' + Date.now());
+          if (!response.ok) throw new Error('Failed to load tech news');
+          const posts = await response.json();
+
+          const list = document.getElementById('post-list');
+          
+          // Re-use filters logic if applicable, but key parts:
+          const searchInput = document.querySelector('[data-filter-search]');
+          const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
+          const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
+          const clearButton = document.querySelector('[data-filter-clear]');
+          // Optional results count
+          const resultsCount = document.getElementById('results-count');
+
+          const renderPosts = (items) => {
+            if (!items || items.length === 0) {
+              list.innerHTML = '<li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">No news found.</li>';
+              if (resultsCount) resultsCount.textContent = '0 results';
+              return;
+            }
+
+            list.innerHTML = items.map(post => {
+              const image = post.image || '/images/prvimg.jpeg';
+              return `
+                <li class="py-4 sm:py-6 border-b border-[#e0dbe6] dark:border-white/10 text-black text-xs">
+                  <div class="flex items-center gap-4">
+                    <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-lg overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
+                      <img src="${image}" alt="${post.title}" class="h-full w-full object-cover" />
+                    </div>
+                    <h2 class="brand-heading text-sm text-black font-bold">${post.title}</h2>
+                  </div>
+                  <p class="mt-2 text-xs text-black">
+                    <span class="text-brand-gold">By ${post.author || 'The She Archive'}</span>${post.date ? ` | <span class="text-brand-teal">${formatDate(post.date)}</span>` : ''}
+                  </p>
+                  <p class="mt-3 text-black text-xs">${post.description || ''}</p>
+                  <a href="/tech-news/${post.slug}/" class="mt-3 inline-flex items-center gap-2 text-brand-teal font-bold text-xs hover:opacity-80 no-underline">
+                    Read More
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                  </a>
+                </li>
+              `;
+            }).join('');
+          };
+
+          if (window.ContentFilter && window.ContentFilter.initContentFilter) {
+            window.ContentFilter.initContentFilter({
+              items: posts,
+              container: list,
+              renderItems: renderPosts,
+              searchInput,
+              categoryButtons,
+              eraButtons,
+              clearButton,
+              resultsCount,
+            });
+          } else {
+            renderPosts(posts);
+          }
+        } catch (error) {
+          console.error(error);
+          document.getElementById('post-list').innerHTML = '<li class="p-6">Error loading content. Please try again later.</li>';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadPosts);
+    </script>
+    <script src="/scripts/footer.js"></script>
+  </body>
 </html>

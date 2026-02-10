@@ -85,7 +85,9 @@
                         <nav class="flex w-full max-w-5xl items-center justify-center gap-3 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor's Desk</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/tech-news/">Tech News</a>
+                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/careers/">Careers</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
                                 <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
@@ -126,6 +128,8 @@
                             <button data-type="story" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-brand-teal hover:text-brand-teal transition-colors">Stories</button>
                             <button data-type="invention" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-brand-gold hover:text-brand-gold transition-colors">Inventions</button>
                             <button data-type="editorial" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-purple-600 hover:text-purple-600 transition-colors">Editor's Desk</button>
+                            <button data-type="tech-news" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-blue-600 hover:text-blue-600 transition-colors">Tech News</button>
+                            <button data-type="career" class="filter-btn type-btn px-4 py-2 rounded-full border border-[#e0dbe6] text-sm font-medium hover:border-green-600 hover:text-green-600 transition-colors">Careers</button>
                         </div>
                     </div>
 
@@ -182,7 +186,7 @@
         };
 
         // State
-        let allData = { stories: [], inventions: [], editorials: [] };
+        let allData = { stories: [], inventions: [], editorials: [], techNews: [], careers: [] };
         let activeCategory = null;
         let activeEra = null;
         let activeType = null;
@@ -201,15 +205,22 @@
         // Load all data
         async function loadAllData() {
             try {
-                const [storiesRes, inventionsRes, editorialsRes] = await Promise.all([
+                const [storiesRes, inventionsRes, editorialsRes, techNewsRes, careersRes] = await Promise.all([
                     fetch('/api/posts.json?ts=' + Date.now()),
                     fetch('/api/inventions.json?ts=' + Date.now()),
-                    fetch('/api/editorials.json?ts=' + Date.now())
+                    fetch('/api/editorials.json?ts=' + Date.now()),
+                    fetch('/api/tech-news.json?ts=' + Date.now()),
+                    fetch('/api/careers.json?ts=' + Date.now())
                 ]);
 
-                allData.stories = await storiesRes.json();
-                allData.inventions = await inventionsRes.json();
-                allData.editorials = await editorialsRes.json();
+                // Helper to safely get JSON
+                const getJson = async (res) => res.ok ? await res.json() : [];
+
+                allData.stories = await getJson(storiesRes);
+                allData.inventions = await getJson(inventionsRes);
+                allData.editorials = await getJson(editorialsRes);
+                allData.techNews = await getJson(techNewsRes);
+                allData.careers = await getJson(careersRes);
 
                 // Check URL params on load
                 const params = new URLSearchParams(window.location.search);
@@ -356,6 +367,18 @@
                 }
             });
 
+            allData.techNews.forEach(item => {
+                if (matchesFilters(item, 'tech-news')) {
+                    results.push({ ...item, type: 'tech-news', url: `/tech-news/${item.slug}/` });
+                }
+            });
+
+            allData.careers.forEach(item => {
+                if (matchesFilters(item, 'career')) {
+                    results.push({ ...item, type: 'career', url: `/careers/${item.slug}/` });
+                }
+            });
+
             // Sort by date (newest first)
             results.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
@@ -381,7 +404,9 @@
             const typeLabels = {
                 'story': { label: 'Story', color: 'bg-brand-teal' },
                 'invention': { label: 'Invention', color: 'bg-brand-gold' },
-                'editorial': { label: "Editor's Desk", color: 'bg-purple-600' }
+                'editorial': { label: "Editor's Desk", color: 'bg-purple-600' },
+                'tech-news': { label: 'Tech News', color: 'bg-blue-600' },
+                'career': { label: 'Career', color: 'bg-green-600' }
             };
 
             resultsContainer.innerHTML = results.map(item => {

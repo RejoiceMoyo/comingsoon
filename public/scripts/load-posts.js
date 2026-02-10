@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
-        const [postsRes, editorialsRes, inventionsRes] = await Promise.allSettled([
+        const [postsRes, editorialsRes, inventionsRes, techNewsRes, careersRes] = await Promise.allSettled([
             fetch(`api/posts.json?ts=${Date.now()}`, { cache: 'no-store' }),
             fetch(`api/editorials.json?ts=${Date.now()}`, { cache: 'no-store' }),
-            fetch(`api/inventions.json?ts=${Date.now()}`, { cache: 'no-store' })
+            fetch(`api/inventions.json?ts=${Date.now()}`, { cache: 'no-store' }),
+            fetch(`api/tech-news.json?ts=${Date.now()}`, { cache: 'no-store' }),
+            fetch(`api/careers.json?ts=${Date.now()}`, { cache: 'no-store' })
         ]);
 
         const safeJson = async (res) => (res && res.ok ? res.json() : []);
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const posts = await safeJson(postsRes.value);
         const editorials = await safeJson(editorialsRes.value);
         const inventions = await safeJson(inventionsRes.value);
+        const techNews = await safeJson(techNewsRes.value);
+        const careers = await safeJson(careersRes.value);
 
         const currentFeature = document.getElementById('current-feature');
         const currentFeatureImage = document.getElementById('current-feature-image');
@@ -188,6 +192,40 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderPosts(posts);
         }
 
+        // --- Sidebar: Latest Tech News ---
+        const newsContainer = document.getElementById('tech-news-sidebar');
+        if (newsContainer && techNews.length > 0) {
+            // Take top 3 news items (exclude the "Welcome" post if other posts exist)
+            // Or just take the most recent 3.
+            const newsToShow = techNews.slice(0, 3);
+            newsContainer.innerHTML = newsToShow.map(item => `
+                <li>
+                    <a href="/tech-news/${item.slug}/" class="group block">
+                        <span class="text-xs text-brand-gold font-bold uppercase">${formatDate(item.date)}</span>
+                        <h5 class="text-sm font-bold text-[#141118] dark:text-white group-hover:text-brand-teal leading-tight mt-1">${item.title}</h5>
+                    </a>
+                </li>
+            `).join('');
+        } else if (newsContainer) {
+             newsContainer.innerHTML = '<li class="text-xs text-gray-500 italic">No updates yet.</li>';
+        }
+
+        // --- Sidebar: Featured Careers ---
+        const careersContainer = document.getElementById('careers-sidebar');
+        if (careersContainer && careers.length > 0) {
+            const jobsToShow = careers.slice(0, 3);
+            careersContainer.innerHTML = jobsToShow.map(item => `
+                 <li>
+                    <a href="/careers/${item.slug}/" class="group block p-3 rounded bg-white dark:bg-white/5 hover:shadow-md transition-all border border-transparent hover:border-brand-teal/30">
+                        <h5 class="text-sm font-bold text-brand-teal group-hover:text-brand-teal mb-0.5">${item.title}</h5>
+                        <p class="text-xs text-[#141118] dark:text-white/80">${item.company || 'The She Archive'}</p>
+                        ${item.location ? `<p class="text-[10px] text-gray-500 mt-1 uppercase tracking-wider">${item.location}</p>` : ''}
+                    </a>
+                </li>
+            `).join('');
+        } else if (careersContainer) {
+            careersContainer.innerHTML = '<li class="text-xs text-gray-500 italic">No open positions.</li>';
+        }
 
     } catch (error) {
         console.error('Error loading posts:', error);
