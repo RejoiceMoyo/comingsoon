@@ -145,7 +145,6 @@ function wrapLayout(content, title, description, image, url) {
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/inventions/">Inventions</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/editors-desk/">The Editor’s Desk</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/tech-news/">Tech News</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/careers/">Careers</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/about/">About</a>
                             <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center no-underline" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
                                 <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
@@ -167,7 +166,6 @@ function wrapLayout(content, title, description, image, url) {
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/tech-news/">Tech News</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/careers/">Careers</a>
                         <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
                     </div>
                     <div class="flex gap-3 sm:gap-4">
