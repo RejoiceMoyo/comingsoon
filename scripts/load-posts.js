@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 date: posts[0].date,
                 image: posts[0].image || fallbackImg,
                 href: `/stories/${posts[0].slug}/`,
-                label: 'Stories'
+                label: posts[0].category || 'Stories'
             });
         }
         if (editorials[0]) {
@@ -53,16 +53,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 date: editorials[0].date,
                 image: editorials[0].image || fallbackImg,
                 href: `/editors-desk/${editorials[0].slug}/`,
-                label: "Editor's Desk"
+                label: editorials[0].category || "Editor's Desk"
             });
         }
         if (inventions[0]) {
+             // Inventions often use 'field' array instead of category. Use the first field or 'Invention'
+            const invLabel = Array.isArray(inventions[0].field) ? inventions[0].field[0] : (inventions[0].field || 'Invention');
             features.push({
                 title: inventions[0].title,
                 date: inventions[0].date,
                 image: inventions[0].image || fallbackImg,
                 href: `/inventions/${inventions[0].slug}/`,
-                label: 'Inventions'
+                label: invLabel
             });
         }
 
