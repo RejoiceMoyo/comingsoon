@@ -7,6 +7,8 @@ const rootDir = path.join(__dirname, '../');
 const postsDir = path.join(rootDir, 'content/posts');
 const inventionsDir = path.join(rootDir, 'content/inventions');
 const editorialDir = path.join(rootDir, 'content/editors-desk');
+const techNewsDir = path.join(rootDir, 'content/tech-news');
+const careersDir = path.join(rootDir, 'content/careers');
 const pagesDir = path.join(rootDir, 'content/pages');
 const outputDir = path.join(rootDir, 'public');
 const apiDir = path.join(outputDir, 'api');
@@ -14,6 +16,8 @@ const baseUrl = 'https://theshearchive.com';
 const storiesDir = path.join(outputDir, 'stories');
 const inventionsOutputDir = path.join(outputDir, 'inventions');
 const editorialOutputDir = path.join(outputDir, 'editors-desk');
+const techNewsOutputDir = path.join(outputDir, 'tech-news');
+const careersOutputDir = path.join(outputDir, 'careers');
 const coffeeUrl = 'https://buymeacoffee.com/theshearchive';
 
 // --- Helper Functions ---
@@ -558,17 +562,21 @@ const getDate = (item) => {
 const posts = getCollection(postsDir).sort((a, b) => getDate(b) - getDate(a));
 const inventions = getCollection(inventionsDir).sort((a, b) => getDate(b) - getDate(a));
 const editorials = getCollection(editorialDir).sort((a, b) => getDate(b) - getDate(a));
+const techNews = getCollection(techNewsDir).sort((a, b) => getDate(b) - getDate(a));
+const careers = getCollection(careersDir).sort((a, b) => getDate(b) - getDate(a));
 const staticPageData = getCollection(pagesDir);
 
 fs.writeFileSync(path.join(apiDir, 'posts.json'), JSON.stringify(posts, null, 2));
 fs.writeFileSync(path.join(apiDir, 'inventions.json'), JSON.stringify(inventions, null, 2));
 fs.writeFileSync(path.join(apiDir, 'editorials.json'), JSON.stringify(editorials, null, 2));
+fs.writeFileSync(path.join(apiDir, 'tech-news.json'), JSON.stringify(techNews, null, 2));
+fs.writeFileSync(path.join(apiDir, 'careers.json'), JSON.stringify(careers, null, 2));
 
-console.log(`Generated APIs: ${posts.length} posts, ${inventions.length} inventions, ${editorials.length} editorials.`);
+console.log(`Generated APIs: ${posts.length} posts, ${inventions.length} inventions, ${editorials.length} editorials, ${techNews.length} tech news, ${careers.length} career posts.`);
 
 // Create section directories
 const searchDir = path.join(outputDir, 'search');
-[storiesDir, inventionsOutputDir, editorialOutputDir, searchDir, publicScriptsDir].forEach(dir => {
+[storiesDir, inventionsOutputDir, editorialOutputDir, techNewsOutputDir, careersOutputDir, searchDir, publicScriptsDir].forEach(dir => {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
@@ -587,6 +595,8 @@ const indexMappings = [
     { src: 'blog.html', dest: path.join(storiesDir, 'index.html') },
     { src: 'inventions.html', dest: path.join(inventionsOutputDir, 'index.html') },
     { src: 'editors-desk.html', dest: path.join(editorialOutputDir, 'index.html') },
+    { src: 'tech-news.html', dest: path.join(techNewsOutputDir, 'index.html') },
+    { src: 'careers.html', dest: path.join(careersOutputDir, 'index.html') },
     { src: 'search.html', dest: path.join(searchDir, 'index.html') }
 ];
 
@@ -601,6 +611,8 @@ indexMappings.forEach(mapping => {
 posts.forEach(p => generateContentPage(p, 'stories', storiesDir));
 inventions.forEach(i => generateContentPage(i, 'inventions', inventionsOutputDir));
 editorials.forEach(e => generateContentPage(e, 'editors-desk', editorialOutputDir));
+techNews.forEach(t => generateContentPage(t, 'tech-news', techNewsOutputDir));
+careers.forEach(c => generateContentPage(c, 'careers', careersOutputDir));
 
 // Generate Static Pages (About, Privacy, etc.)
 staticPageData.forEach(page => {
@@ -631,6 +643,8 @@ const contentUrls = [
     ...posts.map(p => `${baseUrl}/stories/${p.slug}/`),
     ...inventions.map(i => `${baseUrl}/inventions/${i.slug}/`),
     ...editorials.map(e => `${baseUrl}/editors-desk/${e.slug}/`),
+    ...techNews.map(t => `${baseUrl}/tech-news/${t.slug}/`),
+    ...careers.map(c => `${baseUrl}/careers/${c.slug}/`),
     ...staticPageData.map(p => `${baseUrl}/${p.slug}/`)
 ];
 
