@@ -430,6 +430,7 @@ function generateContentPage(item, type, outputBaseDir) {
                     Back to ${type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
                 </a>
                 <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black">
+                    ${item.category ? `<span class="bg-brand-teal/10 text-brand-teal font-bold text-xs uppercase tracking-widest px-2 py-1 rounded mb-4 inline-block">${item.category}</span>` : ''}
                     <h1 class="brand-heading text-2xl sm:text-3xl md:text-4xl text-[#141118]">${title}</h1>
                     ${item.dek ? `<p class="text-base font-semibold text-gray-600 italic mt-3">${item.dek}</p>` : ''}
                     <p class="text-sm text-black mt-4">
@@ -547,9 +548,16 @@ if (fs.existsSync(loadPostsScript)) {
 // Generate APIs
 if (!fs.existsSync(apiDir)) fs.mkdirSync(apiDir, { recursive: true });
 
-const posts = getCollection(postsDir).sort((a, b) => new Date(b.date) - new Date(a.date));
-const inventions = getCollection(inventionsDir).sort((a, b) => new Date(b.date) - new Date(a.date));
-const editorials = getCollection(editorialDir).sort((a, b) => new Date(b.date) - new Date(a.date));
+const getDate = (item) => {
+    if (item.date) return new Date(item.date);
+    // Try to extract date from filename if available
+    const match = item.originalSlug && item.originalSlug.match(/^(\d{4}-\d{2}-\d{2})/);
+    return match ? new Date(match[1]) : new Date(0);
+};
+
+const posts = getCollection(postsDir).sort((a, b) => getDate(b) - getDate(a));
+const inventions = getCollection(inventionsDir).sort((a, b) => getDate(b) - getDate(a));
+const editorials = getCollection(editorialDir).sort((a, b) => getDate(b) - getDate(a));
 const staticPageData = getCollection(pagesDir);
 
 fs.writeFileSync(path.join(apiDir, 'posts.json'), JSON.stringify(posts, null, 2));
