@@ -90,9 +90,9 @@
             <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white">Careers</h1>
           </div>
 
-          <ul id="post-list" class="post-list mt-2 space-y-6">
-            <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">
-              Loading Careers...
+          <ul id="post-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <li class="col-span-full rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70 text-center">
+              Loading Opportunities...
             </li>
           </ul>
 
@@ -134,23 +134,31 @@
             list.innerHTML = items.map(post => {
               const image = post.image || '/images/prvimg.jpeg';
               return `
-                <li class="py-4 sm:py-6 border-b border-[#e0dbe6] dark:border-white/10 text-black text-xs">
-                  <div class="flex items-center gap-4">
-                    <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-lg overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
-                      <img src="${image}" alt="${post.title}" class="h-full w-full object-cover" />
-                    </div>
-                    <h2 class="brand-heading text-sm text-black font-bold">${post.title}</h2>
+                <li class="group flex flex-col h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#f2f0f4] dark:border-white/5">
+                  <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-white/5 relative">
+                     <img src="${image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                     <div class="absolute inset-0 bg-brand-teal/0 group-hover:bg-brand-teal/10 transition-colors duration-300"></div>
                   </div>
-                  <p class="mt-2 text-xs text-black">
-                    <span class="text-brand-gold">${post.company || post.author || 'The She Archive'}</span>
-                    ${post.location ? ` | <span class="text-brand-teal">${post.location}</span>` : ''}
-                    ${post.date ? ` | <span class="text-[#756189]">${formatDate(post.date)}</span>` : ''}
-                  </p>
-                  <p class="mt-3 text-black text-xs">${post.description || ''}</p>
-                  <a href="/careers/${post.slug}/" class="mt-3 inline-flex items-center gap-2 text-brand-teal font-bold text-xs hover:opacity-80 no-underline">
-                    View Opportunity
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                  </a>
+                  <div class="p-6 flex flex-col flex-1">
+                     <div class="flex items-center gap-2 mb-3 text-[10px] font-bold tracking-widest uppercase">
+                        <span class="text-brand-gold">Opportunity</span>
+                        <span class="text-[#e0dbe6]">•</span>
+                        <span class="text-[#756189] dark:text-white/60">${post.location || 'Remote'}</span>
+                     </div>
+                     <h3 class="brand-heading text-xl font-bold mb-3 text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors leading-tight">
+                        <a href="/careers/${post.slug}/" class="before:absolute before:inset-0">${post.title}</a>
+                     </h3>
+                     <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-4 flex-1 leading-relaxed">
+                        ${post.description || 'Explore this opportunity at The She Archive...'}
+                     </p>
+                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-[#f2f0f4] dark:border-white/10">
+                        <span class="text-xs font-bold text-brand-teal flex items-center gap-1">
+                           ${post.company || 'The She Archive'}
+                           ${post.company ? '<span class="material-symbols-outlined text-[14px]">verified</span>' : ''}
+                        </span>
+                        <span class="text-[10px] text-[#756189] dark:text-white/40 font-mono">${formatDate(post.date)}</span>
+                     </div>
+                  </div>
                 </li>
               `;
             }).join('');
