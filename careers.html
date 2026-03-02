@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
     <script>
@@ -27,164 +27,235 @@
     <meta name="twitter:description" content="Explore career opportunities, resources, and advice for women in science, technology, engineering, arts, and mathematics." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://theshearchive.com/images/prvimg.jpeg" />
-    <meta name="theme-color" content="#008080" />
+    <meta name="theme-color" content="#e6b319" />
     <title>The She Archive — Careers</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "primary": "#8c2bee",
-              "brand-teal": "#008080",
-              "brand-gold": "#D4AF37",
-              "background-light": "#f7f6f8",
-              "background-dark": "#191022",
+              "primary": "#e6b319",
+              "background-light": "#f9f8f4",
+              "background-dark": "#211d11",
+              "charcoal": "#1b180e",
+              "archive-gray": "#97854e",
+              "ivory": "#fdfcf8",
             },
             fontFamily: {
-              "display": ["Space Grotesk", "sans-serif"],
+              "display": ["Inter", "sans-serif"],
               "serif": ["Playfair Display", "serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "0px",
+              "xl": "0px",
+              "full": "9999px",
             },
           },
         },
       }
     </script>
-    <style type="text/tailwindcss">
-      .brand-heading { font-family: "Playfair Display", serif }
-      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-      .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
-          font-family: "Times New Roman", Times, serif;
-      }
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
+      .serif-heading { font-family: 'Playfair Display', serif; }
+      .border-archival { border-color: rgba(27, 24, 14, 0.12); }
+      .masonry-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
+      .irregular-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
+      .asymmetrical-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+      .bulletin-row:hover { background-color: rgba(230, 179, 25, 0.03); }
+      .fade-in { animation: fadeIn 0.35s ease; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: block; }
+      .dark body { background-color: #211d11; color: #f9f8f4; }
     </style>
-  </head>
-  <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
-    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-          <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
-            <div class="flex flex-col items-center gap-2">
-              <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
-              <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
-              <nav class="flex w-full max-w-5xl items-center justify-center gap-2.5 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-normal sm:tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/tech-news/">Tech News</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                    <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </header>
+</head>
+<body class="bg-background-light text-charcoal transition-colors duration-300">
 
-        <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div class="mb-6">
-            <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white">Careers</h1>
-          </div>
+<header class="sticky top-0 z-50 bg-background-light/90 backdrop-blur-md border-b border-archival px-6 lg:px-12 py-4">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+    <div class="flex-1">
+      <a href="/" class="serif-heading text-xl lg:text-2xl font-bold tracking-tight hover:text-primary transition-colors">THE SHE ARCHIVE</a>
+    </div>
+    <nav class="hidden lg:flex items-center justify-center gap-8 flex-[2]">
+      <a href="/stories/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="stories">STORIES</a>
+      <a href="/inventions/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="inventions">INVENTIONS</a>
+      <a href="/tech-news/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="tech-news">TECH NEWS</a>
+      <a href="/editors-desk/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="editors-desk">EDITOR'S DESK</a>
+      <a href="/about/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="about">ABOUT</a>
+    </nav>
+    <div class="flex items-center justify-end gap-5 flex-1">
+      <button onclick="toggleSearch()" class="hover:text-primary transition-colors flex items-center">
+        <span class="material-symbols-outlined text-[20px]">search</span>
+      </button>
+      <button onclick="toggleDark()" class="hover:text-primary transition-colors flex items-center" title="Toggle dark mode">
+        <span class="material-symbols-outlined text-[20px]" id="dark-icon">dark_mode</span>
+      </button>
+      <button class="lg:hidden hover:text-primary" onclick="toggleMobileMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+  <!-- Search bar -->
+  <div id="search-bar" class="hidden max-w-[1440px] mx-auto pt-4 pb-2 px-1">
+    <div class="relative">
+      <input id="search-input" type="text" placeholder="Search by name, era, or topic..." class="w-full bg-transparent border-b-2 border-charcoal/20 py-3 text-lg serif-heading italic focus:ring-0 focus:border-primary placeholder:text-charcoal/30 outline-none" onkeydown="if(event.key==='Enter')window.location='/search/?q='+encodeURIComponent(this.value)"/>
+      <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-charcoal/40">search</span>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div id="mobile-menu" class="lg:hidden pt-4 pb-2 border-t border-archival mt-4">
+    <div class="flex flex-col gap-3">
+          <a href="/stories/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">STORIES</a>
+          <a href="/inventions/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">INVENTIONS</a>
+          <a href="/tech-news/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">TECH NEWS</a>
+          <a href="/editors-desk/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">EDITOR'S DESK</a>
+          <a href="/about/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">ABOUT</a>
+    </div>
+  </div>
+</header>
 
-          <ul id="post-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            <li class="col-span-full rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70 text-center">
-              Loading Opportunities...
-            </li>
-          </ul>
+<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 fade-in">
 
-        </main>
-        <div id="shared-footer"></div>
+  <div class="mb-16 border-b-2 border-charcoal pb-8">
+    <div class="flex justify-between items-end">
+      <div>
+        <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-archive-gray">Resources</span>
+        <h1 class="serif-heading text-5xl lg:text-6xl font-bold mt-2">Careers</h1>
+      </div>
+      <div class="text-right hidden lg:block">
+        <p class="text-[10px] font-bold tracking-widest uppercase">Opportunities Register</p>
+        <p class="text-[10px] italic text-archive-gray">Continuously Updated</p>
       </div>
     </div>
+  </div>
 
-    <script src="/scripts/filters.js?v=1"></script>
-    <script>
-      const formatDate = (value) => {
-        if (!value) return '';
-        const date = new Date(value);
-        if (Number.isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  <section>
+    <div class="border-t border-archival" id="post-list">
+      <div class="bulletin-row py-8 border-b border-archival text-charcoal/40 italic text-sm serif-heading">Loading opportunities...</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-1">
+        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
+        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
+          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
+          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
+          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
+          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
+          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
+      <div class="flex gap-8">
+        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
+        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
+        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts/filters.js?v=1"></script>
+<script>
+  const formatDate = (value) => {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+
+  async function loadPosts() {
+    try {
+      const resp = await fetch('/api/careers.json?ts=' + Date.now());
+      if (!resp.ok) throw new Error('Failed');
+      const posts = await resp.json();
+      const list = document.getElementById('post-list');
+
+      const renderPosts = (items) => {
+        if (!items || !items.length) {
+          list.innerHTML = '<div class="py-12 text-center text-archive-gray italic serif-heading">No opportunities found.</div>'; return;
+        }
+        list.innerHTML = items.map((post, i) => `
+          <div class="bulletin-row grid grid-cols-12 gap-4 py-8 border-b border-archival items-center group cursor-pointer" onclick="window.location='/careers/${post.slug}/'">
+            <div class="col-span-2 lg:col-span-1"><span class="text-[10px] font-bold text-archive-gray tracking-tighter">OPP-${String(i + 1).padStart(3, '0')}</span></div>
+            <div class="col-span-10 lg:col-span-1"><span class="text-[9px] font-bold tracking-widest uppercase text-charcoal/50">${post.category || 'Career'}</span></div>
+            <div class="col-span-12 lg:col-span-5">
+              <h3 class="serif-heading text-xl font-bold group-hover:text-primary transition-colors">${post.title}</h3>
+              ${post.date ? `<p class="text-[10px] text-archive-gray mt-1 italic">${formatDate(post.date)}</p>` : ''}
+            </div>
+            <div class="col-span-12 lg:col-span-5">
+              <p class="text-sm text-charcoal/70 italic leading-relaxed">${post.description || ''}</p>
+            </div>
+          </div>`).join('');
       };
 
-      async function loadPosts() {
-        try {
-          const response = await fetch('/api/careers.json?ts=' + Date.now());
-          if (!response.ok) throw new Error('Failed to load careers');
-          const posts = await response.json();
-
-          const list = document.getElementById('post-list');
-          
-          const searchInput = document.querySelector('[data-filter-search]');
-          const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
-          const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
-          const clearButton = document.querySelector('[data-filter-clear]');
-          const resultsCount = document.getElementById('results-count');
-
-          const renderPosts = (items) => {
-            if (!items || items.length === 0) {
-              list.innerHTML = '<li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">No careers found.</li>';
-              if (resultsCount) resultsCount.textContent = '0 results';
-              return;
-            }
-
-            list.innerHTML = items.map(post => {
-              const image = post.image || '/images/prvimg.jpeg';
-              return `
-                <li class="group flex flex-col h-full bg-white dark:bg-white/5 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#f2f0f4] dark:border-white/5">
-                  <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-white/5 relative">
-                     <img src="${image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-                     <div class="absolute inset-0 bg-brand-teal/0 group-hover:bg-brand-teal/10 transition-colors duration-300"></div>
-                  </div>
-                  <div class="p-6 flex flex-col flex-1">
-                     <div class="flex items-center gap-2 mb-3 text-[10px] font-bold tracking-widest uppercase">
-                        <span class="text-brand-gold">Opportunity</span>
-                        <span class="text-[#e0dbe6]">•</span>
-                        <span class="text-[#756189] dark:text-white/60">${post.location || 'Remote'}</span>
-                     </div>
-                     <h3 class="brand-heading text-xl font-bold mb-3 text-[#141118] dark:text-white group-hover:text-brand-teal transition-colors leading-tight">
-                        <a href="/careers/${post.slug}/" class="before:absolute before:inset-0">${post.title}</a>
-                     </h3>
-                     <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-4 flex-1 leading-relaxed">
-                        ${post.description || 'Explore this opportunity at The She Archive...'}
-                     </p>
-                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-[#f2f0f4] dark:border-white/10">
-                        <span class="text-xs font-bold text-brand-teal flex items-center gap-1">
-                           ${post.company || 'The She Archive'}
-                           ${post.company ? '<span class="material-symbols-outlined text-[14px]">verified</span>' : ''}
-                        </span>
-                        <span class="text-[10px] text-[#756189] dark:text-white/40 font-mono">${formatDate(post.date)}</span>
-                     </div>
-                  </div>
-                </li>
-              `;
-            }).join('');
-          };
-
-          if (window.ContentFilter && window.ContentFilter.initContentFilter) {
-            window.ContentFilter.initContentFilter({
-              items: posts,
-              container: list,
-              renderItems: renderPosts,
-              searchInput,
-              categoryButtons,
-              eraButtons,
-              clearButton,
-              resultsCount,
-            });
-          } else {
-            renderPosts(posts);
-          }
-        } catch (error) {
-          console.error(error);
-          document.getElementById('post-list').innerHTML = '<li class="p-6">Error loading content. Please try again later.</li>';
-        }
+      const searchInput = document.querySelector('[data-filter-search]');
+      const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
+      const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
+      const clearButton = document.querySelector('[data-filter-clear]');
+      if (window.ContentFilter && window.ContentFilter.initContentFilter) {
+        window.ContentFilter.initContentFilter({ items: posts, container: list, renderItems: renderPosts, searchInput, categoryButtons, eraButtons, clearButton });
+      } else {
+        renderPosts(posts);
       }
-
-      document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
-    <script src="/scripts/footer.js"></script>
-  </body>
+    } catch(e) {
+      console.error(e);
+      document.getElementById('post-list').innerHTML = '<div class="py-8 text-archive-gray italic serif-heading">Error loading content.</div>';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', loadPosts);
+</script>
+<script>
+  function toggleSearch() {
+    const bar = document.getElementById('search-bar');
+    bar.classList.toggle('hidden');
+    if (!bar.classList.contains('hidden')) {
+      document.getElementById('search-input').focus();
+    }
+  }
+  function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    const icon = document.getElementById('dark-icon');
+    if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+  }
+</script>
+</body>
 </html>

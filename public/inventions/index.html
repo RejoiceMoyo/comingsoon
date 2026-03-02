@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
     <script>
@@ -26,143 +26,265 @@
     <meta name="twitter:description" content="The She Archive’s record of women’s inventions—designs, breakthroughs, and impacts that advanced science, technology, and everyday life." />
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
-    <meta name="theme-color" content="#008080" />
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <meta name="theme-color" content="#e6b319" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "primary": "#8c2bee",
-              "brand-teal": "#008080",
-              "brand-gold": "#D4AF37",
-              "background-light": "#f7f6f8",
-              "background-dark": "#191022",
+              "primary": "#e6b319",
+              "background-light": "#f9f8f4",
+              "background-dark": "#211d11",
+              "charcoal": "#1b180e",
+              "archive-gray": "#97854e",
+              "ivory": "#fdfcf8",
             },
             fontFamily: {
-              "display": ["Space Grotesk", "sans-serif"],
+              "display": ["Inter", "sans-serif"],
               "serif": ["Playfair Display", "serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "0px",
+              "xl": "0px",
+              "full": "9999px",
             },
           },
         },
       }
     </script>
-    <style type="text/tailwindcss">
-      .brand-heading { font-family: "Playfair Display", serif }
-      .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-      .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
-          font-family: "Times New Roman", Times, serif;
-      }
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
+      .serif-heading { font-family: 'Playfair Display', serif; }
+      .border-archival { border-color: rgba(27, 24, 14, 0.12); }
+      .masonry-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
+      .irregular-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
+      .asymmetrical-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+      .bulletin-row:hover { background-color: rgba(230, 179, 25, 0.03); }
+      .fade-in { animation: fadeIn 0.35s ease; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: block; }
+      .dark body { background-color: #211d11; color: #f9f8f4; }
     </style>
-  </head>
-  <body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
-    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
-          <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
-            <div class="flex flex-col items-center gap-2">
-              <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
-              <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
-              <nav class="flex w-full max-w-5xl items-center justify-center gap-2.5 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-normal sm:tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/stories/">Stories</a>
-                <a class="pb-1 border-b border-[#008080] text-[#008080] dark:border-brand-gold dark:text-brand-gold transition-colors" href="/inventions/">Inventions</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/editors-desk/">The Editor’s Desk</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/tech-news/">Tech News</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors" href="/about/">About</a>
-                <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                    <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </header>
+</head>
+<body class="bg-background-light text-charcoal transition-colors duration-300">
 
-        <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div class="mb-6">
-            <h1 class="brand-heading text-2xl sm:text-3xl text-center text-[#141118] dark:text-white">The Inventions Archive</h1>
-          </div>
+<header class="sticky top-0 z-50 bg-background-light/90 backdrop-blur-md border-b border-archival px-6 lg:px-12 py-4">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+    <div class="flex-1">
+      <a href="/" class="serif-heading text-xl lg:text-2xl font-bold tracking-tight hover:text-primary transition-colors">THE SHE ARCHIVE</a>
+    </div>
+    <nav class="hidden lg:flex items-center justify-center gap-8 flex-[2]">
+      <a href="/stories/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="stories">STORIES</a>
+      <a href="/inventions/" class="nav-link active text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="inventions">INVENTIONS</a>
+      <a href="/tech-news/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="tech-news">TECH NEWS</a>
+      <a href="/editors-desk/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="editors-desk">EDITOR'S DESK</a>
+      <a href="/about/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors" data-page="about">ABOUT</a>
+    </nav>
+    <div class="flex items-center justify-end gap-5 flex-1">
+      <button onclick="toggleSearch()" class="hover:text-primary transition-colors flex items-center">
+        <span class="material-symbols-outlined text-[20px]">search</span>
+      </button>
+      <button onclick="toggleDark()" class="hover:text-primary transition-colors flex items-center" title="Toggle dark mode">
+        <span class="material-symbols-outlined text-[20px]" id="dark-icon">dark_mode</span>
+      </button>
+      <button class="lg:hidden hover:text-primary" onclick="toggleMobileMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+  <!-- Search bar -->
+  <div id="search-bar" class="hidden max-w-[1440px] mx-auto pt-4 pb-2 px-1">
+    <div class="relative">
+      <input id="search-input" type="text" placeholder="Search by name, era, or topic..." class="w-full bg-transparent border-b-2 border-charcoal/20 py-3 text-lg serif-heading italic focus:ring-0 focus:border-primary placeholder:text-charcoal/30 outline-none" onkeydown="if(event.key==='Enter')window.location='/search/?q='+encodeURIComponent(this.value)"/>
+      <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-charcoal/40">search</span>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div id="mobile-menu" class="lg:hidden pt-4 pb-2 border-t border-archival mt-4">
+    <div class="flex flex-col gap-3">
+          <a href="/stories/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">STORIES</a>
+          <a href="/inventions/" class="text-[10px] tracking-[0.2em] font-bold text-primary text-left transition-colors">INVENTIONS</a>
+          <a href="/tech-news/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">TECH NEWS</a>
+          <a href="/editors-desk/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">EDITOR'S DESK</a>
+          <a href="/about/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">ABOUT</a>
+    </div>
+  </div>
+</header>
 
-          <ul id="inventions-grid" class="post-list mt-2 space-y-6">
-            <li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">Cataloging archive...</li>
-          </ul>
-        </main>
+<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 fade-in">
 
-        <div id="shared-footer"></div>
+  <header class="mb-20 max-w-4xl">
+    <nav class="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-4">Archives / Scientific Collections</nav>
+    <h1 class="serif-heading text-5xl lg:text-7xl font-bold leading-tight mb-8">Archive: Scientific Inventions</h1>
+    <p class="serif-heading text-xl lg:text-2xl leading-relaxed text-charcoal/70 italic">
+      A curated repository documenting the mechanical, chemical, and computational breakthroughs pioneered by women. This collection spans three centuries of technical innovation.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <div class="lg:col-span-9">
+      <div class="irregular-grid" id="inventions-grid">
+        <div class="col-span-12 border-b border-archival pb-12 text-charcoal/40 italic text-sm serif-heading">Loading inventions...</div>
       </div>
     </div>
+    <aside class="lg:col-span-3">
+      <div class="sticky top-28 space-y-12">
+        <section>
+          <h3 class="text-[11px] tracking-[0.2em] font-bold mb-6 text-archive-gray uppercase flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">filter_list</span>Curatorial Filters
+          </h3>
+          <div class="mb-8">
+            <h4 class="text-[10px] font-bold tracking-widest text-charcoal/50 uppercase mb-4">By Era</h4>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 cursor-pointer group"><input class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">18th Century</span></label>
+              <label class="flex items-center gap-3 cursor-pointer group"><input checked class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">19th Century</span></label>
+              <label class="flex items-center gap-3 cursor-pointer group"><input checked class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">20th Century</span></label>
+              <label class="flex items-center gap-3 cursor-pointer group"><input class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">Modern Era</span></label>
+            </div>
+          </div>
+          <div class="mb-8">
+            <h4 class="text-[10px] font-bold tracking-widest text-charcoal/50 uppercase mb-4">By Discipline</h4>
+            <div class="flex flex-wrap gap-2">
+              <button class="text-[10px] px-3 py-1 border border-archival hover:border-primary hover:text-primary transition-all uppercase font-bold">Engineering</button>
+              <button class="text-[10px] px-3 py-1 border border-archival hover:border-primary hover:text-primary transition-all uppercase font-bold">Chemistry</button>
+              <button class="text-[10px] px-3 py-1 border border-archival hover:border-primary hover:text-primary transition-all uppercase font-bold">Computing</button>
+              <button class="text-[10px] px-3 py-1 border border-archival hover:border-primary hover:text-primary transition-all uppercase font-bold">Medicine</button>
+            </div>
+          </div>
+        </section>
+        <section class="bg-primary/10 p-6">
+          <h5 class="text-[10px] font-bold mb-3 tracking-widest">ARCHIVE ACCESS</h5>
+          <p class="text-xs italic mb-4 leading-relaxed">Request high-resolution patent scans or physical manuscript access for scholarly research.</p>
+          <a href="/submissions/" class="w-full block border border-charcoal text-[10px] font-bold tracking-widest uppercase py-3 text-center hover:bg-charcoal hover:text-white transition-all">Submit Inquiry</a>
+        </section>
+      </div>
+    </aside>
+  </div>
 
-    <script src="/scripts/footer.js"></script>
-    <script src="/scripts/filters.js?v=1"></script>
-    <script>
-      async function loadInventions() {
-        try {
-          const response = await fetch('/api/inventions.json?ts=' + Date.now());
-          const inventions = await response.json();
-          const grid = document.getElementById('inventions-grid');
-          const resultsCount = document.getElementById('inventions-count');
-          const searchInput = document.querySelector('[data-filter-search]');
-          const categoryButtons = Array.from(document.querySelectorAll('[data-filter-category]'));
-          const eraButtons = Array.from(document.querySelectorAll('[data-filter-era]'));
-          const clearButton = document.querySelector('[data-filter-clear]');
-          
-          const renderCards = (items) => {
-            if (!items || items.length === 0) {
-              grid.innerHTML = '<li class="rounded-xl bg-white dark:bg-white/5 p-6 sm:p-8 shadow-sm text-[#756189] dark:text-white/70">No inventions match your filters.</li>';
-              if (resultsCount) resultsCount.textContent = '0 results';
-              return;
-            }
+</main>
 
-            grid.innerHTML = items.map(item => {
-              const image = item.image || '/images/prvimg.jpeg';
-              return `
-                <li class="py-4 sm:py-6 border-b border-[#e0dbe6] dark:border-white/10 text-black text-xs">
-                  <div class="flex items-center gap-4">
-                    <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-lg overflow-hidden bg-[#f2f0f4] dark:bg-white/5 shrink-0">
-                      <img src="${image}" alt="${item.title}" class="h-full w-full object-cover" />
-                    </div>
-                    <h3 class="brand-heading text-sm text-black font-bold">${item.title}</h3>
-                  </div>
-                  <p class="mt-2 text-xs text-black">
-                    <span class="text-brand-gold">${item.field || item.category || 'General'}</span>${item.year ? ` | <span class="text-brand-teal">${item.year}</span>` : ''}
-                  </p>
-                  <p class="mt-3 text-black text-xs">${item.problem || item.description || ''}</p>
-                  <p class="mt-1 text-[10px] italic text-gray-500">Inventor: ${item.inventor || 'Unknown'}</p>
-                  <a href="/inventions/${item.slug}/" class="mt-3 inline-flex items-center gap-2 text-brand-teal font-bold text-xs hover:opacity-80 no-underline">
-                    Read More
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                  </a>
-                </li>
-              `;
-            }).join('');
+<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-1">
+        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
+        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
+          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
+          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
+          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
+          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
+          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
+      <div class="flex gap-8">
+        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
+        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
+        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-            if (resultsCount) {
-              resultsCount.textContent = `${items.length} result${items.length === 1 ? '' : 's'}`;
-            }
-          };
+<script src="/scripts/filters.js?v=1"></script>
+<script>
+  const formatDate = (value) => {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
 
-          if (window.ContentFilter && window.ContentFilter.initContentFilter) {
-            window.ContentFilter.initContentFilter({
-              items: inventions,
-              container: grid,
-              renderItems: renderCards,
-              searchInput,
-              categoryButtons,
-              eraButtons,
-              clearButton,
-              resultsCount,
-            });
-          } else {
-            renderCards(inventions);
-          }
-        } catch (error) {
-          console.error(error);
-          document.getElementById('inventions-grid').innerHTML = '<li class="p-6">Error loading inventions. Please try again later.</li>';
-        }
+  async function loadInventions() {
+    try {
+      const resp = await fetch('/api/inventions.json?ts=' + Date.now());
+      if (!resp.ok) throw new Error('Failed');
+      const items = await resp.json();
+      const grid = document.getElementById('inventions-grid');
+
+      if (!items || !items.length) {
+        grid.innerHTML = '<div class="col-span-12 text-archive-gray italic serif-heading">No inventions found.</div>'; return;
       }
-      document.addEventListener('DOMContentLoaded', loadInventions);
-    </script>
-  </body>
+
+      // Alternating layout pattern matching editorial design
+      const colPatterns = [
+        'col-span-12 lg:col-span-7', 'col-span-12 lg:col-span-5',
+        'col-span-12 lg:col-span-5', 'col-span-12 lg:col-span-7',
+        'col-span-12 lg:col-span-6', 'col-span-12 lg:col-span-6',
+      ];
+      const aspectPatterns = ['aspect-[16/9]', 'aspect-[3/4]', 'aspect-square', 'aspect-[4/3]', 'aspect-[3/2]', 'aspect-video'];
+      const sizePat = [true, false, false, true, false, false]; // wide headings
+
+      grid.innerHTML = items.map((item, i) => {
+        const idx = i % colPatterns.length;
+        const cols = colPatterns[idx];
+        const aspect = aspectPatterns[idx];
+        const wide = sizePat[idx];
+        const img = item.image || '/images/prvimg.jpeg';
+        return `
+          <article class="${cols} group cursor-pointer border-b border-archival pb-12" onclick="window.location='/inventions/${item.slug}/'">
+            <div class="${aspect} overflow-hidden mb-8 bg-gray-100">
+              <img alt="${item.title}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${img}"/>
+            </div>
+            <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase block mb-3">${item.category || 'Invention'}</span>
+            <h2 class="serif-heading ${wide ? 'text-3xl lg:text-4xl' : 'text-2xl'} font-bold mb-4 group-hover:underline underline-offset-8 decoration-1">${item.title}</h2>
+            <p class="text-sm leading-relaxed text-charcoal/80 ${wide ? 'max-w-2xl' : ''}">${item.description || ''}</p>
+            ${item.date ? `<p class="mt-3 text-[10px] text-archive-gray italic">${formatDate(item.date)}</p>` : ''}
+            <a href="/inventions/${item.slug}/" class="mt-4 inline-block text-[10px] font-bold tracking-widest border-b border-primary pb-0.5 hover:bg-primary/5 transition-all uppercase">View Invention</a>
+          </article>`;
+      }).join('');
+    } catch(e) {
+      console.error(e);
+      document.getElementById('inventions-grid').innerHTML = '<div class="col-span-12 text-archive-gray italic serif-heading">Error loading content.</div>';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', loadInventions);
+</script>
+<script>
+  function toggleSearch() {
+    const bar = document.getElementById('search-bar');
+    bar.classList.toggle('hidden');
+    if (!bar.classList.contains('hidden')) {
+      document.getElementById('search-input').focus();
+    }
+  }
+  function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    const icon = document.getElementById('dark-icon');
+    if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+  }
+</script>
+</body>
 </html>
