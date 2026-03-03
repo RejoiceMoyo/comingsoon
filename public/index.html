@@ -79,6 +79,12 @@
       #mobile-menu { display: none; }
       #mobile-menu.open { display: block; }
       .dark body { background-color: #211d11; color: #f9f8f4; }
+      /* Skeleton shimmer for loading state */
+      .skel { background: rgba(27,24,14,0.07); position: relative; overflow: hidden; }
+      .skel::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(230,179,25,0.13) 50%,transparent 100%); animation:shimmer 1.5s infinite; }
+      @keyframes shimmer { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
+      #home-main { opacity:0; transition: opacity 0.35s ease; }
+      #home-main.loaded { opacity:1; }
     </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
@@ -127,7 +133,7 @@
 </header>
 
 <!-- HOME HERO -->
-<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 fade-in">
+<main id="home-main" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
     <!-- Left sidebar -->
@@ -136,18 +142,18 @@
         <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Archive Features</h2>
         <div class="space-y-10">
           <a href="/inventions/" class="group block" id="sidebar-feature-1">
-            <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Women's inventions" id="sidebar-img-1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+            <div class="aspect-square mb-4 overflow-hidden skel" id="sidebar-img-wrap-1">
+              <img alt="" id="sidebar-img-1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
             </div>
-            <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors" id="sidebar-title-1">Scientific Inventions</h3>
-            <p class="text-sm text-archive-gray leading-relaxed italic" id="sidebar-desc-1">Patents, breakthroughs, and women who changed the world.</p>
+            <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors" id="sidebar-title-1"></h3>
+            <p class="text-sm text-archive-gray leading-relaxed italic" id="sidebar-desc-1"></p>
           </a>
           <a href="/tech-news/" class="group block" id="sidebar-feature-2">
-            <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Technology archive" id="sidebar-img-2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+            <div class="aspect-square mb-4 overflow-hidden skel" id="sidebar-img-wrap-2">
+              <img alt="" id="sidebar-img-2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
             </div>
-            <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors" id="sidebar-title-2">Technology Archives</h3>
-            <p class="text-sm text-archive-gray leading-relaxed italic" id="sidebar-desc-2">A survey of early computational history and logic engines.</p>
+            <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors" id="sidebar-title-2"></h3>
+            <p class="text-sm text-archive-gray leading-relaxed italic" id="sidebar-desc-2"></p>
           </a>
         </div>
       </div>
@@ -157,16 +163,14 @@
     <section class="lg:col-span-6 px-0 lg:px-4">
       <article class="flex flex-col">
         <div class="mb-2">
-          <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase" id="hero-category">Loading...</span>
+          <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase" id="hero-category"></span>
         </div>
-        <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title">Women Who Shaped History</h2>
-        <div class="aspect-[4/5] bg-gray-100 mb-8 overflow-hidden">
-          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="/images/prvimg.jpeg"/>
+        <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title"></h2>
+        <div class="aspect-[4/5] mb-8 overflow-hidden skel" id="hero-image-wrap">
+          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
         </div>
         <div class="max-w-2xl">
-          <p class="serif-heading text-xl lg:text-2xl leading-relaxed mb-6 italic text-charcoal/80" id="hero-desc">
-            An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions.
-          </p>
+          <p class="serif-heading text-xl lg:text-2xl leading-relaxed mb-6 italic text-charcoal/80" id="hero-desc"></p>
           <a href="#" id="hero-read-more" class="serif-heading text-lg italic text-primary hover:text-charcoal transition-colors mt-6 inline-block border-b border-primary/40 pb-0.5">Read More...</a>
         </div>
       </article>
@@ -175,9 +179,7 @@
     <!-- Right sidebar: Latest Updates -->
     <aside class="lg:col-span-3 border-l border-archival pl-8">
       <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Latest Updates</h2>
-      <div class="space-y-8" id="latest-sidebar">
-        <div class="text-archive-gray italic serif-heading text-sm">Loading...</div>
-      </div>
+      <div class="space-y-8" id="latest-sidebar"></div>
       <div class="mt-12 bg-primary/10 p-6">
         <h5 class="text-[10px] font-bold mb-3 tracking-widest">NEWSLETTER</h5>
         <p class="text-xs italic mb-4 leading-relaxed">Join scholars receiving weekly archival digests.</p>
@@ -190,9 +192,7 @@
   <!-- Selected Archival Monographs -->
   <section class="mt-24 pt-16 border-t border-archival">
     <h2 class="text-[11px] tracking-[0.2em] font-bold mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
-    <div class="masonry-grid" id="featured-grid">
-      <div class="col-span-12 text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
-    </div>
+    <div class="masonry-grid" id="featured-grid"></div>
   </section>
 
   <!-- Search Section -->
@@ -306,7 +306,12 @@
         document.getElementById('hero-category').textContent = hero.category || 'Featured';
         document.getElementById('hero-title').textContent    = hero.title;
         document.getElementById('hero-desc').textContent     = hero.description;
-        if (hero.image) document.getElementById('hero-image').src = hero.image;
+        if (hero.image) {
+          const img = document.getElementById('hero-image');
+          img.src = hero.image;
+          const wrap = document.getElementById('hero-image-wrap');
+          if (wrap) wrap.classList.remove('skel');
+        }
         const readMore = document.getElementById('hero-read-more');
         if (readMore) readMore.href = hero.url;
       }
@@ -319,7 +324,7 @@
         const title = document.getElementById('sidebar-title-' + n);
         const desc  = document.getElementById('sidebar-desc-' + n);
         const feat  = document.getElementById('sidebar-feature-' + n);
-        if (img)   img.src = p.image;
+        if (img) { img.src = p.image; const wrap = document.getElementById('sidebar-img-wrap-' + n); if(wrap) wrap.classList.remove('skel'); }
         if (title) title.textContent = p.title;
         if (desc)  desc.textContent  = (p.description || '').substring(0, 100) + ((p.description || '').length > 100 ? '...' : '');
         if (feat)  feat.href = p.url;
@@ -368,6 +373,7 @@
         </div>`).join('');
 
     } catch(e) { console.error('Home init error:', e); }
+    finally { document.getElementById('home-main').classList.add('loaded'); }
   }
   document.addEventListener('DOMContentLoaded', initHome);
 </script>
