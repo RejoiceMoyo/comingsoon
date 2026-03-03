@@ -70,125 +70,108 @@ function wrapLayout(content, title, description, image, url) {
     <meta name="twitter:title" content="${title} | The She Archive" />
     <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${image}" />
-    <meta name="theme-color" content="#008080" />
+    <meta name="theme-color" content="#e6b319" />
     <link rel="canonical" href="${url}" />
     <title>${title} | The She Archive</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#8c2bee",
-                        "brand-teal": "#008080",
-                        "brand-gold": "#D4AF37",
-                        "background-light": "#f7f6f8",
-                        "background-dark": "#191022",
+                        "primary": "#e6b319",
+                        "background-light": "#f9f8f4",
+                        "charcoal": "#1b180e",
+                        "archive-gray": "#97854e",
                     },
                     fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"],
-                        "serif": ["Playfair Display", "serif"]
+                        "sans": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
                     },
                 },
             },
         }
     </script>
-    <style type="text/tailwindcss">
-        .brand-heading { font-family: "Playfair Display", serif }
-        .brand-logo { font-family: "Alex Brush", "Playfair Display", serif }
-        .post-content, .post-content :where(h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,em,strong,a,span) {
+    <style>
+        body { font-family: "Inter", sans-serif; color: #1b180e; background: #f9f8f4; }
+        .serif-heading { font-family: "Playfair Display", serif; }
+        .article-body, .article-body p, .article-body li, .article-body blockquote,
+        .article-body h1, .article-body h2, .article-body h3, .article-body h4 {
             font-family: "Times New Roman", Times, serif;
         }
-    </style>
-    <style>
-         @font-face {
-            font-family: 'Material Symbols Outlined';
-            font-style: normal;
-            font-weight: 100 700;
-            src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpX2g.woff2) format('woff2');
+        .article-body p { margin-bottom: 1.2em; line-height: 1.85; font-size: clamp(0.97rem, 1.5vw, 1.08rem); }
+        .article-body h2 { font-family: "Playfair Display", serif; font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 2em 0 0.6em; color: #1b180e; }
+        .article-body h3 { font-family: "Playfair Display", serif; font-size: clamp(1.05rem, 1.5vw, 1.25rem); margin: 1.6em 0 0.5em; }
+        .article-body ul, .article-body ol { padding-left: 1.5em; margin-bottom: 1.2em; }
+        .article-body li { margin-bottom: 0.4em; }
+        .article-body a { color: #e6b319; }
+        .article-body a:hover { text-decoration: underline; }
+        .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
+        .article-body strong { font-weight: 700; color: #1b180e; }
+        @media (min-width: 640px) {
+            .img-para img { float: left; max-width: 45%; margin: 0 1.2em 0.8em 0; border-radius: 6px; }
+            .img-para::after { content: ""; display: table; clear: both; }
         }
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined' !important;
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
-        }
-        a, a:visited, a:hover, a:focus {
-            text-decoration: none;
-        }
+        a, a:visited { text-decoration: none; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#141118] dark:text-white">
+<body class="bg-[#f9f8f4] text-[#1b180e]">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
-            <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm">
+            <header class="sticky top-0 z-50 w-full whitespace-nowrap border-b border-solid border-[#f2f0f4] bg-white/95 ">
                 <div class="px-4 py-4 md:py-6 md:px-8 lg:px-12">
                     <div class="flex flex-col items-center gap-2">
-                        <a href="/" class="brand-logo text-3xl font-black text-brand-teal dark:text-brand-gold text-center tracking-[0.12em] hover:opacity-80 transition-opacity md:text-4xl lg:text-5xl">The She Archive</a>
-                        <div class="w-full max-w-5xl border-t border-[#d6d6d6] dark:border-white/20"></div>
-                        <nav class="flex w-full max-w-5xl items-center justify-center gap-2.5 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-normal sm:tracking-[0.16em] text-[#3c3741] dark:text-white/70 sm:text-[11px] md:text-xs">
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/stories/">Stories</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/inventions/">Inventions</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/editors-desk/">The Editor’s Desk</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/tech-news/">Tech News</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors no-underline" href="/about/">About</a>
-                            <a class="pb-1 border-b border-transparent hover:border-brand-teal hover:text-brand-teal dark:hover:border-brand-gold dark:hover:text-brand-gold transition-colors flex items-center no-underline" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
-                                <span class="material-symbols-outlined text-[14px] leading-none">coffee</span>
-                            </a>
-                        </nav>
-                    </div>
+                        <a href="/" class="serif-heading text-2xl sm:text-3xl font-bold">The She Archive</a>
+                        <div class="w-full max-w-5xl border-t border-[#d6d6d6] "></div>
+                        <nav class="flex w-full max-w-5xl items-center justify-center gap-2.5 sm:gap-6 md:gap-8 text-[9px] font-semibold uppercase tracking-normal sm:tracking-[0.16em] text-[#3c3741]  sm:text-[11px] md:text-xs">
+                            <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#97854e]   transition-colors no-underline" href="/stories/">Stories</a>
+                            <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#97854e]   transition-colors no-underline" href="/inventions/">Inventions</a>
+                            <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#97854e]   transition-colors no-underline" href="/editors-desk/">The Editor’s Desk</a>
+                        <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#e6b319] transition-colors" href="/tech-news/">Tech News</a>
+                        <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#e6b319] transition-colors" href="/about/">About</a>
+                        <a class="pb-1 border-b border-transparent hover:border-[#e6b319] hover:text-[#e6b319] transition-colors flex items-center" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Buy Me a Coffee">
+                            <span class="material-symbols-outlined" style="font-size:14px;line-height:1">coffee</span>
+                        </a>
+                    </nav>
                 </div>
-            </header>
-            <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                ${content}
-            </main>
-            <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <img src="/images/tsa.png" alt="TSA Logo" class="h-7 w-7 sm:h-8 sm:w-8 object-contain">
-                        <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/tech-news/">Tech News</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/careers/">Careers</a>
-                        <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
-                    </div>
-                    <div class="flex gap-3 sm:gap-4">
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Support The She Archive">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">coffee</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="/coming-soon.html" aria-label="RSS Feed">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-                        </a>
-                        <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                            href="mailto:theshearchivehq@gmail.com" aria-label="Email us">
-                            <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-                        </a>
-                    </div>
+            </div>
+        </header>
+        <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
+            ${content}
+        </main>
+        <footer class="border-t border-[#e8e4d8] py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-[#f9f8f4]">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <img src="/images/tsa.png" alt="TSA Logo" class="h-7 w-7 object-contain">
+                    <span class="serif-heading text-lg font-bold text-[#1b180e]">The She Archive</span>
                 </div>
-                <p class="text-center text-black dark:text-white/60 text-xs mt-8 sm:mt-12">
-                    © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism, Science and more.
-                </p>
-            </footer>
-        </div>
+                <div class="flex flex-wrap justify-center gap-5 text-xs text-[#3a3520]">
+                    <a class="hover:text-[#e6b319] transition-colors" href="/contact/">Contact</a>
+                    <a class="hover:text-[#e6b319] transition-colors" href="/submissions/">Submissions</a>
+                    <a class="hover:text-[#e6b319] transition-colors" href="/tech-news/">Tech News</a>
+                    <a class="hover:text-[#e6b319] transition-colors" href="/careers/">Careers</a>
+                    <a class="hover:text-[#e6b319] transition-colors" href="/privacy/">Privacy Policy</a>
+                </div>
+                <div class="flex gap-3">
+                    <a class="w-9 h-9 flex items-center justify-center rounded-full bg-[#ede9dc] hover:bg-[#e6b319]/20 hover:text-[#e6b319] transition-all text-[#1b180e]"
+                        href="${coffeeUrl}" target="_blank" rel="noopener noreferrer" aria-label="Support">
+                        <span class="material-symbols-outlined" style="font-size:18px;line-height:1">coffee</span>
+                    </a>
+                    <a class="w-9 h-9 flex items-center justify-center rounded-full bg-[#ede9dc] hover:bg-[#e6b319]/20 hover:text-[#e6b319] transition-all text-[#1b180e]"
+                        href="mailto:theshearchivehq@gmail.com" aria-label="Email us">
+                        <span class="material-symbols-outlined" style="font-size:18px;line-height:1">mail</span>
+                    </a>
+                </div>
+            </div>
+            <p class="text-center text-[#97854e] text-xs mt-8">
+                &copy; 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism, Science and more.
+            </p>
+        </footer>
     </div>
 </body>
 </html>`;
@@ -205,42 +188,42 @@ function generateStaticPage(item, fileName) {
     if (pageSlug === 'about') {
         pageContent = `
             <article class="post-content">
-                <h1 class="brand-heading text-3xl mb-4 italic text-center">${title}</h1>
-                <p class="font-bold mb-8 text-brand-teal italic text-center text-sm">${item.mission_short || ''}</p>
+                <h1 class="serif-heading text-3xl mb-4 italic text-center">${title}</h1>
+                <p class="font-bold mb-8 text-[#97854e] italic text-center text-sm">${item.mission_short || ''}</p>
                 <div class="space-y-12 mt-12 text-black text-xs">
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Foundational Statement</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Foundational Statement</h2>
                         <div class="leading-relaxed">${marked.parse(item.foundation || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">What We Do</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">What We Do</h2>
                         <div class="leading-relaxed">${marked.parse(item.what_we_do || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Editorial Philosophy</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Editorial Philosophy</h2>
                         <div class="leading-relaxed">${marked.parse(item.philosophy || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Scope & Focus</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Scope & Focus</h2>
                         <div class="leading-relaxed">${marked.parse(item.scope || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Methodology & Sources</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Methodology & Sources</h2>
                         <div class="leading-relaxed">${marked.parse(item.methodology || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Independence & Funding</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Independence & Funding</h2>
                         <div class="leading-relaxed">${marked.parse(item.funding || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b border-gray-100 pb-2 mb-4">Credits & Stewardship</h2>
+                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Credits & Stewardship</h2>
                         <div class="leading-relaxed">${marked.parse(item.credits || '')}</div>
                     </section>
                 </div>
                 <p class="mt-16 text-center italic text-gray-400 text-xs">${item.closing || ''}</p>
                 <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
                         Support The She Archive
@@ -251,59 +234,59 @@ function generateStaticPage(item, fileName) {
     } else if (pageSlug === 'privacy') {
         pageContent = `
             <article class="post-content">
-                <h1 class="brand-heading text-3xl mb-4 italic text-center">${title}</h1>
+                <h1 class="serif-heading text-3xl mb-4 italic text-center">${title}</h1>
                 <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-8 text-center">Effective Date: ${item.date || 'N/A'}</p>
                 <div class="space-y-8 text-black text-xs">
                     <div>${marked.parse(item.intro || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Information We Collect</h2><div>${marked.parse(item.collect || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">How We Use Information</h2><div>${marked.parse(item.usage || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Third-Party Services</h2><div>${marked.parse(item.third_party || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Data Storage & Security</h2><div>${marked.parse(item.security || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Your Rights</h2><div>${marked.parse(item.rights || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">External Links Disclaimer</h2><div>${marked.parse(item.disclaimer || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Policy Updates</h2><div>${marked.parse(item.updates || '')}</div>
-                    <h2 class="brand-heading text-xl border-b pb-2">Contact for Privacy Concerns</h2><div>${marked.parse(item.privacy_contact || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Information We Collect</h2><div>${marked.parse(item.collect || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">How We Use Information</h2><div>${marked.parse(item.usage || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Third-Party Services</h2><div>${marked.parse(item.third_party || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Data Storage & Security</h2><div>${marked.parse(item.security || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Your Rights</h2><div>${marked.parse(item.rights || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">External Links Disclaimer</h2><div>${marked.parse(item.disclaimer || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Policy Updates</h2><div>${marked.parse(item.updates || '')}</div>
+                    <h2 class="serif-heading text-xl border-b pb-2">Contact for Privacy Concerns</h2><div>${marked.parse(item.privacy_contact || '')}</div>
                 </div>
             </article>
         `;
     } else if (pageSlug === 'submissions') {
         pageContent = `
             <article class="post-content">
-                <h1 class="brand-heading text-3xl mb-4 italic text-center">${title}</h1>
+                <h1 class="serif-heading text-3xl mb-4 italic text-center">${title}</h1>
                 <div class="mb-12 text-center border-b pb-8 text-xs italic">${marked.parse(item.opening || '')}</div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-brand-teal/5 p-6 rounded-xl border border-brand-teal/10">
-                        <h3 class="brand-heading text-lg mb-4 text-brand-teal">What We Accept</h3>
+                    <div class="bg-[#e6b319]/10 p-6 rounded-xl border border-[#e6b319]/10">
+                        <h3 class="serif-heading text-lg mb-4 text-[#97854e]">What We Accept</h3>
                         <div class="text-xs space-y-2">${marked.parse(item.accept || '')}</div>
                     </div>
                     <div class="bg-red-50 p-6 rounded-xl border border-red-100 text-red-900">
-                        <h3 class="brand-heading text-lg mb-4 text-red-800">What We Don't Accept</h3>
+                        <h3 class="serif-heading text-lg mb-4 text-red-800">What We Don't Accept</h3>
                         <div class="text-xs space-y-2">${marked.parse(item.decline || '')}</div>
                     </div>
                 </div>
                 <div class="space-y-12 text-black text-xs">
                     <section>
-                        <h2 class="brand-heading text-xl border-b pb-2 mb-4">Submission Guidelines</h2>
+                        <h2 class="serif-heading text-xl border-b pb-2 mb-4">Submission Guidelines</h2>
                         <div class="leading-relaxed">${marked.parse(item.guidelines || '')}</div>
-                        <p class="mt-4 font-bold text-brand-teal">Expected Response Time: ${item.timeline || 'N/A'}</p>
+                        <p class="mt-4 font-bold text-[#97854e]">Expected Response Time: ${item.timeline || 'N/A'}</p>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b pb-2 mb-4">Review Process</h2>
+                        <h2 class="serif-heading text-xl border-b pb-2 mb-4">Review Process</h2>
                         <div class="leading-relaxed">${marked.parse(item.process || '')}</div>
                     </section>
                     <section>
-                        <h2 class="brand-heading text-xl border-b pb-2 mb-4">Rights & Attribution</h2>
+                        <h2 class="serif-heading text-xl border-b pb-2 mb-4">Rights & Attribution</h2>
                         <div class="leading-relaxed">${marked.parse(item.rights || '')}</div>
                     </section>
-                    <section class="p-8 bg-brand-gold/5 border-2 border-dashed border-brand-gold/30 rounded-xl text-center">
-                        <h2 class="brand-heading text-xl mb-4">How to Submit</h2>
+                    <section class="p-8 bg-[#e6b319]/5 border-2 border-dashed border-[#e6b319]/30 rounded-xl text-center">
+                        <h2 class="serif-heading text-xl mb-4">How to Submit</h2>
                         <div class="leading-relaxed font-bold">${marked.parse(item.instruction || '')}</div>
                     </section>
                 </div>
                 <div class="mt-12 text-center italic text-gray-500 text-[11px]">${marked.parse(item.closing_note || '')}</div>
                 <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
                         Support The She Archive
@@ -314,17 +297,17 @@ function generateStaticPage(item, fileName) {
     } else if (pageSlug === 'contact') {
         pageContent = `
             <article class="post-content text-center">
-                <h1 class="brand-heading text-4xl mb-6 italic">${title}</h1>
+                <h1 class="serif-heading text-4xl mb-6 italic">${title}</h1>
                 <div class="mb-12 text-black text-xs leading-relaxed max-w-2xl mx-auto">${marked.parse(item.intro || '')}</div>
-                <div class="mb-12 p-10 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 shadow-sm rounded-2xl max-w-xl mx-auto">
-                    <h2 class="brand-heading text-2xl mb-6 text-brand-teal">Contact Methods</h2>
+                <div class="mb-12 p-10 bg-white  border border-gray-100  shadow-sm rounded-2xl max-w-xl mx-auto">
+                    <h2 class="serif-heading text-2xl mb-6 text-[#97854e]">Contact Methods</h2>
                     <div class="text-xs leading-relaxed space-y-4">${marked.parse(item.methods || '')}</div>
                 </div>
                 ${item.topics ? `
                 <div class="mb-12">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6 font-bold">Inquiry Types</p>
                     <div class="flex flex-wrap justify-center gap-3">
-                        ${item.topics.map(t => `<span class="px-4 py-2 bg-gray-50 dark:bg-white/5 text-[10px] font-bold uppercase tracking-widest border border-gray-100 dark:border-white/10 rounded-full">${t}</span>`).join('')}
+                        ${item.topics.map(t => `<span class="px-4 py-2 bg-gray-50  text-[10px] font-bold uppercase tracking-widest border border-gray-100  rounded-full">${t}</span>`).join('')}
                     </div>
                 </div>
                 ` : ''}
@@ -332,11 +315,11 @@ function generateStaticPage(item, fileName) {
                     <p>Expected Response: ${item.expectations || 'N/A'}</p>
                     ${item.location ? `<p>Archive Node: ${item.location}</p>` : ''}
                 </div>
-                ${item.press ? `<div class="mt-16 pt-12 border-t border-gray-100 dark:border-white/10"><h3 class="brand-heading text-xl mb-6 italic">Institutional & Press</h3><div class="text-xs leading-relaxed">${marked.parse(item.press)}</div></div>` : ''}
-                <p class="mt-16 text-2xl brand-heading italic text-brand-teal">${item.closing || ''}</p>
+                ${item.press ? `<div class="mt-16 pt-12 border-t border-gray-100 "><h3 class="serif-heading text-xl mb-6 italic">Institutional & Press</h3><div class="text-xs leading-relaxed">${marked.parse(item.press)}</div></div>` : ''}
+                <p class="mt-16 text-2xl brand-heading italic text-[#97854e]">${item.closing || ''}</p>
                 <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
                         Support The She Archive
@@ -348,21 +331,21 @@ function generateStaticPage(item, fileName) {
         // Custom rendering for Tech News and Careers
         pageContent = `
             <article class="post-content max-w-2xl mx-auto">
-                <h1 class="brand-heading text-3xl mb-6 italic text-center">${title}</h1>
+                <h1 class="serif-heading text-3xl mb-6 italic text-center">${title}</h1>
                 ${item.image ? `<div class='flex justify-center mb-8'><img src="${item.image}" alt="${title}" class="rounded-xl max-h-64 object-cover" /></div>` : ''}
-                ${item.intro ? `<div class="mb-8 text-center text-brand-teal font-semibold">${marked.parse(item.intro)}</div>` : ''}
+                ${item.intro ? `<div class="mb-8 text-center text-[#97854e] font-semibold">${marked.parse(item.intro)}</div>` : ''}
                 ${item.body ? `<div class="mb-8">${marked.parse(item.body)}</div>` : ''}
                 ${Array.isArray(item.related_links) && item.related_links.length ? `
                   <div class="mt-8">
-                    <h2 class="brand-heading text-xl mb-3 text-brand-teal">Related Links</h2>
+                    <h2 class="serif-heading text-xl mb-3 text-[#97854e]">Related Links</h2>
                     <ul class="list-disc pl-6 space-y-2">
-                      ${item.related_links.map(link => `<li><a href="${link.url}" class="text-brand-teal underline hover:text-brand-gold" target="_blank" rel="noopener">${link.label || link.url}</a></li>`).join('')}
+                      ${item.related_links.map(link => `<li><a href="${link.url}" class="text-[#97854e] underline hover:text-[#e6b319]" target="_blank" rel="noopener">${link.label || link.url}</a></li>`).join('')}
                     </ul>
                   </div>
                 ` : ''}
                 <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
                         Support The She Archive
@@ -374,10 +357,10 @@ function generateStaticPage(item, fileName) {
         // Fallback for generic pages
         pageContent = `
             <article class="post-content">
-                <h1 class="brand-heading text-3xl mb-8 italic text-center">${title}</h1>
+                <h1 class="serif-heading text-3xl mb-8 italic text-center">${title}</h1>
                 <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
+                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
                             <span class="material-symbols-outlined text-lg leading-none">coffee</span>
                         </span>
                         Support The She Archive
@@ -412,88 +395,89 @@ function generateContentPage(item, type, outputBaseDir) {
     let extraFields = '';
     if (type === 'inventions') {
         extraFields = `
-            <div class="bg-gray-50 border-l-4 border-brand-teal p-6 mb-8 text-sm">
+            <div class="bg-[#f5f2e8] border-l-4 border-[#e6b319] p-5 mb-8 text-sm rounded-r">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="space-y-2">
-                        <p><span class="font-bold text-brand-teal">Inventor(s):</span> ${item.inventor || 'Unknown'}</p>
-                        ${item.patent_number ? `<p><span class="font-bold text-brand-teal">Patent Number:</span> ${item.patent_number}</p>` : ''}
-                        <p><span class="font-bold text-brand-teal">Field:</span> ${item.field || 'General'}${item.field_secondary ? ` / ${item.field_secondary}` : ''}</p>
+                        <p><span class="font-bold text-[#97854e]">Inventor(s):</span> ${item.inventor || 'Unknown'}</p>
+                        ${item.patent_number ? `<p><span class="font-bold text-[#97854e]">Patent Number:</span> ${item.patent_number}</p>` : ''}
+                        <p><span class="font-bold text-[#97854e]">Field:</span> ${item.field || 'General'}${item.field_secondary ? ` / ${item.field_secondary}` : ''}</p>
                     </div>
                     <div class="space-y-2">
-                        <p><span class="font-bold text-brand-teal">Year(s):</span> ${item.year || 'N/A'}</p>
-                        <p><span class="font-bold text-brand-teal">Institution:</span> ${item.institution || 'Independent'}</p>
+                        <p><span class="font-bold text-[#97854e]">Year(s):</span> ${item.year || 'N/A'}</p>
+                        <p><span class="font-bold text-[#97854e]">Institution:</span> ${item.institution || 'Independent'}</p>
                     </div>
                 </div>
-                ${item.problem ? `<div class="mt-4 pt-4 border-t border-gray-200"><p><span class="font-bold text-brand-teal">Problem Addressed:</span> ${item.problem}</p></div>` : ''}
+                ${item.problem ? `<div class="mt-4 pt-4 border-t border-[#e8e2cc]"><p><span class="font-bold text-[#97854e]">Problem Addressed:</span> ${item.problem}</p></div>` : ''}
             </div>
         `;
     }
 
+    const sectionLabel = type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ');
     const innerContent = `
-                <a href="/${type}/" class="inline-flex items-center gap-2 text-brand-teal font-bold text-sm group/link no-underline hover:underline">
-                    <span class="material-symbols-outlined text-sm group-hover/link:-translate-x-1 transition-transform">arrow_back</span>
-                    Back to ${type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+            <div class="md:col-span-8">
+                <a href="/${type}/" class="inline-flex items-center gap-1 text-[#97854e] text-sm hover:text-[#e6b319] transition-colors mb-6">
+                    <span class="material-symbols-outlined" style="font-size:16px;line-height:1">arrow_back</span>
+                    Back to ${sectionLabel}
                 </a>
-                <article class="post-content mt-6 prose prose-lg lg:prose-xl max-w-none text-black">
-                    ${item.category ? `<span class="bg-brand-teal/10 text-brand-teal font-bold text-xs uppercase tracking-widest px-2 py-1 rounded mb-4 inline-block">${item.category}</span>` : ''}
-                    <h1 class="brand-heading text-2xl sm:text-3xl md:text-4xl text-[#141118]">${title}</h1>
-                    ${item.dek ? `<p class="text-base font-semibold text-gray-600 italic mt-3">${item.dek}</p>` : ''}
-                    <p class="text-sm text-black mt-4">
-                        <span class="text-brand-gold font-bold">By ${author}</span>${publishedDate ? ` | <span class="text-brand-teal font-medium">${publishedDate}</span>` : ''}
+                <article>
+                    ${item.category ? `<span class="inline-block bg-[#e6b319]/15 text-[#97854e] font-bold text-[10px] uppercase tracking-widest px-2 py-1 rounded mb-4">${item.category}</span>` : ''}
+                    <h1 class="serif-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-[#1b180e] mb-4">${title}</h1>
+                    ${item.dek ? `<p class="text-lg text-[#3a3520] italic mb-4" style="font-family:'Times New Roman',serif">${item.dek}</p>` : ''}
+                    <p class="text-sm text-[#97854e] mb-6">
+                        By <span class="font-semibold text-[#1b180e]">${author}</span>${publishedDate ? ` &nbsp;·&nbsp; <span>${publishedDate}</span>` : ''}
                     </p>
-                    
                     ${image ? `
-                    <div class="mt-8 w-full ${heroImageWidth} ${heroImageAspect} overflow-hidden rounded-xl bg-[#f2f0f4] dark:bg-white/5">
+                    <div class="w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg bg-[#ede9dc] mb-8">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
                     </div>
                     ` : ''}
-                    
-                    <div class="mt-8 content-body text-base leading-relaxed">
+                    <div class="article-body mt-2">
                         ${extraFields}
-                        <div class="prose-content text-base leading-relaxed">${marked.parse(item.body || '')}</div>
-                        
-                        ${item.how_it_works ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">How It Worked</h3><div class="text-base leading-relaxed">${marked.parse(item.how_it_works)}</div>` : ''}
-                        ${item.impact ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">Historical Impact</h3><div class="text-base leading-relaxed">${marked.parse(item.impact)}</div>` : ''}
-                        ${item.barriers ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-gray-500 italic">Limitations & Barriers</h3><div class="text-base leading-relaxed italic text-gray-600">${marked.parse(item.barriers)}</div>` : ''}
-                        ${item.why_it_matters ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-gold">Why It Matters Today</h3><div class="text-base leading-relaxed">${marked.parse(item.why_it_matters)}</div>` : ''}
-                        ${item.recognition ? `<h3 class="brand-heading text-xl mt-10 mb-4 text-brand-teal">Recognition & Credit</h3><div class="text-base leading-relaxed">${marked.parse(item.recognition)}</div>` : ''}
-                        
-                        ${item.gallery && item.gallery.length > 0 ? `
-                        <div class="mt-10">
-                            <h3 class="brand-heading text-xl mb-4 text-brand-teal">Gallery</h3>
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                ${item.gallery.map(img => `<div class="aspect-square overflow-hidden rounded-lg bg-gray-100"><img src="${img}" alt="Gallery image" class="h-full w-full object-cover hover:scale-105 transition-transform duration-300" /></div>`).join('')}
-                            </div>
-                        </div>
-                        ` : ''}
-                        
-                        ${item.associated_story ? `
-                        <div class="mt-12 p-6 bg-brand-teal/5 border-l-4 border-brand-teal rounded-r-lg">
-                            <p class="text-xs uppercase tracking-widest font-bold text-brand-teal mb-2">Deep Dive</p>
-                            <p class="text-base">Read the full narrative: <a href="${item.associated_story}" class="text-brand-teal font-bold hover:underline">${title} — The Untold Story</a></p>
-                        </div>
-                        ` : ''}
-
-                        ${item.editors_note ? `<div class="mt-12 p-4 border border-gray-100 bg-gray-50 italic text-[11px]"><p><strong>Editor's Note:</strong></p><div>${marked.parse(item.editors_note)}</div></div>` : ''}
-                        ${item.prompt ? `<div class="mt-8 pt-6 border-t border-gray-100"><p class="font-bold text-brand-teal italic">Discussion: ${item.prompt}</p></div>` : ''}
-
-                        ${item.references ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-700 text-center">References</h4><div class="text-sm text-gray-800 leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
-                        ${item.sources ? `<div class="mt-12 pt-6 border-t border-gray-200"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-700 text-center">Sources</h4><div class="text-sm text-gray-800 leading-relaxed">${marked.parse(item.sources)}</div></div>` : ''}
+                        ${marked.parse(item.body || '')}
+                        ${item.how_it_works ? `<h3 class="serif-heading text-xl mt-10 mb-3" style="color:#1b180e">How It Worked</h3>${marked.parse(item.how_it_works)}` : ''}
+                        ${item.impact ? `<h3 class="serif-heading text-xl mt-10 mb-3" style="color:#1b180e">Historical Impact</h3>${marked.parse(item.impact)}` : ''}
+                        ${item.barriers ? `<h3 class="serif-heading text-xl mt-10 mb-3 italic" style="color:#555">Limitations &amp; Barriers</h3>${marked.parse(item.barriers)}` : ''}
+                        ${item.why_it_matters ? `<h3 class="serif-heading text-xl mt-10 mb-3" style="color:#e6b319">Why It Matters Today</h3>${marked.parse(item.why_it_matters)}` : ''}
+                        ${item.recognition ? `<h3 class="serif-heading text-xl mt-10 mb-3" style="color:#1b180e">Recognition &amp; Credit</h3>${marked.parse(item.recognition)}` : ''}
+                        ${item.gallery && item.gallery.length > 0 ? `<h3 class="serif-heading text-xl mt-10 mb-3">Gallery</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-3">${item.gallery.map(img => `<div class="aspect-square overflow-hidden rounded bg-[#ede9dc]"><img src="${img}" alt="" class="h-full w-full object-cover" /></div>`).join('')}</div>` : ''}
+                        ${item.associated_story ? `<div class="mt-10 p-5 bg-[#e6b319]/8 border-l-4 border-[#e6b319] rounded-r"><p class="text-xs uppercase tracking-widest font-bold text-[#97854e] mb-1">Deep Dive</p><p>Read the full narrative: <a href="${item.associated_story}" class="text-[#e6b319] font-bold hover:underline">${title} — The Untold Story</a></p></div>` : ''}
+                        ${item.editors_note ? `<div class="mt-10 p-4 border border-[#e8e4d8] bg-[#faf8f0] italic text-xs rounded"><p><strong>Editor's Note:</strong></p>${marked.parse(item.editors_note)}</div>` : ''}
+                        ${item.prompt ? `<div class="mt-8 pt-6 border-t border-[#e8e4d8]"><p class="font-semibold text-[#e6b319] italic" style="font-family:'Times New Roman',serif">Discussion: ${item.prompt}</p></div>` : ''}
+                        ${item.references ? `<div class="mt-10 pt-6 border-t border-[#e8e4d8]"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-[#97854e] text-center">References</h4><div class="text-sm text-[#3a3520] leading-relaxed">${marked.parse(item.references)}</div></div>` : ''}
+                        ${item.sources ? `<div class="mt-10 pt-6 border-t border-[#e8e4d8]"><h4 class="text-xs uppercase tracking-widest mb-3 font-bold text-[#97854e] text-center">Sources</h4><div class="text-sm text-[#3a3520] leading-relaxed">${marked.parse(item.sources)}</div></div>` : ''}
                     </div>
-
-                    <div class="mt-8 border-t border-gray-100 pt-8">
-                        <a class="inline-flex items-center gap-3 text-brand-teal hover:text-brand-gold transition-colors font-bold text-xs uppercase tracking-widest no-underline" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
-                            <span class="size-10 flex items-center justify-center rounded-full bg-brand-teal/5 text-brand-teal">
-                                <span class="material-symbols-outlined text-lg leading-none">coffee</span>
+                    <div class="mt-10 border-t border-[#e8e4d8] pt-8">
+                        <a class="inline-flex items-center gap-2 text-[#97854e] hover:text-[#e6b319] transition-colors text-xs font-bold uppercase tracking-widest" href="${coffeeUrl}" target="_blank" rel="noopener noreferrer">
+                            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-[#ede9dc]">
+                                <span class="material-symbols-outlined" style="font-size:17px;line-height:1">coffee</span>
                             </span>
                             Support The She Archive
                         </a>
                     </div>
                 </article>
+            </div>
+            <aside class="md:col-span-4 pt-8 md:pt-16">
+                <div class="bg-[#f5f2e8] rounded-lg p-5 mb-6">
+                    <p class="serif-heading text-sm font-bold text-[#1b180e] mb-3 border-b border-[#e8e2cc] pb-2">About This Archive</p>
+                    <p class="text-xs text-[#3a3520] leading-relaxed">The She Archive documents the lives, inventions, and contributions of women whose stories have been overlooked or forgotten.</p>
+                    <a href="/about/" class="inline-block mt-3 text-xs text-[#e6b319] font-semibold hover:underline">Learn more →</a>
+                </div>
+                <div class="bg-[#f5f2e8] rounded-lg p-5">
+                    <p class="serif-heading text-sm font-bold text-[#1b180e] mb-3 border-b border-[#e8e2cc] pb-2">Explore More</p>
+                    <ul class="space-y-2 text-xs text-[#3a3520]">
+                        <li><a href="/stories/" class="hover:text-[#e6b319] transition-colors">→ Stories</a></li>
+                        <li><a href="/inventions/" class="hover:text-[#e6b319] transition-colors">→ Inventions</a></li>
+                        <li><a href="/editors-desk/" class="hover:text-[#e6b319] transition-colors">→ The Editor's Desk</a></li>
+                        <li><a href="/tech-news/" class="hover:text-[#e6b319] transition-colors">→ Tech News</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
     `;
 
     const html = wrapLayout(innerContent, title, description, image, url);
-    fs.writeFileSync(path.join(itemDir, 'index.html'), html);
+    try { fs.writeFileSync(path.join(itemDir, 'index.html'), html); } catch(e) { console.warn('Skipped (locked):', path.join(itemDir, 'index.html')); }
 
     // Legacy Redirects for dated slugs
     if (item.originalSlug && item.originalSlug !== item.slug) {
@@ -520,7 +504,7 @@ function copyDir(src, dest) {
 function copyFile(src, dest) {
     const parent = path.dirname(dest);
     if (!fs.existsSync(parent)) fs.mkdirSync(parent, { recursive: true });
-    fs.copyFileSync(src, dest);
+    try { fs.copyFileSync(src, dest); } catch(e) { /* skip locked files */ }
 }
 
 // --- Main Build Process ---
@@ -528,7 +512,7 @@ console.log('Starting build...');
 
 // Clean and recreate output directory
 if (fs.existsSync(outputDir)) {
-    fs.rmSync(outputDir, { recursive: true, force: true });
+    try { fs.rmSync(outputDir, { recursive: true, force: true }); } catch(e) { /* ignore lock errors on Windows */ }
 }
 fs.mkdirSync(outputDir, { recursive: true });
 

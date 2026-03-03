@@ -192,7 +192,9 @@
   <!-- Selected Archival Monographs -->
   <section class="mt-24 pt-16 border-t border-archival">
     <h2 class="text-[11px] tracking-[0.2em] font-bold mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
-    <div class="masonry-grid" id="featured-grid"></div>
+    <div class="masonry-grid" id="featured-grid">
+      <div class="col-span-12 text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
+    </div>
   </section>
 
   <!-- Search Section -->
@@ -295,10 +297,10 @@
       const editorials = editorialsResp.ok  ? await editorialsResp.json() : [];
       const techNews   = techResp.ok        ? await techResp.json()       : [];
 
-      const storyItems     = normalize(posts,      'Stories',       'stories');
-      const inventionItems = normalize(inventions, 'Inventions',    'inventions');
-      const editorialItems = normalize(editorials, "Editor's Desk", 'editors-desk');
-      const techItems      = normalize(techNews,   'Tech News',     'tech-news');
+      const storyItems    = normalize(posts,      'Stories',       'stories');
+      const inventionItems = normalize(inventions, 'Inventions',   'inventions');
+      const editorialItems = normalize(editorials, "Editor's Desk",'editors-desk');
+      const techItems      = normalize(techNews,   'Tech News',    'tech-news');
 
       // ── Hero: latest story ──────────────────────────────────────────
       const hero = storyItems[0];
