@@ -79,6 +79,7 @@
       #mobile-menu { display: none; }
       #mobile-menu.open { display: block; }
       .dark body { background-color: #211d11; color: #f9f8f4; }
+      @media (max-width:639px) { .card-img { aspect-ratio:16/9!important; } }
       /* Skeleton shimmer for loading state */
       .skel { background: rgba(27,24,14,0.07); position: relative; overflow: hidden; }
       .skel::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(230,179,25,0.13) 50%,transparent 100%); animation:shimmer 1.5s infinite; }
@@ -133,7 +134,7 @@
 </header>
 
 <!-- HOME HERO -->
-<main id="home-main" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12">
+<main id="home-main" class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
     <!-- Left sidebar -->
@@ -165,12 +166,12 @@
         <div class="mb-2">
           <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase" id="hero-category"></span>
         </div>
-        <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title"></h2>
-        <div class="aspect-[4/5] mb-8 overflow-hidden skel" id="hero-image-wrap">
+        <h2 class="serif-heading text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] mb-5 lg:mb-8" id="hero-title"></h2>
+        <div class="aspect-[16/9] sm:aspect-[4/5] mb-6 lg:mb-8 overflow-hidden skel" id="hero-image-wrap">
           <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
         </div>
         <div class="max-w-2xl">
-          <p class="serif-heading text-xl lg:text-2xl leading-relaxed mb-6 italic text-charcoal/80" id="hero-desc"></p>
+          <p class="serif-heading text-base sm:text-xl lg:text-2xl leading-relaxed mb-5 lg:mb-6 italic text-charcoal/80" id="hero-desc"></p>
           <a href="#" id="hero-read-more" class="serif-heading text-lg italic text-primary hover:text-charcoal transition-colors mt-6 inline-block border-b border-primary/40 pb-0.5">Read More...</a>
         </div>
       </article>
@@ -180,7 +181,7 @@
     <aside class="lg:col-span-3 border-l border-archival pl-8">
       <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Latest Updates</h2>
       <div class="space-y-8" id="latest-sidebar"></div>
-      <div class="mt-12 bg-primary/10 p-6">
+      <div class="mt-8 lg:mt-12 bg-primary/10 p-4 lg:p-6 hidden sm:block">
         <h5 class="text-[10px] font-bold mb-3 tracking-widest">NEWSLETTER</h5>
         <p class="text-xs italic mb-4 leading-relaxed">Join scholars receiving weekly archival digests.</p>
         <input class="w-full bg-transparent border-b border-charcoal/30 text-xs py-2 mb-4 focus:ring-0 focus:border-primary placeholder:text-charcoal/40 outline-none" placeholder="Email address" type="email"/>
@@ -190,18 +191,18 @@
   </div>
 
   <!-- Selected Archival Monographs -->
-  <section class="mt-24 pt-16 border-t border-archival">
-    <h2 class="text-[11px] tracking-[0.2em] font-bold mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
+  <section class="mt-16 pt-10 lg:mt-24 lg:pt-16 border-t border-archival">
+    <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 lg:mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
     <div class="masonry-grid" id="featured-grid">
       <div class="col-span-12 text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
     </div>
   </section>
 
   <!-- Search Section -->
-  <section class="mt-24 pt-16 border-t border-archival">
+  <section class="mt-16 pt-10 lg:mt-24 lg:pt-16 border-t border-archival">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="serif-heading text-3xl font-bold mb-8">Search the Archive</h2>
-      <form action="/search/" method="GET" class="relative mb-12">
+      <h2 class="serif-heading text-3xl font-bold mb-6 lg:mb-8">Search the Archive</h2>
+      <form action="/search/" method="GET" class="relative mb-8 lg:mb-12">
         <input name="q" class="w-full bg-transparent border-b-2 border-charcoal/20 py-4 text-lg lg:text-2xl serif-heading italic focus:ring-0 focus:border-primary placeholder:text-charcoal/20 outline-none" placeholder="Search by name, era, or discipline..." type="text"/>
         <button type="submit"><span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-charcoal/40">search</span></button>
       </form>
@@ -216,9 +217,9 @@
   </section>
 </main>
 
-<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+<footer class="bg-charcoal text-background-light py-12 lg:py-20 px-4 sm:px-6 lg:px-12 mt-16 lg:mt-24">
   <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <div class="lg:col-span-1">
         <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
         <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
@@ -251,7 +252,7 @@
         </ul>
       </div>
     </div>
-    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+    <div class="mt-10 lg:mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
       <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
       <div class="flex gap-8">
         <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
@@ -366,7 +367,7 @@
 
       document.getElementById('featured-grid').innerHTML = allContent.slice(0, 6).map((item, i) => `
         <div class="${layouts[i] || 'col-span-12 lg:col-span-4'} flex flex-col group cursor-pointer" onclick="window.location='${item.url}'">
-          <div class="${aspects[i] || 'aspect-square'} overflow-hidden mb-6">
+          <div class="card-img ${aspects[i] || 'aspect-square'} overflow-hidden mb-6">
             <img alt="${item.title}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${item.image}"/>
           </div>
           <span class="serif-heading text-[10px] uppercase tracking-widest text-primary mb-2">${item.category}</span>

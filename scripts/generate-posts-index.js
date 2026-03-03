@@ -160,13 +160,13 @@ function wrapLayout(content, title, description, image, url) {
   </div>
 </header>
 
-<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12 fade-in">
+<main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-12 fade-in">
     ${content}
 </main>
 
-<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+<footer class="bg-charcoal text-background-light py-12 lg:py-20 px-4 sm:px-6 lg:px-12 mt-16 lg:mt-24">
   <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <div class="lg:col-span-1">
         <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
         <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
@@ -199,7 +199,7 @@ function wrapLayout(content, title, description, image, url) {
         </ul>
       </div>
     </div>
-    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+    <div class="mt-10 lg:mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
       <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
       <div class="flex gap-8">
         <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
@@ -464,7 +464,7 @@ function generateContentPage(item, type, outputBaseDir) {
                         By <span class="font-semibold text-[#1b180e]">${author}</span>${publishedDate ? ` &nbsp;·&nbsp; <span>${publishedDate}</span>` : ''}
                     </p>
                     ${image ? `
-                    <div class="w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden rounded-lg bg-[#ede9dc] mb-8">
+                    <div class="w-full aspect-[16/9] overflow-hidden bg-[#ede9dc] mb-6 lg:mb-8">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
                     </div>
                     ` : ''}
