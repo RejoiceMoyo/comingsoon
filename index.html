@@ -193,8 +193,11 @@
   <!-- Selected Archival Monographs -->
   <section class="mt-16 pt-10 lg:mt-24 lg:pt-16 border-t border-archival">
     <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 lg:mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
-    <div class="masonry-grid" id="featured-grid">
-      <div class="col-span-12 text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
+    <div id="featured-grid">
+      <div class="text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
+    </div>
+    <div class="mt-10 lg:mt-14 text-center" id="monograph-load-more" style="display:none">
+      <button onclick="loadMoreMonographs()" class="serif-heading text-base italic border-b border-primary pb-0.5 hover:text-primary transition-colors tracking-wide px-2">Load More</button>
     </div>
   </section>
 
@@ -350,7 +353,7 @@
           <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${item.title}</h4>
         </div>`).join('');
 
-      // ── Featured grid: mix of all sections, sorted by date ──────────
+      // ── Featured grid: alternating image-text rows + Load More ──────
       const allContent = [
         ...storyItems.slice(0, 3),
         ...inventionItems.slice(0, 2),
@@ -358,22 +361,39 @@
         ...techItems.slice(0, 1),
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
-      const layouts = [
-        'col-span-12 lg:col-span-4', 'col-span-12 lg:col-span-8',
-        'col-span-12 lg:col-span-4', 'col-span-12 lg:col-span-3',
-        'col-span-12 lg:col-span-5', 'col-span-12 lg:col-span-4',
-      ];
-      const aspects = ['aspect-[3/4]', 'aspect-[16/9]', 'aspect-square', 'aspect-[4/5]', 'aspect-[2/1]', 'aspect-[2/3]'];
+      window._monographItems = allContent;
+      const INITIAL_COUNT = 3;
 
-      document.getElementById('featured-grid').innerHTML = allContent.slice(0, 6).map((item, i) => `
-        <div class="${layouts[i] || 'col-span-12 lg:col-span-4'} flex flex-col group cursor-pointer" onclick="window.location='${item.url}'">
-          <div class="card-img ${aspects[i] || 'aspect-square'} overflow-hidden mb-6">
-            <img alt="${item.title}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${item.image}"/>
-          </div>
-          <span class="serif-heading text-[10px] uppercase tracking-widest text-primary mb-2">${item.category}</span>
-          <h3 class="serif-heading text-2xl font-bold mb-3">${item.title}</h3>
-          <p class="text-sm leading-relaxed text-charcoal/70 italic">${(item.description || '').substring(0, 220)}${(item.description || '').length > 220 ? '...' : ''}</p>
-        </div>`).join('');
+      const renderMonographRow = (item, i) => {
+        const flip = i % 2 === 1 ? 'sm:flex-row-reverse' : '';
+        const excerpt = (item.description || '').substring(0, 200) + ((item.description || '').length > 200 ? '...' : '');
+        return `
+          <article class="flex flex-col sm:flex-row ${flip} group cursor-pointer border-b border-archival last:border-b-0" onclick="window.location='${item.url}'">
+            <div class="sm:w-1/2 aspect-[4/3] overflow-hidden flex-shrink-0">
+              <img alt="${item.title}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="${item.image}"/>
+            </div>
+            <div class="sm:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-center">
+              <span class="text-[10px] uppercase tracking-widest text-primary mb-3 font-bold">${item.category}</span>
+              <h3 class="serif-heading text-xl sm:text-2xl lg:text-3xl font-bold mb-4 group-hover:text-primary transition-colors leading-tight">${item.title}</h3>
+              <p class="text-sm leading-relaxed text-charcoal/70 italic mb-6">${excerpt}</p>
+              <a href="${item.url}" class="text-[10px] font-bold tracking-widest border-b border-primary pb-0.5 w-fit hover:bg-primary/5 transition-all uppercase" onclick="event.stopPropagation()">Read More</a>
+            </div>
+          </article>`;
+      };
+
+      const grid = document.getElementById('featured-grid');
+      const loadMoreBtn = document.getElementById('monograph-load-more');
+
+      grid.innerHTML = allContent.slice(0, INITIAL_COUNT).map((item, i) => renderMonographRow(item, i)).join('');
+
+      if (allContent.length > INITIAL_COUNT) {
+        loadMoreBtn.style.display = 'block';
+      }
+
+      window.loadMoreMonographs = function() {
+        grid.innerHTML = allContent.map((item, i) => renderMonographRow(item, i)).join('');
+        loadMoreBtn.style.display = 'none';
+      };
 
     } catch(e) { console.error('Home init error:', e); }
     finally { document.getElementById('home-main').classList.add('loaded'); }
