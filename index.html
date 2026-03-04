@@ -85,7 +85,7 @@
       .skel::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(230,179,25,0.13) 50%,transparent 100%); animation:shimmer 1.5s infinite; }
       @keyframes shimmer { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
       #home-main { opacity:0; transition: opacity 0.35s ease; }
-      #home-main.loaded { opacity:1; }
+      #home-main.loaded { opacity:1; }      .pullquote { font-family:'Playfair Display',serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
     </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
@@ -132,6 +132,41 @@
     </div>
   </div>
 </header>
+
+<!-- On This Day Bar -->
+<div class="border-b border-archival py-2 px-6 lg:px-12 bg-primary/5">
+  <div class="max-w-[1440px] mx-auto flex items-center gap-3">
+    <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-primary flex-shrink-0 whitespace-nowrap">On This Day</span>
+    <span class="text-charcoal/30 flex-shrink-0">·</span>
+    <p id="on-this-day-text" class="serif-heading text-xs italic text-charcoal/60 truncate"></p>
+  </div>
+</div>
+<script>(function(){
+  var facts=[
+    {m:1,d:11,text:"Alice Paul was born \u2014 the suffragist who co-authored the Equal Rights Amendment (1885)."},
+    {m:1,d:26,text:"Mary Anning was born \u2014 the fossil hunter who discovered the first complete ichthyosaur, yet was barred from scientific societies (1799)."},
+    {m:2,d:11,text:"Hattie McDaniel became the first Black woman to win an Academy Award \u2014 for Best Supporting Actress in Gone with the Wind (1940)."},
+    {m:3,d:4,text:"Frances Perkins was sworn in as U.S. Secretary of Labour \u2014 the first woman to hold a U.S. Cabinet position (1933)."},
+    {m:3,d:8,text:"Women garment workers marched through New York City \u2014 the protest that became International Women's Day (1857)."},
+    {m:4,d:3,text:"Jane Goodall was born \u2014 the primatologist who transformed our understanding of animal behaviour (1934)."},
+    {m:5,d:20,text:"Amelia Earhart became the first woman to fly solo across the Atlantic, completing the journey in under 15 hours (1932)."},
+    {m:6,d:16,text:"Valentina Tereshkova became the first woman in space, orbiting Earth 48 times aboard Vostok 6 (1963)."},
+    {m:7,d:6,text:"Malala Yousafzai was born \u2014 the youngest Nobel Peace Prize laureate, who refused to stop advocating for girls\u2019 education (1997)."},
+    {m:8,d:11,text:"Hedy Lamarr received the patent for frequency-hopping spread spectrum \u2014 the technology underpinning modern WiFi and Bluetooth (1942)."},
+    {m:8,d:26,text:"Katherine Johnson was born \u2014 the NASA mathematician whose calculations made John Glenn\u2019s orbital spaceflight possible (1918)."},
+    {m:9,d:30,text:"Chien-Shiung Wu disproved the law of conservation of parity \u2014 overturning a fundamental assumption of physics (1956)."},
+    {m:10,d:10,text:"The Nobel Peace Prize was awarded to Wangari Maathai \u2014 the first African woman to receive a Nobel Prize (2004)."},
+    {m:11,d:7,text:"Marie Curie was born \u2014 the only person to win Nobel Prizes in two different sciences: Physics and Chemistry (1867)."},
+    {m:12,d:9,text:"Grace Hopper was born \u2014 the computer scientist who invented the first compiler and coined the term 'debugging' (1906)."},
+    {m:12,d:10,text:"Ada Lovelace was born \u2014 the first person to write what is considered the world's first computer program (1815)."}
+  ];
+  var now=new Date(),m=now.getMonth()+1,d=now.getDate();
+  var fact=facts.find(function(f){return f.m===m&&f.d===d});
+  if(!fact) fact=facts[Math.floor(((m*31+d)*9301+49297)%233280/233280*facts.length)];
+  var el=document.getElementById('on-this-day-text');
+  if(el&&fact) el.textContent=fact.text;
+})();
+</script>
 
 <!-- HOME HERO -->
 <main id="home-main" class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
@@ -424,5 +459,6 @@
     if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
   }
 </script>
+<script src="/scripts/noise.js"></script>
 </body>
 </html>

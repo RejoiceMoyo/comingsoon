@@ -79,7 +79,7 @@
       .article-body a { color: #e6b319; }
       .article-body a:hover { text-decoration: underline; }
       .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
-      a, a:visited { text-decoration: none; }
+      a, a:visited { text-decoration: none; }      .pullquote { font-family:'Playfair Display',serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
     </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
@@ -263,5 +263,25 @@ The invention reshaped how secure digital communication is engineered in an inte
     </div>
   </div>
 </footer>
+<script>
+(function(){
+  var body = document.querySelector('.article-body');
+  if (!body) return;
+  var paras = Array.from(body.querySelectorAll('p'));
+  if (paras.length < 4) return;
+  var candidate = null;
+  for (var i = 3; i < Math.min(9, paras.length); i++) {
+    var t = paras[i].textContent.trim();
+    if (t.length >= 45 && t.length <= 220) { candidate = paras[i]; break; }
+  }
+  if (!candidate) return;
+  var q = document.createElement('div');
+  q.className = 'pullquote';
+  q.textContent = candidate.textContent.trim();
+  var anchor = paras[Math.min(5, paras.length - 1)];
+  if (anchor && anchor.parentNode) anchor.after(q);
+})();
+</script>
+<script src="/scripts/noise.js"></script>
 </body>
 </html>
