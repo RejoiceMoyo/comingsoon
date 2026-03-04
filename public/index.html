@@ -362,36 +362,43 @@
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
       window._monographItems = allContent;
-      const INITIAL_COUNT = 3;
+      const INITIAL_COUNT = 6;
 
-      const renderMonographRow = (item, i) => {
-        const flip = i % 2 === 1 ? 'sm:flex-row-reverse' : '';
-        const excerpt = (item.description || '').substring(0, 200) + ((item.description || '').length > 200 ? '...' : '');
+      const masonryPatterns = [
+        { col: 'col-span-12 lg:col-span-4', aspect: 'aspect-[3/4]',  offset: '' },
+        { col: 'col-span-12 lg:col-span-8', aspect: 'aspect-[16/9]', offset: '' },
+        { col: 'col-span-12 lg:col-span-4', aspect: 'aspect-square', offset: 'lg:-mt-12' },
+        { col: 'col-span-12 lg:col-span-3', aspect: 'aspect-[4/5]',  offset: '' },
+        { col: 'col-span-12 lg:col-span-5', aspect: 'aspect-[2/1]',  offset: '' },
+        { col: 'col-span-12 lg:col-span-4', aspect: 'aspect-[2/3]',  offset: 'lg:-mt-32' },
+      ];
+
+      const renderMasonryCard = (item, i) => {
+        const p = masonryPatterns[i % masonryPatterns.length];
+        const excerpt = (item.description || '').substring(0, 180) + ((item.description || '').length > 180 ? '\u2026' : '');
         return `
-          <article class="flex flex-col sm:flex-row ${flip} group cursor-pointer border-b border-archival last:border-b-0" onclick="window.location='${item.url}'">
-            <div class="sm:w-1/2 aspect-[4/3] overflow-hidden flex-shrink-0">
-              <img alt="${item.title}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="${item.image}"/>
-            </div>
-            <div class="sm:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-center">
-              <span class="text-[10px] uppercase tracking-widest text-primary mb-3 font-bold">${item.category}</span>
-              <h3 class="serif-heading text-xl sm:text-2xl lg:text-3xl font-bold mb-4 group-hover:text-primary transition-colors leading-tight">${item.title}</h3>
-              <p class="text-sm leading-relaxed text-charcoal/70 italic mb-6">${excerpt}</p>
-              <a href="${item.url}" class="text-[10px] font-bold tracking-widest border-b border-primary pb-0.5 w-fit hover:bg-primary/5 transition-all uppercase" onclick="event.stopPropagation()">Read More</a>
-            </div>
+          <article class="group ${p.col} ${p.offset} flex flex-col cursor-pointer" onclick="window.location='${item.url}'">
+            <a href="${item.url}" class="block ${p.aspect} overflow-hidden mb-5 bg-charcoal/10" onclick="event.stopPropagation()">
+              <img alt="${item.title}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${item.image}" loading="lazy"/>
+            </a>
+            <span class="serif-heading text-[10px] uppercase tracking-widest text-primary mb-2">${item.category}</span>
+            <h3 class="serif-heading text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">${item.title}</h3>
+            <p class="text-sm leading-relaxed text-charcoal/70 italic">${excerpt}</p>
           </article>`;
       };
 
       const grid = document.getElementById('featured-grid');
       const loadMoreBtn = document.getElementById('monograph-load-more');
 
-      grid.innerHTML = allContent.slice(0, INITIAL_COUNT).map((item, i) => renderMonographRow(item, i)).join('');
+      grid.className = 'masonry-grid';
+      grid.innerHTML = allContent.slice(0, INITIAL_COUNT).map((item, i) => renderMasonryCard(item, i)).join('');
 
       if (allContent.length > INITIAL_COUNT) {
         loadMoreBtn.style.display = 'block';
       }
 
       window.loadMoreMonographs = function() {
-        grid.innerHTML = allContent.map((item, i) => renderMonographRow(item, i)).join('');
+        grid.innerHTML = allContent.map((item, i) => renderMasonryCard(item, i)).join('');
         loadMoreBtn.style.display = 'none';
       };
 
