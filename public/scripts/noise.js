@@ -8,7 +8,7 @@
       + 'pointer-events:none;z-index:9999;'
       + 'background-image:url("/images/ppaper.jpg");'
       + 'background-size:cover;'
-      + 'opacity:0.07;'
+      + 'opacity:0.22;'
       + 'mix-blend-mode:multiply;'
       + '}';
     document.head.appendChild(s);
