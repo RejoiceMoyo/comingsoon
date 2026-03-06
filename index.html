@@ -85,7 +85,9 @@
       .skel::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 0%,rgba(230,179,25,0.13) 50%,transparent 100%); animation:shimmer 1.5s infinite; }
       @keyframes shimmer { from{transform:translateX(-100%)} to{transform:translateX(100%)} }
       #home-main { opacity:0; transition: opacity 0.35s ease; }
-      #home-main.loaded { opacity:1; }      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+      #home-main.loaded { opacity:1; }
+      @keyframes otd-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      .otd-marquee { display: inline-block; white-space: nowrap; animation: otd-scroll 45s linear infinite; }      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
       .section-rule { border-top: 1px solid rgba(230,179,25,0.4); padding-top: 0.875rem; }
       .card-label { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #e6b319; border-top: 1px solid rgba(230,179,25,0.45); padding-top: 0.45rem; margin-bottom: 0.5rem; }
     </style>
@@ -140,7 +142,9 @@
   <div class="max-w-[1440px] mx-auto flex items-center gap-3">
     <span class="text-[9px] font-bold tracking-[0.2em] uppercase text-primary flex-shrink-0 whitespace-nowrap">On This Day</span>
     <span class="text-charcoal/30 flex-shrink-0">·</span>
-    <p id="on-this-day-text" class="serif-heading text-xs italic text-charcoal/60 truncate"></p>
+    <div class="overflow-hidden flex-1">
+      <p id="on-this-day-text" class="serif-heading text-xs italic text-charcoal/60 otd-marquee"></p>
+    </div>
   </div>
 </div>
 <script>(function(){
@@ -166,7 +170,7 @@
   var fact=facts.find(function(f){return f.m===m&&f.d===d});
   if(!fact) fact=facts[Math.floor(((m*31+d)*9301+49297)%233280/233280*facts.length)];
   var el=document.getElementById('on-this-day-text');
-  if(el&&fact) el.textContent=fact.text;
+  if(el&&fact) el.textContent = fact.text + '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u2014\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0' + fact.text;
 })();
 </script>
 
