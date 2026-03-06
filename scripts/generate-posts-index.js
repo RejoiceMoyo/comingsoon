@@ -128,6 +128,16 @@ function wrapLayout(content, title, description, image, url) {
       .article-body hr::before { content: "\\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
       .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
       a, a:visited { text-decoration: none; }
+      /* Reading column — desktop and mobile */
+      .article-body { max-width: 68ch; }
+      /* Progress bar */
+      #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
+      /* References as academic footnotes */
+      .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
+      .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
+      .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
+      .references-block li::before { content: counter(refs); position: absolute; left: 0; top: 0; font-size: 0.65rem; font-weight: 700; color: #e6b319; font-family: 'Cormorant Garamond', serif; }
+      .references-block li p { margin: 0; display: inline; }
     </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
@@ -213,6 +223,32 @@ function wrapLayout(content, title, description, image, url) {
     </div>
   </div>
 </footer>
+<script>
+(function(){
+  var bar = document.createElement('div');
+  bar.id = 'read-progress';
+  document.body.prepend(bar);
+  function updateProgress() {
+    var el = document.querySelector('.article-body');
+    if (!el) return;
+    var rect = el.getBoundingClientRect();
+    var total = el.offsetHeight - window.innerHeight * 0.5;
+    var scrolled = Math.max(0, -rect.top);
+    bar.style.width = (total > 0 ? Math.min(100, (scrolled / total) * 100) : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+  var artBody = document.querySelector('.article-body');
+  if (artBody) {
+    artBody.querySelectorAll('div').forEach(function(d) {
+      var h = d.querySelector('h4');
+      if (h && h.textContent.trim().toUpperCase() === 'REFERENCES') {
+        d.classList.add('references-block');
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>`
 }
