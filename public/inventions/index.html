@@ -26,37 +26,12 @@
     <meta name="twitter:description" content="The She Archive’s record of women’s inventions—designs, breakthroughs, and impacts that advanced science, technology, and everyday life." />
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
-    <meta name="theme-color" content="#e6b319" />
+    <meta name="theme-color" content="#e6b319" />    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#e6b319",
-              "background-light": "#f9f8f4",
-              "background-dark": "#211d11",
-              "charcoal": "#1b180e",
-              "archive-gray": "#97854e",
-              "ivory": "#fdfcf8",
-            },
-            fontFamily: {
-              "display": ["Inter", "sans-serif"],
-              "serif": ["Cormorant Garamond", "serif"],
-            },
-            borderRadius: {
-              "DEFAULT": "0px",
-              "lg": "0px",
-              "xl": "0px",
-              "full": "9999px",
-            },
-          },
-        },
-      }
-    </script>
+    <link rel="stylesheet" href="/styles/tailwind.css">
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
       .serif-heading { font-family: 'Cormorant Garamond', serif; }
@@ -71,6 +46,8 @@
       #mobile-menu.open { display: block; }
       .dark body { background-color: #211d11; color: #f9f8f4; }
       @media (max-width:639px) { .card-img { aspect-ratio:16/9!important; } }      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+      .section-rule { border-top: 1px solid rgba(230,179,25,0.4); padding-top: 0.875rem; }
+      .card-label { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #e6b319; border-top: 1px solid rgba(230,179,25,0.45); padding-top: 0.45rem; margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
@@ -137,12 +114,12 @@
     <aside class="lg:col-span-3 hidden lg:block">
       <div class="sticky top-28 space-y-12">
         <section>
-          <h3 class="text-[11px] tracking-[0.2em] font-bold mb-6 text-archive-gray uppercase flex items-center gap-2">
+          <h3 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-6 text-archive-gray uppercase flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">filter_list</span>Curatorial Filters
           </h3>
           <div class="mb-8">
             <h4 class="text-[10px] font-bold tracking-widest text-charcoal/50 uppercase mb-4">By Era</h4>
-            <div class="space-y-2">
+            <div class="space-y-1">
               <label class="flex items-center gap-3 cursor-pointer group"><input class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">18th Century</span></label>
               <label class="flex items-center gap-3 cursor-pointer group"><input checked class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">19th Century</span></label>
               <label class="flex items-center gap-3 cursor-pointer group"><input checked class="w-4 h-4 border-archival bg-transparent text-primary focus:ring-0" type="checkbox"/><span class="text-xs font-medium group-hover:text-primary transition-colors">20th Century</span></label>
@@ -170,48 +147,48 @@
 
 </main>
 
-<footer class="bg-charcoal text-background-light py-12 lg:py-20 px-4 sm:px-6 lg:px-12 mt-16 lg:mt-24">
+<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-      <div class="lg:col-span-1">
-        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
-        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
+      <div>
+        <a href="/" class="serif-heading text-lg font-bold hover:text-primary transition-colors tracking-wide block mb-2">THE SHE ARCHIVE</a>
+        <p class="text-[11px] text-gray-400 leading-relaxed" style="font-size:0.65rem">Celebrating women who changed the world.</p>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
-          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
-          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
-          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Collections</h3>
+        <ul class="space-y-1">
+          <li><a href="/stories/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Stories</a></li>
+          <li><a href="/inventions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Inventions</a></li>
+          <li><a href="/editors-desk/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Editor&#39;s Desk</a></li>
+          <li><a href="/tech-news/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/careers/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Careers</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
-          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
-          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Resources</h3>
+        <ul class="space-y-1">
+          <li><a href="/about/" class="text-[11px] text-gray-400 hover:text-white transition-colors">About</a></li>
+          <li><a href="/submissions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Submissions</a></li>
+          <li><a href="/contact/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/archive/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Archive</a></li>
+          <li><a href="/privacy/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Privacy</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
-        </ul>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Contact</h3>
+        <a href="mailto:theshearchivehq@gmail.com" class="text-[11px] text-gray-400 hover:text-white transition-colors block mb-2">theshearchivehq&#64;gmail.com</a>
+        <div class="flex gap-3">
+          <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Support us">
+            <span class="material-symbols-outlined text-base text-gray-400">coffee</span>
+          </a>
+          <a href="mailto:theshearchivehq@gmail.com" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Email us">
+            <span class="material-symbols-outlined text-base text-gray-400">mail</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="mt-10 lg:mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
-      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
-      <div class="flex gap-8">
-        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
-        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
-        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
-      </div>
+    <div class="border-t border-white/10 pt-3">
+      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE</p>
     </div>
   </div>
 </footer>
@@ -256,7 +233,7 @@
               <div class="card-img ${aspect} overflow-hidden mb-8 bg-gray-100">
               <img alt="${item.title}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${img}"/>
             </div>
-            <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase block mb-3">${item.category || 'Invention'}</span>
+            <span class="card-label">${item.category || 'Invention'}</span>
             <h2 class="serif-heading ${wide ? 'text-3xl lg:text-4xl' : 'text-2xl'} font-bold mb-4 group-hover:underline underline-offset-8 decoration-1">${item.title}</h2>
             <p class="text-sm leading-relaxed text-charcoal/80 ${wide ? 'max-w-2xl' : ''}">${item.description || ''}</p>
             ${item.date ? `<p class="mt-3 text-[10px] text-archive-gray italic">${formatDate(item.date)}</p>` : ''}

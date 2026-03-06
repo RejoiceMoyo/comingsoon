@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -34,36 +34,11 @@ A micro-thin transparent glass coating technology that eliminated surface reflec
     <title>Invisible Glass (Transparent Conductive Glass) | The She Archive</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#e6b319",
-              "background-light": "#f9f8f4",
-              "background-dark": "#211d11",
-              "charcoal": "#1b180e",
-              "archive-gray": "#97854e",
-              "ivory": "#fdfcf8",
-            },
-            fontFamily: {
-              "display": ["Inter", "sans-serif"],
-              "serif": ["Cormorant Garamond", "serif"],
-            },
-            borderRadius: {
-              "DEFAULT": "0px",
-              "lg": "0px",
-              "xl": "0px",
-              "full": "9999px",
-            },
-          },
-        },
-      }
-    </script>
+    <link rel="stylesheet" href="/styles/tailwind.css">
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
       .serif-heading { font-family: 'Cormorant Garamond', serif; }
@@ -76,27 +51,28 @@ A micro-thin transparent glass coating technology that eliminated surface reflec
       }
       .article-body p { margin-bottom: 1.2em; line-height: 1.85; font-size: clamp(0.97rem, 1.5vw, 1.08rem); }
       .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 2.5rem 0 0.6em; padding-top: 1.5rem; border-top: 1px solid rgba(230,179,25,0.35); }
-      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }
-      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
       .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.05rem, 1.5vw, 1.25rem); margin: 1.6em 0 0.5em; }
       .article-body ul, .article-body ol { padding-left: 1.5em; margin-bottom: 1.2em; }
       .article-body li { margin-bottom: 0.4em; }
       .article-body a { color: #e6b319; }
       .article-body a:hover { text-decoration: underline; }
       .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
-      a, a:visited { text-decoration: none; }      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
-          .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
-      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
-      /* Reading column */
-      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 700; line-height: 0.75; float: left; margin: 0.05em 0.1em 0 0; color: #1b180e; }
+      .article-body hr { border: none; text-align: center; margin: 2.5rem 0; }
+      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
+      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+      a, a:visited { text-decoration: none; }
+      /* Reading column — desktop and mobile */
+      .article-body { max-width: 68ch; }
       /* Progress bar */
       #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
-      /* References as footnotes */
+      /* References as academic footnotes */
       .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
       .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
       .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
       .references-block li::before { content: counter(refs); position: absolute; left: 0; top: 0; font-size: 0.65rem; font-weight: 700; color: #e6b319; font-family: 'Cormorant Garamond', serif; }
-      .references-block li p { margin: 0; display: inline; }</style>
+      .references-block li p { margin: 0; display: inline; }
+    </style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
 
@@ -243,74 +219,53 @@ It fundamentally changed how humans interact with visual technology.</li>
     
 </main>
 
-<footer class="bg-charcoal text-background-light py-12 lg:py-20 px-4 sm:px-6 lg:px-12 mt-16 lg:mt-24">
+<footer class="bg-charcoal text-background-light py-6 px-4 sm:px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-      <div class="lg:col-span-1">
-        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
-        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
+      <div>
+        <a href="/" class="font-serif text-lg font-bold hover:text-[#e6b319] transition-colors tracking-wide block mb-2" style="font-family:'Cormorant Garamond',serif">THE SHE ARCHIVE</a>
+        <p style="font-size:0.65rem;color:#9ca3af">Celebrating women who changed the world.</p>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
-          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
-          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
-          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Collections</h3>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="margin-bottom:0.2rem"><a href="/stories/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Stories</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/inventions/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Inventions</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/editors-desk/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Editor&#39;s Desk</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/tech-news/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/careers/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Careers</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
-          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
-          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Resources</h3>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="margin-bottom:0.2rem"><a href="/about/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">About</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/submissions/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Submissions</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/contact/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Contact</a></li>
+          <li style="margin-bottom:0.2rem"><a href="/archive/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Archive</a></li>
+          <li><a href="/privacy/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Privacy</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
-        </ul>
+        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Contact</h3>
+        <a href="mailto:theshearchivehq@gmail.com" style="font-size:0.69rem;color:#9ca3af;display:block;margin-bottom:0.5rem" class="hover:text-white transition-colors">theshearchivehq&#64;gmail.com</a>
+        <div style="display:flex;gap:0.6rem">
+          <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" style="width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(255,255,255,0.05)" aria-label="Support us">
+            <span class="material-symbols-outlined" style="font-size:1rem;color:#9ca3af">coffee</span>
+          </a>
+          <a href="mailto:theshearchivehq@gmail.com" style="width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(255,255,255,0.05)" aria-label="Email us">
+            <span class="material-symbols-outlined" style="font-size:1rem;color:#9ca3af">mail</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="mt-10 lg:mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
-      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
-      <div class="flex gap-8">
-        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
-        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
-        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
-      </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:0.75rem">
+      <p style="font-size:0.625rem;color:#6b7280;letter-spacing:0.15em">&copy; 2026 THE SHE ARCHIVE</p>
     </div>
   </div>
 </footer>
 <script>
 (function(){
-  var body = document.querySelector('.article-body');
-  if (!body) return;
-  var paras = Array.from(body.querySelectorAll('p'));
-  if (paras.length < 4) return;
-  var candidate = null;
-  for (var i = 3; i < Math.min(9, paras.length); i++) {
-    var t = paras[i].textContent.trim();
-    if (t.length >= 45 && t.length <= 220) { candidate = paras[i]; break; }
-  }
-  if (!candidate) return;
-  var q = document.createElement('div');
-  q.className = 'pullquote';
-  q.textContent = candidate.textContent.trim();
-  var anchor = paras[Math.min(5, paras.length - 1)];
-  if (anchor && anchor.parentNode) anchor.after(q);
-})();
-</script>
-<script src="/scripts/noise.js"></script>
-<script>
-(function(){
-  // Reading progress bar
   var bar = document.createElement('div');
   bar.id = 'read-progress';
   document.body.prepend(bar);
@@ -324,7 +279,6 @@ It fundamentally changed how humans interact with visual technology.</li>
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
-  // Style references as academic footnotes
   var artBody = document.querySelector('.article-body');
   if (artBody) {
     artBody.querySelectorAll('div').forEach(function(d) {
@@ -335,5 +289,6 @@ It fundamentally changed how humans interact with visual technology.</li>
     });
   }
 })();
-</script></body>
+</script>
+</body>
 </html>
