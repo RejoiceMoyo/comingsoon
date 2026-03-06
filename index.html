@@ -197,6 +197,9 @@
     <aside class="lg:col-span-3 border-l border-archival pl-8">
       <h2 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Latest Updates</h2>
       <div class="space-y-8" id="latest-sidebar"></div>
+      <div class="mt-5" id="sidebar-load-more" style="display:none">
+        <button onclick="loadMoreLatest()" class="serif-heading text-sm italic border-b border-primary pb-0.5 hover:text-primary transition-colors tracking-wide">Load More</button>
+      </div>
       <div class="mt-8 lg:mt-12 bg-primary/10 p-4 lg:p-6 hidden sm:block">
         <h5 class="text-[10px] font-bold mb-3 tracking-widest">NEWSLETTER</h5>
         <p class="text-xs italic mb-4 leading-relaxed">Join scholars receiving weekly archival digests.</p>
@@ -360,25 +363,40 @@
         ...techItems.slice(0, 2),
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
-      const sidebar = document.getElementById('latest-sidebar');
-      sidebar.innerHTML = latestPool.slice(0, 6).map(item => `
+      const SIDEBAR_INIT = 2;
+      let _sidebarShown = SIDEBAR_INIT;
+      const sidebarLoadMoreBtn = document.getElementById('sidebar-load-more');
+
+      function renderLatestSidebar() {
+        const sidebar = document.getElementById('latest-sidebar');
+        sidebar.innerHTML = latestPool.slice(0, _sidebarShown).map(item => `
         <div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='${item.url}'">
           <div class="flex justify-between items-center mb-2">
             <span class="card-label">${item.category}</span>
           </div>
           <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${item.title}</h4>
         </div>`).join('');
+        if (sidebarLoadMoreBtn) {
+          sidebarLoadMoreBtn.style.display = _sidebarShown >= latestPool.length ? 'none' : 'block';
+        }
+      }
+      renderLatestSidebar();
+      window.loadMoreLatest = function() {
+        _sidebarShown = Math.min(_sidebarShown + 4, latestPool.length);
+        renderLatestSidebar();
+      };
 
       // ── Featured grid: alternating image-text rows + Load More ──────
       const allContent = [
-        ...storyItems.slice(0, 3),
-        ...inventionItems.slice(0, 2),
-        ...editorialItems.slice(0, 2),
-        ...techItems.slice(0, 1),
+        ...storyItems,
+        ...inventionItems,
+        ...editorialItems,
+        ...techItems,
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
       window._monographItems = allContent;
       const INITIAL_COUNT = 12;
+      let _shownCount = INITIAL_COUNT;
 
       const masonryPatterns = [
         { col: 'col-span-6 lg:col-span-3', aspect: 'aspect-square',  offset: '' },
@@ -405,15 +423,16 @@
       const loadMoreBtn = document.getElementById('monograph-load-more');
 
       grid.className = 'masonry-grid';
-      grid.innerHTML = allContent.slice(0, INITIAL_COUNT).map((item, i) => renderMasonryCard(item, i)).join('');
+      grid.innerHTML = allContent.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
 
-      if (allContent.length > INITIAL_COUNT) {
+      if (allContent.length > _shownCount) {
         loadMoreBtn.style.display = 'block';
       }
 
       window.loadMoreMonographs = function() {
-        grid.innerHTML = allContent.map((item, i) => renderMasonryCard(item, i)).join('');
-        loadMoreBtn.style.display = 'none';
+        _shownCount = Math.min(_shownCount + 4, allContent.length);
+        grid.innerHTML = allContent.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (_shownCount >= allContent.length) loadMoreBtn.style.display = 'none';
       };
 
     } catch(e) { console.error('Home init error:', e); }
