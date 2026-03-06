@@ -125,7 +125,7 @@ function wrapLayout(content, title, description, image, url) {
       .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
       .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 700; line-height: 0.75; float: left; margin: 0.05em 0.1em 0 0; color: #1b180e; }
       .article-body hr { border: none; text-align: center; margin: 2.5rem 0; }
-      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
+      .article-body hr::before { content: "\\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
       .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
       a, a:visited { text-decoration: none; }
     </style>
