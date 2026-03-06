@@ -4,37 +4,50 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!footerContainer) return;
 
     footerContainer.innerHTML = `
-        <footer class="border-t border-[#e0dbe6] dark:border-white/10 py-8 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-12 bg-white dark:bg-background-dark">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <img src="/images/tsa.png" alt="TSA Logo" class="h-7 w-7 sm:h-8 sm:w-8 object-contain">
-                    <h2 class="brand-heading text-lg sm:text-xl font-black text-brand-teal dark:text-brand-gold">The She Archive</h2>
+        <footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
+                    <div>
+                        <a href="/" class="font-serif text-lg font-bold hover:text-[#e6b319] transition-colors tracking-wide block mb-2" style="font-family:'Cormorant Garamond',serif">THE SHE ARCHIVE</a>
+                        <p class="text-[11px] text-gray-400 leading-relaxed" style="font-size:0.65rem">Celebrating women who changed the world.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Collections</h3>
+                        <ul class="space-y-1">
+                            <li><a href="/stories/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Stories</a></li>
+                            <li><a href="/inventions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Inventions</a></li>
+                            <li><a href="/editors-desk/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Editor&#39;s Desk</a></li>
+                            <li><a href="/tech-news/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Tech News</a></li>
+                            <li><a href="/careers/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Resources</h3>
+                        <ul class="space-y-1">
+                            <li><a href="/about/" class="text-[11px] text-gray-400 hover:text-white transition-colors">About</a></li>
+                            <li><a href="/submissions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Submissions</a></li>
+                            <li><a href="/contact/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="/archive/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Archive</a></li>
+                            <li><a href="/privacy/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Privacy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Contact</h3>
+                        <a href="mailto:theshearchivehq@gmail.com" class="text-[11px] text-gray-400 hover:text-white transition-colors block mb-2">theshearchivehq&#64;gmail.com</a>
+                        <div class="flex gap-3">
+                            <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Support us">
+                                <span class="material-symbols-outlined text-base text-gray-400">coffee</span>
+                            </a>
+                            <a href="mailto:theshearchivehq@gmail.com" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Email us">
+                                <span class="material-symbols-outlined text-base text-gray-400">mail</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-black dark:text-white/70 text-xs sm:text-sm">
-                    <a class="hover:text-brand-teal transition-colors no-underline" href="/contact/">Contact</a>
-                    <a class="hover:text-brand-teal transition-colors no-underline" href="/submissions/">Submissions</a>
-                    <a class="hover:text-brand-teal transition-colors no-underline" href="/tech-news/">Tech News</a>
-                    <a class="hover:text-brand-teal transition-colors no-underline" href="/careers/">Careers</a>
-                    <a class="hover:text-brand-teal transition-colors no-underline" href="/privacy/">Privacy Policy</a>
-                </div>
-                <div class="flex gap-3 sm:gap-4">
-                    <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                        href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" aria-label="Support The She Archive">
-                        <span class="material-symbols-outlined text-lg sm:text-xl">coffee</span>
-                    </a>
-                    <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                        href="/coming-soon.html" aria-label="RSS Feed">
-                        <span class="material-symbols-outlined text-lg sm:text-xl">rss_feed</span>
-                    </a>
-                    <a class="size-9 sm:size-10 flex items-center justify-center rounded-full bg-[#f2f0f4] dark:bg-white/5 hover:bg-brand-teal/20 hover:text-brand-teal transition-all text-black no-underline"
-                        href="mailto:theshearchivehq@gmail.com" aria-label="Email us">
-                        <span class="material-symbols-outlined text-lg sm:text-xl">mail</span>
-                    </a>
+                <div class="border-t border-white/10 pt-3">
+                    <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE</p>
                 </div>
             </div>
-            <p class="text-center text-black dark:text-white/60 text-xs mt-8 sm:mt-12">
-                © 2026 The She Archive. Celebrating contributions across Arts, Tech, Medical, Activism, Science and more.
-            </p>
         </footer>
     `;
 });
