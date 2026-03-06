@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =============================================
+   DARK MODE — pure black, toggled via .dark on <html>
+   ============================================= */
+
+/* ── Base ── */
+.dark body { background-color: #0a0a0a !important; color: #f0ede6 !important; }
+
+/* ── Header ── */
+.dark header { background-color: rgba(10,10,10,0.97) !important; border-color: rgba(255,255,255,0.07) !important; }
+.dark nav a { color: #d6d0c4 !important; }
+.dark #mobile-menu { background-color: #0a0a0a !important; border-color: rgba(255,255,255,0.07) !important; }
+.dark #mobile-menu a { color: #d6d0c4 !important; }
+
+/* ── Borders ── */
+.dark .border-archival { border-color: rgba(255,255,255,0.07) !important; }
+.dark .section-rule { border-color: rgba(230,179,25,0.25) !important; }
+.dark .border-charcoal\/20 { border-color: rgba(255,255,255,0.10) !important; }
+.dark .border-charcoal\/30 { border-color: rgba(255,255,255,0.12) !important; }
+
+/* ── Text ── */
+.dark .text-archive-gray { color: #b89e6a !important; }
+.dark .text-charcoal { color: #f0ede6 !important; }
+.dark .text-charcoal\/70 { color: rgba(240,237,230,0.70) !important; }
+.dark .text-charcoal\/80 { color: rgba(240,237,230,0.80) !important; }
+.dark .text-charcoal\/60 { color: rgba(240,237,230,0.60) !important; }
+.dark .text-charcoal\/40 { color: rgba(240,237,230,0.40) !important; }
+.dark .text-charcoal\/30 { color: rgba(240,237,230,0.30) !important; }
+.dark .text-charcoal\/20 { color: rgba(240,237,230,0.20) !important; }
+
+/* ── Backgrounds ── */
+.dark .bg-background-light { background-color: #0a0a0a !important; }
+.dark .bg-background-light\/90 { background-color: rgba(10,10,10,0.97) !important; }
+.dark .bg-primary\/5 { background-color: rgba(230,179,25,0.03) !important; }
+.dark .bg-primary\/10 { background-color: rgba(230,179,25,0.06) !important; }
+.dark .bg-charcoal\/10 { background-color: rgba(255,255,255,0.05) !important; }
+
+/* ── Skeleton shimmer ── */
+.dark .skel { background: rgba(255,255,255,0.05) !important; }
+.dark .skel::after { background: linear-gradient(90deg,transparent 0%,rgba(230,179,25,0.06) 50%,transparent 100%) !important; }
+
+/* ── Form inputs ── */
+.dark input, .dark textarea { color: #f0ede6 !important; background: transparent !important; border-color: rgba(255,255,255,0.12) !important; }
+.dark input::placeholder, .dark textarea::placeholder { color: rgba(240,237,230,0.25) !important; }
+
+/* ── Pullquote ── */
+.dark .pullquote { color: #f0ede6 !important; }
+
+/* ── Article body ── */
+.dark .article-body { color: #e0dbd0 !important; }
+.dark .article-body p, .dark .article-body li { color: #e0dbd0 !important; }
+.dark .article-body h2, .dark .article-body h3, .dark .article-body h4 { color: #f0ede6 !important; border-color: rgba(230,179,25,0.2) !important; }
+.dark .article-body blockquote { color: #b89e6a !important; border-color: #e6b319 !important; }
+.dark .article-body a { color: #f0c040 !important; }
+.dark .article-body > p:first-child::first-letter { color: #f0ede6 !important; }
+.dark .article-body hr::before { color: #b89e6a !important; }
+
+/* ── References block ── */
+.dark .references-block li { color: #a09070 !important; }

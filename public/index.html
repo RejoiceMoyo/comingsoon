@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
     <script>
@@ -452,10 +453,12 @@
     document.getElementById('mobile-menu').classList.toggle('open');
   }
   function toggleDark() {
-    document.documentElement.classList.toggle('dark');
+    const dark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
     const icon = document.getElementById('dark-icon');
-    if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+    if (icon) icon.textContent = dark ? 'light_mode' : 'dark_mode';
   }
+  (function(){var i=document.getElementById('dark-icon');if(i&&document.documentElement.classList.contains('dark'))i.textContent='light_mode';})();
 </script>
 <script src="/scripts/noise.js"></script>
 </body>

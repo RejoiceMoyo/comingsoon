@@ -89,6 +89,9 @@
       <a href="/search/" class="hover:text-primary transition-colors flex items-center" aria-label="Search">
         <span class="material-symbols-outlined text-[20px]">search</span>
       </a>
+      <button onclick="toggleDark()" class="hover:text-primary transition-colors flex items-center" title="Toggle dark mode">
+        <span class="material-symbols-outlined text-[20px]" id="dark-icon">dark_mode</span>
+      </button>
       <button class="lg:hidden hover:text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
         <span class="material-symbols-outlined">menu</span>
       </button>
@@ -277,6 +280,15 @@ The invention reshaped how secure digital communication is engineered in an inte
     });
   }
 })();
+</script>
+<script>
+function toggleDark(){
+  var dark=document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme',dark?'dark':'light');
+  var i=document.getElementById('dark-icon');
+  if(i)i.textContent=dark?'light_mode':'dark_mode';
+}
+(function(){var i=document.getElementById('dark-icon');if(i&&document.documentElement.classList.contains('dark'))i.textContent='light_mode';})();
 </script>
 </body>
 </html>
