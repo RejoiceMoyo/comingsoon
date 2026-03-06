@@ -1,4 +1,4 @@
-"""
+﻿"""
 rebuild_design.py  —  Full rebuild of all HTML pages using she-archive.html design
 Run: python rebuild_design.py
 """
@@ -27,7 +27,7 @@ CSS_AND_CONFIG = """\
             },
             fontFamily: {
               "display": ["Inter", "sans-serif"],
-              "serif": ["Playfair Display", "serif"],
+              "serif": ["Cormorant Garamond", "serif"],
             },
             borderRadius: {
               "DEFAULT": "0px",
@@ -41,9 +41,9 @@ CSS_AND_CONFIG = """\
     </script>
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
-      .serif-heading { font-family: 'Playfair Display', serif; }
+      .serif-heading { font-family: 'Cormorant Garamond', serif; }
       .border-archival { border-color: rgba(27, 24, 14, 0.12); }
-      .masonry-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
+      .masonry-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
       .irregular-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3rem; }
       .asymmetrical-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
       .bulletin-row:hover { background-color: rgba(230, 179, 25, 0.03); }
@@ -53,7 +53,25 @@ CSS_AND_CONFIG = """\
       #mobile-menu.open { display: block; }
       .dark body { background-color: #211d11; color: #f9f8f4; }
       body::before { content:''; position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size:200px 200px; }
-      .pullquote { font-family:'Playfair Display',serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+      /* Drop cap */
+      .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
+      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
+      /* Section dividers */
+      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }
+      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
+      /* Reading column */
+      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      /* Progress bar */
+      #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
+      /* References as footnotes */
+      .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
+      .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
+      .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
+      .references-block li::before { content: counter(refs); position: absolute; left: 0; top: 0; font-size: 0.65rem; font-weight: 700; color: #e6b319; font-family: 'Cormorant Garamond', serif; }
+      .references-block li p { margin: 0; display: inline; }
+      .section-rule { border-top: 1px solid rgba(230,179,25,0.4); padding-top: 0.875rem; }
+      .card-label { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #e6b319; border-top: 1px solid rgba(230,179,25,0.45); padding-top: 0.45rem; margin-bottom: 0.5rem; }
     </style>"""
 
 
@@ -125,48 +143,48 @@ def make_header(active_page=""):
 </header>"""
 
 
-FOOTER = """<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+FOOTER = """<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-      <div class="lg:col-span-1">
-        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
-        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
+      <div>
+        <a href="/" class="serif-heading text-lg font-bold hover:text-primary transition-colors tracking-wide block mb-2">THE SHE ARCHIVE</a>
+        <p class="text-[11px] text-gray-400 leading-relaxed" style="font-size:0.65rem">Celebrating women who changed the world.</p>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
-          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
-          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
-          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Collections</h3>
+        <ul class="space-y-1">
+          <li><a href="/stories/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Stories</a></li>
+          <li><a href="/inventions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Inventions</a></li>
+          <li><a href="/editors-desk/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Editor&#39;s Desk</a></li>
+          <li><a href="/tech-news/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/careers/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Careers</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
-          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
-          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Resources</h3>
+        <ul class="space-y-1">
+          <li><a href="/about/" class="text-[11px] text-gray-400 hover:text-white transition-colors">About</a></li>
+          <li><a href="/submissions/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Submissions</a></li>
+          <li><a href="/contact/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/archive/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Archive</a></li>
+          <li><a href="/privacy/" class="text-[11px] text-gray-400 hover:text-white transition-colors">Privacy</a></li>
         </ul>
       </div>
       <div>
-        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
-        <ul class="space-y-4 text-xs font-medium text-gray-400">
-          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
-        </ul>
+        <h3 class="text-[9px] tracking-[0.2em] text-gray-500 uppercase mb-2">Contact</h3>
+        <a href="mailto:theshearchivehq@gmail.com" class="text-[11px] text-gray-400 hover:text-white transition-colors block mb-2">theshearchivehq&#64;gmail.com</a>
+        <div class="flex gap-3">
+          <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Support us">
+            <span class="material-symbols-outlined text-base text-gray-400">coffee</span>
+          </a>
+          <a href="mailto:theshearchivehq@gmail.com" class="size-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors" aria-label="Email us">
+            <span class="material-symbols-outlined text-base text-gray-400">mail</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
-      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
-      <div class="flex gap-8">
-        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
-        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
-        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
-      </div>
+    <div class="border-t border-white/10 pt-3">
+      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE</p>
     </div>
   </div>
 </footer>"""
@@ -204,7 +222,7 @@ FORMAT_DATE_JS = """const formatDate = (value) => {
 # ─────────────────────────────────────────────────────────────────────────────
 
 FONT_LINKS = """\
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>"""
 
 
@@ -296,9 +314,9 @@ def page_blog(meta):
     <span id="stories-count" class="text-[10px] text-archive-gray italic"></span>
   </div>
 
-  <!-- Bulletin list -->
-  <div class="border-t border-archival" id="post-list">
-    <div class="bulletin-row py-8 border-b border-archival text-charcoal/40 italic text-sm serif-heading">Loading stories...</div>
+  <!-- Stories card grid -->
+  <div class="masonry-grid" id="post-list">
+    <div class="col-span-12 text-charcoal/40 italic text-sm serif-heading py-8">Loading stories...</div>
   </div>
 
 </main>
@@ -329,22 +347,18 @@ def page_blog(meta):
           return;
         }}
         if (resultsCount) resultsCount.textContent = items.length + ' entries';
+        const layouts = ['col-span-6 lg:col-span-3','col-span-6 lg:col-span-3','col-span-6 lg:col-span-3','col-span-6 lg:col-span-3'];
+        const aspects = ['aspect-square','aspect-[4/5]','aspect-square','aspect-[4/5]'];
+        const offsets = ['','','lg:-mt-8','lg:-mt-8'];
         list.innerHTML = items.map((post, i) => `
-          <div class="bulletin-row grid grid-cols-12 gap-4 py-6 border-b border-archival items-start group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
-            <div class="col-span-2 lg:col-span-1">
-              <span class="text-[10px] font-bold text-archive-gray tracking-tighter">LOG ${{String(i + 1).padStart(4, '0')}}</span>
+          <div class="${{layouts[i%4]}} ${{offsets[i%4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
+            <div class="${{aspects[i%4]}} overflow-hidden mb-3 bg-charcoal/10">
+              <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
             </div>
-            <div class="col-span-10 lg:col-span-1">
-              <span class="text-[9px] font-bold tracking-widest uppercase text-charcoal/50">${{post.category || 'Story'}}</span>
-            </div>
-            <div class="col-span-12 lg:col-span-5">
-              <h3 class="serif-heading text-xl font-bold group-hover:text-primary transition-colors">${{post.title}}</h3>
-              ${{post.date ? `<p class="text-[10px] text-archive-gray mt-1 italic">${{formatDate(post.date)}} · ${{post.author || 'The She Archive'}}</p>` : ''}}
-            </div>
-            <div class="col-span-12 lg:col-span-5">
-              <p class="text-sm text-charcoal/70 italic leading-relaxed">${{post.description || ''}}</p>
-              <a href="/stories/${{post.slug}}/" class="mt-3 inline-block text-[10px] font-bold tracking-widest border-b border-primary pb-0.5 hover:bg-primary/5 transition-all uppercase">Read Monograph</a>
-            </div>
+            <span class="card-label">${{post.category || 'Story'}}</span>
+            <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
+            <p class="text-sm text-charcoal/70 italic leading-relaxed">${{(post.description || '').substring(0,90)}}${{(post.description||'').length>90?'\u2026':''}}</p>
+            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} · ${{post.author || 'The She Archive'}}</p>` : ''}}
           </div>`).join('');
       }};
 
@@ -421,7 +435,7 @@ def page_tech_news(meta):
         list.innerHTML = items.map((post, i) => `
           <div class="bulletin-row grid grid-cols-12 gap-4 py-8 border-b border-archival items-center group cursor-pointer ${{i === 0 ? 'bg-primary/5' : ''}}" onclick="window.location='/tech-news/${{post.slug}}/'">
             <div class="col-span-2 lg:col-span-1"><span class="text-[10px] font-bold ${{i === 0 ? 'text-primary' : 'text-archive-gray'}} tracking-tighter">LOG ${{String(4000 + i + 1).padStart(4, ' ')}}</span></div>
-            <div class="col-span-10 lg:col-span-1"><span class="${{i === 0 ? 'inline-block px-2 py-1 bg-primary text-white text-[9px] font-bold tracking-widest uppercase' : 'text-[9px] font-bold tracking-widest uppercase text-charcoal/50'}}">${{post.category || (i === 0 ? 'Latest' : 'Update')}}</span></div>
+            <div class="col-span-10 lg:col-span-1"><span class="${{i === 0 ? 'inline-block px-2 py-1 bg-primary text-white text-[9px] font-bold tracking-widest uppercase' : 'card-label'}}">${{post.category || (i === 0 ? 'Latest' : 'Update')}}</span></div>
             <div class="col-span-12 lg:col-span-5"><h3 class="serif-heading text-xl font-bold group-hover:text-primary transition-colors">${{post.title}}</h3>${{post.date ? `<p class="text-[10px] text-archive-gray mt-1 italic">${{formatDate(post.date)}}</p>` : ''}}</div>
             <div class="col-span-12 lg:col-span-5"><p class="text-sm text-charcoal/70 italic leading-relaxed">${{post.description || ''}}</p></div>
           </div>`).join('');
@@ -458,7 +472,7 @@ def page_editors_desk(meta):
     <aside class="lg:col-span-3">
       <div class="sticky top-32">
         <div class="mb-12">
-          <h2 class="text-[11px] tracking-[0.3em] font-bold mb-6 text-archive-gray uppercase border-b border-archival pb-2">Recent Volumes</h2>
+          <h2 class="section-rule text-[11px] tracking-[0.3em] font-bold mb-6 text-archive-gray uppercase">Recent Volumes</h2>
           <ul class="space-y-4 text-xs" id="sidebar-list">
             <li class="text-archive-gray italic serif-heading">Loading...</li>
           </ul>
@@ -588,7 +602,7 @@ def page_inventions(meta):
     <aside class="lg:col-span-3">
       <div class="sticky top-28 space-y-12">
         <section>
-          <h3 class="text-[11px] tracking-[0.2em] font-bold mb-6 text-archive-gray uppercase flex items-center gap-2">
+          <h3 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-6 text-archive-gray uppercase flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">filter_list</span>Curatorial Filters
           </h3>
           <div class="mb-8">
@@ -648,7 +662,7 @@ def page_inventions(meta):
             <div class="${{aspect}} overflow-hidden mb-8 bg-gray-100">
               <img alt="${{item.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{img}}"/>
             </div>
-            <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase block mb-3">${{item.category || 'Invention'}}</span>
+            <span class="card-label">${{item.category || 'Invention'}}</span>
             <h2 class="serif-heading ${{wide ? 'text-3xl lg:text-4xl' : 'text-2xl'}} font-bold mb-4 group-hover:underline underline-offset-8 decoration-1">${{item.title}}</h2>
             <p class="text-sm leading-relaxed text-charcoal/80 ${{wide ? 'max-w-2xl' : ''}}">${{item.description || ''}}</p>
             ${{item.date ? `<p class="mt-3 text-[10px] text-archive-gray italic">${{formatDate(item.date)}}</p>` : ''}}
@@ -923,7 +937,7 @@ def page_index(meta):
     <!-- Left sidebar -->
     <aside class="lg:col-span-3 border-r border-archival pr-8 hidden lg:block">
       <div class="sticky top-28">
-        <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Archive Features</h2>
+        <h2 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Archive Features</h2>
         <div class="space-y-10">
           <a href="/inventions/" class="group block">
             <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
@@ -947,7 +961,7 @@ def page_index(meta):
     <section class="lg:col-span-6 px-0 lg:px-4">
       <article class="flex flex-col">
         <div class="mb-2">
-          <span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase" id="hero-category">Loading...</span>
+          <span class="card-label" id="hero-category">Loading...</span>
         </div>
         <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title">Women Who Shaped History</h2>
         <div class="aspect-[4/5] bg-gray-100 mb-8 overflow-hidden">
@@ -967,7 +981,7 @@ def page_index(meta):
 
     <!-- Right sidebar: Latest Updates -->
     <aside class="lg:col-span-3 border-l border-archival pl-8">
-      <h2 class="text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Latest Updates</h2>
+      <h2 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-8 text-archive-gray uppercase">Latest Updates</h2>
       <div class="space-y-8" id="latest-sidebar">
         <div class="text-archive-gray italic serif-heading text-sm">Loading...</div>
       </div>
@@ -982,7 +996,7 @@ def page_index(meta):
 
   <!-- Selected Archival Monographs -->
   <section class="mt-24 pt-16 border-t border-archival">
-    <h2 class="text-[11px] tracking-[0.2em] font-bold mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
+    <h2 class="section-rule text-[11px] tracking-[0.2em] font-bold mb-12 text-archive-gray uppercase text-center">Selected Archival Monographs</h2>
     <div class="masonry-grid" id="featured-grid">
       <div class="col-span-12 text-archive-gray italic serif-heading text-center py-8">Loading featured stories...</div>
     </div>
@@ -1034,29 +1048,29 @@ def page_index(meta):
         const hrefs = ['/stories/', '/tech-news/', '/editors-desk/', '/inventions/'];
         return `<div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
           <div class="flex justify-between items-center mb-2">
-            <span class="text-[9px] font-bold text-primary tracking-widest uppercase">${{post.category || sections[i % 4]}}</span>
+            <span class="card-label">${{post.category || sections[i % 4]}}</span>
           </div>
           <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${{post.title}}</h4>
         </div>`;
       }}).join('');
 
-      // Featured grid - up to 6 posts
+      // Featured grid - up to 12 posts
       const grid = document.getElementById('featured-grid');
-      const gridPosts = posts.slice(0, 6);
+      const gridPosts = posts.slice(0, 12);
       const layouts = [
-        'col-span-12 lg:col-span-4', 'col-span-12 lg:col-span-8',
-        'col-span-12 lg:col-span-4', 'col-span-12 lg:col-span-3',
-        'col-span-12 lg:col-span-5', 'col-span-12 lg:col-span-4',
+        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
+        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
       ];
-      const aspects = ['aspect-[3/4]', 'aspect-[16/9]', 'aspect-square', 'aspect-[4/5]', 'aspect-[2/1]', 'aspect-[2/3]'];
+      const aspects = ['aspect-square', 'aspect-[4/5]', 'aspect-square', 'aspect-[4/5]'];
+      const offsets = ['', '', 'lg:-mt-8', 'lg:-mt-8'];
       grid.innerHTML = gridPosts.map((post, i) => `
-        <div class="${{layouts[i] || 'col-span-12 lg:col-span-4'}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
-          <div class="${{aspects[i] || 'aspect-square'}} overflow-hidden mb-6">
-            <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}"/>
+        <div class="${{layouts[i % 4]}} ${{offsets[i % 4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
+          <div class="${{aspects[i % 4]}} overflow-hidden mb-3 bg-charcoal/10">
+            <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
           </div>
-          <span class="serif-heading text-[10px] uppercase tracking-widest text-primary mb-2">${{post.category || 'Archive'}}</span>
-          <h3 class="serif-heading text-2xl font-bold mb-3">${{post.title}}</h3>
-          <p class="text-sm leading-relaxed text-charcoal/70 italic">${{post.description || ''}}</p>
+          <span class="card-label">${{post.category || 'Archive'}}</span>
+          <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
+          <p class="text-sm leading-relaxed text-charcoal/70 italic">${{(post.description || '').substring(0, 90)}}${{(post.description || '').length > 90 ? '\u2026' : ''}}</p>
         </div>`).join('');
     }} catch(e) {{ console.error(e); }}
   }}

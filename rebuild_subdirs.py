@@ -1,4 +1,4 @@
-"""
+﻿"""
 rebuild_subdirs.py — Updates all public/ subdirectory HTML pages to she-archive design
 Handles: section listing index pages, static info pages, individual article pages
 """
@@ -28,7 +28,7 @@ CSS_AND_CONFIG = """\
             },
             fontFamily: {
               "display": ["Inter", "sans-serif"],
-              "serif": ["Playfair Display", "serif"],
+              "serif": ["Cormorant Garamond", "serif"],
             },
             borderRadius: {
               "DEFAULT": "0px",
@@ -42,7 +42,7 @@ CSS_AND_CONFIG = """\
     </script>
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
-      .serif-heading { font-family: 'Playfair Display', serif; }
+      .serif-heading { font-family: 'Cormorant Garamond', serif; }
       .border-archival { border-color: rgba(27, 24, 14, 0.12); }
       .bulletin-row:hover { background-color: rgba(230, 179, 25, 0.03); }
       .fade-in { animation: fadeIn 0.35s ease; }
@@ -52,10 +52,12 @@ CSS_AND_CONFIG = """\
       .dark body { background-color: #211d11; color: #f9f8f4; }
       /* Article prose styles */
       .article-body h1, .article-body h2, .article-body h3, .article-body h4 {
-        font-family: 'Playfair Display', serif; font-weight: 700; margin: 1.75rem 0 0.875rem;
+        font-family: 'Cormorant Garamond', serif; font-weight: 700; margin: 1.75rem 0 0.875rem;
       }
       .article-body h1 { font-size: clamp(1.6rem, 4vw, 2.25rem); }
-      .article-body h2 { font-size: clamp(1.15rem, 3vw, 1.5rem); border-bottom: 1px solid rgba(27,24,14,0.12); padding-bottom: 0.5rem; }
+      .article-body h2 { font-size: clamp(1.15rem, 3vw, 1.5rem); border-top: 1px solid rgba(230,179,25,0.35); border-bottom: none; padding-top: 1.5rem; margin-top: 2.5rem; }
+      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }
+      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
       .article-body h3 { font-size: clamp(1rem, 2.5vw, 1.25rem); }
       .article-body p { line-height: 1.8; margin-bottom: 1.25rem; font-size: 1rem; }
       .article-body ul, .article-body ol { margin: 1rem 0 1.25rem 1.5rem; line-height: 1.8; }
@@ -83,10 +85,23 @@ CSS_AND_CONFIG = """\
       .dark .article-body { color: #f9f8f4; }
       .dark .article-body h2 { border-bottom-color: rgba(249,248,244,0.12); }
       .dark .article-body blockquote { background: rgba(230,179,25,0.06); }
+      /* Drop cap */
+      .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
+      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
+      /* Reading column */
+      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      /* Progress bar */
+      #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
+      /* References as footnotes */
+      .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
+      .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
+      .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
+      .references-block li::before { content: counter(refs); position: absolute; left: 0; top: 0; font-size: 0.65rem; font-weight: 700; color: #e6b319; font-family: 'Cormorant Garamond', serif; }
+      .references-block li p { margin: 0; display: inline; }
     </style>"""
 
 FONT_LINKS = """\
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>"""
 
 TOGGLE_JS = """<script>
@@ -101,6 +116,32 @@ TOGGLE_JS = """<script>
     const icon = document.getElementById('dark-icon');
     if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
   }
+  // Reading progress bar
+  (function(){
+    var bar = document.createElement('div');
+    bar.id = 'read-progress';
+    document.body.prepend(bar);
+    function updateProgress() {
+      var el = document.querySelector('.article-body');
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var total = el.offsetHeight - window.innerHeight * 0.5;
+      var scrolled = Math.max(0, -rect.top);
+      bar.style.width = (total > 0 ? Math.min(100, (scrolled / total) * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    // Style references as academic footnotes
+    document.addEventListener('DOMContentLoaded', function(){
+      var artBody = document.querySelector('.article-body');
+      if (artBody) {
+        artBody.querySelectorAll('div').forEach(function(d) {
+          var h = d.querySelector('h4');
+          if (h && h.textContent.trim().toUpperCase() === 'REFERENCES') { d.classList.add('references-block'); }
+        });
+      }
+    });
+  })();
   // Float standalone inline images on desktop so text wraps beside them
   document.addEventListener('DOMContentLoaded', function() {
     var body = document.querySelector('.article-body');
@@ -584,9 +625,9 @@ def rebuild_article_page(filepath):
         refs_rendered = md_lib.markdown(raw_refs.strip(), extensions=['extra'])
         refs_html = f"""
       <!-- References -->
-      <div class="mt-16 pt-8 border-t border-archival">
-        <h2 class="serif-heading text-xl font-bold mb-6 tracking-tight">References</h2>
-        <div class="article-body text-sm leading-relaxed opacity-80">
+      <div class="mt-16 pt-8 border-t border-archival references-block">
+        <h4 class="text-xs uppercase tracking-widest mb-3 font-bold">References</h4>
+        <div class="text-sm leading-relaxed">
           {refs_rendered}
         </div>
       </div>"""

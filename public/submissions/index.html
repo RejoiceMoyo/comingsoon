@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -31,7 +31,7 @@
     <title>Submissions | The She Archive</title>
     <link rel="icon" type="image/png" href="/images/tsa.png" />
     <link rel="apple-touch-icon" href="/images/tsa.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
@@ -49,7 +49,7 @@
             },
             fontFamily: {
               "display": ["Inter", "sans-serif"],
-              "serif": ["Playfair Display", "serif"],
+              "serif": ["Cormorant Garamond", "serif"],
             },
             borderRadius: {
               "DEFAULT": "0px",
@@ -63,7 +63,7 @@
     </script>
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
-      .serif-heading { font-family: 'Playfair Display', serif; }
+      .serif-heading { font-family: 'Cormorant Garamond', serif; }
       .border-archival { border-color: rgba(27, 24, 14, 0.12); }
       .fade-in { animation: fadeIn 0.35s ease; }
       @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -72,15 +72,28 @@
           font-family: "Times New Roman", Times, serif;
       }
       .article-body p { margin-bottom: 1.2em; line-height: 1.85; font-size: clamp(0.97rem, 1.5vw, 1.08rem); }
-      .article-body h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 2em 0 0.6em; }
-      .article-body h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 1.5vw, 1.25rem); margin: 1.6em 0 0.5em; }
+      .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 2.5rem 0 0.6em; padding-top: 1.5rem; border-top: 1px solid rgba(230,179,25,0.35); }
+      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }
+      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
+      .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.05rem, 1.5vw, 1.25rem); margin: 1.6em 0 0.5em; }
       .article-body ul, .article-body ol { padding-left: 1.5em; margin-bottom: 1.2em; }
       .article-body li { margin-bottom: 0.4em; }
       .article-body a { color: #e6b319; }
       .article-body a:hover { text-decoration: underline; }
       .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
-      a, a:visited { text-decoration: none; }      .pullquote { font-family:'Playfair Display',serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
-    </style>
+      a, a:visited { text-decoration: none; }      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
+          .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
+      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
+      /* Reading column */
+      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      /* Progress bar */
+      #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
+      /* References as footnotes */
+      .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
+      .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
+      .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
+      .references-block li::before { content: counter(refs); position: absolute; left: 0; top: 0; font-size: 0.65rem; font-weight: 700; color: #e6b319; font-family: 'Cormorant Garamond', serif; }
+      .references-block li p { margin: 0; display: inline; }</style>
 </head>
 <body class="bg-background-light text-charcoal transition-colors duration-300">
 
@@ -225,5 +238,32 @@
   </div>
 </footer>
 <script src="/scripts/noise.js"></script>
-</body>
+<script>
+(function(){
+  // Reading progress bar
+  var bar = document.createElement('div');
+  bar.id = 'read-progress';
+  document.body.prepend(bar);
+  function updateProgress() {
+    var el = document.querySelector('.article-body');
+    if (!el) return;
+    var rect = el.getBoundingClientRect();
+    var total = el.offsetHeight - window.innerHeight * 0.5;
+    var scrolled = Math.max(0, -rect.top);
+    bar.style.width = (total > 0 ? Math.min(100, (scrolled / total) * 100) : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+  // Style references as academic footnotes
+  var artBody = document.querySelector('.article-body');
+  if (artBody) {
+    artBody.querySelectorAll('div').forEach(function(d) {
+      var h = d.querySelector('h4');
+      if (h && h.textContent.trim().toUpperCase() === 'REFERENCES') {
+        d.classList.add('references-block');
+      }
+    });
+  }
+})();
+</script></body>
 </html>
