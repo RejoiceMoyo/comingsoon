@@ -79,12 +79,13 @@
             eraButtons = [],
             clearButton,
             resultsCount,
+            initialKeyword = '',
         } = options || {};
 
         if (!container || typeof renderItems !== 'function') return;
 
         const state = {
-            keyword: searchInput ? normalize(searchInput.value) : '',
+            keyword: initialKeyword || (searchInput ? normalize(searchInput.value) : ''),
             category: '',
             era: ''
         };

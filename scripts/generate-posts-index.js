@@ -629,7 +629,7 @@ const searchDir = path.join(outputDir, 'search');
 });
 
 // Copy shared scripts (like footer.js) to public/scripts
-const scriptsToCopy = ['footer.js'];
+const scriptsToCopy = ['footer.js', 'filters.js', 'unified-archive.js', 'load-posts.js'];
 scriptsToCopy.forEach(script => {
     const srcPath = path.join(rootDir, 'scripts', script);
     const destPath = path.join(publicScriptsDir, script);

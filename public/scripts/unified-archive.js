@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const clearButton = document.querySelector('[data-filter-clear]');
   const emptyState = '<div class="col-span-full text-center text-[#756189] dark:text-white/60 py-10">No records match your filters. Try a different keyword or <button data-filter-clear class="text-brand-teal font-bold">clear filters</button>.</div>';
 
+  // Read ?q= URL param and pre-fill search
+  const urlParam = new URLSearchParams(window.location.search).get('q') || '';
+  if (urlParam && searchInput) {
+    searchInput.value = urlParam;
+  }
+
   if (!container) return;
 
   const formatDate = (value) => {
@@ -59,21 +65,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayDate: formatDate(item.date),
   });
 
+  const mapTechNews = (item) => ({
+    ...item,
+    type: 'Tech News',
+    href: `/tech-news/${item.slug}/`,
+    summary: item.description || item.intro || item.dek || '',
+    categories: item.categories || item.tags || [],
+    era: item.era || inferEra(item),
+    displayDate: formatDate(item.date),
+  });
+
+  const mapCareer = (item) => ({
+    ...item,
+    type: 'Careers',
+    href: `/careers/${item.slug}/`,
+    summary: item.description || item.dek || '',
+    categories: item.categories || item.tags || [],
+    era: item.era || inferEra(item),
+    displayDate: formatDate(item.date),
+  });
+
   try {
-    const [postsRes, inventionsRes, editorialsRes] = await Promise.all([
+    const [postsRes, inventionsRes, editorialsRes, techNewsRes, careersRes] = await Promise.all([
       fetch('/api/posts.json?ts=' + Date.now()),
       fetch('/api/inventions.json?ts=' + Date.now()),
       fetch('/api/editorials.json?ts=' + Date.now()),
+      fetch('/api/tech-news.json?ts=' + Date.now()),
+      fetch('/api/careers.json?ts=' + Date.now()),
     ]);
 
     const posts = postsRes.ok ? await postsRes.json() : [];
     const inventions = inventionsRes.ok ? await inventionsRes.json() : [];
     const editorials = editorialsRes.ok ? await editorialsRes.json() : [];
+    const techNews = techNewsRes.ok ? await techNewsRes.json() : [];
+    const careers = careersRes.ok ? await careersRes.json() : [];
 
     const items = [
       ...posts.map(mapStory),
       ...inventions.map(mapInvention),
       ...editorials.map(mapEditorial),
+      ...techNews.map(mapTechNews),
+      ...careers.map(mapCareer),
     ];
 
     const renderItems = (list) => {
@@ -124,6 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         eraButtons,
         clearButton,
         resultsCount,
+        initialKeyword: urlParam,
       });
     } else {
       renderItems(items);

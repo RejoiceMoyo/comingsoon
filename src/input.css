@@ -60,3 +60,22 @@
 
 /* ── References block ── */
 .dark .references-block li { color: #a09070 !important; }
+
+/* ── Extended dark mode overrides (article pages, feature cards, content areas) ── */
+.dark .bg-\[\#f5f2e8\] { background-color: #1a1811 !important; }
+.dark .bg-\[\#ede9dc\] { background-color: #151310 !important; }
+.dark .bg-\[\#faf8f0\] { background-color: #0e0d08 !important; }
+.dark .text-\[\#1b180e\] { color: #f0ede6 !important; }
+.dark .text-\[\#3a3520\] { color: #c8c0aa !important; }
+.dark .text-\[\#97854e\] { color: #b89e6a !important; }
+.dark .border-\[\#e8e2cc\] { border-color: rgba(255,255,255,0.08) !important; }
+.dark .border-\[\#e8e4d8\] { border-color: rgba(255,255,255,0.08) !important; }
+.dark .bg-ivory { background-color: #0e0d08 !important; }
+.dark .border-charcoal { border-color: rgba(255,255,255,0.25) !important; }
+.dark .border-gray-100 { border-color: rgba(255,255,255,0.08) !important; }
+.dark .text-black { color: #f0ede6 !important; }
+.dark .bg-gray-100 { background-color: rgba(255,255,255,0.06) !important; }
+.dark .serif-heading { color: #f0ede6 !important; }
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5 { color: #f0ede6 !important; }
+.dark .otd-marquee { color: #ffffff !important; }
+.dark #on-this-day-text { color: #ffffff !important; }
