@@ -143,6 +143,20 @@ def make_header(active_page=""):
 </header>"""
 
 
+DISPLAY_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="4319743982"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
+
 FOOTER = """<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
@@ -319,6 +333,7 @@ def page_blog(meta):
     <div class="col-span-12 text-charcoal/40 italic text-sm serif-heading py-8">Loading stories...</div>
   </div>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -412,6 +427,7 @@ def page_tech_news(meta):
     </div>
   </section>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -516,6 +532,7 @@ def page_editors_desk(meta):
     </aside>
 
   </div>
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -633,6 +650,7 @@ def page_inventions(meta):
     </aside>
   </div>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -712,6 +730,7 @@ def page_careers(meta):
     </div>
   </section>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -819,6 +838,7 @@ def page_search(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -851,6 +871,7 @@ def page_coming_soon(meta):
     </p>
     <a href="/" class="inline-block border-b-2 border-primary pb-1 text-sm font-bold tracking-wider hover:bg-primary/10 transition-all uppercase">Return to Archive</a>
   </div>
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -908,6 +929,7 @@ def page_archive(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
+{DISPLAY_AD}
 </main>
 
 {FOOTER}
@@ -1019,6 +1041,7 @@ def page_index(meta):
       </div>
     </div>
   </section>
+{DISPLAY_AD}
 </main>
 
 {FOOTER}

@@ -534,6 +534,32 @@ def infer_section(filepath):
     return ''
 
 
+# ─── AD UNITS ──────────────────────────────────────────────────────────────
+
+IN_ARTICLE_AD = """
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5010155177671764"
+     data-ad-slot="2249928501"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>"""
+
+DISPLAY_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="4319743982"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
 GA_SCRIPTS = """    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
     <script>
@@ -616,6 +642,19 @@ def rebuild_article_page(filepath):
         image    = info['image']
         prose    = clean_prose(info['prose'] or '')
 
+    # Inject in-article ad after 3rd </p>
+    if prose:
+        pos = -1
+        search = 0
+        for _ in range(3):
+            idx = prose.find('</p>', search)
+            if idx == -1:
+                break
+            pos = idx + 4
+            search = pos
+        if pos != -1:
+            prose = prose[:pos] + IN_ARTICLE_AD + prose[pos:]
+
     # Look up references from API JSON
     slug = Path(filepath).parent.name
     api_data = get_api_data(slug)
@@ -680,6 +719,9 @@ def rebuild_article_page(filepath):
       </div>
 
       {refs_html}
+
+      <!-- Display Ad -->
+      {DISPLAY_AD}
 
       <!-- End of article -->
       <div class="mt-16 pt-8 border-t border-archival flex flex-col sm:flex-row justify-between items-start gap-6">
