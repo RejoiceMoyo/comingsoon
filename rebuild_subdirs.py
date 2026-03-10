@@ -1,5 +1,5 @@
-﻿"""
-rebuild_subdirs.py — Updates all public/ subdirectory HTML pages to she-archive design
+"""
+rebuild_subdirs.py � Updates all public/ subdirectory HTML pages to she-archive design
 Handles: section listing index pages, static info pages, individual article pages
 """
 import re, os, shutil
@@ -9,7 +9,7 @@ import markdown as md_lib
 BASE = Path(r"c:\Users\fossil lap\Desktop\HERGENIUSA")
 PUB  = BASE / "public"
 
-# ─── SHARED DESIGN BLOCKS (same as rebuild_design.py) ──────────────────────
+# --- SHARED DESIGN BLOCKS (same as rebuild_design.py) ----------------------
 
 CSS_AND_CONFIG = """\
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -68,7 +68,7 @@ CSS_AND_CONFIG = """\
       .article-body img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
       .article-body strong { font-weight: 700; }
       .article-body em { font-style: italic; }
-      /* Image float — side-by-side on sm+ */
+      /* Image float � side-by-side on sm+ */
       @media (min-width: 640px) {
         .article-body p.img-para {
           float: right; clear: right;
@@ -271,7 +271,7 @@ def make_header(active_page=""):
 </header>"""
 
 
-# ─── UTILITIES ──────────────────────────────────────────────────────────────
+# --- UTILITIES --------------------------------------------------------------
 
 def read(p):
     with open(p, 'r', encoding='utf-8') as f:
@@ -321,10 +321,10 @@ def get_api_data(slug):
 
 
 def extract_meta_tags(html):
-    """Extract head meta/link/script content to preserve — analytics, og, title, canonical etc."""
+    """Extract head meta/link/script content to preserve � analytics, og, title, canonical etc."""
     preserved = []
     skip_active = False
-    # Anything inside these block tags is always regenerated — skip entirely
+    # Anything inside these block tags is always regenerated � skip entirely
     always_skip_open = ('<style', '<style>', '<script src=', '<script id=')
     skip_triggers = [
         'cdn.tailwindcss.com', 'tailwind-config', 'tailwind.config',
@@ -359,7 +359,7 @@ def extract_meta_tags(html):
     return '\n'.join(preserved)
 
 
-# ─── MARKDOWN SOURCE HELPERS ────────────────────────────────────────────────
+# --- MARKDOWN SOURCE HELPERS ------------------------------------------------
 
 CONTENT_MAP = {
     'stories':      BASE / 'content' / 'posts',
@@ -475,7 +475,7 @@ def extract_prose_content(html):
     sections = sections_m if sections_m else []
 
     # Back link - what section does this belong to?
-    back_m = re.search(r'href="(/[^/"]+/)"[^>]*>(?:Back to|← )', raw)
+    back_m = re.search(r'href="(/[^/"]+/)"[^>]*>(?:Back to|? )', raw)
     back_href = back_m.group(1) if back_m else None
 
     return {
@@ -517,7 +517,7 @@ def clean_prose(html):
 
 
 def infer_section(filepath):
-    """Infer the section from the file path (e.g. public/stories/... → 'stories')"""
+    """Infer the section from the file path (e.g. public/stories/... ? 'stories')"""
     parts = Path(filepath).parts
     if 'stories' in parts:
         return 'stories'
@@ -534,7 +534,7 @@ def infer_section(filepath):
     return ''
 
 
-# ─── AD UNITS ──────────────────────────────────────────────────────────────
+# --- AD UNITS --------------------------------------------------------------
 
 IN_ARTICLE_AD = """
 <ins class="adsbygoogle"
@@ -613,7 +613,7 @@ def build_full_html(meta_tags, header, main_content, page_title=None):
 """
 
 
-# ─── ARTICLE PAGE BUILDER ───────────────────────────────────────────────────
+# --- ARTICLE PAGE BUILDER ---------------------------------------------------
 
 def rebuild_article_page(filepath):
     """Rebuild an individual article/post page, sourcing content from .md files."""
@@ -698,7 +698,7 @@ def rebuild_article_page(filepath):
     <span class="mx-2">/</span>
     <a href="{sec_href}" class="hover:text-primary transition-colors">{sec_label}</a>
     <span class="mx-2">/</span>
-    <span class="text-charcoal/50">{title[:60] + ('…' if len(title) > 60 else '')}</span>
+    <span class="text-charcoal/50">{title[:60] + ('�' if len(title) > 60 else '')}</span>
   </nav>
 
   <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
@@ -719,7 +719,7 @@ def rebuild_article_page(filepath):
         <span class="text-xs font-bold tracking-widest uppercase">{author}</span>
         {f'<span class="w-1 h-1 bg-archive-gray rounded-full"></span><span class="text-xs text-archive-gray">{date_str}</span>' if date_str else ''}
         <span class="ml-auto">
-          <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase text-archive-gray hover:text-primary transition-colors">← Back to {sec_label}</a>
+          <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase text-archive-gray hover:text-primary transition-colors">? Back to {sec_label}</a>
         </span>
       </div>
 
@@ -737,8 +737,8 @@ def rebuild_article_page(filepath):
 
       <!-- End of article -->
       <div class="mt-16 pt-8 border-t border-archival flex flex-col sm:flex-row justify-between items-start gap-6">
-        <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">← More {sec_label}</a>
-        <a href="/search/" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">Search Archive →</a>
+        <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">? More {sec_label}</a>
+        <a href="/search/" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">Search Archive ?</a>
       </div>
     </article>
 
@@ -767,7 +767,7 @@ def rebuild_article_page(filepath):
 
           <div class="col-span-2 md:col-span-1 p-4 md:p-0">
             <h5 class="text-[10px] font-bold mb-3 md:mb-4 tracking-[0.2em] text-archive-gray uppercase">Support</h5>
-            <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="text-xs font-medium hover:text-primary transition-colors">Buy Me a Coffee ↗</a>
+            <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="text-xs font-medium hover:text-primary transition-colors">Buy Me a Coffee ?</a>
           </div>
 
         </div>
@@ -780,7 +780,7 @@ def rebuild_article_page(filepath):
     return build_full_html(meta_tags, header, main_content)
 
 
-# ─── STATIC INFO PAGE BUILDER ───────────────────────────────────────────────
+# --- STATIC INFO PAGE BUILDER -----------------------------------------------
 
 STATIC_PAGE_CONTENT = {
     'about': {
@@ -912,9 +912,9 @@ def rebuild_static_page(filepath, page_key):
     return build_full_html(meta_tags, header, main_content)
 
 
-# ─── SECTION INDEX PAGE BUILDER ─────────────────────────────────────────────
+# --- SECTION INDEX PAGE BUILDER ---------------------------------------------
 
-# Maps section folder name → root source file
+# Maps section folder name ? root source file
 SECTION_INDEX_MAP = {
     'stories': BASE / 'blog.html',
     'editors-desk': BASE / 'editors-desk.html',
@@ -925,26 +925,26 @@ SECTION_INDEX_MAP = {
 }
 
 
-# ─── MAIN ────────────────────────────────────────────────────────────────────
+# --- MAIN --------------------------------------------------------------------
 
 def main():
     updated = []
     skipped = []
 
     # 1. Section index pages: copy rebuilt root files into section subdirectories
-    print("\n── Section index pages ──")
+    print("\n-- Section index pages --")
     for section, src_file in SECTION_INDEX_MAP.items():
         dst = PUB / section / 'index.html'
         if src_file.exists():
             content = read(src_file)
             write(dst, content)
-            print(f"  ✓ public/{section}/index.html  (copied from {src_file.name})")
+            print(f"  ? public/{section}/index.html  (copied from {src_file.name})")
             updated.append(str(dst))
         else:
-            print(f"  ⚠ Skipped {section} — source not found: {src_file}")
+            print(f"  ? Skipped {section} � source not found: {src_file}")
 
     # 2. Static info pages
-    print("\n── Static info pages ──")
+    print("\n-- Static info pages --")
     static_pages = {
         PUB / 'about' / 'index.html': 'about',
         PUB / 'contact' / 'index.html': 'contact',
@@ -955,13 +955,13 @@ def main():
         if fp.exists():
             new_html = rebuild_static_page(fp, key)
             write(fp, new_html)
-            print(f"  ✓ {fp.relative_to(BASE)}")
+            print(f"  ? {fp.relative_to(BASE)}")
             updated.append(str(fp))
         else:
-            print(f"  ⚠ Not found: {fp.relative_to(BASE)}")
+            print(f"  ? Not found: {fp.relative_to(BASE)}")
 
-    # 3. Individual article pages — walk through all public/* subdirs
-    print("\n── Individual article pages ──")
+    # 3. Individual article pages � walk through all public/* subdirs
+    print("\n-- Individual article pages --")
     # Skip these directories
     SKIP_DIRS = {'admin', 'images', 'scripts', 'api', 'content'}
 
@@ -987,22 +987,22 @@ def main():
             try:
                 new_html = rebuild_article_page(html_file)
                 write(html_file, new_html)
-                print(f"  ✓ {html_file.relative_to(BASE)}")
+                print(f"  ? {html_file.relative_to(BASE)}")
                 updated.append(str(html_file))
             except Exception as e:
-                print(f"  ✗ {html_file.relative_to(BASE)}: {e}")
+                print(f"  ? {html_file.relative_to(BASE)}: {e}")
             continue
         # Regular article page
         try:
             new_html = rebuild_article_page(html_file)
             write(html_file, new_html)
-            print(f"  ✓ {html_file.relative_to(BASE)}")
+            print(f"  ? {html_file.relative_to(BASE)}")
             updated.append(str(html_file))
         except Exception as e:
-            print(f"  ✗ {html_file.relative_to(BASE)}: {e}")
+            print(f"  ? {html_file.relative_to(BASE)}: {e}")
             skipped.append(str(html_file))
 
-    print(f"\n{'─'*60}")
+    print(f"\n{'-'*60}")
     print(f"Done! Updated {len(updated)} files, {len(skipped)} errors.")
     if skipped:
         print("Errors:")

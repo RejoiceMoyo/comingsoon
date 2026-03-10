@@ -1,14 +1,14 @@
-﻿"""
-rebuild_design.py  —  Full rebuild of all HTML pages using she-archive.html design
+"""
+rebuild_design.py  �  Full rebuild of all HTML pages using she-archive.html design
 Run: python rebuild_design.py
 """
 import re, os, shutil
 
 BASE = r"c:\Users\fossil lap\Desktop\HERGENIUSA"
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # SHARED DESIGN BLOCKS  (direct from she-archive.html)
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 CSS_AND_CONFIG = """\
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -243,9 +243,9 @@ FORMAT_DATE_JS = """const formatDate = (value) => {
   };"""
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # HEAD BUILDER  (extract SEO meta from existing file & inject new design)
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 FONT_LINKS = """\
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -295,9 +295,9 @@ def build_head(preserved_meta, page_title_override=None):
 </head>"""
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # PAGE BUILDERS
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 def page_blog(meta):
     head = build_head(meta)
@@ -380,12 +380,12 @@ def page_blog(meta):
         list.innerHTML = items.map((post, i) => `
           <div class="${{layouts[i%4]}} ${{offsets[i%4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
             <div class="${{aspects[i%4]}} overflow-hidden mb-3 bg-charcoal/10">
-              <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
+              <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvw.jpeg'}}" loading="lazy"/>
             </div>
             <span class="card-label">${{post.category || 'Story'}}</span>
             <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
             <p class="text-sm text-charcoal/70 italic leading-relaxed">${{(post.description || '').substring(0,90)}}${{(post.description||'').length>90?'\u2026':''}}</p>
-            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} · ${{post.author || 'The She Archive'}}</p>` : ''}}
+            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} � ${{post.author || 'The She Archive'}}</p>` : ''}}
           </div>`).join('');
       }};
 
@@ -524,7 +524,7 @@ def page_editors_desk(meta):
         <div class="text-archive-gray italic serif-heading text-lg">Loading editorials...</div>
       </div>
       <div class="mt-32 pt-12 border-t border-archival flex justify-between items-center text-[10px] font-bold tracking-widest uppercase">
-        <span class="text-archive-gray">The She Archive · Editor's Desk</span>
+        <span class="text-archive-gray">The She Archive � Editor's Desk</span>
       </div>
     </section>
 
@@ -686,7 +686,7 @@ def page_inventions(meta):
         const wide = i % 3 === 0;
         const cols = wide ? 'col-span-12 lg:col-span-7' : 'col-span-12 lg:col-span-5';
         const aspect = wide ? 'aspect-[16/9]' : 'aspect-[3/4]';
-        const img = item.image || '/images/prvimg.jpeg';
+        const img = item.image || '/images/prvw.jpeg';
         return `
           <article class="${{cols}} group cursor-pointer border-b border-archival pb-12" onclick="window.location='/inventions/${{item.slug}}/'">
             <div class="${{aspect}} overflow-hidden mb-8 bg-gray-100">
@@ -975,14 +975,14 @@ def page_index(meta):
         <div class="space-y-10">
           <a href="/inventions/" class="group block">
             <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Women's inventions" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+              <img alt="Women's inventions" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvw.jpeg"/>
             </div>
             <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors">Scientific Inventions</h3>
             <p class="text-sm text-archive-gray leading-relaxed italic">Patents, breakthroughs, and women who changed the world.</p>
           </a>
           <a href="/tech-news/" class="group block">
             <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Technology archive" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+              <img alt="Technology archive" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvw.jpeg"/>
             </div>
             <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors">Technology Archives</h3>
             <p class="text-sm text-archive-gray leading-relaxed italic">A survey of early computational history and logic engines.</p>
@@ -999,7 +999,7 @@ def page_index(meta):
         </div>
         <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title">Women Who Shaped History</h2>
         <div class="aspect-[4/5] bg-gray-100 mb-8 overflow-hidden">
-          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="/images/prvimg.jpeg"/>
+          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="/images/prvw.jpeg"/>
         </div>
         <div class="max-w-2xl">
           <p class="serif-heading text-xl lg:text-2xl leading-relaxed mb-6 italic text-charcoal/80" id="hero-desc">
@@ -1079,7 +1079,7 @@ def page_index(meta):
             slug: i.slug,
             title: i.title,
             description: i.description || i.intro || '',
-            image: i.image || '/images/prvimg.jpeg',
+            image: i.image || '/images/prvw.jpeg',
             category: sectionLabel === 'Stories'
               ? (i.category || (Array.isArray(i.categories) ? i.categories[0] : '') || 'Stories')
               : sectionLabel,
@@ -1105,11 +1105,11 @@ def page_index(meta):
         ...techItems,
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
-      // Strict slot assignment — zero overlap between sections:
-      //   [0]    → Hero (centre)
-      //   [1–2]  → Archive Features (left sidebar)
-      //   [3–6]  → Latest Updates (right sidebar, 4 items)
-      //   [7+]   → Selected Archival Monographs
+      // Strict slot assignment � zero overlap between sections:
+      //   [0]    ? Hero (centre)
+      //   [1�2]  ? Archive Features (left sidebar)
+      //   [3�6]  ? Latest Updates (right sidebar, 4 items)
+      //   [7+]   ? Selected Archival Monographs
       const heroItem       = allSorted[0];
       const leftItems      = allSorted.slice(1, 3);
       const latestPool     = allSorted.slice(3, 7);
@@ -1130,7 +1130,7 @@ def page_index(meta):
         if (readMore) readMore.href = heroItem.url;
       }}
 
-      // -- Left sidebar: Archive Features — dynamic latest 2 from any section --
+      // -- Left sidebar: Archive Features � dynamic latest 2 from any section --
       leftItems.forEach((p, idx) => {{
         const n = String(idx + 1);
         const img   = document.getElementById('sidebar-img-' + n);
@@ -1167,7 +1167,7 @@ def page_index(meta):
         renderLatestSidebar();
       }};
 
-      // -- Selected Archival Monographs — no duplicates from hero zone --
+      // -- Selected Archival Monographs � no duplicates from hero zone --
       window._monographItems = monographItems;
       const INITIAL_COUNT = 12;
       let _shownCount = INITIAL_COUNT;
@@ -1222,9 +1222,9 @@ def page_index(meta):
 """
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # MAIN
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 PAGES = [
     ('blog.html',         page_blog),
@@ -1244,7 +1244,7 @@ def read(p):
 
 def write(p, c):
     with open(p, 'w', encoding='utf-8') as f: f.write(c)
-    print(f"  ✓ {os.path.basename(p)}")
+    print(f"  ? {os.path.basename(p)}")
 
 
 if __name__ == '__main__':
@@ -1252,7 +1252,7 @@ if __name__ == '__main__':
     for filename, builder in PAGES:
         src = os.path.join(BASE, filename)
         if not os.path.exists(src):
-            print(f"  ⚠ Skipping {filename} — not found")
+            print(f"  ? Skipping {filename} � not found")
             continue
         original_html = read(src)
         meta = extract_preserved_head(original_html)
@@ -1262,5 +1262,5 @@ if __name__ == '__main__':
         dst = os.path.join(BASE, 'public', filename)
         if os.path.exists(os.path.dirname(dst)):
             shutil.copy2(src, dst)
-            print(f"    → synced to public/")
+            print(f"    ? synced to public/")
     print("\nDone!")
