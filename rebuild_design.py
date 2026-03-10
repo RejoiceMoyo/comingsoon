@@ -1,5 +1,5 @@
 """
-rebuild_design.py  —  Full rebuild of all HTML pages using she-archive.html design
+rebuild_design.py  ï¿½  Full rebuild of all HTML pages using she-archive.html design
 Run: python rebuild_design.py
 """
 import re, os, shutil
@@ -167,6 +167,35 @@ MULTIPLEX_AD = """
        (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </div>"""
+
+
+HOMEPAGE_SCHEMA = """
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://theshearchive.com/#website",
+      "url": "https://theshearchive.com/",
+      "name": "The She Archive",
+      "description": "An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://theshearchive.com/search/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://theshearchive.com/#organization",
+      "name": "The She Archive",
+      "url": "https://theshearchive.com/",
+      "logo": { "@type": "ImageObject", "url": "https://theshearchive.com/images/favic.png" }
+    }
+  ]
+}
+</script>"""
 
 
 FOOTER = """<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
@@ -385,7 +414,7 @@ def page_blog(meta):
             <span class="card-label">${{post.category || 'Story'}}</span>
             <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
             <p class="text-sm text-charcoal/70 italic leading-relaxed">${{(post.description || '').substring(0,90)}}${{(post.description||'').length>90?'\u2026':''}}</p>
-            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} · ${{post.author || 'The She Archive'}}</p>` : ''}}
+            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} ï¿½ ${{post.author || 'The She Archive'}}</p>` : ''}}
           </div>`).join('');
       }};
 
@@ -524,7 +553,7 @@ def page_editors_desk(meta):
         <div class="text-archive-gray italic serif-heading text-lg">Loading editorials...</div>
       </div>
       <div class="mt-32 pt-12 border-t border-archival flex justify-between items-center text-[10px] font-bold tracking-widest uppercase">
-        <span class="text-archive-gray">The She Archive · Editor's Desk</span>
+        <span class="text-archive-gray">The She Archive ï¿½ Editor's Desk</span>
       </div>
     </section>
 
@@ -955,7 +984,7 @@ def page_archive(meta):
 
 
 def page_index(meta):
-    head = build_head(meta)
+    head = build_head(meta + HOMEPAGE_SCHEMA)
     header = make_header('')
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1105,10 +1134,10 @@ def page_index(meta):
         ...techItems,
       ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
 
-      // Strict slot assignment — zero overlap between sections:
+      // Strict slot assignment ï¿½ zero overlap between sections:
       //   [0]    ? Hero (centre)
-      //   [1–2]  ? Archive Features (left sidebar)
-      //   [3–6]  ? Latest Updates (right sidebar, 4 items)
+      //   [1ï¿½2]  ? Archive Features (left sidebar)
+      //   [3ï¿½6]  ? Latest Updates (right sidebar, 4 items)
       //   [7+]   ? Selected Archival Monographs
       const heroItem       = allSorted[0];
       const leftItems      = allSorted.slice(1, 3);
@@ -1130,7 +1159,7 @@ def page_index(meta):
         if (readMore) readMore.href = heroItem.url;
       }}
 
-      // -- Left sidebar: Archive Features — dynamic latest 2 from any section --
+      // -- Left sidebar: Archive Features ï¿½ dynamic latest 2 from any section --
       leftItems.forEach((p, idx) => {{
         const n = String(idx + 1);
         const img   = document.getElementById('sidebar-img-' + n);
@@ -1167,7 +1196,7 @@ def page_index(meta):
         renderLatestSidebar();
       }};
 
-      // -- Selected Archival Monographs — no duplicates from hero zone --
+      // -- Selected Archival Monographs ï¿½ no duplicates from hero zone --
       window._monographItems = monographItems;
       const INITIAL_COUNT = 12;
       let _shownCount = INITIAL_COUNT;
@@ -1252,7 +1281,7 @@ if __name__ == '__main__':
     for filename, builder in PAGES:
         src = os.path.join(BASE, filename)
         if not os.path.exists(src):
-            print(f"  ? Skipping {filename} — not found")
+            print(f"  ? Skipping {filename} ï¿½ not found")
             continue
         original_html = read(src)
         meta = extract_preserved_head(original_html)

@@ -1,5 +1,5 @@
 """
-rebuild_subdirs.py — Updates all public/ subdirectory HTML pages to she-archive design
+rebuild_subdirs.py ï¿½ Updates all public/ subdirectory HTML pages to she-archive design
 Handles: section listing index pages, static info pages, individual article pages
 """
 import re, os, shutil
@@ -68,7 +68,7 @@ CSS_AND_CONFIG = """\
       .article-body img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
       .article-body strong { font-weight: 700; }
       .article-body em { font-style: italic; }
-      /* Image float — side-by-side on sm+ */
+      /* Image float ï¿½ side-by-side on sm+ */
       @media (min-width: 640px) {
         .article-body p.img-para {
           float: right; clear: right;
@@ -321,10 +321,10 @@ def get_api_data(slug):
 
 
 def extract_meta_tags(html):
-    """Extract head meta/link/script content to preserve — analytics, og, title, canonical etc."""
+    """Extract head meta/link/script content to preserve ï¿½ analytics, og, title, canonical etc."""
     preserved = []
     skip_active = False
-    # Anything inside these block tags is always regenerated — skip entirely
+    # Anything inside these block tags is always regenerated ï¿½ skip entirely
     always_skip_open = ('<style', '<style>', '<script src=', '<script id=')
     skip_triggers = [
         'cdn.tailwindcss.com', 'tailwind-config', 'tailwind.config',
@@ -698,7 +698,7 @@ def rebuild_article_page(filepath):
     <span class="mx-2">/</span>
     <a href="{sec_href}" class="hover:text-primary transition-colors">{sec_label}</a>
     <span class="mx-2">/</span>
-    <span class="text-charcoal/50">{title[:60] + ('…' if len(title) > 60 else '')}</span>
+    <span class="text-charcoal/50">{title[:60] + ('ï¿½' if len(title) > 60 else '')}</span>
   </nav>
 
   <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
@@ -776,6 +776,49 @@ def rebuild_article_page(filepath):
 
   </div>
 </main>"""
+
+    # --- JSON-LD structured data -------------------------------------------
+    article_type_ld = 'TechArticle' if section == 'inventions' else 'Article'
+    slug_ld = Path(filepath).parent.name
+    canonical_url = f'https://theshearchive.com{sec_href}{slug_ld}/'
+    image_abs = image if image else '/images/prvw.jpeg'
+    if image_abs.startswith('/'):
+        image_abs = 'https://theshearchive.com' + image_abs
+    desc_m = re.search(r'og:description["\'][^>]*content=["\']([^"\']+)', meta_tags) or \
+             re.search(r'<meta name=["\']description["\'] content=["\']([^"\']+)', meta_tags)
+    description_ld = desc_m.group(1).replace('"', '\\"') if desc_m else ''
+    title_ld = title.replace('"', '\\"')
+    schema_block = f'''<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{
+      "@type": "{article_type_ld}",
+      "@id": "{canonical_url}#article",
+      "headline": "{title_ld}",
+      "description": "{description_ld}",
+      "image": "{image_abs}",
+      "url": "{canonical_url}",
+      "datePublished": "{date_str}",
+      "dateModified": "{date_str}",
+      "author": {{ "@type": "Organization", "name": "The She Archive", "url": "https://theshearchive.com/" }},
+      "publisher": {{ "@type": "Organization", "name": "The She Archive", "url": "https://theshearchive.com/", "logo": {{ "@type": "ImageObject", "url": "https://theshearchive.com/images/favic.png" }} }},
+      "mainEntityOfPage": "{canonical_url}",
+      "articleSection": "{sec_label}",
+      "isPartOf": {{ "@id": "https://theshearchive.com/#website" }}
+    }},
+    {{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theshearchive.com/" }},
+        {{ "@type": "ListItem", "position": 2, "name": "{sec_label}", "item": "https://theshearchive.com{sec_href}" }},
+        {{ "@type": "ListItem", "position": 3, "name": "{title_ld}", "item": "{canonical_url}" }}
+      ]
+    }}
+  ]
+}}
+</script>'''
+    meta_tags += '\n' + schema_block
 
     return build_full_html(meta_tags, header, main_content)
 
@@ -941,7 +984,7 @@ def main():
             print(f"  ? public/{section}/index.html  (copied from {src_file.name})")
             updated.append(str(dst))
         else:
-            print(f"  ? Skipped {section} — source not found: {src_file}")
+            print(f"  ? Skipped {section} ï¿½ source not found: {src_file}")
 
     # 2. Static info pages
     print("\n-- Static info pages --")
@@ -960,7 +1003,7 @@ def main():
         else:
             print(f"  ? Not found: {fp.relative_to(BASE)}")
 
-    # 3. Individual article pages — walk through all public/* subdirs
+    # 3. Individual article pages ï¿½ walk through all public/* subdirs
     print("\n-- Individual article pages --")
     # Skip these directories
     SKIP_DIRS = {'admin', 'images', 'scripts', 'api', 'content'}
