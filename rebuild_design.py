@@ -156,6 +156,18 @@ DISPLAY_AD = """
   </script>
 </div>"""
 
+MULTIPLEX_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="autorelaxed"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="7209631208"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
 
 FOOTER = """<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
@@ -333,7 +345,7 @@ def page_blog(meta):
     <div class="col-span-12 text-charcoal/40 italic text-sm serif-heading py-8">Loading stories...</div>
   </div>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -427,7 +439,7 @@ def page_tech_news(meta):
     </div>
   </section>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -532,7 +544,7 @@ def page_editors_desk(meta):
     </aside>
 
   </div>
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -650,7 +662,7 @@ def page_inventions(meta):
     </aside>
   </div>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -730,7 +742,7 @@ def page_careers(meta):
     </div>
   </section>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -838,7 +850,7 @@ def page_search(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -871,7 +883,7 @@ def page_coming_soon(meta):
     </p>
     <a href="/" class="inline-block border-b-2 border-primary pb-1 text-sm font-bold tracking-wider hover:bg-primary/10 transition-all uppercase">Return to Archive</a>
   </div>
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -929,7 +941,7 @@ def page_archive(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -1041,7 +1053,7 @@ def page_index(meta):
       </div>
     </div>
   </section>
-{DISPLAY_AD}
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -1049,53 +1061,158 @@ def page_index(meta):
 <script src="/scripts/filters.js?v=1"></script>
 <script src="/scripts/load-posts.js?v=2"></script>
 <script>
-  // Populate latest sidebar and featured grid from posts API
+  // Populate home page from all section APIs
   async function initHome() {{
     try {{
-      const resp = await fetch('/api/posts.json?ts=' + Date.now());
-      if (!resp.ok) return;
-      const posts = await resp.json();
-      if (!posts || !posts.length) return;
+      const ts = Date.now();
+      const [postsResp, inventionsResp, editorialsResp, techResp] = await Promise.all([
+        fetch('/api/posts.json?ts=' + ts),
+        fetch('/api/inventions.json?ts=' + ts),
+        fetch('/api/editorials.json?ts=' + ts),
+        fetch('/api/tech-news.json?ts=' + ts),
+      ]);
 
-      // Hero - first post
-      const hero = posts[0];
-      document.getElementById('hero-category').textContent = hero.category || 'Featured';
-      document.getElementById('hero-title').textContent = hero.title;
-      document.getElementById('hero-desc').textContent = hero.description || '';
-      if (hero.image) document.getElementById('hero-image').src = hero.image;
+      const normalize = (items, sectionLabel, urlBase) =>
+        (Array.isArray(items) ? items : [])
+          .filter(i => i.slug && i.title)
+          .map(i => ({{
+            slug: i.slug,
+            title: i.title,
+            description: i.description || i.intro || '',
+            image: i.image || '/images/prvimg.jpeg',
+            category: sectionLabel === 'Stories'
+              ? (i.category || (Array.isArray(i.categories) ? i.categories[0] : '') || 'Stories')
+              : sectionLabel,
+            url: '/' + urlBase + '/' + i.slug + '/',
+            date: i.date || '',
+          }}));
 
-      // Latest sidebar - next 4 posts
-      const sidebar = document.getElementById('latest-sidebar');
-      sidebar.innerHTML = posts.slice(0, 4).map((post, i) => {{
-        const sections = ['Stories', 'Tech News', 'Editor\'s Desk', 'Inventions'];
-        const hrefs = ['/stories/', '/tech-news/', '/editors-desk/', '/inventions/'];
-        return `<div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
+      const posts      = postsResp.ok      ? await postsResp.json()      : [];
+      const inventions = inventionsResp.ok  ? await inventionsResp.json() : [];
+      const editorials = editorialsResp.ok  ? await editorialsResp.json() : [];
+      const techNews   = techResp.ok        ? await techResp.json()       : [];
+
+      const storyItems     = normalize(posts,      'Stories',        'stories');
+      const inventionItems = normalize(inventions, 'Inventions',     'inventions');
+      const editorialItems = normalize(editorials, "Editor\'s Desk", 'editors-desk');
+      const techItems      = normalize(techNews,   'Tech News',      'tech-news');
+
+      // Master list: newest-first across ALL sections
+      const allSorted = [
+        ...storyItems,
+        ...inventionItems,
+        ...editorialItems,
+        ...techItems,
+      ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
+
+      // Strict slot assignment — zero overlap between sections:
+      //   [0]    → Hero (centre)
+      //   [1–2]  → Archive Features (left sidebar)
+      //   [3–6]  → Latest Updates (right sidebar, 4 items)
+      //   [7+]   → Selected Archival Monographs
+      const heroItem       = allSorted[0];
+      const leftItems      = allSorted.slice(1, 3);
+      const latestPool     = allSorted.slice(3, 7);
+      const monographItems = allSorted.slice(7);
+
+      // -- Hero --
+      if (heroItem) {{
+        document.getElementById('hero-category').textContent = heroItem.category || 'Featured';
+        document.getElementById('hero-title').textContent    = heroItem.title;
+        document.getElementById('hero-desc').textContent     = heroItem.description;
+        if (heroItem.image) {{
+          const img = document.getElementById('hero-image');
+          img.src = heroItem.image;
+          const wrap = document.getElementById('hero-image-wrap');
+          if (wrap) wrap.classList.remove('skel');
+        }}
+        const readMore = document.getElementById('hero-read-more');
+        if (readMore) readMore.href = heroItem.url;
+      }}
+
+      // -- Left sidebar: Archive Features — dynamic latest 2 from any section --
+      leftItems.forEach((p, idx) => {{
+        const n = String(idx + 1);
+        const img   = document.getElementById('sidebar-img-' + n);
+        const title = document.getElementById('sidebar-title-' + n);
+        const desc  = document.getElementById('sidebar-desc-' + n);
+        const feat  = document.getElementById('sidebar-feature-' + n);
+        if (img)   {{ img.src = p.image; const wrap = document.getElementById('sidebar-img-wrap-' + n); if (wrap) wrap.classList.remove('skel'); }}
+        if (title) title.textContent = p.title;
+        if (desc)  desc.textContent  = (p.description || '').substring(0, 100) + ((p.description || '').length > 100 ? '...' : '');
+        if (feat)  feat.href = p.url;
+      }});
+
+      // -- Right sidebar: Latest Updates (4 items, show 2 initially) --
+      const SIDEBAR_INIT = 2;
+      let _sidebarShown = SIDEBAR_INIT;
+      const sidebarLoadMoreBtn = document.getElementById('sidebar-load-more');
+
+      function renderLatestSidebar() {{
+        const sidebar = document.getElementById('latest-sidebar');
+        sidebar.innerHTML = latestPool.slice(0, _sidebarShown).map(item => `
+        <div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='${{item.url}}'">
           <div class="flex justify-between items-center mb-2">
-            <span class="card-label">${{post.category || sections[i % 4]}}</span>
+            <span class="card-label">${{item.category}}</span>
           </div>
-          <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${{post.title}}</h4>
-        </div>`;
-      }}).join('');
-
-      // Featured grid - up to 12 posts
-      const grid = document.getElementById('featured-grid');
-      const gridPosts = posts.slice(0, 12);
-      const layouts = [
-        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
-        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
-      ];
-      const aspects = ['aspect-square', 'aspect-[4/5]', 'aspect-square', 'aspect-[4/5]'];
-      const offsets = ['', '', 'lg:-mt-8', 'lg:-mt-8'];
-      grid.innerHTML = gridPosts.map((post, i) => `
-        <div class="${{layouts[i % 4]}} ${{offsets[i % 4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
-          <div class="${{aspects[i % 4]}} overflow-hidden mb-3 bg-charcoal/10">
-            <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
-          </div>
-          <span class="card-label">${{post.category || 'Archive'}}</span>
-          <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
-          <p class="text-sm leading-relaxed text-charcoal/70 italic">${{(post.description || '').substring(0, 90)}}${{(post.description || '').length > 90 ? '\u2026' : ''}}</p>
+          <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${{item.title}}</h4>
         </div>`).join('');
-    }} catch(e) {{ console.error(e); }}
+        if (sidebarLoadMoreBtn) {{
+          sidebarLoadMoreBtn.style.display = _sidebarShown >= latestPool.length ? 'none' : 'block';
+        }}
+      }}
+      renderLatestSidebar();
+      window.loadMoreLatest = function() {{
+        _sidebarShown = Math.min(_sidebarShown + 4, latestPool.length);
+        renderLatestSidebar();
+      }};
+
+      // -- Selected Archival Monographs — no duplicates from hero zone --
+      window._monographItems = monographItems;
+      const INITIAL_COUNT = 12;
+      let _shownCount = INITIAL_COUNT;
+
+      const masonryPatterns = [
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-square',  offset: '' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-[4/5]',   offset: '' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-square',  offset: 'lg:-mt-8' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-[4/5]',   offset: 'lg:-mt-8' }},
+      ];
+
+      const renderMasonryCard = (item, i) => {{
+        const p = masonryPatterns[i % masonryPatterns.length];
+        const excerpt = (item.description || '').substring(0, 90) + ((item.description || '').length > 90 ? '\u2026' : '');
+        return `
+          <article class="group ${{p.col}} ${{p.offset}} flex flex-col cursor-pointer" onclick="window.location='${{item.url}}'">
+            <a href="${{item.url}}" class="block ${{p.aspect}} overflow-hidden mb-5 bg-charcoal/10" onclick="event.stopPropagation()">
+              <img alt="${{item.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{item.image}}" loading="lazy"/>
+            </a>
+            <span class="card-label">${{item.category}}</span>
+            <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{item.title}}</h3>
+            <p class="text-sm leading-relaxed text-charcoal/70 italic">${{excerpt}}</p>
+          </article>`;
+      }};
+
+      const grid = document.getElementById('featured-grid');
+      const loadMoreBtn = document.getElementById('monograph-load-more');
+      grid.className = 'masonry-grid';
+
+      if (monographItems.length === 0) {{
+        grid.innerHTML = '<p class="col-span-12 text-center text-archive-gray italic serif-heading py-8">More archival stories coming soon.</p>';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+      }} else {{
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (monographItems.length > _shownCount && loadMoreBtn) loadMoreBtn.style.display = 'block';
+      }}
+
+      window.loadMoreMonographs = function() {{
+        _shownCount = Math.min(_shownCount + 4, monographItems.length);
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (_shownCount >= monographItems.length && loadMoreBtn) loadMoreBtn.style.display = 'none';
+      }};
+
+    }} catch(e) {{ console.error('Home init error:', e); }}
+    finally {{ document.getElementById('home-main').classList.add('loaded'); }}
   }}
   document.addEventListener('DOMContentLoaded', initHome);
 </script>

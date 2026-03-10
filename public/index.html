@@ -322,7 +322,6 @@
         fetch('/api/tech-news.json?ts=' + ts),
       ]);
 
-      // Normalize each section into a common shape
       const normalize = (items, sectionLabel, urlBase) =>
         (Array.isArray(items) ? items : [])
           .filter(i => i.slug && i.title)
@@ -343,49 +342,58 @@
       const editorials = editorialsResp.ok  ? await editorialsResp.json() : [];
       const techNews   = techResp.ok        ? await techResp.json()       : [];
 
-      const storyItems    = normalize(posts,      'Stories',       'stories');
-      const inventionItems = normalize(inventions, 'Inventions',   'inventions');
-      const editorialItems = normalize(editorials, "Editor's Desk",'editors-desk');
-      const techItems      = normalize(techNews,   'Tech News',    'tech-news');
+      const storyItems     = normalize(posts,      'Stories',        'stories');
+      const inventionItems = normalize(inventions, 'Inventions',     'inventions');
+      const editorialItems = normalize(editorials, "Editor's Desk",  'editors-desk');
+      const techItems      = normalize(techNews,   'Tech News',      'tech-news');
 
-      // -- Hero: latest story ------------------------------------------
-      const hero = storyItems[0];
-      if (hero) {
-        document.getElementById('hero-category').textContent = hero.category || 'Featured';
-        document.getElementById('hero-title').textContent    = hero.title;
-        document.getElementById('hero-desc').textContent     = hero.description;
-        if (hero.image) {
+      // Master list: newest-first across ALL sections
+      const allSorted = [
+        ...storyItems,
+        ...inventionItems,
+        ...editorialItems,
+        ...techItems,
+      ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
+
+      // Strict slot assignment — zero overlap between sections:
+      //   [0]    → Hero (centre)
+      //   [1–2]  → Archive Features (left sidebar)
+      //   [3–6]  → Latest Updates (right sidebar, 4 items)
+      //   [7+]   → Selected Archival Monographs
+      const heroItem       = allSorted[0];
+      const leftItems      = allSorted.slice(1, 3);
+      const latestPool     = allSorted.slice(3, 7);
+      const monographItems = allSorted.slice(7);
+
+      // -- Hero --
+      if (heroItem) {
+        document.getElementById('hero-category').textContent = heroItem.category || 'Featured';
+        document.getElementById('hero-title').textContent    = heroItem.title;
+        document.getElementById('hero-desc').textContent     = heroItem.description;
+        if (heroItem.image) {
           const img = document.getElementById('hero-image');
-          img.src = hero.image;
+          img.src = heroItem.image;
           const wrap = document.getElementById('hero-image-wrap');
           if (wrap) wrap.classList.remove('skel');
         }
         const readMore = document.getElementById('hero-read-more');
-        if (readMore) readMore.href = hero.url;
+        if (readMore) readMore.href = heroItem.url;
       }
 
-      // -- Left sidebar: top 2 inventions (fallback to stories) --------
-      const sidebarLeft = inventionItems.length >= 2 ? inventionItems : storyItems;
-      [[sidebarLeft[0], '1'], [sidebarLeft[1], '2']].forEach(([p, n]) => {
-        if (!p) return;
+      // -- Left sidebar: Archive Features — dynamic latest 2 from any section --
+      leftItems.forEach((p, idx) => {
+        const n = String(idx + 1);
         const img   = document.getElementById('sidebar-img-' + n);
         const title = document.getElementById('sidebar-title-' + n);
         const desc  = document.getElementById('sidebar-desc-' + n);
         const feat  = document.getElementById('sidebar-feature-' + n);
-        if (img) { img.src = p.image; const wrap = document.getElementById('sidebar-img-wrap-' + n); if(wrap) wrap.classList.remove('skel'); }
+        if (img)   { img.src = p.image; const wrap = document.getElementById('sidebar-img-wrap-' + n); if (wrap) wrap.classList.remove('skel'); }
         if (title) title.textContent = p.title;
         if (desc)  desc.textContent  = (p.description || '').substring(0, 100) + ((p.description || '').length > 100 ? '...' : '');
         if (feat)  feat.href = p.url;
       });
 
-      // -- Right sidebar: latest updates from all sections -------------
-      const latestPool = [
-        ...storyItems.slice(0, 4),
-        ...inventionItems.slice(0, 3),
-        ...editorialItems.slice(0, 3),
-        ...techItems.slice(0, 2),
-      ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
-
+      // -- Right sidebar: Latest Updates (4 items, show 2 initially) --
       const SIDEBAR_INIT = 2;
       let _sidebarShown = SIDEBAR_INIT;
       const sidebarLoadMoreBtn = document.getElementById('sidebar-load-more');
@@ -409,15 +417,8 @@
         renderLatestSidebar();
       };
 
-      // -- Featured grid: alternating image-text rows + Load More ------
-      const allContent = [
-        ...storyItems,
-        ...inventionItems,
-        ...editorialItems,
-        ...techItems,
-      ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
-
-      window._monographItems = allContent;
+      // -- Selected Archival Monographs — no duplicates from hero zone --
+      window._monographItems = monographItems;
       const INITIAL_COUNT = 12;
       let _shownCount = INITIAL_COUNT;
 
@@ -444,18 +445,20 @@
 
       const grid = document.getElementById('featured-grid');
       const loadMoreBtn = document.getElementById('monograph-load-more');
-
       grid.className = 'masonry-grid';
-      grid.innerHTML = allContent.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
 
-      if (allContent.length > _shownCount) {
-        loadMoreBtn.style.display = 'block';
+      if (monographItems.length === 0) {
+        grid.innerHTML = '<p class="col-span-12 text-center text-archive-gray italic serif-heading py-8">More archival stories coming soon.</p>';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+      } else {
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (monographItems.length > _shownCount && loadMoreBtn) loadMoreBtn.style.display = 'block';
       }
 
       window.loadMoreMonographs = function() {
-        _shownCount = Math.min(_shownCount + 4, allContent.length);
-        grid.innerHTML = allContent.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
-        if (_shownCount >= allContent.length) loadMoreBtn.style.display = 'none';
+        _shownCount = Math.min(_shownCount + 4, monographItems.length);
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (_shownCount >= monographItems.length && loadMoreBtn) loadMoreBtn.style.display = 'none';
       };
 
     } catch(e) { console.error('Home init error:', e); }
