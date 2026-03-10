@@ -89,7 +89,7 @@ CSS_AND_CONFIG = """\
       .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
       .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
       /* Reading column */
-      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      @media (max-width: 1023px) { .article-body { max-width: 68ch; } }
       /* Progress bar */
       #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
       /* References as footnotes */
@@ -560,6 +560,18 @@ DISPLAY_AD = """
   </script>
 </div>"""
 
+MULTIPLEX_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="autorelaxed"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="7209631208"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
 GA_SCRIPTS = """    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
     <script>
@@ -721,7 +733,7 @@ def rebuild_article_page(filepath):
       {refs_html}
 
       <!-- Display Ad -->
-      {DISPLAY_AD}
+      {DISPLAY_AD}{MULTIPLEX_AD}
 
       <!-- End of article -->
       <div class="mt-16 pt-8 border-t border-archival flex flex-col sm:flex-row justify-between items-start gap-6">
