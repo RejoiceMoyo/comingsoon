@@ -2,7 +2,7 @@
 rebuild_subdirs.py � Updates all public/ subdirectory HTML pages to she-archive design
 Handles: section listing index pages, static info pages, individual article pages
 """
-import re, os, shutil
+import re, os, shutil, datetime
 from pathlib import Path
 import markdown as md_lib
 
@@ -281,6 +281,72 @@ def write(p, c):
     Path(p).parent.mkdir(parents=True, exist_ok=True)
     with open(p, 'w', encoding='utf-8') as f:
         f.write(c)
+
+
+def generate_sitemap():
+    """Walk public/ and write a clean sitemap.xml with proper lastmod dates."""
+    BASE_URL = 'https://theshearchive.com'
+    today = datetime.date.today().isoformat()
+
+    # (path, priority, changefreq, lastmod)
+    STATIC = [
+        ('/',              '1.0', 'daily',   today),
+        ('/about/',        '0.8', 'monthly', today),
+        ('/contact/',      '0.8', 'monthly', today),
+        ('/privacy/',      '0.5', 'yearly',  today),
+        ('/submissions/',  '0.7', 'monthly', today),
+        ('/search/',       '0.6', 'monthly', today),
+        ('/stories/',      '0.9', 'weekly',  today),
+        ('/inventions/',   '0.9', 'weekly',  today),
+        ('/editors-desk/', '0.9', 'weekly',  today),
+        ('/tech-news/',    '0.9', 'weekly',  today),
+        ('/careers/',      '0.7', 'monthly', today),
+    ]
+
+    ARTICLE_SECTIONS = ['stories', 'inventions', 'editors-desk', 'tech-news', 'careers']
+    SKIP_DATED = re.compile(r'^\d{4}-\d{2}-\d{2}-')
+    SKIP_SLUGS  = {'welcome-to-tech-news', 'welcome-to-careers', 'src', 'styles', 'scripts'}
+    pub_date_re = re.compile(
+        r'<meta\b[^>]+property=["\'']article:published_time["\''][^>]*content=["\'']([^"\']{1,30})["\'']'
+        r'|<meta\b[^>]+content=["\'']([^"\']{1,30})["\''][^>]*property=["\'']article:published_time["\'']'
+        r'| \"datePublished\":\s*\"(\d{4}-\d{2}-\d{2})\"',
+        re.I
+    )
+
+    entries = list(STATIC)
+    for section in ARTICLE_SECTIONS:
+        sec_dir = PUB / section
+        if not sec_dir.exists():
+            continue
+        for html_file in sorted(sec_dir.glob('*/index.html')):
+            slug = html_file.parent.name
+            if slug in SKIP_SLUGS or SKIP_DATED.match(slug):
+                continue
+            canonical = f'/{section}/{slug}/'
+            try:
+                text = html_file.read_text(encoding='utf-8')
+                m = pub_date_re.search(text)
+                lastmod = next((g for g in (m.group(1), m.group(2), m.group(3)) if g), today)[:10] if m else today
+            except Exception:
+                lastmod = today
+            entries.append((canonical, '0.8', 'yearly', lastmod))
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for path, priority, freq, lastmod in entries:
+        lines += [
+            '  <url>',
+            f'    <loc>{BASE_URL}{path}</loc>',
+            f'    <lastmod>{lastmod}</lastmod>',
+            f'    <changefreq>{freq}</changefreq>',
+            f'    <priority>{priority}</priority>',
+            '  </url>',
+        ]
+    lines.append('</urlset>')
+    (PUB / 'sitemap.xml').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print(f"  \u2713 sitemap.xml  —  {len(entries)} URLs")
 
 
 def _load_api_index():
@@ -1051,6 +1117,10 @@ def main():
         print("Errors:")
         for s in skipped:
             print(f"  - {s}")
+
+    # Regenerate sitemap
+    print("\n-- Sitemap --")
+    generate_sitemap()
 
 
 if __name__ == '__main__':
