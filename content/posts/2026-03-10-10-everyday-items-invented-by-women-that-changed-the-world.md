@@ -7,7 +7,7 @@ categories:
   - Home Safety / Security
   - Personal Care Products
 era: 19th Century
-image: /images/uploads/a-refined-historical-collage-of-everyday-inventions-created-by-women_-a-classic-car-windshield-wiper-mechanism-an-early-mechanical-dishwasher-flat-bottom-paper-bags-a-vintage-home-heating-radiator-system-k.jpg
+image: /images/uploads/everyday-inventions-collage.jpg
 description: Technological history has often overlooked the practical
   innovations created by women. Yet many of the objects embedded in daily
   life—from windshield wipers to modern heating systems,emerged from the
