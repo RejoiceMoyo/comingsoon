@@ -89,7 +89,7 @@ CSS_AND_CONFIG = """\
       .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
       .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
       /* Reading column */
-      @media (min-width: 768px) { .article-body { max-width: 68ch; } }
+      @media (min-width: 768px) { .article-body { max-width: 100%; width: 100%; } } @media (max-width: 767px) { .article-body { max-width: 68ch; } }
       /* Progress bar */
       #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
       /* References as footnotes */
