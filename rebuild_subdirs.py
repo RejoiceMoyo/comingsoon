@@ -6,7 +6,7 @@ import re, os, shutil, datetime
 from pathlib import Path
 import markdown as md_lib
 
-BASE = Path(r"c:\Users\fossil lap\Desktop\HERGENIUSA")
+BASE = Path(__file__).parent
 PUB  = BASE / "public"
 
 # --- SHARED DESIGN BLOCKS (same as rebuild_design.py) ----------------------
@@ -307,8 +307,8 @@ def generate_sitemap():
     SKIP_DATED = re.compile(r'^\d{4}-\d{2}-\d{2}-')
     SKIP_SLUGS  = {'welcome-to-tech-news', 'welcome-to-careers', 'src', 'styles', 'scripts'}
     pub_date_re = re.compile(
-        r'<meta\b[^>]+property=["\'']article:published_time["\''][^>]*content=["\'']([^"\']{1,30})["\'']'
-        r'|<meta\b[^>]+content=["\'']([^"\']{1,30})["\''][^>]*property=["\'']article:published_time["\'']'
+        r"""<meta\b[^>]+property=["']article:published_time["'][^>]*content=["']([^"']{1,30})["']"""
+        r"""|<meta\b[^>]+content=["']([^"']{1,30})["'][^>]*property=["']article:published_time["']"""
         r'| \"datePublished\":\s*\"(\d{4}-\d{2}-\d{2})\"',
         re.I
     )
@@ -346,7 +346,7 @@ def generate_sitemap():
         ]
     lines.append('</urlset>')
     (PUB / 'sitemap.xml').write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    print(f"  \u2713 sitemap.xml  —  {len(entries)} URLs")
+    print(f"  [ok] sitemap.xml  --  {len(entries)} URLs")
 
 
 def _load_api_index():
@@ -709,6 +709,12 @@ def rebuild_article_page(filepath):
         image    = fm.get('image', None)
         if image:
             image = image.strip('"\'')
+        image_caption = fm.get('image_caption', None)
+        if image_caption:
+            image_caption = image_caption.strip('"\'')
+        image_credit = fm.get('image_credit', None)
+        if image_credit:
+            image_credit = image_credit.strip('"\'')
         prose = md_lib.markdown(md_body, extensions=['extra', 'nl2br']) if md_body.strip() else ''
     else:
         # Fallback to HTML extraction (original old-design pages)
@@ -718,6 +724,8 @@ def rebuild_article_page(filepath):
         author   = info['author']
         category = info['category']
         image    = info['image']
+        image_caption = None
+        image_credit  = None
         prose    = clean_prose(info['prose'] or '')
 
     # Inject in-article ad after 3rd </p>
@@ -751,9 +759,21 @@ def rebuild_article_page(filepath):
 
     image_html = ''
     if image:
+        caption_parts = []
+        if image_caption:
+            caption_parts.append(f'<span>{image_caption}</span>')
+        if image_credit:
+            caption_parts.append(f'<span class="opacity-70">{image_credit}</span>')
+        if caption_parts:
+            caption_text = ' \u2014 '.join(caption_parts)
+            caption_html = f'\n    <p class="text-[11px] tracking-wide text-charcoal/60 mt-2 px-1 font-mono">{caption_text}</p>'
+        else:
+            caption_html = ''
         image_html = f"""
-    <div class="w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden mb-8 sm:mb-12 bg-gray-100">
-      <img src="{image}" alt="{title}" class="w-full h-full object-cover grayscale contrast-110"/>
+    <div class="mb-8 sm:mb-12">
+      <div class="w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden bg-gray-100">
+        <img src="{image}" alt="{title}" class="w-full h-full object-cover grayscale contrast-110"/>
+      </div>{caption_html}
     </div>"""
 
     main_content = f"""<main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 fade-in">
@@ -1047,10 +1067,10 @@ def main():
         if src_file.exists():
             content = read(src_file)
             write(dst, content)
-            print(f"  ? public/{section}/index.html  (copied from {src_file.name})")
+            print(f"  [ok] public/{section}/index.html  (copied from {src_file.name})")
             updated.append(str(dst))
         else:
-            print(f"  ? Skipped {section} � source not found: {src_file}")
+            print(f"  [skip] Skipped {section} - source not found: {src_file}")
 
     # 2. Static info pages
     print("\n-- Static info pages --")

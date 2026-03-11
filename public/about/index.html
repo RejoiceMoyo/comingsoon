@@ -1,70 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MDE8PXF500');
-</script>
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764"
-    crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-5010155177671764">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A digital repository dedicated to recovering and documenting the erased histories of women in science, technology, and innovation." />
-    <meta property="og:title" content="About The She Archive | The She Archive" />
-    <meta property="og:description" content="A digital repository dedicated to recovering and documenting the erased histories of women in science, technology, and innovation." />
-    <meta property="og:image" content="/images/prvw.jpeg" />
-    <meta property="og:url" content="https://theshearchive.com/about/" />
-    <meta property="og:site_name" content="The She Archive" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="About The She Archive | The She Archive" />
-    <meta name="twitter:description" content="A digital repository dedicated to recovering and documenting the erased histories of women in science, technology, and innovation." />
-    <meta name="twitter:image" content="/images/prvw.jpeg" />
-    <meta name="theme-color" content="#e6b319" />
-    <link rel="canonical" href="https://theshearchive.com/about/" />
-    <title>About The She Archive | The She Archive</title>
-    <link rel="icon" type="image/png" href="/images/favic.png" />
-    <link rel="apple-touch-icon" href="/images/favic.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDE8PXF500"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MDE8PXF500');
+    </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5010155177671764" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-5010155177671764">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/styles/tailwind.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#e6b319",
+              "background-light": "#f9f8f4",
+              "background-dark": "#211d11",
+              "charcoal": "#1b180e",
+              "archive-gray": "#97854e",
+              "ivory": "#fdfcf8",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Cormorant Garamond", "serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "0px",
+              "xl": "0px",
+              "full": "9999px",
+            },
+          },
+        },
+      }
+    </script>
     <style>
       body { font-family: 'Inter', sans-serif; background-color: #f9f8f4; color: #1b180e; }
       .serif-heading { font-family: 'Cormorant Garamond', serif; }
       .border-archival { border-color: rgba(27, 24, 14, 0.12); }
+      .bulletin-row:hover { background-color: rgba(230, 179, 25, 0.03); }
       .fade-in { animation: fadeIn 0.35s ease; }
       @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-      .article-body, .article-body p, .article-body li, .article-body blockquote,
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: block; }
+      .dark body { background-color: #211d11; color: #f9f8f4; }
+      /* Article prose styles */
       .article-body h1, .article-body h2, .article-body h3, .article-body h4 {
-          font-family: "Times New Roman", Times, serif;
+        font-family: 'Cormorant Garamond', serif; font-weight: 700; margin: 1.75rem 0 0.875rem;
       }
-      .article-body p { margin-bottom: 1.2em; line-height: 1.85; font-size: clamp(0.97rem, 1.5vw, 1.08rem); }
-      .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 2.5rem 0 0.6em; padding-top: 1.5rem; border-top: 1px solid rgba(230,179,25,0.35); }
-      .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.05rem, 1.5vw, 1.25rem); margin: 1.6em 0 0.5em; }
-      .article-body ul, .article-body ol { padding-left: 1.5em; margin-bottom: 1.2em; }
-      .article-body li { margin-bottom: 0.4em; }
-      .article-body a { color: #e6b319; }
-      .article-body a:hover { text-decoration: underline; }
-      .article-body blockquote { border-left: 3px solid #e6b319; padding-left: 1em; margin: 1.5em 0; font-style: italic; color: #555; }
-      .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 700; line-height: 0.75; float: left; margin: 0.05em 0.1em 0 0; color: #1b180e; }
-      .article-body hr { border: none; text-align: center; margin: 2.5rem 0; }
-      .article-body hr::before { content: "\2042"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
-      .pullquote { font-family:'Cormorant Garamond', serif; font-size:clamp(1.25rem,2.5vw,1.75rem); font-style:italic; text-align:center; border-top:2px solid #e6b319; border-bottom:2px solid #e6b319; padding:2rem 1rem; margin:3rem 0; color:#1b180e; line-height:1.6; }
-      a, a:visited { text-decoration: none; }
-      /* Reading column ? desktop and mobile */
-      .article-body { max-width: 68ch; }
+      .article-body h1 { font-size: clamp(1.6rem, 4vw, 2.25rem); }
+      .article-body h2 { font-size: clamp(1.15rem, 3vw, 1.5rem); border-top: 1px solid rgba(230,179,25,0.35); border-bottom: none; padding-top: 1.5rem; margin-top: 2.5rem; }
+      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }
+      .article-body hr::before { content: "2"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }
+      .article-body h3 { font-size: clamp(1rem, 2.5vw, 1.25rem); }
+      .article-body p { line-height: 1.8; margin-bottom: 1.25rem; font-size: 1rem; }
+      .article-body ul, .article-body ol { margin: 1rem 0 1.25rem 1.5rem; line-height: 1.8; }
+      .article-body li { margin-bottom: 0.4rem; }
+      .article-body blockquote { border-left: 3px solid #e6b319; padding: 0.875rem 1.25rem; margin: 1.5rem 0; font-style: italic; background: rgba(230,179,25,0.04); }
+      .article-body a { color: #97854e; text-decoration: underline; text-underline-offset: 3px; }
+      .article-body a:hover { color: #e6b319; }
+      .article-body img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
+      .article-body strong { font-weight: 700; }
+      .article-body em { font-style: italic; }
+      /* Image float � side-by-side on sm+ */
+      @media (min-width: 640px) {
+        .article-body p.img-para {
+          float: right; clear: right;
+          max-width: 44%; margin: 0.25rem 0 1.5rem 2rem;
+        }
+        .article-body p.img-para img { margin: 0; width: 100%; }
+        .article-body::after { content: ''; display: table; clear: both; }
+      }
+      @media (max-width: 639px) {
+        .article-body p.img-para { margin: 1rem 0; }
+      }
+      /* Figure captions */
+      .article-body figcaption { font-size: 0.75rem; color: #97854e; text-align: center; margin-top: -1rem; margin-bottom: 1.5rem; font-style: italic; }
+      .dark .article-body { color: #f9f8f4; }
+      .dark .article-body h2 { border-bottom-color: rgba(249,248,244,0.12); }
+      .dark .article-body blockquote { background: rgba(230,179,25,0.06); }
+      /* Drop cap */
+      .article-body > p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 5.2em; font-weight: 700; line-height: 0.72; float: left; margin: 0.05em 0.12em 0 0; color: #1b180e; }
+      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }
+      /* Reading column */
+      @media (min-width: 768px) { .article-body { max-width: 100%; width: 100%; } } @media (max-width: 767px) { .article-body { max-width: 68ch; } }
       /* Progress bar */
       #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }
-      /* References as academic footnotes */
+      /* References as footnotes */
       .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important; letter-spacing: 0.3em; color: #97854e !important; text-align: left !important; border-bottom: 1px solid rgba(230,179,25,0.4); padding-bottom: 0.5rem; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; }
       .references-block ul { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
       .references-block li { position: relative; padding-left: 2.2em; counter-increment: refs; margin-bottom: 0.65em; font-size: 0.75rem; color: #97854e; line-height: 1.6; border: none; }
@@ -84,198 +115,183 @@
       <a href="/inventions/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors">INVENTIONS</a>
       <a href="/tech-news/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors">TECH NEWS</a>
       <a href="/editors-desk/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors">EDITOR'S DESK</a>
-      <a href="/about/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors">ABOUT</a>
+      <a href="/about/" class="nav-link text-[10px] tracking-[0.2em] font-bold hover:text-primary transition-colors text-primary" style="color:#e6b319;border-bottom:1px solid #e6b319">ABOUT</a>
     </nav>
     <div class="flex items-center justify-end gap-5 flex-1">
-      <a href="/search/" class="hover:text-primary transition-colors flex items-center" aria-label="Search">
+      <button onclick="toggleSearch()" class="hover:text-primary transition-colors flex items-center">
         <span class="material-symbols-outlined text-[20px]">search</span>
-      </a>
+      </button>
       <button onclick="toggleDark()" class="hover:text-primary transition-colors flex items-center" title="Toggle dark mode">
         <span class="material-symbols-outlined text-[20px]" id="dark-icon">dark_mode</span>
       </button>
-      <button class="lg:hidden hover:text-primary" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+      <button class="lg:hidden hover:text-primary" onclick="toggleMobileMenu()">
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="lg:hidden pt-4 pb-2 border-t border-archival mt-4" style="display:none">
+  <div id="search-bar" class="hidden max-w-[1440px] mx-auto pt-4 pb-2 px-1">
+    <div class="relative">
+      <input id="search-input" type="text" placeholder="Search by name, era, or topic..." class="w-full bg-transparent border-b-2 border-charcoal/20 py-3 text-lg serif-heading italic focus:ring-0 focus:border-primary placeholder:text-charcoal/30 outline-none" onkeydown="if(event.key==='Enter')window.location='/search/?q='+encodeURIComponent(this.value)"/>
+      <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-charcoal/40">search</span>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden pt-4 pb-2 border-t border-archival mt-4">
     <div class="flex flex-col gap-3">
-      <a href="/stories/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">STORIES</a>
-      <a href="/inventions/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">INVENTIONS</a>
-      <a href="/tech-news/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">TECH NEWS</a>
-      <a href="/editors-desk/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">EDITOR'S DESK</a>
-      <a href="/about/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">ABOUT</a>
+          <a href="/stories/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">STORIES</a>
+          <a href="/inventions/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">INVENTIONS</a>
+          <a href="/tech-news/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">TECH NEWS</a>
+          <a href="/editors-desk/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors">EDITOR'S DESK</a>
+          <a href="/about/" class="text-[10px] tracking-[0.2em] font-bold hover:text-primary text-left transition-colors" style="color:#e6b319">ABOUT</a>
     </div>
   </div>
 </header>
 
-<main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-12 fade-in">
-    
-            <article class="post-content">
-                <h1 class="serif-heading text-3xl mb-4 italic text-center">About The She Archive</h1>
-                <p class="font-bold mb-8 text-[#97854e] italic text-center text-sm">We restore what history erased. The contributions of women ? in science, invention, and technology ? were never absent. They were undocumented. We're fixing that.</p>
-                <div class="space-y-12 mt-12 text-black text-xs">
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Foundational Statement</h2>
-                        <div class="leading-relaxed"><p>History doesn't lose things by accident.</p>
-<p>Names get dropped. Credits get reassigned. Patents expire unclaimed. Decades of work disappear into the acknowledgments section of someone else's biography.</p>
-<p>The She Archive was built because that pattern has a name ? erasure ? and erasure can be undone. This is not a tribute site. It is not a list of inspirational women. It is a record, built from primary sources, patent filings, archival documents, and firsthand accounts, because accurate history is not just scholarship. It is a form of justice.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">What We Do</h2>
-                        <div class="leading-relaxed"><p>We document women in science, technology, invention, and social innovation. Each entry in The She Archive names the woman, the work, the context it emerged from, and the forces that tried to bury it.</p>
-<p>We research from the ground up: patent records, academic journals, military archives, court filings, oral histories. We cite everything. We distinguish between what is documented, what is contested, and what was deliberately obscured.</p>
-<p>We don't mythologize. We restore.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Editorial Philosophy</h2>
-                        <div class="leading-relaxed"><p>We start from the assumption that if a woman's contribution is missing from the record, something went wrong ? institutionally, socially, or deliberately.</p>
-<p>We treat erasure as a pattern to be investigated, not an accident to be apologized for. Our editorial process names the barriers alongside the breakthroughs: the patents denied, the credits stolen, the work published under someone else's name.</p>
-<p>We believe that telling the truth about the past is one of the few things that cannot be taken back.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Scope & Focus</h2>
-                        <div class="leading-relaxed"><p>Science. Technology. Mathematics. Medicine. Computing. Engineering. Every era. Every geography.</p>
-<p>The She Archive does not operate on a defined time period or subject limit. If a woman's contribution to human knowledge has been underrecognized, it belongs here.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Methodology & Sources</h2>
-                        <div class="leading-relaxed"><p>Every entry is sourced. Primary sources ? patent filings, original publications, institutional records ? take precedence. Where secondary sources are used, they are cited in full using APA standards.</p>
-<p>We mark contested claims clearly. We will not smooth over gaps in the historical record; we document them.</p>
-<p>If you find an error, write to us. We will correct it and say so.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Independence & Funding</h2>
-                        <div class="leading-relaxed"><p>The She Archive is independently operated. We do not answer to advertisers, institutions, or funders with editorial interests.</p>
-<p>We are sustained by readers who believe this work matters. If you do too, you can support us directly.</p>
-</div>
-                    </section>
-                    <section>
-                        <h2 class="serif-heading text-xl border-b border-gray-100 pb-2 mb-4">Credits & Stewardship</h2>
-                        <div class="leading-relaxed"><p>Built and maintained by the contributors of The She Archive. We are researchers, writers, and people who got tired of the same story being told without everyone in it.</p>
-</div>
-                    </section>
-                </div>
-                <p class="mt-16 text-center italic text-gray-400 text-xs">Her work was never absent. It was undocumented.
-</p>
-                <div class="mt-16 border-t border-gray-100 pt-8 text-center">
-                    <a class="inline-flex items-center gap-3 text-[#97854e] hover:text-[#e6b319] transition-colors font-bold text-xs uppercase tracking-widest" href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer">
-                        <span class="size-10 flex items-center justify-center rounded-full bg-[#e6b319]/10 text-[#97854e]">
-                            <span class="material-symbols-outlined text-lg leading-none">coffee</span>
-                        </span>
-                        Support The She Archive
-                    </a>
-                </div>
-            </article>
-        
+<main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-10 sm:py-16 fade-in">
 
-<!-- AdSense Display Ad -->
-<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5010155177671764"
-       data-ad-slot="4319743982"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-<!-- Multiplex Ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-5010155177671764"
-     data-ad-slot="7209631208"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-</main>
+  <nav class="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-6 sm:mb-8">The Archive / About</nav>
 
-<footer class="bg-charcoal text-background-light py-6 px-4 sm:px-6 lg:px-12 mt-6 border-t border-white/10">
-  <div class="max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
-      <div>
-        <a href="/" class="font-serif text-lg font-bold hover:text-[#e6b319] transition-colors tracking-wide block mb-2">THE SHE ARCHIVE</a>
-        <p style="font-size:0.65rem;color:#9ca3af">Celebrating women who changed the world.</p>
-      </div>
-      <div>
-        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Collections</h3>
-        <ul style="list-style:none;padding:0;margin:0">
-          <li style="margin-bottom:0.2rem"><a href="/stories/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Stories</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/inventions/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Inventions</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/editors-desk/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Editor&#39;s Desk</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/tech-news/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Tech News</a></li>
-          <li><a href="/careers/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Resources</h3>
-        <ul style="list-style:none;padding:0;margin:0">
-          <li style="margin-bottom:0.2rem"><a href="/about/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">About</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/submissions/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Submissions</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/contact/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Contact</a></li>
-          <li style="margin-bottom:0.2rem"><a href="/archive/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Archive</a></li>
-          <li><a href="/privacy/" style="font-size:0.69rem;color:#9ca3af" class="hover:text-white transition-colors">Privacy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="font-size:0.56rem;letter-spacing:0.2em;color:#6b7280;text-transform:uppercase;margin-bottom:0.5rem">Contact</h3>
-        <a href="mailto:theshearchivehq@gmail.com" style="font-size:0.69rem;color:#9ca3af;display:block;margin-bottom:0.5rem" class="hover:text-white transition-colors">theshearchivehq&#64;gmail.com</a>
-        <div style="display:flex;gap:0.6rem">
-          <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" style="width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(255,255,255,0.05)" aria-label="Support us">
-            <span class="material-symbols-outlined" style="font-size:1rem;color:#9ca3af">coffee</span>
-          </a>
-          <a href="mailto:theshearchivehq@gmail.com" style="width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:rgba(255,255,255,0.05)" aria-label="Email us">
-            <span class="material-symbols-outlined" style="font-size:1rem;color:#9ca3af">mail</span>
-          </a>
-        </div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+    <div class="md:col-span-8">
+      <h1 class="serif-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">About The She Archive</h1>
+      <p class="serif-heading text-lg sm:text-xl leading-relaxed text-charcoal/70 italic mb-8 sm:mb-12 border-b border-archival pb-8 sm:pb-12">A digital repository dedicated to recovering and documenting the erased histories of women in science, technology, and innovation.</p>
+
+      <div class="article-body">
+        <h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Foundation</h2><p>History doesn't lose things by accident.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">What We Do</h2><p>We document women in science, technology, invention, and social innovation. Each entry in The She Archive names the woman, the work, the context it emerged from, and the forces that tried to bury it.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Our Philosophy</h2><p>We start from the assumption that if a woman's contribution is missing from the record, something went wrong — institutionally, socially, or deliberately.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Scope</h2><p>Science. Technology. Mathematics. Medicine. Computing. Engineering. Every era. Every geography.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Methodology</h2><p>Every entry is sourced. Primary sources — patent filings, original publications, institutional records — take precedence. Where secondary sources are used, they are cited in full using APA standards.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Funding</h2><p>The She Archive is independently operated. We do not answer to advertisers, institutions, or funders with editorial interests.</p>
+<h2 class="serif-heading text-2xl font-bold border-b border-archival pb-3 mb-4 mt-8">Credits</h2><p>Built and maintained by the contributors of The She Archive. We are researchers, writers, and people who got tired of the same story being told without everyone in it.</p>
+<p>Her work was never absent. It was undocumented.</p>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:0.75rem">
-      <p style="font-size:0.625rem;color:#6b7280;letter-spacing:0.15em">&copy; 2026 THE SHE ARCHIVE</p>
+
+    <aside class="md:col-span-4 mt-2 md:mt-0">
+      <div class="md:sticky md:top-28">
+        <div class="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-10">
+          <div class="bg-primary/5 p-4 md:p-6">
+            <h5 class="text-[10px] font-bold mb-3 tracking-[0.2em] text-primary uppercase">The Archive</h5>
+            <p class="text-xs leading-relaxed italic mb-3 hidden md:block">An independent editorial archive dedicated to preserving women's contributions to history, science, and culture.</p>
+            <a href="/stories/" class="text-[10px] font-bold tracking-widest uppercase hover:text-primary transition-colors border-b border-archive-gray pb-0.5">Browse Stories</a>
+          </div>
+          <div class="p-4 md:p-0">
+            <h5 class="text-[10px] font-bold mb-3 md:mb-4 tracking-[0.2em] text-archive-gray uppercase">Quick Links</h5>
+            <ul class="space-y-2 md:space-y-3 text-xs">
+              <li><a href="/about/" class="font-medium hover:text-primary transition-colors">About</a></li>
+              <li><a href="/contact/" class="font-medium hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="/submissions/" class="font-medium hover:text-primary transition-colors">Submissions</a></li>
+              <li class="hidden sm:block"><a href="/privacy/" class="font-medium hover:text-primary transition-colors">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="bg-charcoal text-background-light py-20 px-6 lg:px-12 mt-24">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+      <div class="lg:col-span-1">
+        <a href="/" class="serif-heading text-2xl font-bold mb-6 block hover:text-primary transition-colors">THE SHE ARCHIVE</a>
+        <p class="text-xs leading-relaxed text-gray-400 italic">An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.</p>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">COLLECTIONS</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/stories/" class="hover:text-white transition-colors">Stories</a></li>
+          <li><a href="/inventions/" class="hover:text-white transition-colors">Inventions</a></li>
+          <li><a href="/editors-desk/" class="hover:text-white transition-colors">Editor's Desk</a></li>
+          <li><a href="/careers/" class="hover:text-white transition-colors">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">RESOURCES</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/search/" class="hover:text-white transition-colors">Search Archive</a></li>
+          <li><a href="/tech-news/" class="hover:text-white transition-colors">Tech News</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submit a Story</a></li>
+          <li><a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Support Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-[10px] font-bold mb-6 tracking-[0.2em] text-primary">CONTACT</h5>
+        <ul class="space-y-4 text-xs font-medium text-gray-400">
+          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/submissions/" class="hover:text-white transition-colors">Submissions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <p class="text-[10px] text-gray-500 tracking-widest">&copy; 2026 THE SHE ARCHIVE. ALL RIGHTS RESERVED.</p>
+      <div class="flex gap-8">
+        <a href="/privacy/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">PRIVACY</a>
+        <a href="/submissions/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">SUBMISSIONS</a>
+        <a href="/about/" class="text-[10px] text-gray-500 tracking-widest hover:text-white">ABOUT</a>
+      </div>
     </div>
   </div>
 </footer>
+
 <script>
-(function(){
-  var bar = document.createElement('div');
-  bar.id = 'read-progress';
-  document.body.prepend(bar);
-  function updateProgress() {
-    var el = document.querySelector('.article-body');
-    if (!el) return;
-    var rect = el.getBoundingClientRect();
-    var total = el.offsetHeight - window.innerHeight * 0.5;
-    var scrolled = Math.max(0, -rect.top);
-    bar.style.width = (total > 0 ? Math.min(100, (scrolled / total) * 100) : 0) + '%';
+  function toggleSearch() {
+    const bar = document.getElementById('search-bar');
+    bar.classList.toggle('hidden');
+    if (!bar.classList.contains('hidden')) document.getElementById('search-input').focus();
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-  var artBody = document.querySelector('.article-body');
-  if (artBody) {
-    artBody.querySelectorAll('div').forEach(function(d) {
-      var h = d.querySelector('h4');
-      if (h && h.textContent.trim().toUpperCase() === 'REFERENCES') {
-        d.classList.add('references-block');
+  function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+  function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    const icon = document.getElementById('dark-icon');
+    if (icon) icon.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+  }
+  // Reading progress bar
+  (function(){
+    var bar = document.createElement('div');
+    bar.id = 'read-progress';
+    document.body.prepend(bar);
+    function updateProgress() {
+      var el = document.querySelector('.article-body');
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var total = el.offsetHeight - window.innerHeight * 0.5;
+      var scrolled = Math.max(0, -rect.top);
+      bar.style.width = (total > 0 ? Math.min(100, (scrolled / total) * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    // Style references as academic footnotes
+    document.addEventListener('DOMContentLoaded', function(){
+      var artBody = document.querySelector('.article-body');
+      if (artBody) {
+        artBody.querySelectorAll('div').forEach(function(d) {
+          var h = d.querySelector('h4');
+          if (h && h.textContent.trim().toUpperCase() === 'REFERENCES') { d.classList.add('references-block'); }
+        });
       }
     });
-  }
-})();
-</script>
-<script>
-function toggleDark(){
-  var dark=document.documentElement.classList.toggle('dark');
-  localStorage.setItem('theme',dark?'dark':'light');
-  var i=document.getElementById('dark-icon');
-  if(i)i.textContent=dark?'light_mode':'dark_mode';
-}
-(function(){var i=document.getElementById('dark-icon');if(i&&document.documentElement.classList.contains('dark'))i.textContent='light_mode';})();
+  })();
+  // Float standalone inline images on desktop so text wraps beside them
+  document.addEventListener('DOMContentLoaded', function() {
+    var body = document.querySelector('.article-body');
+    if (!body) return;
+    var paras = body.querySelectorAll('p');
+    paras.forEach(function(p) {
+      var children = Array.from(p.childNodes).filter(function(n) {
+        return n.nodeType !== 3 || n.textContent.trim() !== '';
+      });
+      if (children.length === 1 && children[0].tagName === 'IMG') {
+        // Only float if there's a following sibling paragraph with text
+        var next = p.nextElementSibling;
+        if (next && (next.tagName === 'P' || next.tagName === 'UL' || next.tagName === 'OL')) {
+          p.classList.add('img-para');
+        }
+      }
+    });
+  });
 </script>
 </body>
 </html>
