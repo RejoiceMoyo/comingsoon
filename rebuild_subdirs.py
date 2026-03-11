@@ -767,10 +767,10 @@ def rebuild_article_page(filepath):
     <span class="text-charcoal/50">{title[:60] + ('�' if len(title) > 60 else '')}</span>
   </nav>
 
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
     <!-- Article -->
-    <article class="md:col-span-8">
+    <article class="lg:col-span-8">
 
       <!-- Category + meta -->
       <div class="mb-4 sm:mb-6">
@@ -809,10 +809,10 @@ def rebuild_article_page(filepath):
     </article>
 
     <!-- Sidebar -->
-    <aside class="md:col-span-4 mt-4 md:mt-0">
+    <aside class="lg:col-span-4 mt-4 lg:mt-0">
       <div class="md:sticky md:top-28">
         <!-- mobile: 2-col mini-cards; desktop: vertical stack -->
-        <div class="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-12">
+        <div class="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-12">
 
           <div class="bg-primary/5 p-4 md:p-6">
             <h5 class="text-[10px] font-bold mb-3 tracking-[0.2em] text-primary uppercase">About the Archive</h5>
