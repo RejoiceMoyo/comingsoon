@@ -8,6 +8,8 @@ categories:
   - Personal Care Products
 era: 19th Century
 image: /images/uploads/everyday-inventions-collage.jpg
+image_caption: Some invented items
+image_credit: CanvaAI
 description: Technological history has often overlooked the practical
   innovations created by women. Yet many of the objects embedded in daily
   life—from windshield wipers to modern heating systems,emerged from the
