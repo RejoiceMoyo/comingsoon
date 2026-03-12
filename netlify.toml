@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "npm run build"
+  command = "pip install -r requirements.txt && python rebuild_design.py && python rebuild_subdirs.py && npm run build"
 
 [dev]
   command = "npm start"

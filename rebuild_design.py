@@ -5,7 +5,7 @@ Run: python rebuild_design.py
 import re, os, shutil, datetime
 from pathlib import Path
 
-BASE = r"c:\Users\fossil lap\Desktop\HERGENIUSA"
+BASE = Path(__file__).parent
 
 # -----------------------------------------------------------------------------
 # SHARED DESIGN BLOCKS  (direct from she-archive.html)
