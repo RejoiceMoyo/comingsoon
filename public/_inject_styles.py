@@ -18,7 +18,7 @@ TEXTURE_CSS = (
     "      .dark .article-body > p:first-child::first-letter { color: #f9f8f4; }\n"
     "      .article-body hr { border: none; margin: 2.5rem 0; text-align: center; overflow: visible; height: 1.5rem; line-height: 1.5rem; }\n"
     "      .article-body hr::before { content: \"\\2042\"; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #97854e; letter-spacing: 0.5em; }\n"
-    "      @media (min-width: 768px) { .article-body { max-width: 68ch; } }\n"
+    "      @media (min-width: 768px) { .article-body { max-width: 100%; width: 100%; } } @media (max-width: 767px) { .article-body { max-width: 68ch; } }\n"
     "      #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%;"
     " background: #e6b319; z-index: 9999; transition: width 0.08s linear; pointer-events: none; }\n"
     "      .references-block h4 { font-family: 'Cormorant Garamond', serif !important; font-size: 0.65rem !important;"

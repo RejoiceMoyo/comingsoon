@@ -2,7 +2,7 @@
 rebuild_subdirs.py � Updates all public/ subdirectory HTML pages to she-archive design
 Handles: section listing index pages, static info pages, individual article pages
 """
-import re, os, shutil, datetime
+import re, os, shutil, datetime, html, json
 from pathlib import Path
 import markdown as md_lib
 
@@ -68,7 +68,7 @@ CSS_AND_CONFIG = """\
       .article-body img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
       .article-body strong { font-weight: 700; }
       .article-body em { font-style: italic; }
-      /* Image float � side-by-side on sm+ */
+      /* Image float side-by-side on sm+ */
       @media (min-width: 640px) {
         .article-body p.img-para {
           float: right; clear: right;
@@ -283,6 +283,87 @@ def write(p, c):
         f.write(c)
 
 
+DATE_PREFIX_RE = re.compile(r'^\d{4}-\d{2}-\d{2}-?')
+NON_SLUG_CHARS_RE = re.compile(r'[^a-z0-9-]+')
+
+
+def strip_date_prefix(slug):
+    return DATE_PREFIX_RE.sub('', (slug or '').strip())
+
+
+def normalize_slug(slug):
+    """Normalize slugs to ASCII-safe canonical paths."""
+    clean = strip_date_prefix(slug).lower()
+    for dash in ('–', '—', '―', '‑'):
+        clean = clean.replace(dash, '-')
+    clean = NON_SLUG_CHARS_RE.sub('-', clean)
+    clean = re.sub(r'-{2,}', '-', clean).strip('-')
+    return clean
+
+
+def summarize_text(text, max_len=160):
+    """Create a plain-text summary suitable for meta descriptions."""
+    if not text:
+        return ''
+    plain = re.sub(r'<[^>]+>', ' ', text)
+    plain = re.sub(r'[`*_>#\[\]\(\)!-]', ' ', plain)
+    plain = re.sub(r'\s+', ' ', plain).strip()
+    if len(plain) <= max_len:
+        return plain
+    return plain[: max_len - 3].rstrip() + '...'
+
+
+def build_meta_tags(title, description, canonical_url, image_url, og_type='article', article_date=''):
+    safe_title = html.escape(title, quote=True)
+    safe_description = html.escape(description, quote=True)
+    safe_canonical = html.escape(canonical_url, quote=True)
+    safe_image = html.escape(image_url, quote=True)
+    article_time = ''
+    if article_date:
+        article_time = f'\n    <meta property="article:published_time" content="{html.escape(article_date, quote=True)}" />'
+    return f'''    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{safe_description}" />
+  <meta name="theme-color" content="#e6b319" />
+  <link rel="canonical" href="{safe_canonical}" />
+  <link rel="alternate" hreflang="en" href="{safe_canonical}" />
+  <link rel="alternate" hreflang="x-default" href="{safe_canonical}" />
+  <meta property="og:site_name" content="The She Archive" />
+  <meta property="og:title" content="{safe_title}" />
+  <meta property="og:description" content="{safe_description}" />
+  <meta property="og:image" content="{safe_image}" />
+  <meta property="og:url" content="{safe_canonical}" />
+  <meta property="og:type" content="{html.escape(og_type, quote=True)}" />
+  <meta property="og:locale" content="en_US" />{article_time}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{safe_title}" />
+  <meta name="twitter:description" content="{safe_description}" />
+  <meta name="twitter:image" content="{safe_image}" />
+  <title>{safe_title}</title>'''
+
+
+def build_legacy_redirect_html(canonical_url):
+    safe_canonical = html.escape(canonical_url, quote=True)
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="refresh" content="0; url={safe_canonical}" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="{safe_canonical}" />
+  <link rel="alternate" hreflang="en" href="{safe_canonical}" />
+  <link rel="alternate" hreflang="x-default" href="{safe_canonical}" />
+  <title>Redirecting | The She Archive</title>
+</head>
+<body>
+  <p>Redirecting to canonical URL: <a href="{safe_canonical}">{safe_canonical}</a></p>
+  <script>location.replace({json.dumps(canonical_url)});</script>
+</body>
+</html>
+'''
+
+
 def generate_sitemap():
     """Walk public/ and write a clean sitemap.xml with proper lastmod dates."""
     BASE_URL = 'https://theshearchive.com'
@@ -304,7 +385,6 @@ def generate_sitemap():
     ]
 
     ARTICLE_SECTIONS = ['stories', 'inventions', 'editors-desk', 'tech-news', 'careers']
-    SKIP_DATED = re.compile(r'^\d{4}-\d{2}-\d{2}-')
     SKIP_SLUGS  = {'welcome-to-tech-news', 'welcome-to-careers', 'src', 'styles', 'scripts'}
     pub_date_re = re.compile(
         r"""<meta\b[^>]+property=["']article:published_time["'][^>]*content=["']([^"']{1,30})["']"""
@@ -314,22 +394,26 @@ def generate_sitemap():
     )
 
     entries = list(STATIC)
+    seen = {path for path, _, _, _ in entries}
     for section in ARTICLE_SECTIONS:
-        sec_dir = PUB / section
-        if not sec_dir.exists():
-            continue
-        for html_file in sorted(sec_dir.glob('*/index.html')):
-            slug = html_file.parent.name
-            if slug in SKIP_SLUGS or SKIP_DATED.match(slug):
-                continue
-            canonical = f'/{section}/{slug}/'
-            try:
-                text = html_file.read_text(encoding='utf-8')
-                m = pub_date_re.search(text)
-                lastmod = next((g for g in (m.group(1), m.group(2), m.group(3)) if g), today)[:10] if m else today
-            except Exception:
-                lastmod = today
-            entries.append((canonical, '0.8', 'yearly', lastmod))
+      sec_dir = PUB / section
+      if not sec_dir.exists():
+        continue
+      for html_file in sorted(sec_dir.glob('*/index.html')):
+        slug = normalize_slug(html_file.parent.name)
+        if not slug or slug in SKIP_SLUGS:
+          continue
+        canonical = f'/{section}/{slug}/'
+        if canonical in seen:
+          continue
+        try:
+          text = html_file.read_text(encoding='utf-8')
+          m = pub_date_re.search(text)
+          lastmod = next((g for g in (m.group(1), m.group(2), m.group(3)) if g), today)[:10] if m else today
+        except Exception:
+          lastmod = today
+        entries.append((canonical, '0.8', 'yearly', lastmod))
+        seen.add(canonical)
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -387,10 +471,10 @@ def get_api_data(slug):
 
 
 def extract_meta_tags(html):
-    """Extract head meta/link/script content to preserve � analytics, og, title, canonical etc."""
+  """Extract head meta/link/script content to preserve analytics, og, title, canonical etc."""
     preserved = []
     skip_active = False
-    # Anything inside these block tags is always regenerated � skip entirely
+    # Anything inside these block tags is always regenerated - skip entirely
     always_skip_open = ('<style', '<style>', '<script src=', '<script id=')
     skip_triggers = [
         'cdn.tailwindcss.com', 'tailwind-config', 'tailwind.config',
@@ -684,7 +768,6 @@ def build_full_html(meta_tags, header, main_content, page_title=None):
 def rebuild_article_page(filepath):
     """Rebuild an individual article/post page, sourcing content from .md files."""
     html = read(filepath)
-    meta_tags = extract_meta_tags(html)
     section = infer_section(filepath)
     header = make_header(section)
 
@@ -697,15 +780,31 @@ def rebuild_article_page(filepath):
     }
     sec_label, sec_href = section_labels.get(section, ('Archive', '/'))
 
+    raw_slug = Path(filepath).parent.name
+    canonical_slug = normalize_slug(raw_slug)
+    canonical_slug = canonical_slug or strip_date_prefix(raw_slug)
+    canonical_rel = f'{sec_href}{canonical_slug}/' if sec_href != '/' else f'/{canonical_slug}/'
+    canonical_url = f'https://theshearchive.com{canonical_rel}'
+
+    # Legacy URLs (typically dated slugs) redirect to one canonical path.
+    if raw_slug != canonical_slug:
+        return build_legacy_redirect_html(canonical_url)
+
     md_file = find_md_source(filepath)
     if md_file:
         text = read(md_file)
         fm, md_body = parse_frontmatter(text)
-        title    = fm.get('title', '').strip('"\'') or Path(filepath).parent.name.replace('-', ' ').title()
+        title    = fm.get('title', '').strip('"\'') or canonical_slug.replace('-', ' ').title()
         raw_date = fm.get('date', '')
         date_str = raw_date[:10] if raw_date else ''
         author   = fm.get('author', 'The She Archive').strip('"\'')
         category = fm.get('category', 'Archive').strip('"\'')
+        description = (
+          fm.get('description', '')
+          or fm.get('excerpt', '')
+          or fm.get('summary', '')
+          or summarize_text(md_body, 160)
+        ).strip('"\'')
         image    = fm.get('image', None)
         if image:
             image = image.strip('"\'')
@@ -719,14 +818,17 @@ def rebuild_article_page(filepath):
     else:
         # Fallback to HTML extraction (original old-design pages)
         info = extract_prose_content(html)
-        title    = info['title'] or Path(filepath).parent.name.replace('-', ' ').title()
+        title    = info['title'] or canonical_slug.replace('-', ' ').title()
         date_str = info['date']
         author   = info['author']
         category = info['category']
         image    = info['image']
         image_caption = None
         image_credit  = None
+        description = summarize_text(info['prose'] or '', 160)
         prose    = clean_prose(info['prose'] or '')
+
+    description = description or f'{title} - {sec_label} from The She Archive.'
 
     # Inject in-article ad after 3rd </p>
     if prose:
@@ -776,6 +878,8 @@ def rebuild_article_page(filepath):
       </div>{caption_html}
     </div>"""
 
+    breadcrumb_title = title if len(title) <= 60 else f"{title[:57].rstrip()}..."
+
     main_content = f"""<main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12 fade-in">
 
   <!-- Breadcrumb -->
@@ -784,7 +888,7 @@ def rebuild_article_page(filepath):
     <span class="mx-2">/</span>
     <a href="{sec_href}" class="hover:text-primary transition-colors">{sec_label}</a>
     <span class="mx-2">/</span>
-    <span class="text-charcoal/50">{title[:60] + ('�' if len(title) > 60 else '')}</span>
+    <span class="text-charcoal/50">{breadcrumb_title}</span>
   </nav>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
@@ -805,7 +909,7 @@ def rebuild_article_page(filepath):
         <span class="text-xs font-bold tracking-widest uppercase">{author}</span>
         {f'<span class="w-1 h-1 bg-archive-gray rounded-full"></span><span class="text-xs text-archive-gray">{date_str}</span>' if date_str else ''}
         <span class="ml-auto">
-          <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase text-archive-gray hover:text-primary transition-colors">? Back to {sec_label}</a>
+          <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase text-archive-gray hover:text-primary transition-colors">Back to {sec_label}</a>
         </span>
       </div>
 
@@ -823,8 +927,8 @@ def rebuild_article_page(filepath):
 
       <!-- End of article -->
       <div class="mt-16 pt-8 border-t border-archival flex flex-col sm:flex-row justify-between items-start gap-6">
-        <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">? More {sec_label}</a>
-        <a href="/search/" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">Search Archive ?</a>
+        <a href="{sec_href}" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">More {sec_label}</a>
+        <a href="/search/" class="text-[10px] font-bold tracking-widest uppercase border-b border-archive-gray pb-0.5 hover:border-primary hover:text-primary transition-all">Search Archive</a>
       </div>
     </article>
 
@@ -853,7 +957,7 @@ def rebuild_article_page(filepath):
 
           <div class="col-span-2 md:col-span-1 p-4 md:p-0">
             <h5 class="text-[10px] font-bold mb-3 md:mb-4 tracking-[0.2em] text-archive-gray uppercase">Support</h5>
-            <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="text-xs font-medium hover:text-primary transition-colors">Buy Me a Coffee ?</a>
+            <a href="https://buymeacoffee.com/theshearchive" target="_blank" rel="noopener noreferrer" class="text-xs font-medium hover:text-primary transition-colors">Buy Me a Coffee</a>
           </div>
 
         </div>
@@ -865,15 +969,20 @@ def rebuild_article_page(filepath):
 
     # --- JSON-LD structured data -------------------------------------------
     article_type_ld = 'TechArticle' if section == 'inventions' else 'Article'
-    slug_ld = Path(filepath).parent.name
-    canonical_url = f'https://theshearchive.com{sec_href}{slug_ld}/'
     image_abs = image if image else '/images/prvw.jpeg'
     if image_abs.startswith('/'):
         image_abs = 'https://theshearchive.com' + image_abs
-    desc_m = re.search(r'og:description["\'][^>]*content=["\']([^"\']+)', meta_tags) or \
-             re.search(r'<meta name=["\']description["\'] content=["\']([^"\']+)', meta_tags)
-    description_ld = desc_m.group(1).replace('"', '\\"') if desc_m else ''
+    article_date = date_str if re.match(r'^\d{4}-\d{2}-\d{2}$', date_str or '') else datetime.date.today().isoformat()
+    description_ld = description.replace('"', '\\"')
     title_ld = title.replace('"', '\\"')
+    meta_tags = build_meta_tags(
+        title=f'{title} | The She Archive',
+        description=description,
+        canonical_url=canonical_url,
+        image_url=image_abs,
+        og_type='article',
+        article_date=article_date,
+    )
     schema_block = f'''<script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -885,12 +994,13 @@ def rebuild_article_page(filepath):
       "description": "{description_ld}",
       "image": "{image_abs}",
       "url": "{canonical_url}",
-      "datePublished": "{date_str}",
-      "dateModified": "{date_str}",
+      "datePublished": "{article_date}",
+      "dateModified": "{article_date}",
       "author": {{ "@type": "Organization", "name": "The She Archive", "url": "https://theshearchive.com/" }},
       "publisher": {{ "@type": "Organization", "name": "The She Archive", "url": "https://theshearchive.com/", "logo": {{ "@type": "ImageObject", "url": "https://theshearchive.com/images/favic.png" }} }},
       "mainEntityOfPage": "{canonical_url}",
       "articleSection": "{sec_label}",
+      "inLanguage": "en",
       "isPartOf": {{ "@id": "https://theshearchive.com/#website" }}
     }},
     {{
@@ -1089,7 +1199,40 @@ def main():
         else:
             print(f"  ? Not found: {fp.relative_to(BASE)}")
 
-    # 3. Individual article pages � walk through all public/* subdirs
+    # 3a. Create pages for NEW markdown files that have no public/ folder yet
+    print("\n-- New article pages (from content/) --")
+    NEW_SECTION_MAP = {
+        'posts':       ('stories',      PUB / 'stories'),
+        'inventions':  ('inventions',   PUB / 'inventions'),
+        'editors-desk':('editors-desk', PUB / 'editors-desk'),
+        'tech-news':   ('tech-news',    PUB / 'tech-news'),
+        'careers':     ('careers',      PUB / 'careers'),
+    }
+    SKIP_PLACEHOLDERS = {'welcome-to-tech-news', 'welcome-to-careers'}
+    for content_subdir, (section, pub_section_dir) in NEW_SECTION_MAP.items():
+        src_dir = BASE / 'content' / content_subdir
+        if not src_dir.exists():
+            continue
+        for md_file in sorted(src_dir.glob('*.md')):
+        slug = normalize_slug(md_file.stem)
+            if slug in SKIP_PLACEHOLDERS:
+                continue
+            dest = pub_section_dir / slug / 'index.html'
+            if dest.exists():
+                continue  # already exists, the rglob step below will rebuild it
+            # Build brand-new page from the markdown file
+            try:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_text('', encoding='utf-8')  # placeholder so rebuild_article_page can open it
+                new_html = rebuild_article_page(dest)
+                write(dest, new_html)
+                print(f"  [new] {dest.relative_to(BASE)}")
+                updated.append(str(dest))
+            except Exception as e:
+                print(f"  [err] {dest.relative_to(BASE)}: {e}")
+                skipped.append(str(dest))
+
+    # 3. Individual article pages — walk through all public/* subdirs
     print("\n-- Individual article pages --")
     # Skip these directories
     SKIP_DIRS = {'admin', 'images', 'scripts', 'api', 'content'}

@@ -1,14 +1,15 @@
-﻿"""
-rebuild_design.py  —  Full rebuild of all HTML pages using she-archive.html design
+"""
+rebuild_design.py  �  Full rebuild of all HTML pages using she-archive.html design
 Run: python rebuild_design.py
 """
-import re, os, shutil
+import re, os, shutil, datetime
+from pathlib import Path
 
 BASE = r"c:\Users\fossil lap\Desktop\HERGENIUSA"
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # SHARED DESIGN BLOCKS  (direct from she-archive.html)
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 CSS_AND_CONFIG = """\
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -143,6 +144,61 @@ def make_header(active_page=""):
 </header>"""
 
 
+DISPLAY_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="4319743982"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
+MULTIPLEX_AD = """
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-4">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-format="autorelaxed"
+       data-ad-client="ca-pub-5010155177671764"
+       data-ad-slot="7209631208"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>"""
+
+
+HOMEPAGE_SCHEMA = """
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://theshearchive.com/#website",
+      "url": "https://theshearchive.com/",
+      "name": "The She Archive",
+      "description": "An independent editorial archive documenting women's inventions, intellectual labor, and historical contributions across science, technology, culture, and society.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://theshearchive.com/search/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://theshearchive.com/#organization",
+      "name": "The She Archive",
+      "url": "https://theshearchive.com/",
+      "logo": { "@type": "ImageObject", "url": "https://theshearchive.com/images/favic.png" }
+    }
+  ]
+}
+</script>"""
+
+
 FOOTER = """<footer class="bg-charcoal text-background-light py-6 px-6 lg:px-12 mt-6 border-t border-white/10">
   <div class="max-w-[1440px] mx-auto">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-4">
@@ -217,9 +273,9 @@ FORMAT_DATE_JS = """const formatDate = (value) => {
   };"""
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # HEAD BUILDER  (extract SEO meta from existing file & inject new design)
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 FONT_LINKS = """\
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -269,9 +325,9 @@ def build_head(preserved_meta, page_title_override=None):
 </head>"""
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # PAGE BUILDERS
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 def page_blog(meta):
     head = build_head(meta)
@@ -319,6 +375,7 @@ def page_blog(meta):
     <div class="col-span-12 text-charcoal/40 italic text-sm serif-heading py-8">Loading stories...</div>
   </div>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -353,12 +410,12 @@ def page_blog(meta):
         list.innerHTML = items.map((post, i) => `
           <div class="${{layouts[i%4]}} ${{offsets[i%4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
             <div class="${{aspects[i%4]}} overflow-hidden mb-3 bg-charcoal/10">
-              <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
+              <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvw.jpeg'}}" loading="lazy"/>
             </div>
             <span class="card-label">${{post.category || 'Story'}}</span>
             <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
             <p class="text-sm text-charcoal/70 italic leading-relaxed">${{(post.description || '').substring(0,90)}}${{(post.description||'').length>90?'\u2026':''}}</p>
-            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} · ${{post.author || 'The She Archive'}}</p>` : ''}}
+            ${{post.date ? `<p class="text-[10px] text-archive-gray mt-2 italic">${{formatDate(post.date)}} � ${{post.author || 'The She Archive'}}</p>` : ''}}
           </div>`).join('');
       }};
 
@@ -412,6 +469,7 @@ def page_tech_news(meta):
     </div>
   </section>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -496,7 +554,7 @@ def page_editors_desk(meta):
         <div class="text-archive-gray italic serif-heading text-lg">Loading editorials...</div>
       </div>
       <div class="mt-32 pt-12 border-t border-archival flex justify-between items-center text-[10px] font-bold tracking-widest uppercase">
-        <span class="text-archive-gray">The She Archive · Editor's Desk</span>
+        <span class="text-archive-gray">The She Archive � Editor's Desk</span>
       </div>
     </section>
 
@@ -516,6 +574,7 @@ def page_editors_desk(meta):
     </aside>
 
   </div>
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -633,6 +692,7 @@ def page_inventions(meta):
     </aside>
   </div>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -656,7 +716,7 @@ def page_inventions(meta):
         const wide = i % 3 === 0;
         const cols = wide ? 'col-span-12 lg:col-span-7' : 'col-span-12 lg:col-span-5';
         const aspect = wide ? 'aspect-[16/9]' : 'aspect-[3/4]';
-        const img = item.image || '/images/prvimg.jpeg';
+        const img = item.image || '/images/prvw.jpeg';
         return `
           <article class="${{cols}} group cursor-pointer border-b border-archival pb-12" onclick="window.location='/inventions/${{item.slug}}/'">
             <div class="${{aspect}} overflow-hidden mb-8 bg-gray-100">
@@ -712,6 +772,7 @@ def page_careers(meta):
     </div>
   </section>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -819,6 +880,7 @@ def page_search(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -851,6 +913,7 @@ def page_coming_soon(meta):
     </p>
     <a href="/" class="inline-block border-b-2 border-primary pb-1 text-sm font-bold tracking-wider hover:bg-primary/10 transition-all uppercase">Return to Archive</a>
   </div>
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -908,6 +971,7 @@ def page_archive(meta):
     <div class="py-12 text-center text-archive-gray italic serif-heading">Loading the archive...</div>
   </div>
 
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -921,7 +985,7 @@ def page_archive(meta):
 
 
 def page_index(meta):
-    head = build_head(meta)
+    head = build_head(meta + HOMEPAGE_SCHEMA)
     header = make_header('')
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -941,14 +1005,14 @@ def page_index(meta):
         <div class="space-y-10">
           <a href="/inventions/" class="group block">
             <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Women's inventions" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+              <img alt="Women's inventions" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvw.jpeg"/>
             </div>
             <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors">Scientific Inventions</h3>
             <p class="text-sm text-archive-gray leading-relaxed italic">Patents, breakthroughs, and women who changed the world.</p>
           </a>
           <a href="/tech-news/" class="group block">
             <div class="aspect-square bg-gray-200 mb-4 overflow-hidden">
-              <img alt="Technology archive" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvimg.jpeg"/>
+              <img alt="Technology archive" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/prvw.jpeg"/>
             </div>
             <h3 class="serif-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors">Technology Archives</h3>
             <p class="text-sm text-archive-gray leading-relaxed italic">A survey of early computational history and logic engines.</p>
@@ -965,7 +1029,7 @@ def page_index(meta):
         </div>
         <h2 class="serif-heading text-4xl lg:text-6xl font-bold leading-[1.1] mb-8" id="hero-title">Women Who Shaped History</h2>
         <div class="aspect-[4/5] bg-gray-100 mb-8 overflow-hidden">
-          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="/images/prvimg.jpeg"/>
+          <img alt="Featured story" class="w-full h-full object-cover grayscale contrast-110" id="hero-image" src="/images/prvw.jpeg"/>
         </div>
         <div class="max-w-2xl">
           <p class="serif-heading text-xl lg:text-2xl leading-relaxed mb-6 italic text-charcoal/80" id="hero-desc">
@@ -1019,6 +1083,7 @@ def page_index(meta):
       </div>
     </div>
   </section>
+{DISPLAY_AD}{MULTIPLEX_AD}
 </main>
 
 {FOOTER}
@@ -1026,53 +1091,158 @@ def page_index(meta):
 <script src="/scripts/filters.js?v=1"></script>
 <script src="/scripts/load-posts.js?v=2"></script>
 <script>
-  // Populate latest sidebar and featured grid from posts API
+  // Populate home page from all section APIs
   async function initHome() {{
     try {{
-      const resp = await fetch('/api/posts.json?ts=' + Date.now());
-      if (!resp.ok) return;
-      const posts = await resp.json();
-      if (!posts || !posts.length) return;
+      const ts = Date.now();
+      const [postsResp, inventionsResp, editorialsResp, techResp] = await Promise.all([
+        fetch('/api/posts.json?ts=' + ts),
+        fetch('/api/inventions.json?ts=' + ts),
+        fetch('/api/editorials.json?ts=' + ts),
+        fetch('/api/tech-news.json?ts=' + ts),
+      ]);
 
-      // Hero - first post
-      const hero = posts[0];
-      document.getElementById('hero-category').textContent = hero.category || 'Featured';
-      document.getElementById('hero-title').textContent = hero.title;
-      document.getElementById('hero-desc').textContent = hero.description || '';
-      if (hero.image) document.getElementById('hero-image').src = hero.image;
+      const normalize = (items, sectionLabel, urlBase) =>
+        (Array.isArray(items) ? items : [])
+          .filter(i => i.slug && i.title)
+          .map(i => ({{
+            slug: i.slug,
+            title: i.title,
+            description: i.description || i.intro || '',
+            image: i.image || '/images/prvw.jpeg',
+            category: sectionLabel === 'Stories'
+              ? (i.category || (Array.isArray(i.categories) ? i.categories[0] : '') || 'Stories')
+              : sectionLabel,
+            url: '/' + urlBase + '/' + i.slug + '/',
+            date: i.date || '',
+          }}));
 
-      // Latest sidebar - next 4 posts
-      const sidebar = document.getElementById('latest-sidebar');
-      sidebar.innerHTML = posts.slice(0, 4).map((post, i) => {{
-        const sections = ['Stories', 'Tech News', 'Editor\'s Desk', 'Inventions'];
-        const hrefs = ['/stories/', '/tech-news/', '/editors-desk/', '/inventions/'];
-        return `<div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
+      const posts      = postsResp.ok      ? await postsResp.json()      : [];
+      const inventions = inventionsResp.ok  ? await inventionsResp.json() : [];
+      const editorials = editorialsResp.ok  ? await editorialsResp.json() : [];
+      const techNews   = techResp.ok        ? await techResp.json()       : [];
+
+      const storyItems     = normalize(posts,      'Stories',        'stories');
+      const inventionItems = normalize(inventions, 'Inventions',     'inventions');
+      const editorialItems = normalize(editorials, "Editor\'s Desk", 'editors-desk');
+      const techItems      = normalize(techNews,   'Tech News',      'tech-news');
+
+      // Master list: newest-first across ALL sections
+      const allSorted = [
+        ...storyItems,
+        ...inventionItems,
+        ...editorialItems,
+        ...techItems,
+      ].sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
+
+      // Strict slot assignment � zero overlap between sections:
+      //   [0]    ? Hero (centre)
+      //   [1�2]  ? Archive Features (left sidebar)
+      //   [3�6]  ? Latest Updates (right sidebar, 4 items)
+      //   [7+]   ? Selected Archival Monographs
+      const heroItem       = allSorted[0];
+      const leftItems      = allSorted.slice(1, 3);
+      const latestPool     = allSorted.slice(3, 7);
+      const monographItems = allSorted.slice(7);
+
+      // -- Hero --
+      if (heroItem) {{
+        document.getElementById('hero-category').textContent = heroItem.category || 'Featured';
+        document.getElementById('hero-title').textContent    = heroItem.title;
+        document.getElementById('hero-desc').textContent     = heroItem.description;
+        if (heroItem.image) {{
+          const img = document.getElementById('hero-image');
+          img.src = heroItem.image;
+          const wrap = document.getElementById('hero-image-wrap');
+          if (wrap) wrap.classList.remove('skel');
+        }}
+        const readMore = document.getElementById('hero-read-more');
+        if (readMore) readMore.href = heroItem.url;
+      }}
+
+      // -- Left sidebar: Archive Features � dynamic latest 2 from any section --
+      leftItems.forEach((p, idx) => {{
+        const n = String(idx + 1);
+        const img   = document.getElementById('sidebar-img-' + n);
+        const title = document.getElementById('sidebar-title-' + n);
+        const desc  = document.getElementById('sidebar-desc-' + n);
+        const feat  = document.getElementById('sidebar-feature-' + n);
+        if (img)   {{ img.src = p.image; const wrap = document.getElementById('sidebar-img-wrap-' + n); if (wrap) wrap.classList.remove('skel'); }}
+        if (title) title.textContent = p.title;
+        if (desc)  desc.textContent  = (p.description || '').substring(0, 100) + ((p.description || '').length > 100 ? '...' : '');
+        if (feat)  feat.href = p.url;
+      }});
+
+      // -- Right sidebar: Latest Updates (4 items, show 2 initially) --
+      const SIDEBAR_INIT = 2;
+      let _sidebarShown = SIDEBAR_INIT;
+      const sidebarLoadMoreBtn = document.getElementById('sidebar-load-more');
+
+      function renderLatestSidebar() {{
+        const sidebar = document.getElementById('latest-sidebar');
+        sidebar.innerHTML = latestPool.slice(0, _sidebarShown).map(item => `
+        <div class="border-b border-archival pb-6 group cursor-pointer" onclick="window.location='${{item.url}}'">
           <div class="flex justify-between items-center mb-2">
-            <span class="card-label">${{post.category || sections[i % 4]}}</span>
+            <span class="card-label">${{item.category}}</span>
           </div>
-          <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${{post.title}}</h4>
-        </div>`;
-      }}).join('');
-
-      // Featured grid - up to 12 posts
-      const grid = document.getElementById('featured-grid');
-      const gridPosts = posts.slice(0, 12);
-      const layouts = [
-        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
-        'col-span-6 lg:col-span-3', 'col-span-6 lg:col-span-3',
-      ];
-      const aspects = ['aspect-square', 'aspect-[4/5]', 'aspect-square', 'aspect-[4/5]'];
-      const offsets = ['', '', 'lg:-mt-8', 'lg:-mt-8'];
-      grid.innerHTML = gridPosts.map((post, i) => `
-        <div class="${{layouts[i % 4]}} ${{offsets[i % 4]}} flex flex-col group cursor-pointer" onclick="window.location='/stories/${{post.slug}}/'">
-          <div class="${{aspects[i % 4]}} overflow-hidden mb-3 bg-charcoal/10">
-            <img alt="${{post.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{post.image || '/images/prvimg.jpeg'}}" loading="lazy"/>
-          </div>
-          <span class="card-label">${{post.category || 'Archive'}}</span>
-          <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{post.title}}</h3>
-          <p class="text-sm leading-relaxed text-charcoal/70 italic">${{(post.description || '').substring(0, 90)}}${{(post.description || '').length > 90 ? '\u2026' : ''}}</p>
+          <h4 class="serif-heading text-md font-bold leading-snug group-hover:underline">${{item.title}}</h4>
         </div>`).join('');
-    }} catch(e) {{ console.error(e); }}
+        if (sidebarLoadMoreBtn) {{
+          sidebarLoadMoreBtn.style.display = _sidebarShown >= latestPool.length ? 'none' : 'block';
+        }}
+      }}
+      renderLatestSidebar();
+      window.loadMoreLatest = function() {{
+        _sidebarShown = Math.min(_sidebarShown + 4, latestPool.length);
+        renderLatestSidebar();
+      }};
+
+      // -- Selected Archival Monographs � no duplicates from hero zone --
+      window._monographItems = monographItems;
+      const INITIAL_COUNT = 12;
+      let _shownCount = INITIAL_COUNT;
+
+      const masonryPatterns = [
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-square',  offset: '' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-[4/5]',   offset: '' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-square',  offset: 'lg:-mt-8' }},
+        {{ col: 'col-span-6 lg:col-span-3', aspect: 'aspect-[4/5]',   offset: 'lg:-mt-8' }},
+      ];
+
+      const renderMasonryCard = (item, i) => {{
+        const p = masonryPatterns[i % masonryPatterns.length];
+        const excerpt = (item.description || '').substring(0, 90) + ((item.description || '').length > 90 ? '\u2026' : '');
+        return `
+          <article class="group ${{p.col}} ${{p.offset}} flex flex-col cursor-pointer" onclick="window.location='${{item.url}}'">
+            <a href="${{item.url}}" class="block ${{p.aspect}} overflow-hidden mb-5 bg-charcoal/10" onclick="event.stopPropagation()">
+              <img alt="${{item.title}}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${{item.image}}" loading="lazy"/>
+            </a>
+            <span class="card-label">${{item.category}}</span>
+            <h3 class="serif-heading text-base lg:text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-snug">${{item.title}}</h3>
+            <p class="text-sm leading-relaxed text-charcoal/70 italic">${{excerpt}}</p>
+          </article>`;
+      }};
+
+      const grid = document.getElementById('featured-grid');
+      const loadMoreBtn = document.getElementById('monograph-load-more');
+      grid.className = 'masonry-grid';
+
+      if (monographItems.length === 0) {{
+        grid.innerHTML = '<p class="col-span-12 text-center text-archive-gray italic serif-heading py-8">More archival stories coming soon.</p>';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+      }} else {{
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (monographItems.length > _shownCount && loadMoreBtn) loadMoreBtn.style.display = 'block';
+      }}
+
+      window.loadMoreMonographs = function() {{
+        _shownCount = Math.min(_shownCount + 4, monographItems.length);
+        grid.innerHTML = monographItems.slice(0, _shownCount).map((item, i) => renderMasonryCard(item, i)).join('');
+        if (_shownCount >= monographItems.length && loadMoreBtn) loadMoreBtn.style.display = 'none';
+      }};
+
+    }} catch(e) {{ console.error('Home init error:', e); }}
+    finally {{ document.getElementById('home-main').classList.add('loaded'); }}
   }}
   document.addEventListener('DOMContentLoaded', initHome);
 </script>
@@ -1082,9 +1252,9 @@ def page_index(meta):
 """
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 # MAIN
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 PAGES = [
     ('blog.html',         page_blog),
@@ -1104,7 +1274,75 @@ def read(p):
 
 def write(p, c):
     with open(p, 'w', encoding='utf-8') as f: f.write(c)
-    print(f"  ✓ {os.path.basename(p)}")
+    print(f"  ? {os.path.basename(p)}")
+
+
+def generate_sitemap():
+    """Walk public/ and write a clean sitemap.xml with proper lastmod dates."""
+    pub = Path(BASE) / 'public'
+    BASE_URL = 'https://theshearchive.com'
+    today = datetime.date.today().isoformat()
+
+    # (path, priority, changefreq, lastmod)
+    STATIC = [
+        ('/',              '1.0', 'daily',   today),
+        ('/about/',        '0.8', 'monthly', today),
+        ('/contact/',      '0.8', 'monthly', today),
+        ('/privacy/',      '0.5', 'yearly',  today),
+        ('/submissions/',  '0.7', 'monthly', today),
+        ('/search/',       '0.6', 'monthly', today),
+        ('/stories/',      '0.9', 'weekly',  today),
+        ('/inventions/',   '0.9', 'weekly',  today),
+        ('/editors-desk/', '0.9', 'weekly',  today),
+        ('/tech-news/',    '0.9', 'weekly',  today),
+        ('/careers/',      '0.7', 'monthly', today),
+    ]
+
+    ARTICLE_SECTIONS = ['stories', 'inventions', 'editors-desk', 'tech-news', 'careers']
+    SKIP_DATED = re.compile(r'^\d{4}-\d{2}-\d{2}-')
+    SKIP_SLUGS  = {'welcome-to-tech-news', 'welcome-to-careers', 'src', 'styles', 'scripts'}
+    pub_date_re = re.compile(
+        r'<meta\b[^>]+property=["\'']article:published_time["\''][^>]*content=["\'']([^"\']{1,30})["\'']'
+        r'|<meta\b[^>]+content=["\'']([^"\']{1,30})["\''][^>]*property=["\'']article:published_time["\'']'
+        r'| \"datePublished\":\s*\"(\d{4}-\d{2}-\d{2})\"',
+        re.I
+    )
+
+    entries = list(STATIC)
+    for section in ARTICLE_SECTIONS:
+        sec_dir = pub / section
+        if not sec_dir.exists():
+            continue
+        for html_file in sorted(sec_dir.glob('*/index.html')):
+            slug = html_file.parent.name
+            if slug in SKIP_SLUGS or SKIP_DATED.match(slug):
+                continue
+            canonical = f'/{section}/{slug}/'
+            try:
+                text = html_file.read_text(encoding='utf-8')
+                m = pub_date_re.search(text)
+                lastmod = next((g for g in (m.group(1), m.group(2), m.group(3)) if g), today)[:10] if m else today
+            except Exception:
+                lastmod = today
+            entries.append((canonical, '0.8', 'yearly', lastmod))
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for path, priority, freq, lastmod in entries:
+        lines += [
+            '  <url>',
+            f'    <loc>{BASE_URL}{path}</loc>',
+            f'    <lastmod>{lastmod}</lastmod>',
+            f'    <changefreq>{freq}</changefreq>',
+            f'    <priority>{priority}</priority>',
+            '  </url>',
+        ]
+    lines.append('</urlset>')
+    sitemap_path = pub / 'sitemap.xml'
+    sitemap_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print(f"  \u2713 sitemap.xml  —  {len(entries)} URLs")
 
 
 if __name__ == '__main__':
@@ -1112,7 +1350,7 @@ if __name__ == '__main__':
     for filename, builder in PAGES:
         src = os.path.join(BASE, filename)
         if not os.path.exists(src):
-            print(f"  ⚠ Skipping {filename} — not found")
+            print(f"  ? Skipping {filename} � not found")
             continue
         original_html = read(src)
         meta = extract_preserved_head(original_html)
@@ -1122,5 +1360,8 @@ if __name__ == '__main__':
         dst = os.path.join(BASE, 'public', filename)
         if os.path.exists(os.path.dirname(dst)):
             shutil.copy2(src, dst)
-            print(f"    → synced to public/")
+            print(f"    ? synced to public/")
+    # Regenerate sitemap
+    print("\n-- Sitemap --")
+    generate_sitemap()
     print("\nDone!")

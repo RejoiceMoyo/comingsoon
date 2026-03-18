@@ -445,6 +445,14 @@ function generateContentPage(item, type, outputBaseDir) {
     const author = item.author || 'The She Archive';
     const description = item.description || item.dek || 'The She Archive preserves the stories of women history forgot to credit.';
     const image = item.image || '/images/prvimg.jpeg';
+    const imageCaption = item.image_caption || '';
+    const imageCredit = item.image_credit || '';
+    const captionParts = [];
+    if (imageCaption) captionParts.push(`<span>${imageCaption}</span>`);
+    if (imageCredit) captionParts.push(`<span class="opacity-70">${imageCredit}</span>`);
+    const heroCaptionHtml = captionParts.length
+        ? `<p class="text-[11px] tracking-wide text-charcoal/60 mt-2 px-1 font-mono">${captionParts.join(' - ')}</p>`
+        : '';
     const publishedDate = item.date ? new Date(item.date).toLocaleDateString('en-GB', {
         day: 'numeric',
         month: 'long',
@@ -494,6 +502,7 @@ function generateContentPage(item, type, outputBaseDir) {
                     <div class="w-full aspect-[16/9] overflow-hidden bg-[#ede9dc] mb-6 lg:mb-8">
                         <img src="${image}" alt="${title}" class="h-full w-full object-cover" />
                     </div>
+                    ${heroCaptionHtml}
                     ` : ''}
                     <div class="article-body mt-2">
                         ${extraFields}

@@ -72,6 +72,8 @@ collections:
           - "Newsletter"
       - { label: "Era", name: "era", widget: "select", options: ["19th Century", "Early 20th Century", "Mid-20th Century", "Late 20th Century", "21st Century"] }
       - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "OPTIONAL. Descriptive caption shown beneath the hero image." }
+      - { label: "Image Credit / Source", name: "image_credit", widget: "string", required: false, hint: "OPTIONAL. e.g. 'Public domain via Wikimedia Commons' or photographer name." }
       - { label: "Short Description", name: "description", widget: "markdown", hint: "Used for previews and SEO. Resizable text area." }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "References", name: "references", widget: "markdown", required: false, hint: "OPTIONAL. Cite your sources. At least 1 primary source when possible." }
@@ -214,6 +216,8 @@ collections:
       # ═══════════════════════════════════════════════════════════════
       - { label: "Associated Story", name: "associated_story", widget: "string", required: false, hint: "OPTIONAL but high-value. Link to long-form narrative archive entry (e.g., /stories/inventor-name/)." }
       - { label: "Images / Diagrams", name: "image", widget: "image", required: false, hint: "OPTIONAL. Primary image of the invention, diagram, or inventor." }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "OPTIONAL. Descriptive caption shown beneath the hero image." }
+      - { label: "Image Credit / Source", name: "image_credit", widget: "string", required: false, hint: "OPTIONAL. e.g. 'Public domain via Wikimedia Commons' or photographer name." }
       - { label: "Additional Images", name: "gallery", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" }, hint: "OPTIONAL. Additional images, diagrams, or historical photos." }
 
       # ═══════════════════════════════════════════════════════════════
@@ -241,6 +245,8 @@ collections:
       - { label: "Author", name: "author", widget: "string", default: "The She Archive" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Abstract or symbolic image." }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "OPTIONAL. Descriptive caption shown beneath the hero image." }
+      - { label: "Image Credit / Source", name: "image_credit", widget: "string", required: false, hint: "OPTIONAL. e.g. 'Public domain via Wikimedia Commons' or photographer name." }
       - { label: "Short Description", name: "description", widget: "markdown", hint: "REQUIRED. Used for previews and SEO. 1-2 sentences summarizing the essay." }
       - { label: "Main Body (Essay)", name: "body", widget: "markdown" }
       - { label: "Key Themes / Topics", name: "themes", widget: "list" }
@@ -289,6 +295,8 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Link URL", name: "link_url", widget: "string", required: false, hint: "External link if this is just a link post" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "OPTIONAL. Descriptive caption shown beneath the hero image." }
+      - { label: "Image Credit / Source", name: "image_credit", widget: "string", required: false, hint: "OPTIONAL. e.g. 'Public domain via Wikimedia Commons' or photographer name." }
 
   - name: "careers"
     label: "Careers"
@@ -303,6 +311,8 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Apply/More Info Link", name: "link", widget: "string", required: false }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Image Caption", name: "image_caption", widget: "string", required: false, hint: "OPTIONAL. Descriptive caption shown beneath the hero image." }
+      - { label: "Image Credit / Source", name: "image_credit", widget: "string", required: false, hint: "OPTIONAL. e.g. 'Public domain via Wikimedia Commons' or photographer name." }
 
   - name: "pages"
     label: "Legal & Static Pages"
